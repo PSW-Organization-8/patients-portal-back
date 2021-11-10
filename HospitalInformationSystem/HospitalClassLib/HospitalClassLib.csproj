@@ -6,22 +6,20 @@
 
   <ItemGroup>
     <Compile Remove="Feedbacks\**" />
+    <Compile Remove="MedicalRecords\Service\**" />
+    <Compile Remove="RoomsAndEquipment\Service\**" />
     <EmbeddedResource Remove="Feedbacks\**" />
+    <EmbeddedResource Remove="MedicalRecords\Service\**" />
+    <EmbeddedResource Remove="RoomsAndEquipment\Service\**" />
     <None Remove="Feedbacks\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="GraphicalEditor\Model\" />
-    <Folder Include="GraphicalEditor\Service\" />
-    <Folder Include="GraphicalEditor\Repository\" />
     <Compile Remove="GraphicalEditor\**" />
     <EmbeddedResource Remove="GraphicalEditor\**" />
     <None Remove="GraphicalEditor\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="MedicalRecords\Service\" />
-    <Folder Include="RoomsAndEquipment\Service\" />
+    <None Remove="MedicalRecords\Service\**" />
+    <None Remove="RoomsAndEquipment\Service\**" />
   </ItemGroup>
 
   <ItemGroup>
