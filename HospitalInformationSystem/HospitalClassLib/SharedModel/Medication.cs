@@ -10,18 +10,18 @@ namespace HospitalClassLib.SharedModel
 
         public string MedicineID { get; set; }
         public string MedicineName { get; set; }
-        public List<Component> Components { get; set; }
+        public List<Allergen> Components { get; set; }
         public string IDSubstitution { get; set; }
 
         public MedicineApprovalStatus ApprovalStatus { get; set; }
 
         public Medication()
         {
-            Components = new List<Component>();
+            Components = new List<Allergen>();
             ApprovalStatus = MedicineApprovalStatus.Waiting;
         }
 
-        public Medication(string id, string name, List<Component> components, string iDSubstitution)
+        public Medication(string id, string name, List<Allergen> components, string iDSubstitution)
         {
             MedicineID = id;
             MedicineName = name;
@@ -54,23 +54,23 @@ namespace HospitalClassLib.SharedModel
             }
         }
 
-        public Boolean IncludesAllergen(Component allergen) 
+        public Boolean IncludesAllergen(Allergen allergen) 
         {
-            foreach(Component currentAllergen in Components)
+            foreach(Allergen currentAllergen in Components)
             {
-                if (currentAllergen.ID == allergen.ID)
+                if (currentAllergen.Id == allergen.Id)
                     return true;
             }
 
             return false;
         }
 
-        public void RemoveComponent(Component allergen)
+        public void RemoveComponent(Allergen allergen)
         {
             for (int i = 0; i < Components.Count; i++)
             {
-                Component currentComponent = Components[i];
-                if (currentComponent.ID == allergen.ID)
+                Allergen currentComponent = Components[i];
+                if (currentComponent.Id == allergen.Id)
                 {
                     Components.Remove(currentComponent);
                     i--;

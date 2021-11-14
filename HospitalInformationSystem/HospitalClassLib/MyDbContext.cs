@@ -15,6 +15,7 @@ namespace HospitalClassLib
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<Allergen> Allergens { get; set; }
         public MyDbContext()
         {
 
@@ -31,12 +32,15 @@ namespace HospitalClassLib
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Allergen>().HasData(
+                new Allergen { Id = 1, Name = "Prasina" }
+                );
             modelBuilder.Entity<Doctor>().HasData(
                 new Doctor { Id = 1, Name = "Jovan", LastName = "Jovanovic", Jmbg = "123456799", Username = "jova", Password = "jova", DoctorSpecialization = Specialization.FamilyPhysician },
                 new Doctor { Id = 2, Name = "Milan", LastName = "Ilic", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.FamilyPhysician }
                 );
             modelBuilder.Entity<Patient>().HasData(
-                new Patient { Id = 1, Name = "Pera", LastName = "Peric", Jmbg = "123456789", Username = "pera", Password = "pera", DateOfBirth = DateTime.Now, Feedbacks = new List<Feedback>(), DoctorId = 1 }
+                new Patient { Id = 1, Name = "Pera", LastName = "Peric", Jmbg = "123456789", Username = "pera", Password = "pera", DateOfBirth = DateTime.Now, Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>() }
                 );
             modelBuilder.Entity<Feedback>().HasData(
                 new Feedback { Id = 1, Content = "Tekst neki", IsApproved = true, Date = DateTime.Now, PatientId = 1, IsPublishable = true, IsAnonymous = false },

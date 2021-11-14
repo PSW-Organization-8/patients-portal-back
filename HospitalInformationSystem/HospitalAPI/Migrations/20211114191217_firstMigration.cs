@@ -4,10 +4,23 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace HospitalAPI.Migrations
 {
-    public partial class firstMigrtion : Migration
+    public partial class firstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Allergens",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Allergens", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Doctors",
                 columns: table => new
@@ -59,6 +72,30 @@ namespace HospitalAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AllergenPatient",
+                columns: table => new
+                {
+                    AllergensId = table.Column<int>(type: "integer", nullable: false),
+                    PatientsId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AllergenPatient", x => new { x.AllergensId, x.PatientsId });
+                    table.ForeignKey(
+                        name: "FK_AllergenPatient_Allergens_AllergensId",
+                        column: x => x.AllergensId,
+                        principalTable: "Allergens",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AllergenPatient_Patients_PatientsId",
+                        column: x => x.PatientsId,
+                        principalTable: "Patients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Feedbacks",
                 columns: table => new
                 {
@@ -83,6 +120,11 @@ namespace HospitalAPI.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Allergens",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 1, "Prasina" });
+
+            migrationBuilder.InsertData(
                 table: "Doctors",
                 columns: new[] { "Id", "DoctorSpecialization", "Email", "Jmbg", "LastName", "Name", "Password", "Phone", "Username" },
                 values: new object[,]
@@ -94,16 +136,21 @@ namespace HospitalAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Patients",
                 columns: new[] { "Id", "DateOfBirth", "DoctorId", "Email", "Guest", "IsBanned", "Jmbg", "LastName", "Lbo", "Name", "Password", "Phone", "Username" },
-                values: new object[] { 1, new DateTime(2021, 11, 14, 19, 36, 0, 75, DateTimeKind.Local).AddTicks(2343), 1, null, false, false, "123456789", "Peric", null, "Pera", "pera", null, "pera" });
+                values: new object[] { 1, new DateTime(2021, 11, 14, 20, 12, 17, 144, DateTimeKind.Local).AddTicks(4946), 1, null, false, false, "123456789", "Peric", null, "Pera", "pera", null, "pera" });
 
             migrationBuilder.InsertData(
                 table: "Feedbacks",
                 columns: new[] { "Id", "Content", "Date", "IsAnonymous", "IsApproved", "IsPublishable", "PatientId" },
                 values: new object[,]
                 {
-                    { 1, "Tekst neki", new DateTime(2021, 11, 14, 19, 36, 0, 77, DateTimeKind.Local).AddTicks(8989), false, true, true, 1 },
-                    { 2, "Drugi neki", new DateTime(2021, 11, 14, 19, 36, 0, 78, DateTimeKind.Local).AddTicks(280), false, true, true, 1 }
+                    { 1, "Tekst neki", new DateTime(2021, 11, 14, 20, 12, 17, 147, DateTimeKind.Local).AddTicks(6687), false, true, true, 1 },
+                    { 2, "Drugi neki", new DateTime(2021, 11, 14, 20, 12, 17, 147, DateTimeKind.Local).AddTicks(8193), false, true, true, 1 }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AllergenPatient_PatientsId",
+                table: "AllergenPatient",
+                column: "PatientsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Feedbacks_PatientId",
@@ -119,7 +166,13 @@ namespace HospitalAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AllergenPatient");
+
+            migrationBuilder.DropTable(
                 name: "Feedbacks");
+
+            migrationBuilder.DropTable(
+                name: "Allergens");
 
             migrationBuilder.DropTable(
                 name: "Patients");

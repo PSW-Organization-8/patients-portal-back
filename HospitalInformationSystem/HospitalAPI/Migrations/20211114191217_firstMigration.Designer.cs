@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20211114183600_firstMigrtion")]
-    partial class firstMigrtion
+    [Migration("20211114191217_firstMigration")]
+    partial class firstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,21 @@ namespace HospitalAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+            modelBuilder.Entity("AllergenPatient", b =>
+                {
+                    b.Property<int>("AllergensId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("PatientsId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("AllergensId", "PatientsId");
+
+                    b.HasIndex("PatientsId");
+
+                    b.ToTable("AllergenPatient");
+                });
 
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Feedback", b =>
                 {
@@ -57,7 +72,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 14, 19, 36, 0, 77, DateTimeKind.Local).AddTicks(8989),
+                            Date = new DateTime(2021, 11, 14, 20, 12, 17, 147, DateTimeKind.Local).AddTicks(6687),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -67,7 +82,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 14, 19, 36, 0, 78, DateTimeKind.Local).AddTicks(280),
+                            Date = new DateTime(2021, 11, 14, 20, 12, 17, 147, DateTimeKind.Local).AddTicks(8193),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -128,7 +143,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2021, 11, 14, 19, 36, 0, 75, DateTimeKind.Local).AddTicks(2343),
+                            DateOfBirth = new DateTime(2021, 11, 14, 20, 12, 17, 144, DateTimeKind.Local).AddTicks(4946),
                             DoctorId = 1,
                             Guest = false,
                             IsBanned = false,
@@ -137,6 +152,28 @@ namespace HospitalAPI.Migrations
                             Name = "Pera",
                             Password = "pera",
                             Username = "pera"
+                        });
+                });
+
+            modelBuilder.Entity("HospitalClassLib.SharedModel.Allergen", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Allergens");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Prasina"
                         });
                 });
 
@@ -196,6 +233,21 @@ namespace HospitalAPI.Migrations
                             Password = "mico",
                             Username = "mico"
                         });
+                });
+
+            modelBuilder.Entity("AllergenPatient", b =>
+                {
+                    b.HasOne("HospitalClassLib.SharedModel.Allergen", null)
+                        .WithMany()
+                        .HasForeignKey("AllergensId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HospitalClassLib.Schedule.Model.Patient", null)
+                        .WithMany()
+                        .HasForeignKey("PatientsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Feedback", b =>

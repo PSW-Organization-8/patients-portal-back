@@ -1,4 +1,5 @@
 using HospitalClassLib;
+using HospitalClassLib.Schedule.Repository.AllergenRepository;
 using HospitalClassLib.Schedule.Repository.DoctorRepository;
 using HospitalClassLib.Schedule.Repository.FeedbackRepository;
 using HospitalClassLib.Schedule.Repository.PatientRepository;
@@ -34,6 +35,8 @@ namespace HospitalAPI
 
             services.AddControllers();
             services.AddDbContext<MyDbContext>(options => options.UseNpgsql(x => x.MigrationsAssembly("HospitalAPI")));
+            services.AddTransient<IAllergenRepository, AllergenRepository>();
+            services.AddScoped<AllergenRepository>();
             services.AddTransient<IDoctorRepository, DoctorRepository>();
             services.AddScoped<DoctorRepository>();
             services.AddTransient<IPatientRepository, PatientRepository>();
