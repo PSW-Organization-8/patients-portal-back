@@ -7,17 +7,17 @@ using System;
 
 namespace HospitalClassLib.SharedModel.Enums
 {
-   public enum Specialization
-   {
-        OpstaPraksa = 0,
-        Hirurg,
-        Internista,
-        Dermatolog, 
-        Kardiolog, 
-        Otorinolaringolog,
-        Stomatolog,
-        Urolog, 
-        Ginekolog, 
-        Neurolog       
-   }
+    public enum Specialization
+    {
+        FamilyPhysician = 0,
+        Surgeon,
+        Internist,
+        Dermatologist,
+        Cardiologist,
+        Otorhinolaryngologist,
+        Dentist,
+        Urologist,
+        Gynecologist,
+        Neurologist
+    }
 }

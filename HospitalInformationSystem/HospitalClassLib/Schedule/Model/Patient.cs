@@ -21,6 +21,8 @@ namespace HospitalClassLib.Schedule.Model
         public bool Guest { get; set; }
         public DateTime DateOfBirth { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }
+        public int DoctorId { get; set; }
+        public virtual Doctor Doctor { get; set; }
 
 
     }

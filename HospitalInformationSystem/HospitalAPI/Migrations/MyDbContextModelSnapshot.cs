@@ -55,7 +55,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 8, 14, 9, 8, 994, DateTimeKind.Local).AddTicks(1428),
+                            Date = new DateTime(2021, 11, 14, 19, 36, 0, 77, DateTimeKind.Local).AddTicks(8989),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -65,7 +65,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 8, 14, 9, 8, 994, DateTimeKind.Local).AddTicks(4446),
+                            Date = new DateTime(2021, 11, 14, 19, 36, 0, 78, DateTimeKind.Local).AddTicks(280),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -82,6 +82,9 @@ namespace HospitalAPI.Migrations
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Email")
                         .HasColumnType("text");
@@ -115,13 +118,16 @@ namespace HospitalAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Patient");
+                    b.HasIndex("DoctorId");
+
+                    b.ToTable("Patients");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2021, 11, 8, 14, 9, 8, 982, DateTimeKind.Local).AddTicks(122),
+                            DateOfBirth = new DateTime(2021, 11, 14, 19, 36, 0, 75, DateTimeKind.Local).AddTicks(2343),
+                            DoctorId = 1,
                             Guest = false,
                             IsBanned = false,
                             Jmbg = "123456789",
@@ -129,6 +135,64 @@ namespace HospitalAPI.Migrations
                             Name = "Pera",
                             Password = "pera",
                             Username = "pera"
+                        });
+                });
+
+            modelBuilder.Entity("HospitalClassLib.SharedModel.Doctor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("DoctorSpecialization")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Jmbg")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Doctors");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DoctorSpecialization = 0,
+                            Jmbg = "123456799",
+                            LastName = "Jovanovic",
+                            Name = "Jovan",
+                            Password = "jova",
+                            Username = "jova"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DoctorSpecialization = 0,
+                            Jmbg = "123756799",
+                            LastName = "Ilic",
+                            Name = "Milan",
+                            Password = "mico",
+                            Username = "mico"
                         });
                 });
 
@@ -145,7 +209,23 @@ namespace HospitalAPI.Migrations
 
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Patient", b =>
                 {
+                    b.HasOne("HospitalClassLib.SharedModel.Doctor", "Doctor")
+                        .WithMany("Patients")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+                });
+
+            modelBuilder.Entity("HospitalClassLib.Schedule.Model.Patient", b =>
+                {
                     b.Navigation("Feedbacks");
+                });
+
+            modelBuilder.Entity("HospitalClassLib.SharedModel.Doctor", b =>
+                {
+                    b.Navigation("Patients");
                 });
 #pragma warning restore 612, 618
         }
