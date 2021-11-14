@@ -1,5 +1,6 @@
 ﻿using HospitalClassLib.Schedule.Repository.AllergenRepository;
 using HospitalClassLib.SharedModel;
+using System.Collections.Generic;
 
 namespace HospitalClassLib.Schedule.Service
 {
@@ -17,6 +18,11 @@ namespace HospitalClassLib.Schedule.Service
         public Allergen Get(int id)
         {
             return allergenRepository.Get(id);
+        }
+
+        public List<Allergen> GetAll()
+        {
+            return allergenRepository.GetAll();
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using HospitalClassLib.SharedModel;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HospitalClassLib.Schedule.Repository.DoctorRepository
 {
@@ -14,6 +16,11 @@ namespace HospitalClassLib.Schedule.Repository.DoctorRepository
         protected override int GetId(Doctor entity)
         {
             return entity.Id;
+        }
+
+        public List<Doctor> GetLessOccupiedDoctors()
+        {
+            return dbContext.Doctors.Where(x => x.Patients.Count < dbContext.Doctors.OrderBy(p => p.Patients.Count).First().Patients.Count + 3).ToList();
         }
     }
 }

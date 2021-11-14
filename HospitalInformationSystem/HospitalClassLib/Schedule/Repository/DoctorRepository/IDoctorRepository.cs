@@ -7,6 +7,7 @@ namespace HospitalClassLib.Schedule.Repository.DoctorRepository
     {
         List<Doctor> GetAll();
         Doctor Get(int id);
+        List<Doctor> GetLessOccupiedDoctors();
         Doctor Update(Doctor doctor);
         Doctor Create(Doctor doctor);
         bool ExistsById(int id);

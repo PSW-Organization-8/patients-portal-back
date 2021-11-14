@@ -1,5 +1,6 @@
 ﻿using HospitalClassLib.Schedule.Repository.DoctorRepository;
 using HospitalClassLib.Schedule.Service;
+using HospitalClassLib.SharedModel;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace HospitalAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class DoctorController
+    public class DoctorController : ControllerBase
     {
         private readonly DoctorService doctorService;
         private readonly DoctorRepository doctorRepository;
@@ -18,6 +19,12 @@ namespace HospitalAPI.Controllers
         {
             this.doctorService = doctorService;
             this.doctorRepository = doctorRepository;
+        }
+
+        [HttpGet]
+        public IActionResult GetLessOccupiedDoctors()
+        {
+            return Ok(doctorRepository.GetLessOccupiedDoctors());
         }
     }
 }

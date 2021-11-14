@@ -36,10 +36,13 @@ namespace HospitalAPI
             services.AddControllers();
             services.AddDbContext<MyDbContext>(options => options.UseNpgsql(x => x.MigrationsAssembly("HospitalAPI")));
             services.AddTransient<IAllergenRepository, AllergenRepository>();
+            services.AddScoped<AllergenService>();
             services.AddScoped<AllergenRepository>();
             services.AddTransient<IDoctorRepository, DoctorRepository>();
+            services.AddScoped<DoctorService>();
             services.AddScoped<DoctorRepository>();
             services.AddTransient<IPatientRepository, PatientRepository>();
+            services.AddScoped<PatientService>();
             services.AddScoped<PatientRepository>();
             services.AddTransient<IFeedbackRepository, FeedbackRepository>();
             services.AddScoped<FeedbackService>();

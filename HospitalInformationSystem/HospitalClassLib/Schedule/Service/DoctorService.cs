@@ -23,5 +23,10 @@ namespace HospitalClassLib.Schedule.Service
         {
             return doctorRepository.Get(id);
         }
+
+        public List<Doctor> GetLessOccupiedDoctors()
+        {
+            return doctorRepository.GetLessOccupiedDoctors();
+        }
     }
 }
