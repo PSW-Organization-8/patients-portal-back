@@ -16,6 +16,8 @@ namespace HospitalClassLib
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Allergen> Allergens { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Survey> Surveys { get; set; }
         public MyDbContext()
         {
 
@@ -46,7 +48,24 @@ namespace HospitalClassLib
                 new Feedback { Id = 1, Content = "Tekst neki", IsApproved = true, Date = DateTime.Now, PatientId = 1, IsPublishable = true, IsAnonymous = false },
                 new Feedback { Id = 2, Content = "Drugi neki", IsApproved = true, Date = DateTime.Now, PatientId = 1, IsPublishable = true, IsAnonymous = false }
             );
-        }
 
+            modelBuilder.Entity<Question>().HasData(
+            new Question { Id = 1, Text = "Text1", Value = 0, Category = QuestionCategory.doctor },
+            new Question { Id = 2, Text = "Text2", Value = 0, Category = QuestionCategory.doctor },
+            new Question { Id = 3, Text = "Text3", Value = 0, Category = QuestionCategory.doctor },
+            new Question { Id = 4, Text = "Text4", Value = 0, Category = QuestionCategory.doctor },
+            new Question { Id = 5, Text = "Text5", Value = 0, Category = QuestionCategory.doctor },
+            new Question { Id = 6, Text = "Text2", Value = 0, Category = QuestionCategory.hospital },
+            new Question { Id = 7, Text = "Text2", Value = 0, Category = QuestionCategory.hospital },
+            new Question { Id = 8, Text = "Text2", Value = 0, Category = QuestionCategory.hospital },
+            new Question { Id = 9, Text = "Text2", Value = 0, Category = QuestionCategory.hospital },
+            new Question { Id = 10, Text = "Text2", Value = 0, Category = QuestionCategory.hospital },
+            new Question { Id = 11, Text = "Text2", Value = 0, Category = QuestionCategory.medicalStuff },
+            new Question { Id = 12, Text = "Text2", Value = 0, Category = QuestionCategory.medicalStuff },
+            new Question { Id = 13, Text = "Text2", Value = 0, Category = QuestionCategory.medicalStuff },
+            new Question { Id = 14, Text = "Text2", Value = 0, Category = QuestionCategory.medicalStuff },
+            new Question { Id = 15, Text = "Text2", Value = 0, Category = QuestionCategory.medicalStuff }
+            );
+        }
     }
 }

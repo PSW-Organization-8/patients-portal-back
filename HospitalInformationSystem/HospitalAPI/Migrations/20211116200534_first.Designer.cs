@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20211114191217_firstMigration")]
-    partial class firstMigration
+    [Migration("20211116200534_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,6 +34,34 @@ namespace HospitalAPI.Migrations
                     b.HasIndex("PatientsId");
 
                     b.ToTable("AllergenPatient");
+                });
+
+            modelBuilder.Entity("HospitalClassLib.Schedule.Model.Appointment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int?>("DoctorId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("PatientId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("PatientId");
+
+                    b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Feedback", b =>
@@ -72,7 +100,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 14, 20, 12, 17, 147, DateTimeKind.Local).AddTicks(6687),
+                            Date = new DateTime(2021, 11, 16, 21, 5, 33, 434, DateTimeKind.Local).AddTicks(1948),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -82,7 +110,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 14, 20, 12, 17, 147, DateTimeKind.Local).AddTicks(8193),
+                            Date = new DateTime(2021, 11, 16, 21, 5, 33, 434, DateTimeKind.Local).AddTicks(4271),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -143,7 +171,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2021, 11, 14, 20, 12, 17, 144, DateTimeKind.Local).AddTicks(4946),
+                            DateOfBirth = new DateTime(2021, 11, 16, 21, 5, 33, 429, DateTimeKind.Local).AddTicks(4333),
                             DoctorId = 1,
                             Guest = false,
                             IsBanned = false,
@@ -153,6 +181,156 @@ namespace HospitalAPI.Migrations
                             Password = "pera",
                             Username = "pera"
                         });
+                });
+
+            modelBuilder.Entity("HospitalClassLib.Schedule.Model.Question", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("Category")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("SurveyId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SurveyId");
+
+                    b.ToTable("Question");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Category = 0,
+                            Text = "Text1",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Category = 0,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Category = 0,
+                            Text = "Text3",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Category = 0,
+                            Text = "Text4",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Category = 0,
+                            Text = "Text5",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Category = 1,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Category = 1,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Category = 1,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Category = 1,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Category = 1,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Category = 2,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Category = 2,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Category = 2,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Category = 2,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Category = 2,
+                            Text = "Text2",
+                            Value = 0
+                        });
+                });
+
+            modelBuilder.Entity("HospitalClassLib.Schedule.Model.Survey", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int?>("PatientId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PatientId");
+
+                    b.ToTable("Surveys");
                 });
 
             modelBuilder.Entity("HospitalClassLib.SharedModel.Allergen", b =>
@@ -250,6 +428,21 @@ namespace HospitalAPI.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("HospitalClassLib.Schedule.Model.Appointment", b =>
+                {
+                    b.HasOne("HospitalClassLib.SharedModel.Doctor", "Doctor")
+                        .WithMany()
+                        .HasForeignKey("DoctorId");
+
+                    b.HasOne("HospitalClassLib.Schedule.Model.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId");
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("Patient");
+                });
+
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Feedback", b =>
                 {
                     b.HasOne("HospitalClassLib.Schedule.Model.Patient", "Patient")
@@ -272,9 +465,32 @@ namespace HospitalAPI.Migrations
                     b.Navigation("Doctor");
                 });
 
+            modelBuilder.Entity("HospitalClassLib.Schedule.Model.Question", b =>
+                {
+                    b.HasOne("HospitalClassLib.Schedule.Model.Survey", "Survey")
+                        .WithMany("Questions")
+                        .HasForeignKey("SurveyId");
+
+                    b.Navigation("Survey");
+                });
+
+            modelBuilder.Entity("HospitalClassLib.Schedule.Model.Survey", b =>
+                {
+                    b.HasOne("HospitalClassLib.Schedule.Model.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId");
+
+                    b.Navigation("Patient");
+                });
+
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Patient", b =>
                 {
                     b.Navigation("Feedbacks");
+                });
+
+            modelBuilder.Entity("HospitalClassLib.Schedule.Model.Survey", b =>
+                {
+                    b.Navigation("Questions");
                 });
 
             modelBuilder.Entity("HospitalClassLib.SharedModel.Doctor", b =>

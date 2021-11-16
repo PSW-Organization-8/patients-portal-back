@@ -1,19 +1,19 @@
-﻿
+﻿using HospitalClassLib.Schedule.Model;
+using SIMS.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-using SIMS.Repositories;
-using HospitalClassLib.SharedModel.Enums;
-using HospitalClassLib.SharedModel;
-using HospitalClassLib.Schedule.Model;
 
 namespace HospitalClassLib.Schedule.Repository.AppointmentRepo
 {
-    interface IAppointmentRepository : IGenericRepository<Appointment, String>
+    public interface IAppointmentRepository
     {
-        List<int> GetAppointmentsCountForCurrentWeek(AppointmentType tip, Doctor l); //nisam siguran da li trebaju da idu u storage class ili u service* */
-        List<Appointment> GetPatientAppointments(Patient pacijent);
-        List<Appointment> GetDoctorAppointments(Doctor lekar);
+        List<Appointment> GetAll();
+        Appointment Get(int id);
+        Appointment Update(Appointment appointment);
+        Appointment Create(Appointment appointment);
+        bool ExistsById(int id);
+        bool Delete(int id);
     }
 }

@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace HospitalAPI.Migrations
 {
-    public partial class firstMigration : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -96,6 +96,34 @@ namespace HospitalAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Appointments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    StartTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    Type = table.Column<int>(type: "integer", nullable: false),
+                    DoctorId = table.Column<int>(type: "integer", nullable: true),
+                    PatientId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Appointments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Appointments_Doctors_DoctorId",
+                        column: x => x.DoctorId,
+                        principalTable: "Doctors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Appointments_Patients_PatientId",
+                        column: x => x.PatientId,
+                        principalTable: "Patients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Feedbacks",
                 columns: table => new
                 {
@@ -119,6 +147,47 @@ namespace HospitalAPI.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Surveys",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PatientId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Surveys", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Surveys_Patients_PatientId",
+                        column: x => x.PatientId,
+                        principalTable: "Patients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Question",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Text = table.Column<string>(type: "text", nullable: true),
+                    Value = table.Column<int>(type: "integer", nullable: false),
+                    Category = table.Column<int>(type: "integer", nullable: false),
+                    SurveyId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Question", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Question_Surveys_SurveyId",
+                        column: x => x.SurveyId,
+                        principalTable: "Surveys",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "Allergens",
                 columns: new[] { "Id", "Name" },
@@ -129,28 +198,60 @@ namespace HospitalAPI.Migrations
                 columns: new[] { "Id", "DoctorSpecialization", "Email", "Jmbg", "LastName", "Name", "Password", "Phone", "Username" },
                 values: new object[,]
                 {
-                    { 1, 0, null, "123456799", "Jovanovic", "Jovan", "jova", null, "jova" },
-                    { 2, 0, null, "123756799", "Ilic", "Milan", "mico", null, "mico" }
+                    { 2, 0, null, "123756799", "Ilic", "Milan", "mico", null, "mico" },
+                    { 1, 0, null, "123456799", "Jovanovic", "Jovan", "jova", null, "jova" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Question",
+                columns: new[] { "Id", "Category", "SurveyId", "Text", "Value" },
+                values: new object[,]
+                {
+                    { 15, 2, null, "Text2", 0 },
+                    { 14, 2, null, "Text2", 0 },
+                    { 13, 2, null, "Text2", 0 },
+                    { 12, 2, null, "Text2", 0 },
+                    { 11, 2, null, "Text2", 0 },
+                    { 10, 1, null, "Text2", 0 },
+                    { 9, 1, null, "Text2", 0 },
+                    { 7, 1, null, "Text2", 0 },
+                    { 6, 1, null, "Text2", 0 },
+                    { 5, 0, null, "Text5", 0 },
+                    { 4, 0, null, "Text4", 0 },
+                    { 3, 0, null, "Text3", 0 },
+                    { 2, 0, null, "Text2", 0 },
+                    { 8, 1, null, "Text2", 0 },
+                    { 1, 0, null, "Text1", 0 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Patients",
                 columns: new[] { "Id", "DateOfBirth", "DoctorId", "Email", "Guest", "IsBanned", "Jmbg", "LastName", "Lbo", "Name", "Password", "Phone", "Username" },
-                values: new object[] { 1, new DateTime(2021, 11, 14, 20, 12, 17, 144, DateTimeKind.Local).AddTicks(4946), 1, null, false, false, "123456789", "Peric", null, "Pera", "pera", null, "pera" });
+                values: new object[] { 1, new DateTime(2021, 11, 16, 21, 5, 33, 429, DateTimeKind.Local).AddTicks(4333), 1, null, false, false, "123456789", "Peric", null, "Pera", "pera", null, "pera" });
 
             migrationBuilder.InsertData(
                 table: "Feedbacks",
                 columns: new[] { "Id", "Content", "Date", "IsAnonymous", "IsApproved", "IsPublishable", "PatientId" },
                 values: new object[,]
                 {
-                    { 1, "Tekst neki", new DateTime(2021, 11, 14, 20, 12, 17, 147, DateTimeKind.Local).AddTicks(6687), false, true, true, 1 },
-                    { 2, "Drugi neki", new DateTime(2021, 11, 14, 20, 12, 17, 147, DateTimeKind.Local).AddTicks(8193), false, true, true, 1 }
+                    { 1, "Tekst neki", new DateTime(2021, 11, 16, 21, 5, 33, 434, DateTimeKind.Local).AddTicks(1948), false, true, true, 1 },
+                    { 2, "Drugi neki", new DateTime(2021, 11, 16, 21, 5, 33, 434, DateTimeKind.Local).AddTicks(4271), false, true, true, 1 }
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AllergenPatient_PatientsId",
                 table: "AllergenPatient",
                 column: "PatientsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_DoctorId",
+                table: "Appointments",
+                column: "DoctorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_PatientId",
+                table: "Appointments",
+                column: "PatientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Feedbacks_PatientId",
@@ -161,6 +262,16 @@ namespace HospitalAPI.Migrations
                 name: "IX_Patients_DoctorId",
                 table: "Patients",
                 column: "DoctorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Question_SurveyId",
+                table: "Question",
+                column: "SurveyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Surveys_PatientId",
+                table: "Surveys",
+                column: "PatientId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -169,10 +280,19 @@ namespace HospitalAPI.Migrations
                 name: "AllergenPatient");
 
             migrationBuilder.DropTable(
+                name: "Appointments");
+
+            migrationBuilder.DropTable(
                 name: "Feedbacks");
 
             migrationBuilder.DropTable(
+                name: "Question");
+
+            migrationBuilder.DropTable(
                 name: "Allergens");
+
+            migrationBuilder.DropTable(
+                name: "Surveys");
 
             migrationBuilder.DropTable(
                 name: "Patients");

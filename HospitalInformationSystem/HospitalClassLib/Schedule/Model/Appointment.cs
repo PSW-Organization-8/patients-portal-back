@@ -1,72 +1,41 @@
-// File:    Termin.cs
-// Author:  paracelsus
-// Created: Monday, March 22, 2021 6:47:56 PM
-// Purpose: Definition of Class Termin
-
-
 using HospitalClassLib.RoomsAndEquipment.Model;
 using HospitalClassLib.SharedModel;
 using HospitalClassLib.SharedModel.Enums;
 using System;
-
-
-
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HospitalClassLib.Schedule.Model
 {
     public class Appointment 
    {
-        
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         public DateTime StartTime { get; set; }
-        public int Duration { get; set; }
+        //public int Duration { get; set; }
         public AppointmentType Type { get; set; }
-        public Doctor Doctor { get; set; }
-        public Patient Patient { get; set; }
-        public Room Room { get; set; }
-        public DateTime InitialTime { get; set; }
-        public String AppointmentID { get; set; }
+        public virtual Doctor Doctor { get; set; }
+        public virtual Patient Patient { get; set; }
+        //public Room Room { get; set; }
+        //public DateTime InitialTime { get; set; }
         
     
-                
+        public Appointment() { }
 
-        public Appointment(DateTime startTime, int duration, AppointmentType type, Doctor doctor, Patient patient, Room room)
+        public Appointment(int id, DateTime startTime, AppointmentType type, Doctor doctor, Patient patient)
         {
-            StartTime = startTime;
-            InitialTime = startTime;
-            Duration = duration;
-            Type = type;
-            Doctor = doctor;
-            Patient = patient;
-            Room = room;
-            AppointmentID = GenerateID();
-            
-        }
-
-        public Appointment()
-        {
-            Type = AppointmentType.examination;
-            AppointmentID = GenerateID();
-            
-        }
-
-        public Appointment(Appointment anamnesisAppointment)
-        {
-           
-            StartTime = anamnesisAppointment.StartTime;
-            InitialTime = anamnesisAppointment.InitialTime;
-            Duration = anamnesisAppointment.Duration;
-            Type = anamnesisAppointment.Type;
-            Doctor = anamnesisAppointment.Doctor;
-            Patient = anamnesisAppointment.Patient;
-            Room = anamnesisAppointment.Room;
-            AppointmentID = anamnesisAppointment.AppointmentID;
-            
+            this.Id = id;
+            this.StartTime = startTime;
+            this.Type = type;
+            this.Doctor = doctor;
+            this.Patient = patient;
+         
         }
 
         
 
-        public bool EqualDate(DateTime date)
+        /*public bool EqualDate(DateTime date)
         {
             return this.StartTime == date;
         }
@@ -127,6 +96,7 @@ namespace HospitalClassLib.Schedule.Model
         {
             return this.StartTime == startTime;
         }
+        */
 
     }
 }
