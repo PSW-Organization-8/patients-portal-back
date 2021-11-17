@@ -98,7 +98,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 16, 21, 5, 33, 434, DateTimeKind.Local).AddTicks(1948),
+                            Date = new DateTime(2021, 11, 17, 15, 17, 52, 392, DateTimeKind.Local).AddTicks(7790),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -108,7 +108,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 16, 21, 5, 33, 434, DateTimeKind.Local).AddTicks(4271),
+                            Date = new DateTime(2021, 11, 17, 15, 17, 52, 393, DateTimeKind.Local).AddTicks(41),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -169,7 +169,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2021, 11, 16, 21, 5, 33, 429, DateTimeKind.Local).AddTicks(4333),
+                            DateOfBirth = new DateTime(2021, 11, 17, 15, 17, 52, 388, DateTimeKind.Local).AddTicks(3301),
                             DoctorId = 1,
                             Guest = false,
                             IsBanned = false,
@@ -184,14 +184,12 @@ namespace HospitalAPI.Migrations
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Question", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("Category")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("SurveyId")
+                    b.Property<int>("SurveyId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Category")
                         .HasColumnType("integer");
 
                     b.Property<string>("Text")
@@ -200,16 +198,17 @@ namespace HospitalAPI.Migrations
                     b.Property<int>("Value")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id", "SurveyId");
 
                     b.HasIndex("SurveyId");
 
-                    b.ToTable("Question");
+                    b.ToTable("Questions");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
+                            SurveyId = 1,
                             Category = 0,
                             Text = "Text1",
                             Value = 0
@@ -217,6 +216,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 2,
+                            SurveyId = 1,
                             Category = 0,
                             Text = "Text2",
                             Value = 0
@@ -224,6 +224,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 3,
+                            SurveyId = 1,
                             Category = 0,
                             Text = "Text3",
                             Value = 0
@@ -231,6 +232,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 4,
+                            SurveyId = 1,
                             Category = 0,
                             Text = "Text4",
                             Value = 0
@@ -238,6 +240,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 5,
+                            SurveyId = 1,
                             Category = 0,
                             Text = "Text5",
                             Value = 0
@@ -245,6 +248,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 6,
+                            SurveyId = 1,
                             Category = 1,
                             Text = "Text2",
                             Value = 0
@@ -252,6 +256,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 7,
+                            SurveyId = 1,
                             Category = 1,
                             Text = "Text2",
                             Value = 0
@@ -259,6 +264,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 8,
+                            SurveyId = 1,
                             Category = 1,
                             Text = "Text2",
                             Value = 0
@@ -266,6 +272,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 9,
+                            SurveyId = 1,
                             Category = 1,
                             Text = "Text2",
                             Value = 0
@@ -273,6 +280,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 10,
+                            SurveyId = 1,
                             Category = 1,
                             Text = "Text2",
                             Value = 0
@@ -280,6 +288,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 11,
+                            SurveyId = 1,
                             Category = 2,
                             Text = "Text2",
                             Value = 0
@@ -287,6 +296,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 12,
+                            SurveyId = 1,
                             Category = 2,
                             Text = "Text2",
                             Value = 0
@@ -294,6 +304,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 13,
+                            SurveyId = 1,
                             Category = 2,
                             Text = "Text2",
                             Value = 0
@@ -301,6 +312,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 14,
+                            SurveyId = 1,
                             Category = 2,
                             Text = "Text2",
                             Value = 0
@@ -308,6 +320,127 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 15,
+                            SurveyId = 1,
+                            Category = 2,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 1,
+                            SurveyId = 2,
+                            Category = 0,
+                            Text = "Text1",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            SurveyId = 2,
+                            Category = 0,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            SurveyId = 2,
+                            Category = 0,
+                            Text = "Text3",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            SurveyId = 2,
+                            Category = 0,
+                            Text = "Text4",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            SurveyId = 2,
+                            Category = 0,
+                            Text = "Text5",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            SurveyId = 2,
+                            Category = 1,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 7,
+                            SurveyId = 2,
+                            Category = 1,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 8,
+                            SurveyId = 2,
+                            Category = 1,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 9,
+                            SurveyId = 2,
+                            Category = 1,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 10,
+                            SurveyId = 2,
+                            Category = 1,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 11,
+                            SurveyId = 2,
+                            Category = 2,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 12,
+                            SurveyId = 2,
+                            Category = 2,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 13,
+                            SurveyId = 2,
+                            Category = 2,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 14,
+                            SurveyId = 2,
+                            Category = 2,
+                            Text = "Text2",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 15,
+                            SurveyId = 2,
                             Category = 2,
                             Text = "Text2",
                             Value = 0
@@ -321,7 +454,7 @@ namespace HospitalAPI.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("PatientId")
+                    b.Property<int>("PatientId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -329,6 +462,18 @@ namespace HospitalAPI.Migrations
                     b.HasIndex("PatientId");
 
                     b.ToTable("Surveys");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            PatientId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            PatientId = 1
+                        });
                 });
 
             modelBuilder.Entity("HospitalClassLib.SharedModel.Allergen", b =>
@@ -467,7 +612,9 @@ namespace HospitalAPI.Migrations
                 {
                     b.HasOne("HospitalClassLib.Schedule.Model.Survey", "Survey")
                         .WithMany("Questions")
-                        .HasForeignKey("SurveyId");
+                        .HasForeignKey("SurveyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Survey");
                 });
@@ -476,7 +623,9 @@ namespace HospitalAPI.Migrations
                 {
                     b.HasOne("HospitalClassLib.Schedule.Model.Patient", "Patient")
                         .WithMany()
-                        .HasForeignKey("PatientId");
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Patient");
                 });

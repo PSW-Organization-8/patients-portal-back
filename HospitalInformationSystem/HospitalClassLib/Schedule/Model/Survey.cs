@@ -14,7 +14,8 @@ namespace HospitalClassLib.Schedule.Model
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public Patient Patient { get; set; }
+        public int PatientId { get; set; }
+        public virtual Patient Patient { get; set; }
         public virtual ICollection<Question> Questions { get; set; }
 
         public Survey() 
@@ -23,6 +24,13 @@ namespace HospitalClassLib.Schedule.Model
         {
             this.Id = id;
             this.Patient = patient;
+            this.PatientId = patient.Id;
+        }
+
+        public Survey(Patient patient) 
+        {
+            this.Patient = patient;
+            this.PatientId = patient.Id;
         }
     }
 }

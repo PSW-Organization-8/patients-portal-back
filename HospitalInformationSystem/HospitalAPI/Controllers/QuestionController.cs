@@ -22,13 +22,13 @@ namespace HospitalAPI.Controllers
 
 
         [HttpGet("{id?}")]
-        public IActionResult GetSurvey(int id)
+        public IActionResult GetQuestion(int id)
         {
             return Ok(questionService.Get(id));
         }
 
         [HttpPost]
-        public IActionResult AddSurvey(Question question)
+        public IActionResult AddQuestion(Question question)
         {
             return Ok(questionService.Create(question));
         }

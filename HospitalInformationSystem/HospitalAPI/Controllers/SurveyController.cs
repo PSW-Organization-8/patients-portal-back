@@ -1,4 +1,5 @@
-﻿using HospitalClassLib.Schedule.Model;
+﻿using HospitalAPI.Dto;
+using HospitalClassLib.Schedule.Model;
 using HospitalClassLib.Schedule.Repository.SurveyRepository;
 using HospitalClassLib.Schedule.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -9,14 +10,20 @@ using System.Threading.Tasks;
 
 namespace HospitalAPI.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class SurveyController : ControllerBase
     {
         private readonly SurveyService surveyService;
+        private readonly PatientService patientService;
         private readonly SurveyRepository surveyRepository;
-        public SurveyController(SurveyService surveyService, SurveyRepository surveyRepository)
+        private readonly QuestionService questionService;
+        public SurveyController(SurveyService surveyService, SurveyRepository surveyRepository, QuestionService questionService, PatientService patientService)
         {
             this.surveyService = surveyService;
             this.surveyRepository = surveyRepository;
+            this.questionService = questionService;
+            this.patientService = patientService;
         }
 
 
@@ -28,9 +35,19 @@ namespace HospitalAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddSurvey(Survey survey)
+        public IActionResult AddSurvey(SurveyDto dto)
         {
-            return Ok(surveyService.Create(survey));
+            List<Question> questions = new List<Question>();
+            Survey survey = new Survey(patientService.Get(dto.PatientId));
+            surveyService.Create(survey);
+
+            foreach (Question q in dto.Questions) {
+                q.SurveyId = survey.Id;
+                questions.Add(q);
+                questionService.Create(q);
+            }
+
+            return Ok();//(surveyService.Create(dto));
         }
     }
 }

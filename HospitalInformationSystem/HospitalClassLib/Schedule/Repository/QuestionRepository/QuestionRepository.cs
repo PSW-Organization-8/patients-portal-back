@@ -11,6 +11,7 @@ namespace HospitalClassLib.Schedule.Repository.QuestionRepository
     {
         private MyDbContext dbContext;
 
+
         public QuestionRepository(MyDbContext dbContext) : base(dbContext)
         {
             this.dbContext = dbContext;
@@ -20,5 +21,7 @@ namespace HospitalClassLib.Schedule.Repository.QuestionRepository
         {
             return entity.Id;
         }
+
+
     }
 }

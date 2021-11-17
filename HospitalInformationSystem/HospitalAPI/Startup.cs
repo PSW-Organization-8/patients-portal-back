@@ -4,6 +4,7 @@ using HospitalClassLib.Schedule.Repository.AppointmentRepo;
 using HospitalClassLib.Schedule.Repository.DoctorRepository;
 using HospitalClassLib.Schedule.Repository.FeedbackRepository;
 using HospitalClassLib.Schedule.Repository.PatientRepository;
+using HospitalClassLib.Schedule.Repository.QuestionRepository;
 using HospitalClassLib.Schedule.Repository.SurveyRepository;
 using HospitalClassLib.Schedule.Service;
 using Microsoft.AspNetCore.Builder;
@@ -56,6 +57,10 @@ namespace HospitalAPI
             services.AddTransient<ISurveyRepository, SurveyRepository>();
             services.AddScoped<SurveyService>();
             services.AddScoped<SurveyRepository>();
+
+            services.AddTransient<IQuestionRepository, QuestionRepository>();
+            services.AddScoped<QuestionService>();
+            services.AddScoped<QuestionRepository>();
 
             services.AddTransient<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<AppointmentService>();

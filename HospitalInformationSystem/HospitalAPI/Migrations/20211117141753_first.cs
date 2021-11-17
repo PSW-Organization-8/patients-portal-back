@@ -153,7 +153,7 @@ namespace HospitalAPI.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    PatientId = table.Column<int>(type: "integer", nullable: true)
+                    PatientId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -163,29 +163,28 @@ namespace HospitalAPI.Migrations
                         column: x => x.PatientId,
                         principalTable: "Patients",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Question",
+                name: "Questions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Id = table.Column<int>(type: "integer", nullable: false),
+                    SurveyId = table.Column<int>(type: "integer", nullable: false),
                     Text = table.Column<string>(type: "text", nullable: true),
                     Value = table.Column<int>(type: "integer", nullable: false),
-                    Category = table.Column<int>(type: "integer", nullable: false),
-                    SurveyId = table.Column<int>(type: "integer", nullable: true)
+                    Category = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Question", x => x.Id);
+                    table.PrimaryKey("PK_Questions", x => new { x.Id, x.SurveyId });
                     table.ForeignKey(
-                        name: "FK_Question_Surveys_SurveyId",
+                        name: "FK_Questions_Surveys_SurveyId",
                         column: x => x.SurveyId,
                         principalTable: "Surveys",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -198,44 +197,68 @@ namespace HospitalAPI.Migrations
                 columns: new[] { "Id", "DoctorSpecialization", "Email", "Jmbg", "LastName", "Name", "Password", "Phone", "Username" },
                 values: new object[,]
                 {
-                    { 2, 0, null, "123756799", "Ilic", "Milan", "mico", null, "mico" },
-                    { 1, 0, null, "123456799", "Jovanovic", "Jovan", "jova", null, "jova" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Question",
-                columns: new[] { "Id", "Category", "SurveyId", "Text", "Value" },
-                values: new object[,]
-                {
-                    { 15, 2, null, "Text2", 0 },
-                    { 14, 2, null, "Text2", 0 },
-                    { 13, 2, null, "Text2", 0 },
-                    { 12, 2, null, "Text2", 0 },
-                    { 11, 2, null, "Text2", 0 },
-                    { 10, 1, null, "Text2", 0 },
-                    { 9, 1, null, "Text2", 0 },
-                    { 7, 1, null, "Text2", 0 },
-                    { 6, 1, null, "Text2", 0 },
-                    { 5, 0, null, "Text5", 0 },
-                    { 4, 0, null, "Text4", 0 },
-                    { 3, 0, null, "Text3", 0 },
-                    { 2, 0, null, "Text2", 0 },
-                    { 8, 1, null, "Text2", 0 },
-                    { 1, 0, null, "Text1", 0 }
+                    { 1, 0, null, "123456799", "Jovanovic", "Jovan", "jova", null, "jova" },
+                    { 2, 0, null, "123756799", "Ilic", "Milan", "mico", null, "mico" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Patients",
                 columns: new[] { "Id", "DateOfBirth", "DoctorId", "Email", "Guest", "IsBanned", "Jmbg", "LastName", "Lbo", "Name", "Password", "Phone", "Username" },
-                values: new object[] { 1, new DateTime(2021, 11, 16, 21, 5, 33, 429, DateTimeKind.Local).AddTicks(4333), 1, null, false, false, "123456789", "Peric", null, "Pera", "pera", null, "pera" });
+                values: new object[] { 1, new DateTime(2021, 11, 17, 15, 17, 52, 388, DateTimeKind.Local).AddTicks(3301), 1, null, false, false, "123456789", "Peric", null, "Pera", "pera", null, "pera" });
 
             migrationBuilder.InsertData(
                 table: "Feedbacks",
                 columns: new[] { "Id", "Content", "Date", "IsAnonymous", "IsApproved", "IsPublishable", "PatientId" },
                 values: new object[,]
                 {
-                    { 1, "Tekst neki", new DateTime(2021, 11, 16, 21, 5, 33, 434, DateTimeKind.Local).AddTicks(1948), false, true, true, 1 },
-                    { 2, "Drugi neki", new DateTime(2021, 11, 16, 21, 5, 33, 434, DateTimeKind.Local).AddTicks(4271), false, true, true, 1 }
+                    { 1, "Tekst neki", new DateTime(2021, 11, 17, 15, 17, 52, 392, DateTimeKind.Local).AddTicks(7790), false, true, true, 1 },
+                    { 2, "Drugi neki", new DateTime(2021, 11, 17, 15, 17, 52, 393, DateTimeKind.Local).AddTicks(41), false, true, true, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Surveys",
+                columns: new[] { "Id", "PatientId" },
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 2, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Questions",
+                columns: new[] { "Id", "SurveyId", "Category", "Text", "Value" },
+                values: new object[,]
+                {
+                    { 1, 1, 0, "Text1", 0 },
+                    { 13, 2, 2, "Text2", 0 },
+                    { 12, 2, 2, "Text2", 0 },
+                    { 11, 2, 2, "Text2", 0 },
+                    { 10, 2, 1, "Text2", 0 },
+                    { 9, 2, 1, "Text2", 0 },
+                    { 8, 2, 1, "Text2", 0 },
+                    { 7, 2, 1, "Text2", 0 },
+                    { 6, 2, 1, "Text2", 0 },
+                    { 5, 2, 0, "Text5", 0 },
+                    { 4, 2, 0, "Text4", 0 },
+                    { 3, 2, 0, "Text3", 0 },
+                    { 2, 2, 0, "Text2", 0 },
+                    { 1, 2, 0, "Text1", 0 },
+                    { 15, 1, 2, "Text2", 0 },
+                    { 14, 1, 2, "Text2", 0 },
+                    { 13, 1, 2, "Text2", 0 },
+                    { 12, 1, 2, "Text2", 0 },
+                    { 11, 1, 2, "Text2", 0 },
+                    { 10, 1, 1, "Text2", 0 },
+                    { 9, 1, 1, "Text2", 0 },
+                    { 8, 1, 1, "Text2", 0 },
+                    { 7, 1, 1, "Text2", 0 },
+                    { 6, 1, 1, "Text2", 0 },
+                    { 5, 1, 0, "Text5", 0 },
+                    { 4, 1, 0, "Text4", 0 },
+                    { 3, 1, 0, "Text3", 0 },
+                    { 2, 1, 0, "Text2", 0 },
+                    { 14, 2, 2, "Text2", 0 },
+                    { 15, 2, 2, "Text2", 0 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -264,8 +287,8 @@ namespace HospitalAPI.Migrations
                 column: "DoctorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Question_SurveyId",
-                table: "Question",
+                name: "IX_Questions_SurveyId",
+                table: "Questions",
                 column: "SurveyId");
 
             migrationBuilder.CreateIndex(
@@ -286,7 +309,7 @@ namespace HospitalAPI.Migrations
                 name: "Feedbacks");
 
             migrationBuilder.DropTable(
-                name: "Question");
+                name: "Questions");
 
             migrationBuilder.DropTable(
                 name: "Allergens");
