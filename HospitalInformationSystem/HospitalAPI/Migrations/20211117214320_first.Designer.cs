@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20211117141753_first")]
+    [Migration("20211117214320_first")]
     partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -100,7 +100,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 17, 15, 17, 52, 392, DateTimeKind.Local).AddTicks(7790),
+                            Date = new DateTime(2021, 11, 17, 22, 43, 20, 56, DateTimeKind.Local).AddTicks(6210),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -110,7 +110,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 17, 15, 17, 52, 393, DateTimeKind.Local).AddTicks(41),
+                            Date = new DateTime(2021, 11, 17, 22, 43, 20, 56, DateTimeKind.Local).AddTicks(8487),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -171,7 +171,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2021, 11, 17, 15, 17, 52, 388, DateTimeKind.Local).AddTicks(3301),
+                            DateOfBirth = new DateTime(2021, 11, 17, 22, 43, 20, 47, DateTimeKind.Local).AddTicks(7360),
                             DoctorId = 1,
                             Guest = false,
                             IsBanned = false,

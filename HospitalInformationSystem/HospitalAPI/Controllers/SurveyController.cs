@@ -44,7 +44,7 @@ namespace HospitalAPI.Controllers
             foreach (Question q in dto.Questions) {
                 q.SurveyId = survey.Id;
                 questions.Add(q);
-                questionService.Create(q);
+                questionService.CreateQuestion(q);
             }
 
             return Ok();//(surveyService.Create(dto));

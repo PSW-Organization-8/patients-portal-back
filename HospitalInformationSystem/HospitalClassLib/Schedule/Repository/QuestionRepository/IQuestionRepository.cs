@@ -13,6 +13,7 @@ namespace HospitalClassLib.Schedule.Repository.QuestionRepository
         Question Get(int id);
         Question Update(Question question);
         Question Create(Question question);
+        Question CreateQuestion(Question question);
         bool ExistsById(int id);
         bool Delete(int id);
     }

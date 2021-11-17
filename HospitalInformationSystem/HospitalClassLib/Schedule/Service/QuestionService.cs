@@ -28,9 +28,14 @@ namespace HospitalClassLib.Schedule.Service
         {
             return questionRepository.GetAll();
         }
-        public Question Create(Question survey)
+        public Question Create(Question question)
         {
-            return questionRepository.Create(survey);
+            return questionRepository.Create(question);
+        }
+
+        public Question CreateQuestion(Question question)
+        {
+            return questionRepository.CreateQuestion(question);
         }
 
         public bool Delete(int id)
