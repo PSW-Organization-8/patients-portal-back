@@ -103,8 +103,8 @@ namespace HospitalAPI.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     StartTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Type = table.Column<int>(type: "integer", nullable: false),
-                    DoctorId = table.Column<int>(type: "integer", nullable: true),
-                    PatientId = table.Column<int>(type: "integer", nullable: true)
+                    DoctorId = table.Column<int>(type: "integer", nullable: false),
+                    PatientId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -114,13 +114,13 @@ namespace HospitalAPI.Migrations
                         column: x => x.DoctorId,
                         principalTable: "Doctors",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Appointments_Patients_PatientId",
                         column: x => x.PatientId,
                         principalTable: "Patients",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -153,11 +153,19 @@ namespace HospitalAPI.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    PatientId = table.Column<int>(type: "integer", nullable: false)
+                    PatientId = table.Column<int>(type: "integer", nullable: false),
+                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    AppointmentId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Surveys", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Surveys_Appointments_AppointmentId",
+                        column: x => x.AppointmentId,
+                        principalTable: "Appointments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Surveys_Patients_PatientId",
                         column: x => x.PatientId,
@@ -204,24 +212,29 @@ namespace HospitalAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Patients",
                 columns: new[] { "Id", "DateOfBirth", "DoctorId", "Email", "Guest", "IsBanned", "Jmbg", "LastName", "Lbo", "Name", "Password", "Phone", "Username" },
-                values: new object[] { 1, new DateTime(2021, 11, 17, 22, 43, 20, 47, DateTimeKind.Local).AddTicks(7360), 1, null, false, false, "123456789", "Peric", null, "Pera", "pera", null, "pera" });
+                values: new object[] { 1, new DateTime(2021, 11, 18, 17, 42, 20, 789, DateTimeKind.Local).AddTicks(8669), 1, null, false, false, "123456789", "Peric", null, "Pera", "pera", null, "pera" });
+
+            migrationBuilder.InsertData(
+                table: "Appointments",
+                columns: new[] { "Id", "DoctorId", "PatientId", "StartTime", "Type" },
+                values: new object[] { 1, 1, 1, new DateTime(2021, 11, 18, 17, 42, 20, 795, DateTimeKind.Local).AddTicks(9877), 0 });
 
             migrationBuilder.InsertData(
                 table: "Feedbacks",
                 columns: new[] { "Id", "Content", "Date", "IsAnonymous", "IsApproved", "IsPublishable", "PatientId" },
                 values: new object[,]
                 {
-                    { 1, "Tekst neki", new DateTime(2021, 11, 17, 22, 43, 20, 56, DateTimeKind.Local).AddTicks(6210), false, true, true, 1 },
-                    { 2, "Drugi neki", new DateTime(2021, 11, 17, 22, 43, 20, 56, DateTimeKind.Local).AddTicks(8487), false, true, true, 1 }
+                    { 1, "Tekst neki", new DateTime(2021, 11, 18, 17, 42, 20, 795, DateTimeKind.Local).AddTicks(5843), false, true, true, 1 },
+                    { 2, "Drugi neki", new DateTime(2021, 11, 18, 17, 42, 20, 795, DateTimeKind.Local).AddTicks(8228), false, true, true, 1 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Surveys",
-                columns: new[] { "Id", "PatientId" },
+                columns: new[] { "Id", "AppointmentId", "Date", "PatientId" },
                 values: new object[,]
                 {
-                    { 1, 1 },
-                    { 2, 1 }
+                    { 1, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 2, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -229,36 +242,36 @@ namespace HospitalAPI.Migrations
                 columns: new[] { "Id", "SurveyId", "Category", "Text", "Value" },
                 values: new object[,]
                 {
-                    { 1, 1, 0, "Text1", 0 },
-                    { 13, 2, 2, "Text2", 0 },
-                    { 12, 2, 2, "Text2", 0 },
-                    { 11, 2, 2, "Text2", 0 },
-                    { 10, 2, 1, "Text2", 0 },
-                    { 9, 2, 1, "Text2", 0 },
-                    { 8, 2, 1, "Text2", 0 },
-                    { 7, 2, 1, "Text2", 0 },
-                    { 6, 2, 1, "Text2", 0 },
-                    { 5, 2, 0, "Text5", 0 },
-                    { 4, 2, 0, "Text4", 0 },
-                    { 3, 2, 0, "Text3", 0 },
-                    { 2, 2, 0, "Text2", 0 },
-                    { 1, 2, 0, "Text1", 0 },
-                    { 15, 1, 2, "Text2", 0 },
-                    { 14, 1, 2, "Text2", 0 },
-                    { 13, 1, 2, "Text2", 0 },
-                    { 12, 1, 2, "Text2", 0 },
-                    { 11, 1, 2, "Text2", 0 },
-                    { 10, 1, 1, "Text2", 0 },
-                    { 9, 1, 1, "Text2", 0 },
-                    { 8, 1, 1, "Text2", 0 },
-                    { 7, 1, 1, "Text2", 0 },
-                    { 6, 1, 1, "Text2", 0 },
-                    { 5, 1, 0, "Text5", 0 },
-                    { 4, 1, 0, "Text4", 0 },
-                    { 3, 1, 0, "Text3", 0 },
-                    { 2, 1, 0, "Text2", 0 },
-                    { 14, 2, 2, "Text2", 0 },
-                    { 15, 2, 2, "Text2", 0 }
+                    { 1, 1, 0, "Text1", 1 },
+                    { 13, 2, 2, "Text2", 1 },
+                    { 12, 2, 2, "Text2", 1 },
+                    { 11, 2, 2, "Text2", 1 },
+                    { 10, 2, 1, "Text2", 1 },
+                    { 9, 2, 1, "Text2", 1 },
+                    { 8, 2, 1, "Text2", 1 },
+                    { 7, 2, 1, "Text2", 1 },
+                    { 6, 2, 1, "Text2", 1 },
+                    { 5, 2, 0, "Text5", 1 },
+                    { 4, 2, 0, "Text4", 1 },
+                    { 3, 2, 0, "Text3", 1 },
+                    { 2, 2, 0, "Text2", 1 },
+                    { 1, 2, 0, "Text1", 1 },
+                    { 15, 1, 2, "Text2", 1 },
+                    { 14, 1, 2, "Text2", 1 },
+                    { 13, 1, 2, "Text2", 1 },
+                    { 12, 1, 2, "Text2", 1 },
+                    { 11, 1, 2, "Text2", 1 },
+                    { 10, 1, 1, "Text2", 1 },
+                    { 9, 1, 1, "Text2", 1 },
+                    { 8, 1, 1, "Text2", 1 },
+                    { 7, 1, 1, "Text2", 1 },
+                    { 6, 1, 1, "Text2", 1 },
+                    { 5, 1, 0, "Text5", 1 },
+                    { 4, 1, 0, "Text4", 1 },
+                    { 3, 1, 0, "Text3", 1 },
+                    { 2, 1, 0, "Text2", 1 },
+                    { 14, 2, 2, "Text2", 1 },
+                    { 15, 2, 2, "Text2", 1 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -292,6 +305,11 @@ namespace HospitalAPI.Migrations
                 column: "SurveyId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Surveys_AppointmentId",
+                table: "Surveys",
+                column: "AppointmentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Surveys_PatientId",
                 table: "Surveys",
                 column: "PatientId");
@@ -301,9 +319,6 @@ namespace HospitalAPI.Migrations
         {
             migrationBuilder.DropTable(
                 name: "AllergenPatient");
-
-            migrationBuilder.DropTable(
-                name: "Appointments");
 
             migrationBuilder.DropTable(
                 name: "Feedbacks");
@@ -316,6 +331,9 @@ namespace HospitalAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Surveys");
+
+            migrationBuilder.DropTable(
+                name: "Appointments");
 
             migrationBuilder.DropTable(
                 name: "Patients");

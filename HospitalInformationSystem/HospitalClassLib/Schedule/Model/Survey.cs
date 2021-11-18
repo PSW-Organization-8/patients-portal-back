@@ -18,6 +18,8 @@ namespace HospitalClassLib.Schedule.Model
         public virtual Patient Patient { get; set; }
         public virtual ICollection<Question> Questions { get; set; }
         public DateTime Date { get; set; }
+        public int AppointmentId { get; set; }
+        public virtual Appointment Appointment { get; set; }
 
         public Survey() 
         { }
@@ -27,6 +29,7 @@ namespace HospitalClassLib.Schedule.Model
             this.Patient = patient;
             this.PatientId = patient.Id;
             this.Date = DateTime.Now;
+            this.AppointmentId = 1;
         }
 
         public Survey(Patient patient) 
@@ -34,6 +37,7 @@ namespace HospitalClassLib.Schedule.Model
             this.Patient = patient;
             this.PatientId = patient.Id;
             this.Date = DateTime.Now;
+            this.AppointmentId = 1;
         }
     }
 }

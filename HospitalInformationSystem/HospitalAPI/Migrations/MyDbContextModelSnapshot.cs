@@ -41,10 +41,10 @@ namespace HospitalAPI.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("DoctorId")
+                    b.Property<int>("DoctorId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("PatientId")
+                    b.Property<int>("PatientId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("StartTime")
@@ -60,6 +60,16 @@ namespace HospitalAPI.Migrations
                     b.HasIndex("PatientId");
 
                     b.ToTable("Appointments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DoctorId = 1,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 11, 18, 17, 42, 20, 795, DateTimeKind.Local).AddTicks(9877),
+                            Type = 0
+                        });
                 });
 
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Feedback", b =>
@@ -98,7 +108,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 17, 22, 43, 20, 56, DateTimeKind.Local).AddTicks(6210),
+                            Date = new DateTime(2021, 11, 18, 17, 42, 20, 795, DateTimeKind.Local).AddTicks(5843),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -108,7 +118,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 17, 22, 43, 20, 56, DateTimeKind.Local).AddTicks(8487),
+                            Date = new DateTime(2021, 11, 18, 17, 42, 20, 795, DateTimeKind.Local).AddTicks(8228),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -169,7 +179,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2021, 11, 17, 22, 43, 20, 47, DateTimeKind.Local).AddTicks(7360),
+                            DateOfBirth = new DateTime(2021, 11, 18, 17, 42, 20, 789, DateTimeKind.Local).AddTicks(8669),
                             DoctorId = 1,
                             Guest = false,
                             IsBanned = false,
@@ -211,7 +221,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 1,
                             Category = 0,
                             Text = "Text1",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -219,7 +229,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 1,
                             Category = 0,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -227,7 +237,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 1,
                             Category = 0,
                             Text = "Text3",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -235,7 +245,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 1,
                             Category = 0,
                             Text = "Text4",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -243,7 +253,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 1,
                             Category = 0,
                             Text = "Text5",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -251,7 +261,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 1,
                             Category = 1,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -259,7 +269,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 1,
                             Category = 1,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -267,7 +277,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 1,
                             Category = 1,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -275,7 +285,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 1,
                             Category = 1,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -283,7 +293,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 1,
                             Category = 1,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -291,7 +301,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 1,
                             Category = 2,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -299,7 +309,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 1,
                             Category = 2,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -307,7 +317,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 1,
                             Category = 2,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -315,7 +325,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 1,
                             Category = 2,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -323,7 +333,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 1,
                             Category = 2,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -331,7 +341,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 2,
                             Category = 0,
                             Text = "Text1",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -339,7 +349,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 2,
                             Category = 0,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -347,7 +357,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 2,
                             Category = 0,
                             Text = "Text3",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -355,7 +365,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 2,
                             Category = 0,
                             Text = "Text4",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -363,7 +373,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 2,
                             Category = 0,
                             Text = "Text5",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -371,7 +381,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 2,
                             Category = 1,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -379,7 +389,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 2,
                             Category = 1,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -387,7 +397,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 2,
                             Category = 1,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -395,7 +405,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 2,
                             Category = 1,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -403,7 +413,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 2,
                             Category = 1,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -411,7 +421,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 2,
                             Category = 2,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -419,7 +429,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 2,
                             Category = 2,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -427,7 +437,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 2,
                             Category = 2,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -435,7 +445,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 2,
                             Category = 2,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         },
                         new
                         {
@@ -443,7 +453,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 2,
                             Category = 2,
                             Text = "Text2",
-                            Value = 0
+                            Value = 1
                         });
                 });
 
@@ -454,10 +464,18 @@ namespace HospitalAPI.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int>("AppointmentId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<int>("PatientId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppointmentId");
 
                     b.HasIndex("PatientId");
 
@@ -467,11 +485,15 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 1,
+                            AppointmentId = 1,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PatientId = 1
                         },
                         new
                         {
                             Id = 2,
+                            AppointmentId = 1,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PatientId = 1
                         });
                 });
@@ -575,11 +597,15 @@ namespace HospitalAPI.Migrations
                 {
                     b.HasOne("HospitalClassLib.SharedModel.Doctor", "Doctor")
                         .WithMany()
-                        .HasForeignKey("DoctorId");
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("HospitalClassLib.Schedule.Model.Patient", "Patient")
                         .WithMany()
-                        .HasForeignKey("PatientId");
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Doctor");
 
@@ -621,11 +647,19 @@ namespace HospitalAPI.Migrations
 
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Survey", b =>
                 {
+                    b.HasOne("HospitalClassLib.Schedule.Model.Appointment", "Appointment")
+                        .WithMany()
+                        .HasForeignKey("AppointmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("HospitalClassLib.Schedule.Model.Patient", "Patient")
                         .WithMany()
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Appointment");
 
                     b.Navigation("Patient");
                 });

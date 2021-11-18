@@ -15,7 +15,9 @@ namespace HospitalClassLib.Schedule.Model
         public DateTime StartTime { get; set; }
         //public int Duration { get; set; }
         public AppointmentType Type { get; set; }
+        public int DoctorId { get; set; }
         public virtual Doctor Doctor { get; set; }
+        public int PatientId { get; set; }
         public virtual Patient Patient { get; set; }
         //public Room Room { get; set; }
         //public DateTime InitialTime { get; set; }
@@ -29,8 +31,10 @@ namespace HospitalClassLib.Schedule.Model
             this.StartTime = startTime;
             this.Type = type;
             this.Doctor = doctor;
+            this.DoctorId = doctor.Id;
             this.Patient = patient;
-         
+            this.PatientId = patient.Id;
+
         }
 
         
