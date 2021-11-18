@@ -42,7 +42,7 @@ namespace HospitalClassLib.Schedule.Model
             DateOfBirth = dateOfBirth;
             Allergens = allergens;
             Doctor = doctor;
-            DoctorId = doctor.Id;
+            DoctorId = 1;
             Feedbacks = new List<Feedback>();
         }
     }

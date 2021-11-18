@@ -1,4 +1,6 @@
-﻿using HospitalClassLib.Schedule.Repository.PatientRepository;
+﻿using HospitalAPI.Dto;
+using HospitalAPI.Mapper;
+using HospitalClassLib.Schedule.Repository.PatientRepository;
 using HospitalClassLib.Schedule.Service;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -18,6 +20,12 @@ namespace HospitalAPI.Controllers
         {
             this.patientService = patientService;
             this.patientRepository = patientRepository;
+        }
+
+        [HttpPost]
+        public IActionResult AddFeedback(PatientDto patientDto)
+        {
+            return Ok(patientService.Create(PatientMapper.PatientDtoToPatient(patientDto)));
         }
     }
 }

@@ -23,5 +23,10 @@ namespace HospitalClassLib.Schedule.Service
         {
             return patientRepository.Get(id);
         }
+
+        public Patient Create(Patient patient)
+        {
+            return patientRepository.Create(patient);
+        }
     }
 }
