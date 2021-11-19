@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace HospitalAPI.Controllers
 {
+    [Route("api/[controller]")]
     public class QuestionController : ControllerBase
     {
         private readonly QuestionService questionService;
@@ -31,6 +32,12 @@ namespace HospitalAPI.Controllers
         public IActionResult AddQuestion(Question question)
         {
             return Ok(questionService.Create(question));
+        }
+
+        [HttpGet]
+        public IActionResult GetAvgQuestionValues()
+        {
+            return Ok(questionService.GetAvgQuestionValues());
         }
 
     }

@@ -65,7 +65,7 @@ namespace HospitalClassLib
 
             modelBuilder.Entity<Question>().HasData(
             new Question { Id = 1, Text = "Text1", Value = 1, Category = QuestionCategory.doctor, SurveyId=1 },
-            new Question { Id = 2, Text = "Text2", Value = 1, Category = QuestionCategory.doctor, SurveyId = 1 },
+            new Question { Id = 2, Text = "Text2", Value = 2, Category = QuestionCategory.doctor, SurveyId = 1 },
             new Question { Id = 3, Text = "Text3", Value = 1, Category = QuestionCategory.doctor, SurveyId = 1 },
             new Question { Id = 4, Text = "Text4", Value = 1, Category = QuestionCategory.doctor, SurveyId = 1 },
             new Question { Id = 5, Text = "Text5", Value = 1, Category = QuestionCategory.doctor, SurveyId = 1 },
@@ -78,10 +78,10 @@ namespace HospitalClassLib
             new Question { Id = 12, Text = "Text2", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 1 },
             new Question { Id = 13, Text = "Text2", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 1 },
             new Question { Id = 14, Text = "Text2", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 1 },
-            new Question { Id = 15, Text = "Text2", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 1 },
+            new Question { Id = 15, Text = "Text2", Value = 4, Category = QuestionCategory.medicalStuff, SurveyId = 1 },
                                                             
             new Question { Id = 1,  Text = "Text1", Value = 1, Category = QuestionCategory.doctor, SurveyId = 2 },
-            new Question { Id = 2,  Text = "Text2", Value = 1, Category = QuestionCategory.doctor, SurveyId = 2 },
+            new Question { Id = 2,  Text = "Text2", Value = 3, Category = QuestionCategory.doctor, SurveyId = 2 },
             new Question { Id = 3,  Text = "Text3", Value = 1, Category = QuestionCategory.doctor, SurveyId = 2 },
             new Question { Id = 4,  Text = "Text4", Value = 1, Category = QuestionCategory.doctor, SurveyId = 2 },
             new Question { Id = 5,  Text = "Text5", Value = 1, Category = QuestionCategory.doctor, SurveyId = 2 },
@@ -94,7 +94,7 @@ namespace HospitalClassLib
             new Question { Id = 12, Text = "Text2", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 2 },
             new Question { Id = 13, Text = "Text2", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 2 },
             new Question { Id = 14, Text = "Text2", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 2 },
-            new Question { Id = 15, Text = "Text2", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 2 }
+            new Question { Id = 15, Text = "Text2", Value = 5, Category = QuestionCategory.medicalStuff, SurveyId = 2 }
             );
         }
     }

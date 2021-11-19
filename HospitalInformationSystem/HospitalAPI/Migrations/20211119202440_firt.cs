@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace HospitalAPI.Migrations
 {
-    public partial class first : Migration
+    public partial class firt : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -212,20 +212,20 @@ namespace HospitalAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Patients",
                 columns: new[] { "Id", "DateOfBirth", "DoctorId", "Email", "Guest", "IsBanned", "Jmbg", "LastName", "Lbo", "Name", "Password", "Phone", "Username" },
-                values: new object[] { 1, new DateTime(2021, 11, 18, 17, 42, 20, 789, DateTimeKind.Local).AddTicks(8669), 1, null, false, false, "123456789", "Peric", null, "Pera", "pera", null, "pera" });
+                values: new object[] { 1, new DateTime(2021, 11, 19, 21, 24, 40, 41, DateTimeKind.Local).AddTicks(9991), 1, null, false, false, "123456789", "Peric", null, "Pera", "pera", null, "pera" });
 
             migrationBuilder.InsertData(
                 table: "Appointments",
                 columns: new[] { "Id", "DoctorId", "PatientId", "StartTime", "Type" },
-                values: new object[] { 1, 1, 1, new DateTime(2021, 11, 18, 17, 42, 20, 795, DateTimeKind.Local).AddTicks(9877), 0 });
+                values: new object[] { 1, 1, 1, new DateTime(2021, 11, 19, 21, 24, 40, 48, DateTimeKind.Local).AddTicks(3243), 0 });
 
             migrationBuilder.InsertData(
                 table: "Feedbacks",
                 columns: new[] { "Id", "Content", "Date", "IsAnonymous", "IsApproved", "IsPublishable", "PatientId" },
                 values: new object[,]
                 {
-                    { 1, "Tekst neki", new DateTime(2021, 11, 18, 17, 42, 20, 795, DateTimeKind.Local).AddTicks(5843), false, true, true, 1 },
-                    { 2, "Drugi neki", new DateTime(2021, 11, 18, 17, 42, 20, 795, DateTimeKind.Local).AddTicks(8228), false, true, true, 1 }
+                    { 1, "Tekst neki", new DateTime(2021, 11, 19, 21, 24, 40, 47, DateTimeKind.Local).AddTicks(9885), false, true, true, 1 },
+                    { 2, "Drugi neki", new DateTime(2021, 11, 19, 21, 24, 40, 48, DateTimeKind.Local).AddTicks(1746), false, true, true, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -254,9 +254,9 @@ namespace HospitalAPI.Migrations
                     { 5, 2, 0, "Text5", 1 },
                     { 4, 2, 0, "Text4", 1 },
                     { 3, 2, 0, "Text3", 1 },
-                    { 2, 2, 0, "Text2", 1 },
+                    { 2, 2, 0, "Text2", 3 },
                     { 1, 2, 0, "Text1", 1 },
-                    { 15, 1, 2, "Text2", 1 },
+                    { 15, 1, 2, "Text2", 4 },
                     { 14, 1, 2, "Text2", 1 },
                     { 13, 1, 2, "Text2", 1 },
                     { 12, 1, 2, "Text2", 1 },
@@ -269,9 +269,9 @@ namespace HospitalAPI.Migrations
                     { 5, 1, 0, "Text5", 1 },
                     { 4, 1, 0, "Text4", 1 },
                     { 3, 1, 0, "Text3", 1 },
-                    { 2, 1, 0, "Text2", 1 },
+                    { 2, 1, 0, "Text2", 2 },
                     { 14, 2, 2, "Text2", 1 },
-                    { 15, 2, 2, "Text2", 1 }
+                    { 15, 2, 2, "Text2", 5 }
                 });
 
             migrationBuilder.CreateIndex(
