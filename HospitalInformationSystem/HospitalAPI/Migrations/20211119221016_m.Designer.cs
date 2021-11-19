@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20211119162257_first")]
-    partial class first
+    [Migration("20211119221016_m")]
+    partial class m
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -72,7 +72,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 19, 17, 22, 57, 11, DateTimeKind.Local).AddTicks(8908),
+                            Date = new DateTime(2021, 11, 19, 23, 10, 15, 982, DateTimeKind.Local).AddTicks(8113),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -82,7 +82,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 19, 17, 22, 57, 12, DateTimeKind.Local).AddTicks(2045),
+                            Date = new DateTime(2021, 11, 19, 23, 10, 15, 982, DateTimeKind.Local).AddTicks(9580),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -133,8 +133,8 @@ namespace HospitalAPI.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("text");
 
-                    b.Property<int>("Token")
-                        .HasColumnType("integer");
+                    b.Property<string>("Token")
+                        .HasColumnType("text");
 
                     b.Property<string>("Username")
                         .HasColumnType("text");
@@ -149,7 +149,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2021, 11, 19, 17, 22, 57, 5, DateTimeKind.Local).AddTicks(32),
+                            DateOfBirth = new DateTime(2021, 11, 19, 23, 10, 15, 977, DateTimeKind.Local).AddTicks(5538),
                             DoctorId = 1,
                             Guest = false,
                             IsActivated = false,
@@ -158,7 +158,7 @@ namespace HospitalAPI.Migrations
                             LastName = "Peric",
                             Name = "Pera",
                             Password = "pera",
-                            Token = 101,
+                            Token = "ABC123DEF4AAAAC",
                             Username = "pera"
                         });
                 });

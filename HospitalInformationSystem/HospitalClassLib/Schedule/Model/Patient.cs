@@ -25,12 +25,12 @@ namespace HospitalClassLib.Schedule.Model
         public int DoctorId { get; set; }
         public virtual Doctor Doctor { get; set; }
         public bool IsActivated { get; set; }
-        public int Token { get; internal set; }
+        public string Token { get; internal set; }
 
         public Patient() { }
 
         public Patient(string name, string lastName, string jmbg, string username, string password, string email, string phone, bool isBanned, string lbo, bool guest, 
-            DateTime dateOfBirth, ICollection<Allergen> allergens, Doctor doctor, bool isActivated, int token) {
+            DateTime dateOfBirth, ICollection<Allergen> allergens, Doctor doctor, bool isActivated, string token) {
             Name = name;
             LastName = lastName;
             Jmbg = jmbg;

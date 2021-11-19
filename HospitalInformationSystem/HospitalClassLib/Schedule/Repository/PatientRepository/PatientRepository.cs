@@ -19,9 +19,9 @@ namespace HospitalClassLib.Schedule.Repository.PatientRepository
         {
             return entity.Id;
         }
-        public Patient GetByToken(int patientToken)
+        public Patient GetByToken(string patientToken)
         {
-            return dbContext.Patients.SingleOrDefault(patient => patient.Token == patientToken);
+            return dbContext.Patients.SingleOrDefault(patient => patient.Token.Equals(patientToken));
         }
     }
 }

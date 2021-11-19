@@ -13,7 +13,8 @@ namespace HospitalClassLib.Schedule.Service
     public class PatientService
     {
         private readonly IPatientRepository patientRepository;
-        private static string retVal;
+        private const int UNIQUE_NUMBER_LENGTH = 10;
+        private const int RANDOM_NUMBER_LENGTH = 10;
         public PatientService() { }
         public PatientService(IPatientRepository patientRepository)
         {
@@ -25,60 +26,91 @@ namespace HospitalClassLib.Schedule.Service
         }
         public Patient RegisterPatient(Patient patient)
         {
+            //TODO: add patient in database
+            Patient newPatient = patientRepository.Create(patient);
             //TODO: generate unique token
-            patient.Token = new Random().Next(1, 5000);
+            patient.Token = GetUniqueToken(newPatient.Id);
+            patientRepository.Update(patient);
             //TODO: send email (async func) with generated token
             SendEmail(patient.Token);
-            //TODO: add patient in database
-            return patientRepository.Create(patient);
+
+            return newPatient;
         }
-        public string SendEmail(int patientToken)
+        /*public string SendEmail(string patientToken)
         {
-            Email(GetMailMessage(patientToken));
+            SendEmail(GetMailMessage(patientToken));
             return retVal;
+        }*/
+        public static void SendEmail(string patientToken)
+        {
+            try { CreateSmtpClient().Send(CreateMessage(GetMailMessage(patientToken))); }
+            catch (Exception ex) { }
         }
-        public static string GetMailMessage(int patientToken)
+        private static SmtpClient CreateSmtpClient()
+        {
+            return new SmtpClient()
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential()
+                {
+                    UserName = "pswtestmail@gmail.com",
+                    Password = "pswtestmail567"
+                }
+            };
+        }
+        private static MailMessage CreateMessage(string htmlString)
+        {
+            MailMessage message = new MailMessage()
+            {
+                From = new MailAddress("pswtestmail@gmail.com"),
+                Subject = "Naslov",
+                Body = "Ovo je tekst poruke."
+            };
+            message.IsBodyHtml = true;
+            message.Body = htmlString;
+            message.To.Add(new MailAddress("pswtestmail@gmail.com"));
+            return message;
+        }
+        public static string GetMailMessage(string patientToken)
         {
             string link = "http://localhost:16934/api/patient/patientActivation/" + patientToken;
             return "<a href=" + link + ">ACTIVATE ACCOUNT</a>";
         }
-        public static void Email(string htmlString)
+        static String EncodeIntAsString(int input, int maxLength = 0)
         {
-            try
+            Char[] allowedList = new Char[] {
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+            'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+            'U', 'V', 'W', 'X', 'Y', 'Z' , '$', '%', '#', '@'};
+            int allowedSize = allowedList.Length;
+            StringBuilder result = new StringBuilder(input.ToString().Length);
+
+            int moduloResult;
+            while (input > 0)
             {
-                SmtpClient client = new SmtpClient()
-                {
-                    Host = "smtp.gmail.com",
-                    Port = 587,
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential()
-                    {
-                        UserName = "pswtestmail@gmail.com",
-                        Password = "pswtestmail567"
-                    }
-                };
-                MailAddress fromEmail = new MailAddress("pswtestmail@gmail.com");
-                MailAddress toEmail = new MailAddress("pswtestmail@gmail.com");
-                MailMessage message = new MailMessage()
-                {
-                    From = fromEmail,
-                    Subject = "Naslov",
-                    Body = "Ovo je tekst poruke."
-                };
-                message.IsBodyHtml = true;
-                message.Body = htmlString;
-                message.To.Add(toEmail);
-                client.Send(message);
-                retVal = "Success!";
+                moduloResult = input % allowedSize;
+                input /= allowedSize;
+                result.Insert(0, allowedList[moduloResult]);
             }
-            catch(Exception ex)
-            {
-                retVal = ex.Message;
-            }
+
+            if (maxLength > result.Length){ result.Insert(0, new String(allowedList[0], maxLength - result.Length)); }
+            if (maxLength > 0) return result.ToString().Substring(0, maxLength);
+            else return result.ToString();
         }
-        public void ActivatePatientAccount(int patientToken)
+        static String GetUniqueToken(int patientId)
+        {
+            Random randomizer = new Random((int)(
+                    DateTime.Now.Ticks + (DateTime.Now.Ticks > patientId ? DateTime.Now.Ticks / (patientId + 1) : patientId / DateTime.Now.Ticks)
+                )
+            );
+            return EncodeIntAsString(randomizer.Next(1, int.MaxValue), UNIQUE_NUMBER_LENGTH) + EncodeIntAsString(patientId, RANDOM_NUMBER_LENGTH);
+        }
+        public void ActivatePatientAccount(string patientToken)
         {
             Patient patient = patientRepository.GetByToken(patientToken);
             patient.IsActivated = true;

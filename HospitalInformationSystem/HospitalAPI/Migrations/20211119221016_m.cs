@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace HospitalAPI.Migrations
 {
-    public partial class first : Migration
+    public partial class m : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -53,7 +53,7 @@ namespace HospitalAPI.Migrations
                     DateOfBirth = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     DoctorId = table.Column<int>(type: "integer", nullable: false),
                     IsActivated = table.Column<bool>(type: "boolean", nullable: false),
-                    Token = table.Column<int>(type: "integer", nullable: false),
+                    Token = table.Column<string>(type: "text", nullable: true),
                     Name = table.Column<string>(type: "text", nullable: true),
                     LastName = table.Column<string>(type: "text", nullable: true),
                     Jmbg = table.Column<string>(type: "text", nullable: true),
@@ -138,15 +138,15 @@ namespace HospitalAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Patients",
                 columns: new[] { "Id", "DateOfBirth", "DoctorId", "Email", "Guest", "IsActivated", "IsBanned", "Jmbg", "LastName", "Lbo", "Name", "Password", "Phone", "Token", "Username" },
-                values: new object[] { 1, new DateTime(2021, 11, 19, 17, 22, 57, 5, DateTimeKind.Local).AddTicks(32), 1, null, false, false, false, "123456789", "Peric", null, "Pera", "pera", null, 101, "pera" });
+                values: new object[] { 1, new DateTime(2021, 11, 19, 23, 10, 15, 977, DateTimeKind.Local).AddTicks(5538), 1, null, false, false, false, "123456789", "Peric", null, "Pera", "pera", null, "ABC123DEF4AAAAC", "pera" });
 
             migrationBuilder.InsertData(
                 table: "Feedbacks",
                 columns: new[] { "Id", "Content", "Date", "IsAnonymous", "IsApproved", "IsPublishable", "PatientId" },
                 values: new object[,]
                 {
-                    { 1, "Tekst neki", new DateTime(2021, 11, 19, 17, 22, 57, 11, DateTimeKind.Local).AddTicks(8908), false, true, true, 1 },
-                    { 2, "Drugi neki", new DateTime(2021, 11, 19, 17, 22, 57, 12, DateTimeKind.Local).AddTicks(2045), false, true, true, 1 }
+                    { 1, "Tekst neki", new DateTime(2021, 11, 19, 23, 10, 15, 982, DateTimeKind.Local).AddTicks(8113), false, true, true, 1 },
+                    { 2, "Drugi neki", new DateTime(2021, 11, 19, 23, 10, 15, 982, DateTimeKind.Local).AddTicks(9580), false, true, true, 1 }
                 });
 
             migrationBuilder.CreateIndex(

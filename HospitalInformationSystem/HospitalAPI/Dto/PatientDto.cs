@@ -20,10 +20,10 @@ namespace HospitalAPI.Dto
         public ICollection<Allergen> Allergens { get; set; }
         public Doctor Doctor { get; set; }
         public bool IsActivated { get; set; }
-        public int Token { get; set; }
+        public string Token { get; set; }
 
         public PatientDto(string name, string lastName, string jmbg, string username, string password, string email, string phone, DateTime dateOfBirth,
-            ICollection<Allergen> allergens, Doctor doctor, bool isActivated, int token)
+            ICollection<Allergen> allergens, Doctor doctor, bool isActivated, string token)
         {
             Name = name;
             LastName = lastName;

@@ -28,15 +28,15 @@ namespace HospitalAPI.Controllers
             return Ok(patientService.RegisterPatient(PatientMapper.PatientDtoToPatient(patientDto)));
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public IActionResult SendEmail()
         {
             // 555 : BROJ ZA TESTIRANJE SLANJA MEJLA
-            return Ok(patientService.SendEmail(555));
-        }
+            return Ok(patientService.SendEmail("AAABBBCCCD"));
+        }*/
 
         [HttpGet("patientActivation/{patientId?}")]
-        public void ActivatePatientAccount(int patientId)
+        public void ActivatePatientAccount(string patientId)
         {
             patientService.ActivatePatientAccount(patientId);
             Response.Redirect("http://www.google.com");
