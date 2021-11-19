@@ -15,10 +15,13 @@ namespace HospitalClassLib.Schedule.Repository.PatientRepository
         {
             this.dbContext = dbContext;
         }
-
         protected override int GetId(Patient entity)
         {
             return entity.Id;
+        }
+        public Patient GetByToken(int patientToken)
+        {
+            return dbContext.Patients.SingleOrDefault(patient => patient.Token == patientToken);
         }
     }
 }

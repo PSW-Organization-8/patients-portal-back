@@ -19,9 +19,11 @@ namespace HospitalAPI.Dto
         public DateTime DateOfBirth { get; set; }
         public ICollection<Allergen> Allergens { get; set; }
         public Doctor Doctor { get; set; }
+        public bool IsActivated { get; set; }
+        public int Token { get; set; }
 
         public PatientDto(string name, string lastName, string jmbg, string username, string password, string email, string phone, DateTime dateOfBirth,
-            ICollection<Allergen> allergens, Doctor doctor)
+            ICollection<Allergen> allergens, Doctor doctor, bool isActivated, int token)
         {
             Name = name;
             LastName = lastName;
@@ -33,6 +35,8 @@ namespace HospitalAPI.Dto
             DateOfBirth = dateOfBirth;
             Allergens = allergens;
             Doctor = doctor;
+            IsActivated = isActivated;
+            Token = token;
         }
     }
 }

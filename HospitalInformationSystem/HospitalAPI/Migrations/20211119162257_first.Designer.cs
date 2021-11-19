@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20211114191217_firstMigration")]
-    partial class firstMigration
+    [Migration("20211119162257_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -72,7 +72,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 14, 20, 12, 17, 147, DateTimeKind.Local).AddTicks(6687),
+                            Date = new DateTime(2021, 11, 19, 17, 22, 57, 11, DateTimeKind.Local).AddTicks(8908),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -82,7 +82,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 14, 20, 12, 17, 147, DateTimeKind.Local).AddTicks(8193),
+                            Date = new DateTime(2021, 11, 19, 17, 22, 57, 12, DateTimeKind.Local).AddTicks(2045),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -109,6 +109,9 @@ namespace HospitalAPI.Migrations
                     b.Property<bool>("Guest")
                         .HasColumnType("boolean");
 
+                    b.Property<bool>("IsActivated")
+                        .HasColumnType("boolean");
+
                     b.Property<bool>("IsBanned")
                         .HasColumnType("boolean");
 
@@ -130,6 +133,9 @@ namespace HospitalAPI.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("text");
 
+                    b.Property<int>("Token")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Username")
                         .HasColumnType("text");
 
@@ -143,14 +149,16 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2021, 11, 14, 20, 12, 17, 144, DateTimeKind.Local).AddTicks(4946),
+                            DateOfBirth = new DateTime(2021, 11, 19, 17, 22, 57, 5, DateTimeKind.Local).AddTicks(32),
                             DoctorId = 1,
                             Guest = false,
+                            IsActivated = false,
                             IsBanned = false,
                             Jmbg = "123456789",
                             LastName = "Peric",
                             Name = "Pera",
                             Password = "pera",
+                            Token = 101,
                             Username = "pera"
                         });
                 });

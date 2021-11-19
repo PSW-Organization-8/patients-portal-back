@@ -15,5 +15,6 @@ namespace HospitalClassLib.Schedule.Repository.PatientRepository
         Patient Create(Patient patient);
         bool ExistsById(int id);
         bool Delete(int id);
+        Patient GetByToken(int patientToken);
     }
 }

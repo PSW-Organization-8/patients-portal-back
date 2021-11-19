@@ -23,9 +23,23 @@ namespace HospitalAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddFeedback(PatientDto patientDto)
+        public IActionResult RegisterPatient(PatientDto patientDto)
         {
-            return Ok(patientService.Create(PatientMapper.PatientDtoToPatient(patientDto)));
+            return Ok(patientService.RegisterPatient(PatientMapper.PatientDtoToPatient(patientDto)));
+        }
+
+        [HttpGet]
+        public IActionResult SendEmail()
+        {
+            // 555 : BROJ ZA TESTIRANJE SLANJA MEJLA
+            return Ok(patientService.SendEmail(555));
+        }
+
+        [HttpGet("patientActivation/{patientId?}")]
+        public void ActivatePatientAccount(int patientId)
+        {
+            patientService.ActivatePatientAccount(patientId);
+            Response.Redirect("http://www.google.com");
         }
     }
 }
