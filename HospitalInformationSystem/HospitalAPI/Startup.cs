@@ -1,6 +1,11 @@
 using HospitalClassLib;
+using HospitalClassLib.Schedule.Repository.AllergenRepository;
+using HospitalClassLib.Schedule.Repository.AppointmentRepo;
+using HospitalClassLib.Schedule.Repository.DoctorRepository;
 using HospitalClassLib.Schedule.Repository.FeedbackRepository;
 using HospitalClassLib.Schedule.Repository.PatientRepository;
+using HospitalClassLib.Schedule.Repository.QuestionRepository;
+using HospitalClassLib.Schedule.Repository.SurveyRepository;
 using HospitalClassLib.Schedule.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,11 +38,33 @@ namespace HospitalAPI
 
             services.AddControllers();
             services.AddDbContext<MyDbContext>(options => options.UseNpgsql(x => x.MigrationsAssembly("HospitalAPI")));
+            services.AddTransient<IAllergenRepository, AllergenRepository>();
+            services.AddScoped<AllergenService>();
+            services.AddScoped<AllergenRepository>();
+
+            services.AddTransient<IDoctorRepository, DoctorRepository>();
+            services.AddScoped<DoctorService>();
+            services.AddScoped<DoctorRepository>();
+
             services.AddTransient<IPatientRepository, PatientRepository>();
+            services.AddScoped<PatientService>();
             services.AddScoped<PatientRepository>();
+
             services.AddTransient<IFeedbackRepository, FeedbackRepository>();
             services.AddScoped<FeedbackService>();
             services.AddScoped<FeedbackRepository>();
+
+            services.AddTransient<ISurveyRepository, SurveyRepository>();
+            services.AddScoped<SurveyService>();
+            services.AddScoped<SurveyRepository>();
+
+            services.AddTransient<IQuestionRepository, QuestionRepository>();
+            services.AddScoped<QuestionService>();
+            services.AddScoped<QuestionRepository>();
+
+            services.AddTransient<IAppointmentRepository, AppointmentRepository>();
+            services.AddScoped<AppointmentService>();
+            services.AddScoped<AppointmentRepository>();
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
@@ -73,5 +100,6 @@ namespace HospitalAPI
                 endpoints.MapControllers();
             });
         }
+
     }
 }
