@@ -42,5 +42,14 @@ namespace HospitalClassLib.Schedule.Service
         {
             return questionRepository.Delete(id);
         }
+
+        public void CreateMultipleQuestions(int surveyId, List<Question> questions)
+        {
+            foreach (Question q in questions)
+            {
+                q.SurveyId = surveyId;
+                CreateQuestion(q);
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HospitalAPI.Dto;
+using HospitalAPI.Validators;
 using HospitalClassLib.Schedule.Model;
 using HospitalClassLib.Schedule.Repository.SurveyRepository;
 using HospitalClassLib.Schedule.Service;
@@ -16,17 +17,14 @@ namespace HospitalAPI.Controllers
     {
         private readonly SurveyService surveyService;
         private readonly PatientService patientService;
-        private readonly SurveyRepository surveyRepository;
         private readonly QuestionService questionService;
-        public SurveyController(SurveyService surveyService, SurveyRepository surveyRepository, QuestionService questionService, PatientService patientService)
+        private readonly SurveyValidator validator = new();
+        public SurveyController(SurveyService surveyService, QuestionService questionService, PatientService patientService)
         {
             this.surveyService = surveyService;
-            this.surveyRepository = surveyRepository;
             this.questionService = questionService;
             this.patientService = patientService;
         }
-
-
 
         [HttpGet("{id?}")]
         public IActionResult GetSurvey(int id)
@@ -37,17 +35,14 @@ namespace HospitalAPI.Controllers
         [HttpPost]
         public IActionResult AddSurvey(SurveyDto dto)
         {
-            List<Question> questions = new List<Question>();
-            Survey survey = new Survey(patientService.Get(dto.PatientId));
-            surveyService.Create(survey);
-
-            foreach (Question q in dto.Questions) {
-                q.SurveyId = survey.Id;
-                questions.Add(q);
-                questionService.CreateQuestion(q);
+            if (validator.Validate(dto).IsValid) 
+            {
+                Survey survey = new Survey(patientService.Get(dto.PatientId));
+                surveyService.Create(survey);
+                questionService.CreateMultipleQuestions(survey.Id, dto.Questions);
+                return Ok();
             }
-
-            return Ok();//(surveyService.Create(dto));
+            return BadRequest();
         }
     }
 }
