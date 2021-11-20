@@ -50,5 +50,10 @@ namespace HospitalClassLib.Schedule.Repository.QuestionRepository
         {
             return dbContext.Questions.GroupBy(x => x.Id, v => v.Value).OrderBy(x => x.Key).Select(x => x.Average()).ToList(); 
         }
+
+        public List<double> GetAvgCategoryValues()
+        {
+            return dbContext.Questions.GroupBy(x => x.Category, v => v.Value).OrderBy(x => x.Key).Select(x => x.Average()).ToList();
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace HospitalClassLib.Schedule.Repository.QuestionRepository
         bool ExistsById(int id);
         bool Delete(int id);
         List<double> GetAvgQuestionValues();
+        List<double> GetAvgCategoryValues();
     }
 }
 
