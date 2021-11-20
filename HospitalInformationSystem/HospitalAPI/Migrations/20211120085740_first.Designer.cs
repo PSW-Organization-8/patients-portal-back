@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20211119221016_m")]
-    partial class m
+    [Migration("20211120085740_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -72,7 +72,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 19, 23, 10, 15, 982, DateTimeKind.Local).AddTicks(8113),
+                            Date = new DateTime(2021, 11, 20, 9, 57, 39, 614, DateTimeKind.Local).AddTicks(9486),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -82,7 +82,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 19, 23, 10, 15, 982, DateTimeKind.Local).AddTicks(9580),
+                            Date = new DateTime(2021, 11, 20, 9, 57, 39, 615, DateTimeKind.Local).AddTicks(1547),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -149,7 +149,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2021, 11, 19, 23, 10, 15, 977, DateTimeKind.Local).AddTicks(5538),
+                            DateOfBirth = new DateTime(2021, 11, 20, 9, 57, 39, 609, DateTimeKind.Local).AddTicks(6326),
                             DoctorId = 1,
                             Guest = false,
                             IsActivated = false,
@@ -158,7 +158,7 @@ namespace HospitalAPI.Migrations
                             LastName = "Peric",
                             Name = "Pera",
                             Password = "pera",
-                            Token = "ABC123DEF4AAAAC",
+                            Token = "ABC123DEF4AAAAC12345",
                             Username = "pera"
                         });
                 });

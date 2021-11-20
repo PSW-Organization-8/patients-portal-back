@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HospitalClassLib.Schedule.Service
@@ -43,8 +44,13 @@ namespace HospitalClassLib.Schedule.Service
         }*/
         public static void SendEmail(string patientToken)
         {
-            try { CreateSmtpClient().Send(CreateMessage(GetMailMessage(patientToken))); }
-            catch (Exception ex) { }
+            Thread thread = new Thread(() =>
+            {
+                try { CreateSmtpClient().Send(CreateMessage(GetMailMessage(patientToken))); }
+                catch (Exception ex) { }
+            });
+
+            thread.Start();
         }
         private static SmtpClient CreateSmtpClient()
         {
