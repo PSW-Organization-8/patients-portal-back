@@ -27,21 +27,13 @@ namespace HospitalClassLib.Schedule.Service
         }
         public Patient RegisterPatient(Patient patient)
         {
-            //TODO: add patient in database
             Patient newPatient = patientRepository.Create(patient);
-            //TODO: generate unique token
             patient.Token = GetUniqueToken(newPatient.Id);
             patientRepository.Update(patient);
-            //TODO: send email (async func) with generated token
             SendEmail(patient.Token);
 
             return newPatient;
         }
-        /*public string SendEmail(string patientToken)
-        {
-            SendEmail(GetMailMessage(patientToken));
-            return retVal;
-        }*/
         public static void SendEmail(string patientToken)
         {
             Thread thread = new Thread(() =>
@@ -83,7 +75,7 @@ namespace HospitalClassLib.Schedule.Service
         }
         public static string GetMailMessage(string patientToken)
         {
-            string link = "http://localhost:16934/api/patient/patientActivation/" + patientToken;
+            string link = "http://localhost:16934/api/patient/activate/" + patientToken;
             return "<a href=" + link + ">ACTIVATE ACCOUNT</a>";
         }
         static String EncodeIntAsString(int input, int maxLength = 0)
@@ -121,6 +113,10 @@ namespace HospitalClassLib.Schedule.Service
             Patient patient = patientRepository.GetByToken(patientToken);
             patient.IsActivated = true;
             patientRepository.Update(patient);
+        }
+        public Patient GetByToken(string patientToken)
+        {
+            return patientRepository.GetByToken(patientToken);
         }
     }
 }

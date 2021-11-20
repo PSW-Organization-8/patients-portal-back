@@ -1,12 +1,9 @@
 ﻿using HospitalAPI.Dto;
 using HospitalAPI.Mapper;
+using HospitalAPI.Validators;
 using HospitalClassLib.Schedule.Repository.PatientRepository;
 using HospitalClassLib.Schedule.Service;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HospitalAPI.Controllers
 {
@@ -16,10 +13,12 @@ namespace HospitalAPI.Controllers
     {
         private readonly PatientService patientService;
         private readonly PatientRepository patientRepository;
+        private readonly PatientValidator validator;
         public PatientController(PatientService patientService, PatientRepository patientRepository)
         {
             this.patientService = patientService;
             this.patientRepository = patientRepository;
+            this.validator = new PatientValidator();
         }
 
         [HttpPost]
@@ -28,18 +27,14 @@ namespace HospitalAPI.Controllers
             return Ok(patientService.RegisterPatient(PatientMapper.PatientDtoToPatient(patientDto)));
         }
 
-        /*[HttpGet]
-        public IActionResult SendEmail()
+        [HttpGet("activate/{patientToken?}")]
+        public void ActivatePatientAccount(string patientToken)
         {
-            // 555 : BROJ ZA TESTIRANJE SLANJA MEJLA
-            return Ok(patientService.SendEmail("AAABBBCCCD"));
-        }*/
-
-        [HttpGet("patientActivation/{patientId?}")]
-        public void ActivatePatientAccount(string patientId)
-        {
-            patientService.ActivatePatientAccount(patientId);
-            Response.Redirect("http://www.google.com");
+            if (patientService.GetByToken(patientToken) != null)
+            {
+                patientService.ActivatePatientAccount(patientToken);
+                Response.Redirect("http://www.google.com");
+            }
         }
     }
 }

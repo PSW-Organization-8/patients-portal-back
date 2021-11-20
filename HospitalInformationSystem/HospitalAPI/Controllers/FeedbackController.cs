@@ -54,8 +54,7 @@ namespace HospitalAPI.Controllers
         {
             if (validator.Validate(feedbackDto).IsValid)
                 return Ok(feedbackService.Create(FeedbackMapper.FeedbackDtoToFeedback(feedbackDto)));
-            else
-                return BadRequest();
+            return BadRequest();
         }
 
         [HttpDelete("{id?}")]
