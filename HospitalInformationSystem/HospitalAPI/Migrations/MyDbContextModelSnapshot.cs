@@ -67,7 +67,7 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 11, 19, 21, 24, 40, 48, DateTimeKind.Local).AddTicks(3243),
+                            StartTime = new DateTime(2021, 11, 21, 21, 2, 34, 610, DateTimeKind.Local).AddTicks(9819),
                             Type = 0
                         });
                 });
@@ -108,7 +108,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 19, 21, 24, 40, 47, DateTimeKind.Local).AddTicks(9885),
+                            Date = new DateTime(2021, 11, 21, 21, 2, 34, 610, DateTimeKind.Local).AddTicks(7632),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -118,7 +118,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 19, 21, 24, 40, 48, DateTimeKind.Local).AddTicks(1746),
+                            Date = new DateTime(2021, 11, 21, 21, 2, 34, 610, DateTimeKind.Local).AddTicks(8927),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -179,7 +179,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2021, 11, 19, 21, 24, 40, 41, DateTimeKind.Local).AddTicks(9991),
+                            DateOfBirth = new DateTime(2021, 11, 21, 21, 2, 34, 608, DateTimeKind.Local).AddTicks(603),
                             DoctorId = 1,
                             Guest = false,
                             IsBanned = false,
