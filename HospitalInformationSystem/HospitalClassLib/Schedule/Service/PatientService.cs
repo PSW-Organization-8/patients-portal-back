@@ -75,7 +75,7 @@ namespace HospitalClassLib.Schedule.Service
         }
         public static string GetMailMessage(string patientToken)
         {
-            string link = "http://localhost:16934/api/patient/activate/" + patientToken;
+            string link = "http://localhost:16934/api/patient/activate?patientToken=" + patientToken;
             return "<a href=" + link + ">ACTIVATE ACCOUNT</a>";
         }
         static String EncodeIntAsString(int input, int maxLength = 0)

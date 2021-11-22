@@ -1,4 +1,5 @@
-﻿using HospitalClassLib.SharedModel;
+﻿using HospitalClassLib.Schedule.Repository.DoctorRepository;
+using HospitalClassLib.SharedModel;
 using HospitalClassLib.SharedModel.Enums;
 using System;
 using System.Collections.Generic;
@@ -42,9 +43,9 @@ namespace HospitalClassLib.Schedule.Model
             Lbo = lbo;
             Guest = guest;
             DateOfBirth = dateOfBirth;
-            Allergens = allergens;
-            Doctor = doctor;
-            DoctorId = 1;
+            //Allergens = allergens;
+            Doctor = null;
+            DoctorId = doctor.Id;
             Feedbacks = new List<Feedback>();
             IsActivated = isActivated;
             Token = token;

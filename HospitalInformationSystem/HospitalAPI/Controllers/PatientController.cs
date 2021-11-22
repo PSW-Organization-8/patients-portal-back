@@ -27,13 +27,13 @@ namespace HospitalAPI.Controllers
             return Ok(patientService.RegisterPatient(PatientMapper.PatientDtoToPatient(patientDto)));
         }
 
-        [HttpGet("activate/{patientToken?}")]
+        [HttpGet("activate/")]
         public void ActivatePatientAccount(string patientToken)
         {
             if (patientService.GetByToken(patientToken) != null)
             {
                 patientService.ActivatePatientAccount(patientToken);
-                Response.Redirect("http://www.google.com");
+                Response.Redirect("http://localhost:4200/patientLogin");
             }
         }
     }
