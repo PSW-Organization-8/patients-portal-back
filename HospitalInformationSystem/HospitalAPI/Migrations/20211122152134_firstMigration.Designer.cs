@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20211121200235_Test")]
-    partial class Test
+    [Migration("20211122152134_firstMigration")]
+    partial class firstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,7 +69,7 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 11, 21, 21, 2, 34, 610, DateTimeKind.Local).AddTicks(9819),
+                            StartTime = new DateTime(2021, 11, 22, 16, 21, 33, 424, DateTimeKind.Local).AddTicks(8192),
                             Type = 0
                         });
                 });
@@ -110,7 +110,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 21, 21, 2, 34, 610, DateTimeKind.Local).AddTicks(7632),
+                            Date = new DateTime(2021, 11, 22, 16, 21, 33, 424, DateTimeKind.Local).AddTicks(2237),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -120,7 +120,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 21, 21, 2, 34, 610, DateTimeKind.Local).AddTicks(8927),
+                            Date = new DateTime(2021, 11, 22, 16, 21, 33, 424, DateTimeKind.Local).AddTicks(6420),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -147,6 +147,9 @@ namespace HospitalAPI.Migrations
                     b.Property<bool>("Guest")
                         .HasColumnType("boolean");
 
+                    b.Property<bool>("IsActivated")
+                        .HasColumnType("boolean");
+
                     b.Property<bool>("IsBanned")
                         .HasColumnType("boolean");
 
@@ -168,6 +171,9 @@ namespace HospitalAPI.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("text");
 
+                    b.Property<string>("Token")
+                        .HasColumnType("text");
+
                     b.Property<string>("Username")
                         .HasColumnType("text");
 
@@ -181,14 +187,16 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2021, 11, 21, 21, 2, 34, 608, DateTimeKind.Local).AddTicks(603),
+                            DateOfBirth = new DateTime(2021, 11, 22, 16, 21, 33, 418, DateTimeKind.Local).AddTicks(6424),
                             DoctorId = 1,
                             Guest = false,
+                            IsActivated = false,
                             IsBanned = false,
                             Jmbg = "123456789",
                             LastName = "Peric",
                             Name = "Pera",
                             Password = "pera",
+                            Token = "ABC123DEF4AAAAC12345",
                             Username = "pera"
                         });
                 });

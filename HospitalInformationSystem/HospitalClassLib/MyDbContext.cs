@@ -30,7 +30,7 @@ namespace HospitalClassLib
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            String connectionString = "Server=localhost; Port =5432; Database =psw_database; User Id = postgres; Password =root;";
+            String connectionString = "Server=localhost; Port =8080; Database =psw_database; User Id = postgres; Password =wasd;";
             optionsBuilder.UseNpgsql(connectionString);
         }
 

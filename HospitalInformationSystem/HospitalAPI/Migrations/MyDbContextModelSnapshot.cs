@@ -33,6 +33,7 @@ namespace HospitalAPI.Migrations
 
                     b.ToTable("AllergenPatient");
                 });
+
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Appointment", b =>
                 {
                     b.Property<int>("Id")
@@ -66,10 +67,11 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 11, 21, 21, 2, 34, 610, DateTimeKind.Local).AddTicks(9819),
+                            StartTime = new DateTime(2021, 11, 22, 16, 21, 33, 424, DateTimeKind.Local).AddTicks(8192),
                             Type = 0
                         });
                 });
+
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Feedback", b =>
                 {
                     b.Property<int>("Id")
@@ -106,7 +108,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 21, 21, 2, 34, 610, DateTimeKind.Local).AddTicks(7632),
+                            Date = new DateTime(2021, 11, 22, 16, 21, 33, 424, DateTimeKind.Local).AddTicks(2237),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -116,7 +118,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 21, 21, 2, 34, 610, DateTimeKind.Local).AddTicks(8927),
+                            Date = new DateTime(2021, 11, 22, 16, 21, 33, 424, DateTimeKind.Local).AddTicks(6420),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -183,7 +185,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2021, 11, 21, 21, 2, 34, 608, DateTimeKind.Local).AddTicks(603),
+                            DateOfBirth = new DateTime(2021, 11, 22, 16, 21, 33, 418, DateTimeKind.Local).AddTicks(6424),
                             DoctorId = 1,
                             Guest = false,
                             IsActivated = false,
@@ -503,6 +505,7 @@ namespace HospitalAPI.Migrations
                             PatientId = 1
                         });
                 });
+
             modelBuilder.Entity("HospitalClassLib.SharedModel.Allergen", b =>
                 {
                     b.Property<int>("Id")
@@ -597,6 +600,7 @@ namespace HospitalAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
+
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Appointment", b =>
                 {
                     b.HasOne("HospitalClassLib.SharedModel.Doctor", "Doctor")
@@ -615,6 +619,7 @@ namespace HospitalAPI.Migrations
 
                     b.Navigation("Patient");
                 });
+
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Feedback", b =>
                 {
                     b.HasOne("HospitalClassLib.Schedule.Model.Patient", "Patient")

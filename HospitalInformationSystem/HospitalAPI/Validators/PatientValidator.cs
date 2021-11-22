@@ -14,7 +14,7 @@ namespace HospitalAPI.Validators
     {
         public PatientValidator()
         {
-            RuleFor(patient => patient.Id).NotNull();
+            RuleFor(patient => patient).NotNull();
         }
     }
 }

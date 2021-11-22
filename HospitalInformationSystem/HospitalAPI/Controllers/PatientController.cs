@@ -28,13 +28,15 @@ namespace HospitalAPI.Controllers
         }
 
         [HttpGet("activate/")]
-        public void ActivatePatientAccount(string patientToken)
+        public IActionResult ActivatePatientAccount(string patientToken)
         {
-            if (patientService.GetByToken(patientToken) != null)
+            if (validator.Validate(patientService.GetByToken(patientToken)).IsValid)
             {
                 patientService.ActivatePatientAccount(patientToken);
                 Response.Redirect("http://localhost:4200/patientLogin");
+                return Ok();
             }
+            return BadRequest();
         }
     }
 }
