@@ -13,7 +13,7 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_PASSWORD: wasd
+          POSTGRES_PASSWORD: root
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
@@ -21,7 +21,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
         ports:
-          - 8080:8080
+          - 5432:5432
 
     steps:
       - name: Check out repository code
@@ -42,5 +42,5 @@ jobs:
         run: dotnet test ${SOLUTION_DIRECTORY} --no-restore --verbosity quiet --filter FullyQualifiedName\!~UnitTests
         env:
           POSTGRES_HOST: localhost
-          POSTGRES_PORT: 8080
-          POSTGRES_PASSWORD: wasd
+          POSTGRES_PORT: 5432
+          POSTGRES_PASSWORD: root
