@@ -25,14 +25,12 @@ namespace HospitalClassLib.Schedule.Service
         {
             return patientRepository.Get(id);
         }
-        public Patient RegisterPatient(Patient patient)
+        public void RegisterPatient(Patient patient)
         {
             Patient newPatient = patientRepository.Create(patient);
             patient.Token = GetUniqueToken(newPatient.Id);
             patientRepository.Update(patient);
             SendEmail(patient.Token);
-
-            return newPatient;
         }
         public static void SendEmail(string patientToken)
         {

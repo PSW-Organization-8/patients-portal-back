@@ -1,7 +1,6 @@
 ﻿using HospitalAPI.Dto;
 using HospitalAPI.Mapper;
 using HospitalAPI.Validators;
-using HospitalClassLib.Schedule.Repository.PatientRepository;
 using HospitalClassLib.Schedule.Service;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,19 +11,20 @@ namespace HospitalAPI.Controllers
     public class PatientController : ControllerBase
     {
         private readonly PatientService patientService;
-        private readonly PatientRepository patientRepository;
+        private readonly DoctorService doctorService;
         private readonly PatientValidator validator;
-        public PatientController(PatientService patientService, PatientRepository patientRepository)
+        public PatientController(PatientService patientService, DoctorService doctorService)
         {
             this.patientService = patientService;
-            this.patientRepository = patientRepository;
+            this.doctorService = doctorService;
             this.validator = new PatientValidator();
         }
 
         [HttpPost]
         public IActionResult RegisterPatient(PatientDto patientDto)
         {
-            return Ok(patientService.RegisterPatient(PatientMapper.PatientDtoToPatient(patientDto)));
+            patientService.RegisterPatient(PatientMapper.PatientDtoToPatient(patientDto, doctorService.Get(patientDto.DoctorId)));
+            return Ok();
         }
 
         [HttpGet("activate/")]

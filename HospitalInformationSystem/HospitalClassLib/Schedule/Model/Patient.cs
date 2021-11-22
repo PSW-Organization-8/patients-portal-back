@@ -44,7 +44,7 @@ namespace HospitalClassLib.Schedule.Model
             Guest = guest;
             DateOfBirth = dateOfBirth;
             //Allergens = allergens;
-            Doctor = null;
+            Doctor = doctor;
             DoctorId = doctor.Id;
             Feedbacks = new List<Feedback>();
             IsActivated = isActivated;

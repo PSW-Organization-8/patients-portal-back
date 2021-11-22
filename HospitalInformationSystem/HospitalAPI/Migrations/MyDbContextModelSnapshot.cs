@@ -70,7 +70,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 20, 9, 57, 39, 614, DateTimeKind.Local).AddTicks(9486),
+                            Date = new DateTime(2021, 11, 22, 11, 55, 18, 515, DateTimeKind.Local).AddTicks(7013),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -80,7 +80,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 20, 9, 57, 39, 615, DateTimeKind.Local).AddTicks(1547),
+                            Date = new DateTime(2021, 11, 22, 11, 55, 18, 515, DateTimeKind.Local).AddTicks(9556),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -147,7 +147,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2021, 11, 20, 9, 57, 39, 609, DateTimeKind.Local).AddTicks(6326),
+                            DateOfBirth = new DateTime(2021, 11, 22, 11, 55, 18, 510, DateTimeKind.Local).AddTicks(5233),
                             DoctorId = 1,
                             Guest = false,
                             IsActivated = false,
