@@ -51,7 +51,7 @@ namespace HospitalClassLib.Schedule.Service
                 CreateQuestion(q);
             }
         }
-
+      
         public List<double> GetAvgQuestionValues()
         {
             return questionRepository.GetAvgQuestionValues();

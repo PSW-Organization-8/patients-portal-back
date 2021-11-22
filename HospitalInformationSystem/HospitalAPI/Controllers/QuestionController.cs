@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace HospitalAPI.Controllers
 {
+
     [Route("api/[controller]")]
     public class QuestionController : ControllerBase
     {
