@@ -38,5 +38,28 @@ namespace HospitalAPI.Dto
             IsActivated = isActivated;
             Token = token;
         }
+        public PatientDto(string name, string lastName, string jmbg)
+        {
+            Name = name;
+            LastName = lastName;
+            Jmbg = jmbg;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is PatientDto dto &&
+                   Name == dto.Name &&
+                   LastName == dto.LastName &&
+                   Jmbg == dto.Jmbg &&
+                   Username == dto.Username &&
+                   Password == dto.Password &&
+                   Email == dto.Email &&
+                   Phone == dto.Phone &&
+                   DateOfBirth == dto.DateOfBirth &&
+                   EqualityComparer<ICollection<Allergen>>.Default.Equals(Allergens, dto.Allergens) &&
+                   DoctorId == dto.DoctorId &&
+                   IsActivated == dto.IsActivated &&
+                   Token == dto.Token;
+        }
     }
 }
