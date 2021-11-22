@@ -47,7 +47,7 @@ namespace HospitalClassLib.HospitalClassLib.Schedule.Model
             MainIssues = mainIssues;
             CurrentAnamnesis = currentAnamnesis;
             GeneralOccurrences = generalOccurrences;
-            AnamnesisID = appointment.AppointmentID;
+            //AnamnesisID = appointment.AppointmentID;
             RespiratorySystem = respiratorySystem;
             CardioSystem = cardioSystem;
             DigestiveSystem = digestiveSystem;

@@ -3,15 +3,17 @@ using System;
 using HospitalClassLib;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211118164221_first")]
+    partial class first
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,6 +35,7 @@ namespace HospitalAPI.Migrations
 
                     b.ToTable("AllergenPatient");
                 });
+
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Appointment", b =>
                 {
                     b.Property<int>("Id")
@@ -66,10 +69,11 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 11, 19, 21, 24, 40, 48, DateTimeKind.Local).AddTicks(3243),
+                            StartTime = new DateTime(2021, 11, 18, 17, 42, 20, 795, DateTimeKind.Local).AddTicks(9877),
                             Type = 0
                         });
                 });
+
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Feedback", b =>
                 {
                     b.Property<int>("Id")
@@ -106,7 +110,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 19, 21, 24, 40, 47, DateTimeKind.Local).AddTicks(9885),
+                            Date = new DateTime(2021, 11, 18, 17, 42, 20, 795, DateTimeKind.Local).AddTicks(5843),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -116,7 +120,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 19, 21, 24, 40, 48, DateTimeKind.Local).AddTicks(1746),
+                            Date = new DateTime(2021, 11, 18, 17, 42, 20, 795, DateTimeKind.Local).AddTicks(8228),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -143,9 +147,6 @@ namespace HospitalAPI.Migrations
                     b.Property<bool>("Guest")
                         .HasColumnType("boolean");
 
-                    b.Property<bool>("IsActivated")
-                        .HasColumnType("boolean");
-
                     b.Property<bool>("IsBanned")
                         .HasColumnType("boolean");
 
@@ -167,9 +168,6 @@ namespace HospitalAPI.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("text");
 
-                    b.Property<string>("Token")
-                        .HasColumnType("text");
-
                     b.Property<string>("Username")
                         .HasColumnType("text");
 
@@ -183,16 +181,14 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfBirth = new DateTime(2021, 11, 19, 21, 24, 40, 41, DateTimeKind.Local).AddTicks(9991),
+                            DateOfBirth = new DateTime(2021, 11, 18, 17, 42, 20, 789, DateTimeKind.Local).AddTicks(8669),
                             DoctorId = 1,
                             Guest = false,
-                            IsActivated = false,
                             IsBanned = false,
                             Jmbg = "123456789",
                             LastName = "Peric",
                             Name = "Pera",
                             Password = "pera",
-                            Token = "ABC123DEF4AAAAC12345",
                             Username = "pera"
                         });
                 });
@@ -235,7 +231,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 1,
                             Category = 0,
                             Text = "Text2",
-                            Value = 2
+                            Value = 1
                         },
                         new
                         {
@@ -339,7 +335,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 1,
                             Category = 2,
                             Text = "Text2",
-                            Value = 4
+                            Value = 1
                         },
                         new
                         {
@@ -355,7 +351,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 2,
                             Category = 0,
                             Text = "Text2",
-                            Value = 3
+                            Value = 1
                         },
                         new
                         {
@@ -459,7 +455,7 @@ namespace HospitalAPI.Migrations
                             SurveyId = 2,
                             Category = 2,
                             Text = "Text2",
-                            Value = 5
+                            Value = 1
                         });
                 });
 
@@ -503,6 +499,7 @@ namespace HospitalAPI.Migrations
                             PatientId = 1
                         });
                 });
+
             modelBuilder.Entity("HospitalClassLib.SharedModel.Allergen", b =>
                 {
                     b.Property<int>("Id")
@@ -597,6 +594,7 @@ namespace HospitalAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
+
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Appointment", b =>
                 {
                     b.HasOne("HospitalClassLib.SharedModel.Doctor", "Doctor")
@@ -615,6 +613,7 @@ namespace HospitalAPI.Migrations
 
                     b.Navigation("Patient");
                 });
+
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Feedback", b =>
                 {
                     b.HasOne("HospitalClassLib.Schedule.Model.Patient", "Patient")

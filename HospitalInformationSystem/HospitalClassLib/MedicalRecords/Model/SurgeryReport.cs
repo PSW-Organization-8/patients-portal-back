@@ -23,7 +23,7 @@ namespace HospitalClassLib.Schedule.Model
             DateOfReport = DateTime.Today;
             SurgeryName = surgeryName;
             SurgeryDescription = surgeryDescription;
-            ReportID = surgery.AppointmentID;
+            //ReportID = surgery.AppointmentID;
         }
 
         
