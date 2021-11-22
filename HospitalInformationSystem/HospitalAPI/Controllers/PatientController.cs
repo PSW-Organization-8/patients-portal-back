@@ -1,10 +1,8 @@
-﻿using HospitalClassLib.Schedule.Repository.PatientRepository;
+﻿using HospitalAPI.Dto;
+using HospitalAPI.Mapper;
+using HospitalAPI.Validators;
 using HospitalClassLib.Schedule.Service;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HospitalAPI.Controllers
 {
@@ -13,11 +11,30 @@ namespace HospitalAPI.Controllers
     public class PatientController : ControllerBase
     {
         private readonly PatientService patientService;
-        private readonly PatientRepository patientRepository;
-        public PatientController(PatientService patientService, PatientRepository patientRepository)
+        private readonly DoctorService doctorService;
+        private readonly PatientValidator validator;
+        public PatientController(PatientService patientService, DoctorService doctorService)
         {
             this.patientService = patientService;
-            this.patientRepository = patientRepository;
+            this.doctorService = doctorService;
+            this.validator = new PatientValidator();
+        }
+
+        [HttpPost]
+        public IActionResult RegisterPatient(PatientDto patientDto)
+        {
+            patientService.RegisterPatient(PatientMapper.PatientDtoToPatient(patientDto, doctorService.Get(patientDto.DoctorId)));
+            return Ok();
+        }
+
+        [HttpGet("activate/")]
+        public void ActivatePatientAccount(string patientToken)
+        {
+            if (patientService.GetByToken(patientToken) != null)
+            {
+                patientService.ActivatePatientAccount(patientToken);
+                Response.Redirect("http://localhost:4200/patientLogin");
+            }
         }
     }
 }

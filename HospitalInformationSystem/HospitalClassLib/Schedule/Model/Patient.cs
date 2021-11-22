@@ -1,4 +1,5 @@
-﻿using HospitalClassLib.SharedModel;
+﻿using HospitalClassLib.Schedule.Repository.DoctorRepository;
+using HospitalClassLib.SharedModel;
 using HospitalClassLib.SharedModel.Enums;
 using System;
 using System.Collections.Generic;
@@ -24,11 +25,13 @@ namespace HospitalClassLib.Schedule.Model
         public virtual ICollection<Allergen> Allergens { get; set; }
         public int DoctorId { get; set; }
         public virtual Doctor Doctor { get; set; }
+        public bool IsActivated { get; set; }
+        public string Token { get; internal set; }
 
         public Patient() { }
 
         public Patient(string name, string lastName, string jmbg, string username, string password, string email, string phone, bool isBanned, string lbo, bool guest, 
-            DateTime dateOfBirth, ICollection<Allergen> allergens, Doctor doctor) {
+            DateTime dateOfBirth, ICollection<Allergen> allergens, Doctor doctor, bool isActivated, string token) {
             Name = name;
             LastName = lastName;
             Jmbg = jmbg;
@@ -40,10 +43,12 @@ namespace HospitalClassLib.Schedule.Model
             Lbo = lbo;
             Guest = guest;
             DateOfBirth = dateOfBirth;
-            Allergens = allergens;
+            //Allergens = allergens;
             Doctor = doctor;
             DoctorId = doctor.Id;
             Feedbacks = new List<Feedback>();
+            IsActivated = isActivated;
+            Token = token;
         }
     }
 }

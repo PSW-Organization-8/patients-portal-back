@@ -1,6 +1,6 @@
-﻿using FluentValidation;
+﻿
+using FluentValidation;
 using FluentValidation.Results;
-using HospitalAPI.Dto;
 using HospitalClassLib.Schedule.Model;
 using System;
 using System.Collections.Generic;
@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace HospitalAPI.Validators
 {
-    public class FeedbackValidator : AbstractValidator<FeedbackDto>
+    public class PatientValidator : AbstractValidator<Patient>
     {
-        public FeedbackValidator()
+        public PatientValidator()
         {
-            RuleFor(feedbackDto => feedbackDto.Content).NotEmpty();
+            RuleFor(patient => patient.Id).NotNull();
         }
     }
 }

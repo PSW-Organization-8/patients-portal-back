@@ -45,7 +45,7 @@ namespace HospitalAPI
             services.AddTransient<IDoctorRepository, DoctorRepository>();
             services.AddScoped<DoctorService>();
             services.AddScoped<DoctorRepository>();
-
+          
             services.AddTransient<IPatientRepository, PatientRepository>();
             services.AddScoped<PatientService>();
             services.AddScoped<PatientRepository>();
