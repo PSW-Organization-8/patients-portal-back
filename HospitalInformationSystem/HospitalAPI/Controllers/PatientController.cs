@@ -36,5 +36,11 @@ namespace HospitalAPI.Controllers
                 Response.Redirect("http://localhost:4200/patientLogin");
             }
         }
+
+        [HttpGet("{id?}")]
+        public IActionResult GetQuestion(int id)
+        {
+            return Ok(patientService.Get(id));
+        }
     }
 }
