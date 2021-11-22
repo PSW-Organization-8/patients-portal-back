@@ -15,5 +15,6 @@ namespace HospitalClassLib.Schedule.Repository.AppointmentRepo
         Appointment Create(Appointment appointment);
         bool ExistsById(int id);
         bool Delete(int id);
+        List<Appointment> GetByPatient(int id);
     }
 }
