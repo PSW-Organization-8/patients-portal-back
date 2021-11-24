@@ -219,15 +219,15 @@ namespace HospitalAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Appointments",
                 columns: new[] { "Id", "DoctorId", "PatientId", "StartTime", "Type" },
-                values: new object[] { 1, 1, 1, new DateTime(2021, 11, 22, 17, 30, 33, 436, DateTimeKind.Local).AddTicks(693), 0 });
+                values: new object[] { 1, 1, 1, new DateTime(2021, 11, 23, 14, 14, 25, 955, DateTimeKind.Local).AddTicks(2738), 0 });
 
             migrationBuilder.InsertData(
                 table: "Feedbacks",
                 columns: new[] { "Id", "Content", "Date", "IsAnonymous", "IsApproved", "IsPublishable", "PatientId" },
                 values: new object[,]
                 {
-                    { 1, "Tekst neki", new DateTime(2021, 11, 22, 17, 30, 33, 430, DateTimeKind.Local).AddTicks(969), false, true, true, 1 },
-                    { 2, "Drugi neki", new DateTime(2021, 11, 22, 17, 30, 33, 435, DateTimeKind.Local).AddTicks(8710), false, true, true, 1 }
+                    { 1, "Tekst neki", new DateTime(2021, 11, 23, 14, 14, 25, 949, DateTimeKind.Local).AddTicks(4650), false, true, true, 1 },
+                    { 2, "Drugi neki", new DateTime(2021, 11, 23, 14, 14, 25, 955, DateTimeKind.Local).AddTicks(1003), false, true, true, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -244,36 +244,36 @@ namespace HospitalAPI.Migrations
                 columns: new[] { "Id", "SurveyId", "Category", "Text", "Value" },
                 values: new object[,]
                 {
-                    { 1, 1, 0, "Text1", 1 },
-                    { 13, 2, 2, "Text2", 1 },
-                    { 12, 2, 2, "Text2", 1 },
-                    { 11, 2, 2, "Text2", 1 },
-                    { 10, 2, 1, "Text2", 1 },
-                    { 9, 2, 1, "Text2", 1 },
-                    { 8, 2, 1, "Text2", 1 },
-                    { 7, 2, 1, "Text2", 1 },
-                    { 6, 2, 1, "Text2", 1 },
-                    { 5, 2, 0, "Text5", 1 },
-                    { 4, 2, 0, "Text4", 1 },
-                    { 3, 2, 0, "Text3", 1 },
-                    { 2, 2, 0, "Text2", 3 },
-                    { 1, 2, 0, "Text1", 1 },
-                    { 15, 1, 2, "Text2", 4 },
-                    { 14, 1, 2, "Text2", 1 },
-                    { 13, 1, 2, "Text2", 1 },
-                    { 12, 1, 2, "Text2", 1 },
-                    { 11, 1, 2, "Text2", 1 },
-                    { 10, 1, 1, "Text2", 1 },
-                    { 9, 1, 1, "Text2", 1 },
-                    { 8, 1, 1, "Text2", 1 },
-                    { 7, 1, 1, "Text2", 1 },
-                    { 6, 1, 1, "Text2", 1 },
-                    { 5, 1, 0, "Text5", 1 },
-                    { 4, 1, 0, "Text4", 1 },
-                    { 3, 1, 0, "Text3", 1 },
-                    { 2, 1, 0, "Text2", 2 },
-                    { 14, 2, 2, "Text2", 1 },
-                    { 15, 2, 2, "Text2", 5 }
+                    { 1, 1, 0, "How would you rate doctors professionalism?", 1 },
+                    { 13, 2, 2, "How would you rate medical staffs technicality?", 1 },
+                    { 12, 2, 2, "How would you rate medical staffs politeness?", 1 },
+                    { 11, 2, 2, "How would you rate medical staffs professionalism?", 1 },
+                    { 10, 2, 1, "How would you rate hospital waiting time?", 1 },
+                    { 9, 2, 1, "How would you rate hospital prices?", 1 },
+                    { 8, 2, 1, "How would you rate hospital hygiene?", 1 },
+                    { 7, 2, 1, "How would you rate hospital equipment?", 1 },
+                    { 6, 2, 1, "How would you rate hospital environment?", 1 },
+                    { 5, 2, 0, "How would you rate doctors knowledge?", 1 },
+                    { 4, 2, 0, "How would you rate doctors skill?", 1 },
+                    { 3, 2, 0, "How would you rate doctors technicality?", 1 },
+                    { 2, 2, 0, "How would you rate doctors politeness?", 3 },
+                    { 1, 2, 0, "How would you rate doctors professionalism?", 1 },
+                    { 15, 1, 2, "How would you rate medical staffs knowledge?", 4 },
+                    { 14, 1, 2, "How would you rate medical staffs skill?", 1 },
+                    { 13, 1, 2, "How would you rate medical staffs technicality?", 1 },
+                    { 12, 1, 2, "How would you rate medical staffs politeness?", 1 },
+                    { 11, 1, 2, "How would you rate medical staffs professionalism?", 1 },
+                    { 10, 1, 1, "How would you rate hospital waiting time?", 1 },
+                    { 9, 1, 1, "How would you rate hospital prices?", 1 },
+                    { 8, 1, 1, "How would you rate hospital hygiene?", 1 },
+                    { 7, 1, 1, "How would you rate hospital equipment?", 1 },
+                    { 6, 1, 1, "How would you rate hospital environment?", 1 },
+                    { 5, 1, 0, "How would you rate doctors knowledge?", 1 },
+                    { 4, 1, 0, "How would you rate doctors skill?", 1 },
+                    { 3, 1, 0, "How would you rate doctors technicality?", 1 },
+                    { 2, 1, 0, "How would you rate doctors politeness?", 2 },
+                    { 14, 2, 2, "How would you rate medical staffs skill?", 1 },
+                    { 15, 2, 2, "How would you rate medical staffs knowledge?", 5 }
                 });
 
             migrationBuilder.CreateIndex(
