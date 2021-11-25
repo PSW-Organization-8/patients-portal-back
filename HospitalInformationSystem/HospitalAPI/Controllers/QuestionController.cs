@@ -49,5 +49,20 @@ namespace HospitalAPI.Controllers
             return Ok(questionService.GetAvgCategoryValues());
         }
 
+
+        [HttpGet]
+        [Route("questionData")]
+        public IActionResult GetQuestionData()
+        {
+            return Ok(questionService.GetQuestionData());
+        }
+
+        [HttpGet]
+        [Route("categoryData")]
+        public IActionResult GetCategoryData()
+        {
+            return Ok(questionService.GetCategoryData());
+        }
+
     }
 }
