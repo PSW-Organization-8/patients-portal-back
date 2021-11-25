@@ -24,5 +24,9 @@ namespace HospitalClassLib.Schedule.Service
         {
             return allergenRepository.GetAll();
         }
+        public List<Allergen> GetSelectedAllergens(ICollection<Allergen> allergens)
+        {
+            return allergenRepository.GetSelectedAllergens(allergens);
+        }
     }
 }

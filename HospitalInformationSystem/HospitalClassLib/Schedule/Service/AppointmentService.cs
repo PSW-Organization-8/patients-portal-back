@@ -37,5 +37,10 @@ namespace HospitalClassLib.Schedule.Service
         {
             return appointmentRepository.Delete(id);
         }
+
+        public List<Appointment> GetByPatient(int id)
+        {
+            return appointmentRepository.GetByPatient(id);
+        }
     }
 }

@@ -34,7 +34,10 @@ namespace HospitalAPI.Migrations
                     Username = table.Column<string>(type: "text", nullable: true),
                     Password = table.Column<string>(type: "text", nullable: true),
                     Email = table.Column<string>(type: "text", nullable: true),
-                    Phone = table.Column<string>(type: "text", nullable: true)
+                    Phone = table.Column<string>(type: "text", nullable: true),
+                    Country = table.Column<string>(type: "text", nullable: true),
+                    City = table.Column<string>(type: "text", nullable: true),
+                    Address = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -51,6 +54,7 @@ namespace HospitalAPI.Migrations
                     Lbo = table.Column<string>(type: "text", nullable: true),
                     Guest = table.Column<bool>(type: "boolean", nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    BloodType = table.Column<int>(type: "integer", nullable: false),
                     DoctorId = table.Column<int>(type: "integer", nullable: false),
                     IsActivated = table.Column<bool>(type: "boolean", nullable: false),
                     Token = table.Column<string>(type: "text", nullable: true),
@@ -60,7 +64,10 @@ namespace HospitalAPI.Migrations
                     Username = table.Column<string>(type: "text", nullable: true),
                     Password = table.Column<string>(type: "text", nullable: true),
                     Email = table.Column<string>(type: "text", nullable: true),
-                    Phone = table.Column<string>(type: "text", nullable: true)
+                    Phone = table.Column<string>(type: "text", nullable: true),
+                    Country = table.Column<string>(type: "text", nullable: true),
+                    City = table.Column<string>(type: "text", nullable: true),
+                    Address = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -204,30 +211,44 @@ namespace HospitalAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "Doctors",
-                columns: new[] { "Id", "DoctorSpecialization", "Email", "Jmbg", "LastName", "Name", "Password", "Phone", "Username" },
+                columns: new[] { "Id", "Address", "City", "Country", "DoctorSpecialization", "Email", "Jmbg", "LastName", "Name", "Password", "Phone", "Username" },
                 values: new object[,]
                 {
-                    { 1, 0, null, "123456799", "Jovanovic", "Jovan", "jova", null, "jova" },
-                    { 2, 0, null, "123756799", "Ilic", "Milan", "mico", null, "mico" }
+                    { 1, null, null, null, 0, null, "123456799", "Jovanovic", "Jovan", "jova", null, "jova" },
+                    { 2, null, null, null, 0, null, "123756799", "Ilic", "Milan", "mico", null, "mico" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Patients",
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211122152134_firstMigration.cs
                 columns: new[] { "Id", "DateOfBirth", "DoctorId", "Email", "Guest", "IsActivated", "IsBanned", "Jmbg", "LastName", "Lbo", "Name", "Password", "Phone", "Token", "Username" },
                 values: new object[] { 1, new DateTime(2021, 11, 22, 16, 21, 33, 418, DateTimeKind.Local).AddTicks(6424), 1, null, false, false, false, "123456789", "Peric", null, "Pera", "pera", null, "ABC123DEF4AAAAC12345", "pera" });
+=======
+                columns: new[] { "Id", "Address", "BloodType", "City", "Country", "DateOfBirth", "DoctorId", "Email", "Guest", "IsActivated", "IsBanned", "Jmbg", "LastName", "Lbo", "Name", "Password", "Phone", "Token", "Username" },
+                values: new object[] { 1, null, 0, null, null, new DateTime(1999, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "pera.peric@gmail.com", false, false, false, "123456789", "Peric", null, "Pera", "pera", "054987332", "ABC123DEF4AAAAC12345", "pera" });
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211125091243_firstMigration.cs
 
             migrationBuilder.InsertData(
                 table: "Appointments",
                 columns: new[] { "Id", "DoctorId", "PatientId", "StartTime", "Type" },
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211122152134_firstMigration.cs
                 values: new object[] { 1, 1, 1, new DateTime(2021, 11, 22, 16, 21, 33, 424, DateTimeKind.Local).AddTicks(8192), 0 });
+=======
+                values: new object[] { 1, 1, 1, new DateTime(2021, 11, 25, 10, 12, 42, 486, DateTimeKind.Local).AddTicks(6314), 0 });
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211125091243_firstMigration.cs
 
             migrationBuilder.InsertData(
                 table: "Feedbacks",
                 columns: new[] { "Id", "Content", "Date", "IsAnonymous", "IsApproved", "IsPublishable", "PatientId" },
                 values: new object[,]
                 {
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211122152134_firstMigration.cs
                     { 1, "Tekst neki", new DateTime(2021, 11, 22, 16, 21, 33, 424, DateTimeKind.Local).AddTicks(2237), false, true, true, 1 },
                     { 2, "Drugi neki", new DateTime(2021, 11, 22, 16, 21, 33, 424, DateTimeKind.Local).AddTicks(6420), false, true, true, 1 }
+=======
+                    { 1, "Tekst neki", new DateTime(2021, 11, 25, 10, 12, 42, 483, DateTimeKind.Local).AddTicks(9914), false, true, true, 1 },
+                    { 2, "Drugi neki", new DateTime(2021, 11, 25, 10, 12, 42, 486, DateTimeKind.Local).AddTicks(4993), false, true, true, 1 }
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211125091243_firstMigration.cs
                 });
 
             migrationBuilder.InsertData(
@@ -244,36 +265,36 @@ namespace HospitalAPI.Migrations
                 columns: new[] { "Id", "SurveyId", "Category", "Text", "Value" },
                 values: new object[,]
                 {
-                    { 1, 1, 0, "Text1", 1 },
-                    { 13, 2, 2, "Text2", 1 },
-                    { 12, 2, 2, "Text2", 1 },
-                    { 11, 2, 2, "Text2", 1 },
-                    { 10, 2, 1, "Text2", 1 },
-                    { 9, 2, 1, "Text2", 1 },
-                    { 8, 2, 1, "Text2", 1 },
-                    { 7, 2, 1, "Text2", 1 },
-                    { 6, 2, 1, "Text2", 1 },
-                    { 5, 2, 0, "Text5", 1 },
-                    { 4, 2, 0, "Text4", 1 },
-                    { 3, 2, 0, "Text3", 1 },
-                    { 2, 2, 0, "Text2", 3 },
-                    { 1, 2, 0, "Text1", 1 },
-                    { 15, 1, 2, "Text2", 4 },
-                    { 14, 1, 2, "Text2", 1 },
-                    { 13, 1, 2, "Text2", 1 },
-                    { 12, 1, 2, "Text2", 1 },
-                    { 11, 1, 2, "Text2", 1 },
-                    { 10, 1, 1, "Text2", 1 },
-                    { 9, 1, 1, "Text2", 1 },
-                    { 8, 1, 1, "Text2", 1 },
-                    { 7, 1, 1, "Text2", 1 },
-                    { 6, 1, 1, "Text2", 1 },
-                    { 5, 1, 0, "Text5", 1 },
-                    { 4, 1, 0, "Text4", 1 },
-                    { 3, 1, 0, "Text3", 1 },
-                    { 2, 1, 0, "Text2", 2 },
-                    { 14, 2, 2, "Text2", 1 },
-                    { 15, 2, 2, "Text2", 5 }
+                    { 1, 1, 0, "How would you rate doctors professionalism?", 1 },
+                    { 13, 2, 2, "How would you rate medical staffs technicality?", 1 },
+                    { 12, 2, 2, "How would you rate medical staffs politeness?", 1 },
+                    { 11, 2, 2, "How would you rate medical staffs professionalism?", 1 },
+                    { 10, 2, 1, "How would you rate hospital waiting time?", 1 },
+                    { 9, 2, 1, "How would you rate hospital prices?", 1 },
+                    { 8, 2, 1, "How would you rate hospital hygiene?", 1 },
+                    { 7, 2, 1, "How would you rate hospital equipment?", 1 },
+                    { 6, 2, 1, "How would you rate hospital environment?", 1 },
+                    { 5, 2, 0, "How would you rate doctors knowledge?", 1 },
+                    { 4, 2, 0, "How would you rate doctors skill?", 1 },
+                    { 3, 2, 0, "How would you rate doctors technicality?", 1 },
+                    { 2, 2, 0, "How would you rate doctors politeness?", 3 },
+                    { 1, 2, 0, "How would you rate doctors professionalism?", 1 },
+                    { 15, 1, 2, "How would you rate medical staffs knowledge?", 4 },
+                    { 14, 1, 2, "How would you rate medical staffs skill?", 1 },
+                    { 13, 1, 2, "How would you rate medical staffs technicality?", 1 },
+                    { 12, 1, 2, "How would you rate medical staffs politeness?", 1 },
+                    { 11, 1, 2, "How would you rate medical staffs professionalism?", 1 },
+                    { 10, 1, 1, "How would you rate hospital waiting time?", 1 },
+                    { 9, 1, 1, "How would you rate hospital prices?", 1 },
+                    { 8, 1, 1, "How would you rate hospital hygiene?", 1 },
+                    { 7, 1, 1, "How would you rate hospital equipment?", 1 },
+                    { 6, 1, 1, "How would you rate hospital environment?", 1 },
+                    { 5, 1, 0, "How would you rate doctors knowledge?", 1 },
+                    { 4, 1, 0, "How would you rate doctors skill?", 1 },
+                    { 3, 1, 0, "How would you rate doctors technicality?", 1 },
+                    { 2, 1, 0, "How would you rate doctors politeness?", 2 },
+                    { 14, 2, 2, "How would you rate medical staffs skill?", 1 },
+                    { 15, 2, 2, "How would you rate medical staffs knowledge?", 5 }
                 });
 
             migrationBuilder.CreateIndex(

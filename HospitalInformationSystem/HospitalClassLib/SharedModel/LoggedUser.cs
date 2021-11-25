@@ -16,9 +16,11 @@ namespace HospitalClassLib.SharedModel
         public string Password { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        //public Address Address { get; set; }
-        
-        public LoggedUser(string name, string lastName, string jmbg, string username, string password, string email, string phone /*Address address*/)
+        public string Country { get; set; }
+        public string City { get; set; }
+        public string Address { get; set; }
+
+        public LoggedUser(string name, string lastName, string jmbg, string username, string password, string email, string phone, string country, string city, string address)
         {
             Name = name;
             LastName = lastName;
@@ -27,13 +29,14 @@ namespace HospitalClassLib.SharedModel
             Password = password;
             Email = email;
             Phone = phone;
-            //Address = address;
-            
+            Country = country;
+            City = city;
+            Address = address;
         }
 
         public LoggedUser()
         {
-            
+
         }
 
         public bool EqualJmbg(String Jmbg)
@@ -42,27 +45,5 @@ namespace HospitalClassLib.SharedModel
         }
 
         public String FullName { get => (Name + " " + LastName); }
-
-        
-        public String FullAddressString
-        {
-            get
-            {
-                //return "Novi Sad, Despota Stefana 7";
-                return null;/*this.Address.Street + " " + this.Address.Number + ", " + this.Address.City.Name;*/
-            }
-        }
-
-        public String AddressString
-        {
-            get
-            {
-                return null;//this.Address.Street + " " + this.Address.Number;
-                //return "Despota Stefana 7";
-            }
-        }
-
-        
-
     }
 }

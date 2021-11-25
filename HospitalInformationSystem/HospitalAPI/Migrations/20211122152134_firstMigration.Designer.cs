@@ -10,8 +10,13 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211122152134_firstMigration.Designer.cs
     [Migration("20211122152134_firstMigration")]
     partial class firstMigration
+=======
+    [Migration("20211125142749_first")]
+    partial class first
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211125142749_first.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,7 +74,11 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             DoctorId = 1,
                             PatientId = 1,
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211122152134_firstMigration.Designer.cs
                             StartTime = new DateTime(2021, 11, 22, 16, 21, 33, 424, DateTimeKind.Local).AddTicks(8192),
+=======
+                            StartTime = new DateTime(2021, 11, 25, 15, 27, 48, 937, DateTimeKind.Local).AddTicks(7840),
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211125142749_first.Designer.cs
                             Type = 0
                         });
                 });
@@ -110,7 +119,11 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211122152134_firstMigration.Designer.cs
                             Date = new DateTime(2021, 11, 22, 16, 21, 33, 424, DateTimeKind.Local).AddTicks(2237),
+=======
+                            Date = new DateTime(2021, 11, 25, 15, 27, 48, 934, DateTimeKind.Local).AddTicks(5371),
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211125142749_first.Designer.cs
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -120,7 +133,11 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211122152134_firstMigration.Designer.cs
                             Date = new DateTime(2021, 11, 22, 16, 21, 33, 424, DateTimeKind.Local).AddTicks(6420),
+=======
+                            Date = new DateTime(2021, 11, 25, 15, 27, 48, 937, DateTimeKind.Local).AddTicks(5705),
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211125142749_first.Designer.cs
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -187,8 +204,13 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 1,
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211122152134_firstMigration.Designer.cs
                             DateOfBirth = new DateTime(2021, 11, 22, 16, 21, 33, 418, DateTimeKind.Local).AddTicks(6424),
+=======
+                            DateOfBirth = new DateTime(1999, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211125142749_first.Designer.cs
                             DoctorId = 1,
+                            Email = "pera.peric@gmail.com",
                             Guest = false,
                             IsActivated = false,
                             IsBanned = false,
@@ -196,6 +218,10 @@ namespace HospitalAPI.Migrations
                             LastName = "Peric",
                             Name = "Pera",
                             Password = "pera",
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211122152134_firstMigration.Designer.cs
+=======
+                            Phone = "054987332",
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211125142749_first.Designer.cs
                             Token = "ABC123DEF4AAAAC12345",
                             Username = "pera"
                         });
@@ -230,7 +256,7 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             SurveyId = 1,
                             Category = 0,
-                            Text = "Text1",
+                            Text = "How would you rate doctors professionalism?",
                             Value = 1
                         },
                         new
@@ -238,7 +264,7 @@ namespace HospitalAPI.Migrations
                             Id = 2,
                             SurveyId = 1,
                             Category = 0,
-                            Text = "Text2",
+                            Text = "How would you rate doctors politeness?",
                             Value = 2
                         },
                         new
@@ -246,7 +272,7 @@ namespace HospitalAPI.Migrations
                             Id = 3,
                             SurveyId = 1,
                             Category = 0,
-                            Text = "Text3",
+                            Text = "How would you rate doctors technicality?",
                             Value = 1
                         },
                         new
@@ -254,7 +280,7 @@ namespace HospitalAPI.Migrations
                             Id = 4,
                             SurveyId = 1,
                             Category = 0,
-                            Text = "Text4",
+                            Text = "How would you rate doctors skill?",
                             Value = 1
                         },
                         new
@@ -262,7 +288,7 @@ namespace HospitalAPI.Migrations
                             Id = 5,
                             SurveyId = 1,
                             Category = 0,
-                            Text = "Text5",
+                            Text = "How would you rate doctors knowledge?",
                             Value = 1
                         },
                         new
@@ -270,7 +296,7 @@ namespace HospitalAPI.Migrations
                             Id = 6,
                             SurveyId = 1,
                             Category = 1,
-                            Text = "Text2",
+                            Text = "How would you rate hospital environment?",
                             Value = 1
                         },
                         new
@@ -278,7 +304,7 @@ namespace HospitalAPI.Migrations
                             Id = 7,
                             SurveyId = 1,
                             Category = 1,
-                            Text = "Text2",
+                            Text = "How would you rate hospital equipment?",
                             Value = 1
                         },
                         new
@@ -286,7 +312,7 @@ namespace HospitalAPI.Migrations
                             Id = 8,
                             SurveyId = 1,
                             Category = 1,
-                            Text = "Text2",
+                            Text = "How would you rate hospital hygiene?",
                             Value = 1
                         },
                         new
@@ -294,7 +320,7 @@ namespace HospitalAPI.Migrations
                             Id = 9,
                             SurveyId = 1,
                             Category = 1,
-                            Text = "Text2",
+                            Text = "How would you rate hospital prices?",
                             Value = 1
                         },
                         new
@@ -302,7 +328,7 @@ namespace HospitalAPI.Migrations
                             Id = 10,
                             SurveyId = 1,
                             Category = 1,
-                            Text = "Text2",
+                            Text = "How would you rate hospital waiting time?",
                             Value = 1
                         },
                         new
@@ -310,7 +336,7 @@ namespace HospitalAPI.Migrations
                             Id = 11,
                             SurveyId = 1,
                             Category = 2,
-                            Text = "Text2",
+                            Text = "How would you rate medical staffs professionalism?",
                             Value = 1
                         },
                         new
@@ -318,7 +344,7 @@ namespace HospitalAPI.Migrations
                             Id = 12,
                             SurveyId = 1,
                             Category = 2,
-                            Text = "Text2",
+                            Text = "How would you rate medical staffs politeness?",
                             Value = 1
                         },
                         new
@@ -326,7 +352,7 @@ namespace HospitalAPI.Migrations
                             Id = 13,
                             SurveyId = 1,
                             Category = 2,
-                            Text = "Text2",
+                            Text = "How would you rate medical staffs technicality?",
                             Value = 1
                         },
                         new
@@ -334,7 +360,7 @@ namespace HospitalAPI.Migrations
                             Id = 14,
                             SurveyId = 1,
                             Category = 2,
-                            Text = "Text2",
+                            Text = "How would you rate medical staffs skill?",
                             Value = 1
                         },
                         new
@@ -342,7 +368,7 @@ namespace HospitalAPI.Migrations
                             Id = 15,
                             SurveyId = 1,
                             Category = 2,
-                            Text = "Text2",
+                            Text = "How would you rate medical staffs knowledge?",
                             Value = 4
                         },
                         new
@@ -350,7 +376,7 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             SurveyId = 2,
                             Category = 0,
-                            Text = "Text1",
+                            Text = "How would you rate doctors professionalism?",
                             Value = 1
                         },
                         new
@@ -358,7 +384,7 @@ namespace HospitalAPI.Migrations
                             Id = 2,
                             SurveyId = 2,
                             Category = 0,
-                            Text = "Text2",
+                            Text = "How would you rate doctors politeness?",
                             Value = 3
                         },
                         new
@@ -366,7 +392,7 @@ namespace HospitalAPI.Migrations
                             Id = 3,
                             SurveyId = 2,
                             Category = 0,
-                            Text = "Text3",
+                            Text = "How would you rate doctors technicality?",
                             Value = 1
                         },
                         new
@@ -374,7 +400,7 @@ namespace HospitalAPI.Migrations
                             Id = 4,
                             SurveyId = 2,
                             Category = 0,
-                            Text = "Text4",
+                            Text = "How would you rate doctors skill?",
                             Value = 1
                         },
                         new
@@ -382,7 +408,7 @@ namespace HospitalAPI.Migrations
                             Id = 5,
                             SurveyId = 2,
                             Category = 0,
-                            Text = "Text5",
+                            Text = "How would you rate doctors knowledge?",
                             Value = 1
                         },
                         new
@@ -390,7 +416,7 @@ namespace HospitalAPI.Migrations
                             Id = 6,
                             SurveyId = 2,
                             Category = 1,
-                            Text = "Text2",
+                            Text = "How would you rate hospital environment?",
                             Value = 1
                         },
                         new
@@ -398,7 +424,7 @@ namespace HospitalAPI.Migrations
                             Id = 7,
                             SurveyId = 2,
                             Category = 1,
-                            Text = "Text2",
+                            Text = "How would you rate hospital equipment?",
                             Value = 1
                         },
                         new
@@ -406,7 +432,7 @@ namespace HospitalAPI.Migrations
                             Id = 8,
                             SurveyId = 2,
                             Category = 1,
-                            Text = "Text2",
+                            Text = "How would you rate hospital hygiene?",
                             Value = 1
                         },
                         new
@@ -414,7 +440,7 @@ namespace HospitalAPI.Migrations
                             Id = 9,
                             SurveyId = 2,
                             Category = 1,
-                            Text = "Text2",
+                            Text = "How would you rate hospital prices?",
                             Value = 1
                         },
                         new
@@ -422,7 +448,7 @@ namespace HospitalAPI.Migrations
                             Id = 10,
                             SurveyId = 2,
                             Category = 1,
-                            Text = "Text2",
+                            Text = "How would you rate hospital waiting time?",
                             Value = 1
                         },
                         new
@@ -430,7 +456,7 @@ namespace HospitalAPI.Migrations
                             Id = 11,
                             SurveyId = 2,
                             Category = 2,
-                            Text = "Text2",
+                            Text = "How would you rate medical staffs professionalism?",
                             Value = 1
                         },
                         new
@@ -438,7 +464,7 @@ namespace HospitalAPI.Migrations
                             Id = 12,
                             SurveyId = 2,
                             Category = 2,
-                            Text = "Text2",
+                            Text = "How would you rate medical staffs politeness?",
                             Value = 1
                         },
                         new
@@ -446,7 +472,7 @@ namespace HospitalAPI.Migrations
                             Id = 13,
                             SurveyId = 2,
                             Category = 2,
-                            Text = "Text2",
+                            Text = "How would you rate medical staffs technicality?",
                             Value = 1
                         },
                         new
@@ -454,7 +480,7 @@ namespace HospitalAPI.Migrations
                             Id = 14,
                             SurveyId = 2,
                             Category = 2,
-                            Text = "Text2",
+                            Text = "How would you rate medical staffs skill?",
                             Value = 1
                         },
                         new
@@ -462,7 +488,7 @@ namespace HospitalAPI.Migrations
                             Id = 15,
                             SurveyId = 2,
                             Category = 2,
-                            Text = "Text2",
+                            Text = "How would you rate medical staffs knowledge?",
                             Value = 5
                         });
                 });

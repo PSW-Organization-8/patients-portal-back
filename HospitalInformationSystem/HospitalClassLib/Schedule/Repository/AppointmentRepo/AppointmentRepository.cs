@@ -3,6 +3,7 @@ using SIMS.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace HospitalClassLib.Schedule.Repository.AppointmentRepo
 {
@@ -18,6 +19,11 @@ namespace HospitalClassLib.Schedule.Repository.AppointmentRepo
         protected override int GetId(Appointment entity)
         {
             return entity.Id;
+        }
+
+        public List<Appointment> GetByPatient(int id)
+        {
+            return dbContext.Appointments.Where(x => x.PatientId == id).ToList();
         }
     }
 }

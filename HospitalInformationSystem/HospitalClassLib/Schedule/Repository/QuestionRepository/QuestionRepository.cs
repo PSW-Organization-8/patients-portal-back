@@ -48,12 +48,30 @@ namespace HospitalClassLib.Schedule.Repository.QuestionRepository
 
         public List<double> GetAvgQuestionValues()
         {
-            return dbContext.Questions.GroupBy(x => x.Id, v => v.Value).OrderBy(x => x.Key).Select(x => x.Average()).ToList(); 
+            return dbContext.Questions.GroupBy(x => x.Id, v => v.Value).OrderBy(x => x.Key).Select(x => x.Average()).ToList();
         }
 
         public List<double> GetAvgCategoryValues()
         {
             return dbContext.Questions.GroupBy(x => x.Category, v => v.Value).OrderBy(x => x.Key).Select(x => x.Average()).ToList();
+        }
+
+        public List<QuestionData> GetQuestionData()
+        {
+            return dbContext.Questions.GroupBy(x => x.Id).OrderBy(x => x.Key).Select(x => new QuestionData(dbContext.Questions.Count(q => q.Id == x.Key && q.Value == 1),
+                                                                                                           dbContext.Questions.Count(q => q.Id == x.Key && q.Value == 2),
+                                                                                                           dbContext.Questions.Count(q => q.Id == x.Key && q.Value == 3),
+                                                                                                           dbContext.Questions.Count(q => q.Id == x.Key && q.Value == 4),
+                                                                                                           dbContext.Questions.Count(q => q.Id == x.Key && q.Value == 5))).ToList();
+        }
+
+        public List<QuestionData> GetCategoryData()
+        {
+            return dbContext.Questions.GroupBy(x => x.Category).OrderBy(x => x.Key).Select(x => new QuestionData(dbContext.Questions.Count(q => q.Category == x.Key && q.Value == 1),
+                                                                                                                 dbContext.Questions.Count(q => q.Category == x.Key && q.Value == 2),
+                                                                                                                 dbContext.Questions.Count(q => q.Category == x.Key && q.Value == 3),
+                                                                                                                 dbContext.Questions.Count(q => q.Category == x.Key && q.Value == 4),
+                                                                                                                 dbContext.Questions.Count(q => q.Category == x.Key && q.Value == 5))).ToList();
         }
     }
 }

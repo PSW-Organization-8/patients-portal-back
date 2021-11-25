@@ -26,5 +26,11 @@ namespace HospitalAPI.Controllers
         {
             return Ok(doctorRepository.GetLessOccupiedDoctors());
         }
+
+        [HttpGet("{id?}")]
+        public IActionResult GetDoctor(int id)
+        {
+            return Ok(doctorService.Get(id));
+        }
     }
 }

@@ -44,7 +44,7 @@ namespace HospitalClassLib
                 new Doctor { Id = 2, Name = "Milan", LastName = "Ilic", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.FamilyPhysician, Patients = new List<Patient>() }
                 );
             modelBuilder.Entity<Patient>().HasData(
-                new Patient { Id = 1, Name = "Pera", LastName = "Peric", Jmbg = "123456789", Username = "pera", Password = "pera", DateOfBirth = DateTime.Now, Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), IsActivated = false, Token = "ABC123DEF4AAAAC12345" }
+                new Patient { Id = 1, Name = "Pera", LastName = "Peric", Jmbg = "123456789", Username = "pera", Password = "pera", Email = "pera.peric@gmail.com", Phone = "054987332", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), IsActivated = false, Token = "ABC123DEF4AAAAC12345" }
                 );
             modelBuilder.Entity<Feedback>().HasData(
                 new Feedback { Id = 1, Content = "Tekst neki", IsApproved = true, Date = DateTime.Now, PatientId = 1, IsPublishable = true, IsAnonymous = false },
@@ -65,37 +65,37 @@ namespace HospitalClassLib
             modelBuilder.Entity<Question>().HasKey(q => new { q.Id, q.SurveyId });
 
             modelBuilder.Entity<Question>().HasData(
-            new Question { Id = 1, Text = "Text1", Value = 1, Category = QuestionCategory.doctor, SurveyId=1 },
-            new Question { Id = 2, Text = "Text2", Value = 2, Category = QuestionCategory.doctor, SurveyId = 1 },
-            new Question { Id = 3, Text = "Text3", Value = 1, Category = QuestionCategory.doctor, SurveyId = 1 },
-            new Question { Id = 4, Text = "Text4", Value = 1, Category = QuestionCategory.doctor, SurveyId = 1 },
-            new Question { Id = 5, Text = "Text5", Value = 1, Category = QuestionCategory.doctor, SurveyId = 1 },
-            new Question { Id = 6, Text = "Text2", Value = 1, Category = QuestionCategory.hospital, SurveyId = 1 },
-            new Question { Id = 7, Text = "Text2", Value = 1, Category = QuestionCategory.hospital, SurveyId = 1 },
-            new Question { Id = 8, Text = "Text2", Value = 1, Category = QuestionCategory.hospital, SurveyId = 1 },
-            new Question { Id = 9, Text = "Text2", Value = 1, Category = QuestionCategory.hospital, SurveyId = 1 },
-            new Question { Id = 10, Text = "Text2", Value = 1, Category = QuestionCategory.hospital, SurveyId = 1 },
-            new Question { Id = 11, Text = "Text2", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 1 },
-            new Question { Id = 12, Text = "Text2", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 1 },
-            new Question { Id = 13, Text = "Text2", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 1 },
-            new Question { Id = 14, Text = "Text2", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 1 },
-            new Question { Id = 15, Text = "Text2", Value = 4, Category = QuestionCategory.medicalStuff, SurveyId = 1 },
+            new Question { Id = 1, Text = "How would you rate doctors professionalism?", Value = 1, Category = QuestionCategory.doctor, SurveyId=1 },
+            new Question { Id = 2, Text = "How would you rate doctors politeness?", Value = 2, Category = QuestionCategory.doctor, SurveyId = 1 },
+            new Question { Id = 3, Text = "How would you rate doctors technicality?", Value = 1, Category = QuestionCategory.doctor, SurveyId = 1 },
+            new Question { Id = 4, Text = "How would you rate doctors skill?", Value = 1, Category = QuestionCategory.doctor, SurveyId = 1 },
+            new Question { Id = 5, Text = "How would you rate doctors knowledge?", Value = 1, Category = QuestionCategory.doctor, SurveyId = 1 },
+            new Question { Id = 6, Text = "How would you rate hospital environment?", Value = 1, Category = QuestionCategory.hospital, SurveyId = 1 },
+            new Question { Id = 7, Text = "How would you rate hospital equipment?", Value = 1, Category = QuestionCategory.hospital, SurveyId = 1 },
+            new Question { Id = 8, Text = "How would you rate hospital hygiene?", Value = 1, Category = QuestionCategory.hospital, SurveyId = 1 },
+            new Question { Id = 9, Text = "How would you rate hospital prices?", Value = 1, Category = QuestionCategory.hospital, SurveyId = 1 },
+            new Question { Id = 10, Text = "How would you rate hospital waiting time?", Value = 1, Category = QuestionCategory.hospital, SurveyId = 1 },
+            new Question { Id = 11, Text = "How would you rate medical staffs professionalism?", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 1 },
+            new Question { Id = 12, Text = "How would you rate medical staffs politeness?", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 1 },
+            new Question { Id = 13, Text = "How would you rate medical staffs technicality?", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 1 },
+            new Question { Id = 14, Text = "How would you rate medical staffs skill?", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 1 },
+            new Question { Id = 15, Text = "How would you rate medical staffs knowledge?", Value = 4, Category = QuestionCategory.medicalStuff, SurveyId = 1 },
                                                             
-            new Question { Id = 1,  Text = "Text1", Value = 1, Category = QuestionCategory.doctor, SurveyId = 2 },
-            new Question { Id = 2,  Text = "Text2", Value = 3, Category = QuestionCategory.doctor, SurveyId = 2 },
-            new Question { Id = 3,  Text = "Text3", Value = 1, Category = QuestionCategory.doctor, SurveyId = 2 },
-            new Question { Id = 4,  Text = "Text4", Value = 1, Category = QuestionCategory.doctor, SurveyId = 2 },
-            new Question { Id = 5,  Text = "Text5", Value = 1, Category = QuestionCategory.doctor, SurveyId = 2 },
-            new Question { Id = 6,  Text = "Text2", Value = 1, Category = QuestionCategory.hospital, SurveyId = 2 },
-            new Question { Id = 7,  Text = "Text2", Value = 1, Category = QuestionCategory.hospital, SurveyId = 2 },
-            new Question { Id = 8,  Text = "Text2", Value = 1, Category = QuestionCategory.hospital, SurveyId = 2 },
-            new Question { Id = 9,  Text = "Text2", Value = 1, Category = QuestionCategory.hospital, SurveyId = 2 },
-            new Question { Id = 10, Text = "Text2", Value = 1, Category = QuestionCategory.hospital, SurveyId = 2 },
-            new Question { Id = 11, Text = "Text2", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 2 },
-            new Question { Id = 12, Text = "Text2", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 2 },
-            new Question { Id = 13, Text = "Text2", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 2 },
-            new Question { Id = 14, Text = "Text2", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 2 },
-            new Question { Id = 15, Text = "Text2", Value = 5, Category = QuestionCategory.medicalStuff, SurveyId = 2 }
+            new Question { Id = 1,  Text = "How would you rate doctors professionalism?", Value = 1, Category = QuestionCategory.doctor, SurveyId = 2 },
+            new Question { Id = 2,  Text = "How would you rate doctors politeness?", Value = 3, Category = QuestionCategory.doctor, SurveyId = 2 },
+            new Question { Id = 3,  Text = "How would you rate doctors technicality?", Value = 1, Category = QuestionCategory.doctor, SurveyId = 2 },
+            new Question { Id = 4,  Text = "How would you rate doctors skill?", Value = 1, Category = QuestionCategory.doctor, SurveyId = 2 },
+            new Question { Id = 5,  Text = "How would you rate doctors knowledge?", Value = 1, Category = QuestionCategory.doctor, SurveyId = 2 },
+            new Question { Id = 6,  Text = "How would you rate hospital environment?", Value = 1, Category = QuestionCategory.hospital, SurveyId = 2 },
+            new Question { Id = 7,  Text = "How would you rate hospital equipment?", Value = 1, Category = QuestionCategory.hospital, SurveyId = 2 },
+            new Question { Id = 8,  Text = "How would you rate hospital hygiene?", Value = 1, Category = QuestionCategory.hospital, SurveyId = 2 },
+            new Question { Id = 9,  Text = "How would you rate hospital prices?", Value = 1, Category = QuestionCategory.hospital, SurveyId = 2 },
+            new Question { Id = 10, Text = "How would you rate hospital waiting time?", Value = 1, Category = QuestionCategory.hospital, SurveyId = 2 },
+            new Question { Id = 11, Text = "How would you rate medical staffs professionalism?", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 2 },
+            new Question { Id = 12, Text = "How would you rate medical staffs politeness?", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 2 },
+            new Question { Id = 13, Text = "How would you rate medical staffs technicality?", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 2 },
+            new Question { Id = 14, Text = "How would you rate medical staffs skill?", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 2 },
+            new Question { Id = 15, Text = "How would you rate medical staffs knowledge?", Value = 5, Category = QuestionCategory.medicalStuff, SurveyId = 2 }
             );
         }
     }

@@ -12,19 +12,26 @@ namespace HospitalAPI.Controllers
     {
         private readonly PatientService patientService;
         private readonly DoctorService doctorService;
+        private readonly AllergenService allergenService;
         private readonly PatientValidator validator;
-        public PatientController(PatientService patientService, DoctorService doctorService)
+        public PatientController(PatientService patientService, DoctorService doctorService, AllergenService allergenService)
         {
             this.patientService = patientService;
             this.doctorService = doctorService;
+            this.allergenService = allergenService;
             this.validator = new PatientValidator();
         }
 
         [HttpPost]
         public IActionResult RegisterPatient(PatientDto patientDto)
         {
-            patientService.RegisterPatient(PatientMapper.PatientDtoToPatient(patientDto, doctorService.Get(patientDto.DoctorId)));
-            return Ok();
+            if (validator.Validate(PatientMapper.PatientDtoToPatient(
+                patientDto, doctorService.Get(patientDto.DoctorId), allergenService.GetSelectedAllergens(patientDto.Allergens))).IsValid)
+            {
+                patientService.RegisterPatient(PatientMapper.PatientDtoToPatient(patientDto, doctorService.Get(patientDto.DoctorId), allergenService.GetSelectedAllergens(patientDto.Allergens)));
+                return Ok();
+            }
+            return BadRequest();
         }
 
         [HttpGet("activate/")]
@@ -37,6 +44,12 @@ namespace HospitalAPI.Controllers
                 return Ok();
             }
             return BadRequest();
+        }
+
+        [HttpGet("{id?}")]
+        public IActionResult GetPatientById(int id)
+        {
+            return Ok(patientService.Get(id));
         }
     }
 }
