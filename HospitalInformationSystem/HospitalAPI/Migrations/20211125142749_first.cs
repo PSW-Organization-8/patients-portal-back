@@ -219,15 +219,15 @@ namespace HospitalAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Appointments",
                 columns: new[] { "Id", "DoctorId", "PatientId", "StartTime", "Type" },
-                values: new object[] { 1, 1, 1, new DateTime(2021, 11, 23, 14, 14, 25, 955, DateTimeKind.Local).AddTicks(2738), 0 });
+                values: new object[] { 1, 1, 1, new DateTime(2021, 11, 25, 15, 27, 48, 937, DateTimeKind.Local).AddTicks(7840), 0 });
 
             migrationBuilder.InsertData(
                 table: "Feedbacks",
                 columns: new[] { "Id", "Content", "Date", "IsAnonymous", "IsApproved", "IsPublishable", "PatientId" },
                 values: new object[,]
                 {
-                    { 1, "Tekst neki", new DateTime(2021, 11, 23, 14, 14, 25, 949, DateTimeKind.Local).AddTicks(4650), false, true, true, 1 },
-                    { 2, "Drugi neki", new DateTime(2021, 11, 23, 14, 14, 25, 955, DateTimeKind.Local).AddTicks(1003), false, true, true, 1 }
+                    { 1, "Tekst neki", new DateTime(2021, 11, 25, 15, 27, 48, 934, DateTimeKind.Local).AddTicks(5371), false, true, true, 1 },
+                    { 2, "Drugi neki", new DateTime(2021, 11, 25, 15, 27, 48, 937, DateTimeKind.Local).AddTicks(5705), false, true, true, 1 }
                 });
 
             migrationBuilder.InsertData(
