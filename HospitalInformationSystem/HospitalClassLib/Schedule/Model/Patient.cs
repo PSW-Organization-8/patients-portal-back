@@ -1,13 +1,9 @@
-﻿using HospitalClassLib.Schedule.Repository.DoctorRepository;
-using HospitalClassLib.SharedModel;
+﻿using HospitalClassLib.SharedModel;
 using HospitalClassLib.SharedModel.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HospitalClassLib.Schedule.Model
 {
@@ -21,6 +17,7 @@ namespace HospitalClassLib.Schedule.Model
         public string Lbo { get; set; }
         public bool Guest { get; set; }
         public DateTime DateOfBirth { get; set; }
+        public BloodType BloodType { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }
         public virtual ICollection<Allergen> Allergens { get; set; }
         public int DoctorId { get; set; }
@@ -30,8 +27,9 @@ namespace HospitalClassLib.Schedule.Model
 
         public Patient() { }
 
-        public Patient(string name, string lastName, string jmbg, string username, string password, string email, string phone, bool isBanned, string lbo, bool guest, 
-            DateTime dateOfBirth, ICollection<Allergen> allergens, Doctor doctor, bool isActivated, string token) {
+        public Patient(string name, string lastName, string jmbg, string username, string password, string email, string phone, string country, string city, string address,
+            bool isBanned, string lbo, bool guest, DateTime dateOfBirth, ICollection<Allergen> allergens, Doctor doctor, bool isActivated, string token, BloodType bloodType)
+        {
             Name = name;
             LastName = lastName;
             Jmbg = jmbg;
@@ -43,7 +41,11 @@ namespace HospitalClassLib.Schedule.Model
             Lbo = lbo;
             Guest = guest;
             DateOfBirth = dateOfBirth;
-            //Allergens = allergens;
+            Country = country;
+            City = city;
+            Address = address;
+            BloodType = bloodType;
+            Allergens = allergens;
             Doctor = doctor;
             DoctorId = doctor.Id;
             Feedbacks = new List<Feedback>();
