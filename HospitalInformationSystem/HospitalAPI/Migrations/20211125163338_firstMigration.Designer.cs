@@ -10,13 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211122152134_firstMigration.Designer.cs
-    [Migration("20211122152134_firstMigration")]
+    [Migration("20211125163338_firstMigration")]
     partial class firstMigration
-=======
-    [Migration("20211125142749_first")]
-    partial class first
->>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211125142749_first.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -74,11 +69,7 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             DoctorId = 1,
                             PatientId = 1,
-<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211122152134_firstMigration.Designer.cs
-                            StartTime = new DateTime(2021, 11, 22, 16, 21, 33, 424, DateTimeKind.Local).AddTicks(8192),
-=======
-                            StartTime = new DateTime(2021, 11, 25, 15, 27, 48, 937, DateTimeKind.Local).AddTicks(7840),
->>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211125142749_first.Designer.cs
+                            StartTime = new DateTime(2021, 11, 25, 17, 33, 37, 709, DateTimeKind.Local).AddTicks(1511),
                             Type = 0
                         });
                 });
@@ -119,11 +110,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211122152134_firstMigration.Designer.cs
-                            Date = new DateTime(2021, 11, 22, 16, 21, 33, 424, DateTimeKind.Local).AddTicks(2237),
-=======
-                            Date = new DateTime(2021, 11, 25, 15, 27, 48, 934, DateTimeKind.Local).AddTicks(5371),
->>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211125142749_first.Designer.cs
+                            Date = new DateTime(2021, 11, 25, 17, 33, 37, 705, DateTimeKind.Local).AddTicks(1508),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -133,11 +120,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211122152134_firstMigration.Designer.cs
-                            Date = new DateTime(2021, 11, 22, 16, 21, 33, 424, DateTimeKind.Local).AddTicks(6420),
-=======
-                            Date = new DateTime(2021, 11, 25, 15, 27, 48, 937, DateTimeKind.Local).AddTicks(5705),
->>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211125142749_first.Designer.cs
+                            Date = new DateTime(2021, 11, 25, 17, 33, 37, 708, DateTimeKind.Local).AddTicks(9589),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -151,6 +134,18 @@ namespace HospitalAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("text");
+
+                    b.Property<int>("BloodType")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("City")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("timestamp without time zone");
@@ -204,11 +199,8 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 1,
-<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211122152134_firstMigration.Designer.cs
-                            DateOfBirth = new DateTime(2021, 11, 22, 16, 21, 33, 418, DateTimeKind.Local).AddTicks(6424),
-=======
+                            BloodType = 0,
                             DateOfBirth = new DateTime(1999, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
->>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211125142749_first.Designer.cs
                             DoctorId = 1,
                             Email = "pera.peric@gmail.com",
                             Guest = false,
@@ -218,10 +210,7 @@ namespace HospitalAPI.Migrations
                             LastName = "Peric",
                             Name = "Pera",
                             Password = "pera",
-<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211122152134_firstMigration.Designer.cs
-=======
                             Phone = "054987332",
->>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211125142749_first.Designer.cs
                             Token = "ABC123DEF4AAAAC12345",
                             Username = "pera"
                         });
@@ -562,6 +551,15 @@ namespace HospitalAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("text");
+
+                    b.Property<string>("City")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("text");
 
                     b.Property<int>("DoctorSpecialization")
                         .HasColumnType("integer");

@@ -19,9 +19,5 @@ namespace HospitalAPI.Mapper
             return new PatientDto(patient.Name, patient.LastName, patient.Jmbg, patient.Username, patient.Password, patient.Email, patient.Phone, patient.Country, patient.City,
                 patient.Address, patient.DateOfBirth, patient.Allergens, patient.DoctorId, patient.IsActivated, patient.Token, patient.BloodType.ToString());
         }
-        public static PatientDto Proba(Patient patient)
-        {
-            return new PatientDto(patient.Name, patient.LastName, patient.Jmbg);
-        }
     }
 }
