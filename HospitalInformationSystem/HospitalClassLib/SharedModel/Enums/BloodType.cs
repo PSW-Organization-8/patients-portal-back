@@ -6,7 +6,8 @@ namespace HospitalClassLib.SharedModel.Enums
 {    
     public enum BloodType
     {
-        Op = 0,
+        Unknown = 0,
+        Op,
         On,
         Ap,
         An,

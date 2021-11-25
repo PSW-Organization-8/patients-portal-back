@@ -1,9 +1,7 @@
-﻿using HospitalClassLib.Schedule.Model;
+﻿
 using HospitalClassLib.SharedModel;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HospitalAPI.Dto
 {
@@ -16,14 +14,18 @@ namespace HospitalAPI.Dto
         public string Password { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public string Country { get; set; }
+        public string City { get; set; }
+        public string Address { get; set; }
+        public string BloodType { get; set; }
         public DateTime DateOfBirth { get; set; }
         public ICollection<Allergen> Allergens { get; set; }
         public int DoctorId { get; set; }
         public bool IsActivated { get; set; }
         public string Token { get; set; }
 
-        public PatientDto(string name, string lastName, string jmbg, string username, string password, string email, string phone, DateTime dateOfBirth,
-            ICollection<Allergen> allergens, int doctorId, bool isActivated, string token)
+        public PatientDto(string name, string lastName, string jmbg, string username, string password, string email, string phone, string country, string city, string address,
+            DateTime dateOfBirth, ICollection<Allergen> allergens, int doctorId, bool isActivated, string token, string bloodType)
         {
             Name = name;
             LastName = lastName;
@@ -33,10 +35,31 @@ namespace HospitalAPI.Dto
             Email = email;
             Phone = phone;
             DateOfBirth = dateOfBirth;
+            Country = country;
+            City = city;
+            Address = address;
+            BloodType = bloodType;
             Allergens = allergens;
             DoctorId = doctorId;
             IsActivated = isActivated;
             Token = token;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is PatientDto dto &&
+                   Name == dto.Name &&
+                   LastName == dto.LastName &&
+                   Jmbg == dto.Jmbg &&
+                   Username == dto.Username &&
+                   Password == dto.Password &&
+                   Email == dto.Email &&
+                   Phone == dto.Phone &&
+                   DateOfBirth == dto.DateOfBirth &&
+                   EqualityComparer<ICollection<Allergen>>.Default.Equals(Allergens, dto.Allergens) &&
+                   DoctorId == dto.DoctorId &&
+                   IsActivated == dto.IsActivated &&
+                   Token == dto.Token;
         }
     }
 }

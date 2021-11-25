@@ -67,7 +67,7 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 11, 23, 14, 14, 25, 955, DateTimeKind.Local).AddTicks(2738),
+                            StartTime = new DateTime(2021, 11, 25, 10, 12, 42, 486, DateTimeKind.Local).AddTicks(6314),
                             Type = 0
                         });
                 });
@@ -108,7 +108,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 23, 14, 14, 25, 949, DateTimeKind.Local).AddTicks(4650),
+                            Date = new DateTime(2021, 11, 25, 10, 12, 42, 483, DateTimeKind.Local).AddTicks(9914),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -118,7 +118,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 23, 14, 14, 25, 955, DateTimeKind.Local).AddTicks(1003),
+                            Date = new DateTime(2021, 11, 25, 10, 12, 42, 486, DateTimeKind.Local).AddTicks(4993),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -132,6 +132,18 @@ namespace HospitalAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("text");
+
+                    b.Property<int>("BloodType")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("City")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("timestamp without time zone");
@@ -185,6 +197,7 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 1,
+                            BloodType = 0,
                             DateOfBirth = new DateTime(1999, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DoctorId = 1,
                             Email = "pera.peric@gmail.com",
@@ -536,6 +549,15 @@ namespace HospitalAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("text");
+
+                    b.Property<string>("City")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("text");
 
                     b.Property<int>("DoctorSpecialization")
                         .HasColumnType("integer");

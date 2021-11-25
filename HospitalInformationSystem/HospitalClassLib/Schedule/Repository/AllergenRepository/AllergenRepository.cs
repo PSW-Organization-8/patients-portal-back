@@ -1,9 +1,6 @@
 ﻿using HospitalClassLib.SharedModel;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HospitalClassLib.Schedule.Repository.AllergenRepository
 {
@@ -14,6 +11,11 @@ namespace HospitalClassLib.Schedule.Repository.AllergenRepository
         public AllergenRepository(MyDbContext dbContext) : base(dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public List<Allergen> GetSelectedAllergens(ICollection<Allergen> allergens)
+        {
+            return dbContext.Allergens.Where(x => allergens.Contains(x)).ToList();
         }
 
         protected override int GetId(Allergen entity)
