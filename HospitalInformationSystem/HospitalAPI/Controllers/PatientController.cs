@@ -45,5 +45,11 @@ namespace HospitalAPI.Controllers
             }
             return BadRequest();
         }
+
+        [HttpGet("{id?}")]
+        public IActionResult GetPatientById(int id)
+        {
+            return Ok(patientService.Get(id));
+        }
     }
 }

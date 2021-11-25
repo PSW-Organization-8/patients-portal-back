@@ -14,8 +14,8 @@ namespace HospitalAPI.Validators
             RuleFor(patient => patient.Password).Matches(@"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$").WithMessage(
                 "Password must contain at least one number and one uppercase or lowercase letter, and at least 8 or more characters.");
             RuleFor(patient => patient.Email).EmailAddress().WithMessage("Wrong email format");
-            RuleFor(patient => patient.Country).Matches("^[a-zA-Z]+$").WithMessage("Name can contains only letters");
-            RuleFor(patient => patient.City).Matches("^[a-zA-Z]+$").WithMessage("Name can contains only letters");
+            RuleFor(patient => patient.Country).Matches(@"^[a-zA-Z\s]*").WithMessage("Name can contains only letters");
+            RuleFor(patient => patient.City).Matches(@"^[a-zA-Z\s]*").WithMessage("Name can contains only letters");
         }
     }
 }
