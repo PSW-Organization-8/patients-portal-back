@@ -76,7 +76,14 @@ namespace HospitalClassLib.Schedule.Service
         public static string GetMailMessage(string patientToken)
         {
             string link = "http://localhost:16934/api/patient/activate?patientToken=" + patientToken;
-            return "<a href=" + link + ">ACTIVATE ACCOUNT</a>";
+
+            return "Hello,<br> Thank you for joining Cura Infinita.<br><br>"
+                + "We would like to confirm that your account was created successfully.<br><br>"
+                + "To access Cura Infinita click the link below.<br><br>"
+                + "<a href=" + link + ">ACTIVATE ACCOUNT</a><br><br>"
+                + "If you experience any issues logging into your account, reach out to us at [pswtestmail@gmail.com].<br><br>"
+                + "Best,<br>"
+                + "The Cura Infinita  team.";
         }
         static String EncodeIntAsString(int input, int maxLength = 0)
         {
