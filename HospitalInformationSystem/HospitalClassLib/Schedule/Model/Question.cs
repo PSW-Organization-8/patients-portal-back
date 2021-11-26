@@ -20,7 +20,9 @@ namespace HospitalClassLib.Schedule.Model
         public int SurveyId { get; set; }
         public virtual Survey Survey { get; set; }
 
-        public Question() {}
+        public Question(int id) {}
+
+        public Question() { }
 
         public Question(int id, string text, int value, QuestionCategory category) 
         {

@@ -17,19 +17,24 @@ namespace HospitalTests.Unit
     
     public class QuestionTests
     {
-        [Fact]
-        public void Question_value_between_one_and_five()
+        [Theory]
+        [MemberData(nameof(Data))]
+        public void Question_value_between_one_and_five(Question question, int code)
         {
             var questionController = new QuestionController(new QuestionService(CreateStudRepository()));
 
-            var question = new Question(2, "Pitanje 1", 3, QuestionCategory.doctor);
-
             var result = questionController.AddQuestion(question);
-            var okResult = result as OkObjectResult;
+            var okResult = result as ObjectResult;
 
-            Assert.Equal(200, okResult.StatusCode);
-
+            Assert.Equal(code, okResult.StatusCode);
         }
+
+        public static IEnumerable<object[]> Data =>
+        new List<object[]>
+        {
+            new object[] { new Question(2, "Pitanje 1", 4, QuestionCategory.doctor), 200 },
+            new object[] { new Question(2, "Pitanje 1", 7, QuestionCategory.doctor), 400 }
+        };
 
         private static IQuestionRepository CreateStudRepository()
         {

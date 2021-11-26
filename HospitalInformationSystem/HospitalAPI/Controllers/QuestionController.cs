@@ -33,8 +33,11 @@ namespace HospitalAPI.Controllers
         public IActionResult AddQuestion(Question question)
         {
             if (validator.Validate(question).IsValid)
-                return Ok(questionService.Create(question));
-            else return BadRequest();
+            {
+                questionService.Create(question);
+                return Ok(question);
+            }
+            else return BadRequest(question);
         }
 
         [HttpGet]

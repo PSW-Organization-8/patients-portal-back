@@ -1,7 +1,9 @@
-﻿using HospitalAPI.Controllers;
+﻿using HospitalAPI;
+using HospitalAPI.Controllers;
 using HospitalClassLib;
 using HospitalClassLib.Schedule.Repository.QuestionRepository;
 using HospitalClassLib.Schedule.Service;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +13,22 @@ using Xunit;
 
 namespace HospitalTests.Integration
 {
-    public class SurvayObserveTests
+    public class SurvayObserveTests: IClassFixture<HospitalTestFactory<Startup>>
     {
+        private readonly HospitalTestFactory<Startup> _factory;
+        IServiceScope scope;
+        MyDbContext context;
+        public SurvayObserveTests(HospitalTestFactory<Startup> factory)
+        {
+            _factory = factory;
+            scope = _factory.Services.CreateScope();
+            context = scope.ServiceProvider.GetRequiredService<MyDbContext>();
+        }
         [Fact]
         public void Average_question_value()
         {
             //Arange
-            var questionService = new QuestionService(new QuestionRepository(new MyDbContext()));
+            var questionService = new QuestionService(new QuestionRepository(context));
 
             //Act
             var result = questionService.GetAvgQuestionValues();
@@ -32,7 +43,7 @@ namespace HospitalTests.Integration
         public void Average_category_value()
         {
             //Arange
-            var questionService = new QuestionService(new QuestionRepository(new MyDbContext()));
+            var questionService = new QuestionService(new QuestionRepository(context));
 
             //Act
             var result = questionService.GetAvgCategoryValues();
