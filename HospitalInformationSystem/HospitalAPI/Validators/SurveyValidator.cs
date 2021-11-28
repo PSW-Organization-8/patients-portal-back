@@ -15,7 +15,7 @@ namespace HospitalAPI.Validators
             RuleFor(surveyDto => surveyDto.Questions).NotEmpty();
             RuleFor(surveyDto => surveyDto.Questions).NotNull();
             RuleFor(surveyDto => surveyDto.PatientId).NotNull();
-            RuleFor(surveyDto => surveyDto.Questions).Must(list => list.Count == 15);
+            //RuleFor(surveyDto => surveyDto.Questions).Must(list => list.Count == 15);
             RuleForEach(surveyDto => surveyDto.Questions).SetValidator(new QuestionValidator());
         }
 

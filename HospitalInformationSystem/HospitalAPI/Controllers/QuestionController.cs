@@ -1,4 +1,5 @@
-﻿using HospitalClassLib.Schedule.Model;
+﻿using HospitalAPI.Validators;
+using HospitalClassLib.Schedule.Model;
 using HospitalClassLib.Schedule.Repository.QuestionRepository;
 using HospitalClassLib.Schedule.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +15,10 @@ namespace HospitalAPI.Controllers
     public class QuestionController : ControllerBase
     {
         private readonly QuestionService questionService;
-        private readonly QuestionRepository questionRepository;
-        public QuestionController(QuestionService questionService, QuestionRepository questionRepository)
+        private readonly QuestionValidator validator = new();
+        public QuestionController(QuestionService questionService)
         {
             this.questionService = questionService;
-            this.questionRepository = questionRepository;
         }
 
 
@@ -32,7 +32,12 @@ namespace HospitalAPI.Controllers
         [HttpPost]
         public IActionResult AddQuestion(Question question)
         {
-            return Ok(questionService.Create(question));
+            if (validator.Validate(question).IsValid)
+            {
+                questionService.Create(question);
+                return Ok(question);
+            }
+            else return BadRequest(question);
         }
 
         [HttpGet]

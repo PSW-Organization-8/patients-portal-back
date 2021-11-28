@@ -52,5 +52,34 @@ namespace HospitalClassLib.Schedule.Model
             IsActivated = isActivated;
             Token = token;
         }
+
+        public Patient(string name, string lastName, string jmbg, string username, string password, string email, string phone, string country, string city, string address,
+            DateTime dateOfBirth, ICollection<Allergen> allergens, int doctorId, bool isActivated, string token, string bloodType)
+        {
+            Name = name;
+            LastName = lastName;
+            Jmbg = jmbg;
+            Username = username;
+            Password = password;
+            Email = email;
+            Phone = phone;
+            DateOfBirth = dateOfBirth;
+            Country = country;
+            City = city;
+            Address = address;
+            BloodType = BloodType.ABn;
+            Allergens = allergens;
+            DoctorId = doctorId;
+            IsActivated = isActivated;
+            Token = token;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Patient patient &&
+                   Name == patient.Name &&
+                   LastName == patient.LastName &&
+                   Jmbg == patient.Jmbg;
+        }
     }
 }

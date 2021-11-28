@@ -13,18 +13,18 @@ namespace HospitalAPI.Controllers
     public class AppointmentController : ControllerBase
     {
         private readonly AppointmentService appointmentService;
-        private readonly AppointmentRepository appointmentRepository;
 
-        public AppointmentController(AppointmentService appointmentService, AppointmentRepository appointmentRepository)
+        public AppointmentController(AppointmentService appointmentService)
         {
             this.appointmentService = appointmentService;
-            this.appointmentRepository = appointmentRepository;
         }
 
         [HttpGet("{id?}")]
         public IActionResult GetByPatient(int id)
         {
-            return Ok(appointmentService.GetByPatient(id));
+            if(appointmentService.GetByPatient(id).Count != 0)
+                return Ok(appointmentService.GetByPatient(id));
+            return BadRequest();
         }
     }
 }

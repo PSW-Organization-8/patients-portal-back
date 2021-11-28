@@ -28,22 +28,21 @@ namespace HospitalAPI.Controllers
             if (validator.Validate(PatientMapper.PatientDtoToPatient(
                 patientDto, doctorService.Get(patientDto.DoctorId), allergenService.GetSelectedAllergens(patientDto.Allergens))).IsValid)
             {
-                patientService.RegisterPatient(PatientMapper.PatientDtoToPatient(patientDto, doctorService.Get(patientDto.DoctorId), allergenService.GetSelectedAllergens(patientDto.Allergens)));
-                return Ok();
+                return Ok(patientService.RegisterPatient(PatientMapper.PatientDtoToPatient(patientDto, doctorService.Get(patientDto.DoctorId), allergenService.GetSelectedAllergens(patientDto.Allergens))));
             }
-            return BadRequest();
+            return BadRequest(patientDto);
         }
 
         [HttpGet("activate/")]
-        public IActionResult ActivatePatientAccount(string patientToken)
+        public void ActivatePatientAccount(string patientToken)
         {
             if (validator.Validate(patientService.GetByToken(patientToken)).IsValid)
             {
                 patientService.ActivatePatientAccount(patientToken);
                 Response.Redirect("http://localhost:4200/patientLogin");
-                return Ok();
+                //return Ok();
             }
-            return BadRequest();
+            //return BadRequest();
         }
 
         [HttpGet("{id?}")]

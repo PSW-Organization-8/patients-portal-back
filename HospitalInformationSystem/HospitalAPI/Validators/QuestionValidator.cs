@@ -12,7 +12,7 @@ namespace HospitalAPI.Validators
         public QuestionValidator()
         {
             RuleFor(question => question.Value).NotNull();
-            RuleFor(question => question.Value).Must(value => value >= 1 || value <= 5);
+            RuleFor(question => question.Value).Must(value => value >= 1 && value <= 5);
         }
     }
 }
