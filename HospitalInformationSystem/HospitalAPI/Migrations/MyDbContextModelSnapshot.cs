@@ -67,7 +67,7 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 11, 25, 19, 24, 32, 19, DateTimeKind.Local).AddTicks(583),
+                            StartTime = new DateTime(2021, 11, 29, 19, 12, 51, 26, DateTimeKind.Local).AddTicks(2293),
                             Type = 0
                         });
                 });
@@ -108,7 +108,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 25, 19, 24, 32, 16, DateTimeKind.Local).AddTicks(1251),
+                            Date = new DateTime(2021, 11, 29, 19, 12, 51, 21, DateTimeKind.Local).AddTicks(2341),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -118,7 +118,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 25, 19, 24, 32, 18, DateTimeKind.Local).AddTicks(9304),
+                            Date = new DateTime(2021, 11, 29, 19, 12, 51, 26, DateTimeKind.Local).AddTicks(904),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -202,7 +202,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             Email = "pera.peric@gmail.com",
                             Guest = false,
-                            IsActivated = false,
+                            IsActivated = true,
                             IsBanned = false,
                             Jmbg = "123456789",
                             LastName = "Peric",

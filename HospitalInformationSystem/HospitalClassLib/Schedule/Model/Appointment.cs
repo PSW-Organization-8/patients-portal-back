@@ -9,6 +9,10 @@ namespace HospitalClassLib.Schedule.Model
 {
     public class Appointment 
    {
+        private DateTime dateTime;
+        private Doctor doctor;
+        private Patient patient;
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -37,7 +41,14 @@ namespace HospitalClassLib.Schedule.Model
 
         }
 
-        
+        public Appointment(DateTime dateTime, Doctor doctor, Patient patient)
+        {
+            this.dateTime = dateTime;
+            this.doctor = doctor;
+            this.patient = patient;
+        }
+
+
 
         /*public bool EqualDate(DateTime date)
         {

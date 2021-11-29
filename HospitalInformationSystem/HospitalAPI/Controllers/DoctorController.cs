@@ -15,10 +15,9 @@ namespace HospitalAPI.Controllers
     {
         private readonly DoctorService doctorService;
         private readonly DoctorRepository doctorRepository;
-        public DoctorController(DoctorService doctorService, DoctorRepository doctorRepository)
+        public DoctorController(DoctorService doctorService)
         {
             this.doctorService = doctorService;
-            this.doctorRepository = doctorRepository;
         }
 
         [HttpGet]
