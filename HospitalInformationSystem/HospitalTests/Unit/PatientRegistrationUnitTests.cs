@@ -23,7 +23,7 @@ namespace HospitalTests.Unit
         [MemberData(nameof(Data))]
         public void Patient_validators_test(PatientDto patientDto, int code)
         {
-            var patientController = new PatientController(new PatientService(CreatePatinetStudRepository(patientDto)), 
+            var patientController = new PatientController(new PatientService(CreatePatientStudRepository(patientDto)), 
                 new DoctorService(CreateDoctorStudRepository()), 
                 new AllergenService(CreateAllergenStudRepository()));
 
@@ -52,7 +52,18 @@ namespace HospitalTests.Unit
             DateTime.Now, new List<Allergen>(), 1, false, "#123", "ABn"), 400 }
         };
 
-        private static IPatientRepository CreatePatinetStudRepository(PatientDto patientDto)
+        [Fact]
+        public void Free_doctor_test()
+        {
+            var doctorController = new DoctorController(new DoctorService(CreateDoctorStudRepository()));
+            var result = doctorController.GetLessOccupiedDoctors();
+            var okResult = result as ObjectResult;
+            
+            Assert.Equal(200, okResult.StatusCode);
+
+        }
+
+        private static IPatientRepository CreatePatientStudRepository(PatientDto patientDto)
         {
             var stubRepository = new Mock<IPatientRepository>();
             var patients = new List<Patient>();
@@ -68,11 +79,37 @@ namespace HospitalTests.Unit
         {
             var stubRepository = new Mock<IDoctorRepository>();
             var doctors = new List<Doctor>();
+            var freeDoctors = new List<Doctor>();
             var doctor = new Doctor { Id = 1};
+            var doctor1 = new Doctor { Id = 2 };
+            var doctor2 = new Doctor { Id = 3 };
+            var doctor3 = new Doctor { Id = 4 };
+            
+            doctor.Patients = new List<Patient>();
+            doctor1.Patients = new List<Patient>();
+            doctor2.Patients = new List<Patient>();
+            doctor3.Patients = new List<Patient>();
+            
+            doctor.Patients.Add(new Patient { Id = 1 });
+            doctor.Patients.Add(new Patient { Id = 2 });
+            doctor.Patients.Add(new Patient { Id = 3 });
+            doctor2.Patients.Add(new Patient { Id = 4 });
+            doctor2.Patients.Add(new Patient { Id = 5 });
+            doctor2.Patients.Add(new Patient { Id = 6 });
+            doctor2.Patients.Add(new Patient { Id = 7 });
+            doctor2.Patients.Add(new Patient { Id = 8 });
+            
             doctors.Add(doctor);
+            doctors.Add(doctor1);
+            doctors.Add(doctor2);
+            doctors.Add(doctor3);
+
+            freeDoctors.Add(doctor1);
+            freeDoctors.Add(doctor3);
 
             stubRepository.Setup(q => q.GetAll()).Returns(doctors);
             stubRepository.Setup(q => q.Get(1)).Returns(doctors.First());
+            stubRepository.Setup(q => q.GetLessOccupiedDoctors()).Returns(freeDoctors);
             return stubRepository.Object;
         }
 

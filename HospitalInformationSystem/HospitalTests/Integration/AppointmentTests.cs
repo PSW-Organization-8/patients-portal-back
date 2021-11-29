@@ -40,17 +40,13 @@ namespace HospitalTests.Integration
             var patientService = new PatientService(new PatientRepository(context));
             var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context)), 
                 doctorService, patientService);
-
             var appointmentDto = new AppointmentDto(new DateTime(2021, 12, 12, 13, 0, 0), 1, 1);
             var expectedResult = new Appointment(new DateTime(2021, 12, 12, 13, 0, 0), doctorService.Get(1), patientService.Get(1));
 
             //Act
-
             var result = appointmentController.CreateNewAppointment(appointmentDto) as ObjectResult;
 
-
             //Assert
-
             Assert.Equal(200, result.StatusCode);
         }
     }

@@ -23,7 +23,7 @@ namespace HospitalAPI.Controllers
         [HttpGet]
         public IActionResult GetLessOccupiedDoctors()
         {
-            return Ok(doctorRepository.GetLessOccupiedDoctors());
+            return Ok(doctorService.GetLessOccupiedDoctors());
         }
 
         [HttpGet("{id?}")]
