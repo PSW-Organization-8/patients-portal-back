@@ -26,5 +26,13 @@ namespace HospitalAPI.Controllers
                 return Ok(appointmentService.GetByPatient(id));
             return BadRequest();
         }
+
+        [HttpPut("{id?}")]
+        public IActionResult CancelById(int id)
+        {
+            if (appointmentService.CancelById(id))
+                return Ok(true);
+            return BadRequest(false);
+        }
     }
 }

@@ -50,6 +50,9 @@ namespace HospitalAPI.Migrations
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<int>("State")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Type")
                         .HasColumnType("integer");
 
@@ -67,7 +70,8 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 11, 25, 19, 24, 32, 19, DateTimeKind.Local).AddTicks(583),
+                            StartTime = new DateTime(2021, 11, 29, 22, 3, 32, 839, DateTimeKind.Local).AddTicks(8683),
+                            State = 0,
                             Type = 0
                         });
                 });
@@ -108,7 +112,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 25, 19, 24, 32, 16, DateTimeKind.Local).AddTicks(1251),
+                            Date = new DateTime(2021, 11, 29, 22, 3, 32, 836, DateTimeKind.Local).AddTicks(1144),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -118,7 +122,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 25, 19, 24, 32, 18, DateTimeKind.Local).AddTicks(9304),
+                            Date = new DateTime(2021, 11, 29, 22, 3, 32, 839, DateTimeKind.Local).AddTicks(6881),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -202,7 +206,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             Email = "pera.peric@gmail.com",
                             Guest = false,
-                            IsActivated = false,
+                            IsActivated = true,
                             IsBanned = false,
                             Jmbg = "123456789",
                             LastName = "Peric",

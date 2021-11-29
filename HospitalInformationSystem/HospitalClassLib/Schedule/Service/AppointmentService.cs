@@ -1,5 +1,6 @@
 ﻿using HospitalClassLib.Schedule.Model;
 using HospitalClassLib.Schedule.Repository.AppointmentRepo;
+using HospitalClassLib.SharedModel.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,18 @@ namespace HospitalClassLib.Schedule.Service
         public List<Appointment> GetByPatient(int id)
         {
             return appointmentRepository.GetByPatient(id);
+        }
+
+        public bool CancelById(int id)
+        {
+            Appointment a = appointmentRepository.Get(id);
+            
+            if (a == null) return false;
+
+            a.State = AppointmentState.cancelled;
+            appointmentRepository.Update(a);
+
+            return true;
         }
     }
 }

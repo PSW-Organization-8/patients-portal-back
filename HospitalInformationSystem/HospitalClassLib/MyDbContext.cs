@@ -52,7 +52,7 @@ namespace HospitalClassLib
             );
 
             modelBuilder.Entity<Appointment>().HasData(
-                new Appointment { Id = 1, StartTime = DateTime.Now, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1}
+                new Appointment { Id = 1, StartTime = DateTime.Now, State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1}
              );
 
 
