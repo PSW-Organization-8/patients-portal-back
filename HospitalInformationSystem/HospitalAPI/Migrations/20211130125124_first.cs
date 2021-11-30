@@ -45,6 +45,20 @@ namespace HospitalAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Medications",
+                columns: table => new
+                {
+                    MedicineID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Quantity = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Medications", x => x.MedicineID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Patients",
                 columns: table => new
                 {
@@ -219,22 +233,27 @@ namespace HospitalAPI.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Medications",
+                columns: new[] { "MedicineID", "Name", "Quantity" },
+                values: new object[] { 1L, "Synthroid", 2 });
+
+            migrationBuilder.InsertData(
                 table: "Patients",
                 columns: new[] { "Id", "Address", "BloodType", "City", "Country", "DateOfBirth", "DoctorId", "Email", "Guest", "IsActivated", "IsBanned", "Jmbg", "LastName", "Lbo", "Name", "Password", "Phone", "Token", "Username" },
-                values: new object[] { 1, null, 0, null, null, new DateTime(1999, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "pera.peric@gmail.com", false, false, false, "123456789", "Peric", null, "Pera", "pera", "054987332", "ABC123DEF4AAAAC12345", "pera" });
+                values: new object[] { 1, null, 0, null, null, new DateTime(1999, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "pera.peric@gmail.com", false, true, false, "123456789", "Peric", null, "Pera", "pera", "054987332", "ABC123DEF4AAAAC12345", "pera" });
 
             migrationBuilder.InsertData(
                 table: "Appointments",
                 columns: new[] { "Id", "DoctorId", "PatientId", "StartTime", "Type" },
-                values: new object[] { 1, 1, 1, new DateTime(2021, 11, 25, 19, 24, 32, 19, DateTimeKind.Local).AddTicks(583), 0 });
+                values: new object[] { 1, 1, 1, new DateTime(2021, 11, 30, 13, 51, 23, 276, DateTimeKind.Local).AddTicks(535), 0 });
 
             migrationBuilder.InsertData(
                 table: "Feedbacks",
                 columns: new[] { "Id", "Content", "Date", "IsAnonymous", "IsApproved", "IsPublishable", "PatientId" },
                 values: new object[,]
                 {
-                    { 1, "Tekst neki", new DateTime(2021, 11, 25, 19, 24, 32, 16, DateTimeKind.Local).AddTicks(1251), false, true, true, 1 },
-                    { 2, "Drugi neki", new DateTime(2021, 11, 25, 19, 24, 32, 18, DateTimeKind.Local).AddTicks(9304), false, true, true, 1 }
+                    { 1, "Tekst neki", new DateTime(2021, 11, 30, 13, 51, 23, 269, DateTimeKind.Local).AddTicks(3059), false, true, true, 1 },
+                    { 2, "Drugi neki", new DateTime(2021, 11, 30, 13, 51, 23, 275, DateTimeKind.Local).AddTicks(8540), false, true, true, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -331,6 +350,9 @@ namespace HospitalAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Feedbacks");
+
+            migrationBuilder.DropTable(
+                name: "Medications");
 
             migrationBuilder.DropTable(
                 name: "Questions");

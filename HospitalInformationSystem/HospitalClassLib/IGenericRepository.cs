@@ -7,11 +7,10 @@ namespace SIMS.Repositories
     public interface IGenericRepository<T,ID>
     {
         List<T> GetAll();
-        void Update(T entity);
-        void Delete(ID key);
-        void Delete(T entity);
-        void Save(T entity);
-        void CreateOrUpdate(T entity);
-        T FindById(ID key);
+        T Get(ID id);
+        T Update(T t);
+        T Create(T t);
+        bool ExistsById(ID id);
+        bool Delete(ID id);
     }
 }
