@@ -1,4 +1,7 @@
 using HospitalClassLib;
+using HospitalClassLib.MedicalRecords.Repository.MedicationRepo;
+using HospitalClassLib.MedicalRecords.Service;
+using HospitalClassLib.MedicalRecords.Service.Interface;
 using HospitalClassLib.Schedule.Repository.AllergenRepository;
 using HospitalClassLib.Schedule.Repository.AppointmentRepo;
 using HospitalClassLib.Schedule.Repository.DoctorRepository;
@@ -7,6 +10,7 @@ using HospitalClassLib.Schedule.Repository.PatientRepository;
 using HospitalClassLib.Schedule.Repository.QuestionRepository;
 using HospitalClassLib.Schedule.Repository.SurveyRepository;
 using HospitalClassLib.Schedule.Service;
+using IntegrationClassLib.Pharmacy.Repository.MedicationRepo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -65,6 +69,9 @@ namespace HospitalAPI
             services.AddTransient<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<AppointmentService>();
             services.AddScoped<AppointmentRepository>();
+
+            services.AddTransient<IMedicationRepository, MedicationRepository>();
+            services.AddScoped<IMedicationService, MedicationService>();
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {

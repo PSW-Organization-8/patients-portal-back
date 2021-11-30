@@ -1,4 +1,5 @@
-﻿using HospitalClassLib.Schedule.Model;
+﻿using HospitalClassLib.MedicalRecords.Model;
+using HospitalClassLib.Schedule.Model;
 using HospitalClassLib.SharedModel;
 using HospitalClassLib.SharedModel.Enums;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace HospitalClassLib
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<Medication> Medications { get; set; }
 
         public MyDbContext()
         {
@@ -29,9 +31,9 @@ namespace HospitalClassLib
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
-            String connectionString = "Server=localhost; Port =8080; Database =psw_database; User Id = postgres; Password =wasd;";
+            String connectionString = "Server=localhost; Port =5432; Database =psw_database; User Id = postgres; Password =root;";
             optionsBuilder.UseNpgsql(connectionString);
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -96,7 +98,9 @@ namespace HospitalClassLib
             new Question { Id = 13, Text = "How would you rate medical staffs technicality?", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 2 },
             new Question { Id = 14, Text = "How would you rate medical staffs skill?", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 2 },
             new Question { Id = 15, Text = "How would you rate medical staffs knowledge?", Value = 5, Category = QuestionCategory.medicalStuff, SurveyId = 2 }
-            );
+            ); 
+            modelBuilder.Entity<Medication>().HasData(new Medication { MedicineID = 1, Name = "Synthroid", Quantity = 2 });
+
         }
     }
 }
