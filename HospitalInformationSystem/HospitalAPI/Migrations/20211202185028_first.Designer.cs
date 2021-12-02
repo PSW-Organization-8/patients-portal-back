@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20211129210333_first")]
+    [Migration("20211202185028_first")]
     partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,8 +72,53 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 11, 29, 22, 3, 32, 839, DateTimeKind.Local).AddTicks(8683),
+                            StartTime = new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(3147),
                             State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DoctorId = 1,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5351),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DoctorId = 1,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5366),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DoctorId = 1,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5371),
+                            State = 2,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DoctorId = 1,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5375),
+                            State = 2,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DoctorId = 1,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5380),
+                            State = 1,
                             Type = 0
                         });
                 });
@@ -114,7 +159,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 29, 22, 3, 32, 836, DateTimeKind.Local).AddTicks(1144),
+                            Date = new DateTime(2021, 12, 2, 19, 50, 27, 506, DateTimeKind.Local).AddTicks(479),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -124,7 +169,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 29, 22, 3, 32, 839, DateTimeKind.Local).AddTicks(6881),
+                            Date = new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(1469),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,

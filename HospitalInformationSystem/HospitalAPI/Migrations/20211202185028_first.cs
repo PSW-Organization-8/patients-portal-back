@@ -227,15 +227,23 @@ namespace HospitalAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Appointments",
                 columns: new[] { "Id", "DoctorId", "PatientId", "StartTime", "State", "Type" },
-                values: new object[] { 1, 1, 1, new DateTime(2021, 11, 29, 22, 3, 32, 839, DateTimeKind.Local).AddTicks(8683), 0, 0 });
+                values: new object[,]
+                {
+                    { 1, 1, 1, new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(3147), 0, 0 },
+                    { 2, 1, 1, new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5351), 0, 0 },
+                    { 3, 1, 1, new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5366), 0, 0 },
+                    { 4, 1, 1, new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5371), 2, 0 },
+                    { 5, 1, 1, new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5375), 2, 0 },
+                    { 6, 1, 1, new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5380), 1, 0 }
+                });
 
             migrationBuilder.InsertData(
                 table: "Feedbacks",
                 columns: new[] { "Id", "Content", "Date", "IsAnonymous", "IsApproved", "IsPublishable", "PatientId" },
                 values: new object[,]
                 {
-                    { 1, "Tekst neki", new DateTime(2021, 11, 29, 22, 3, 32, 836, DateTimeKind.Local).AddTicks(1144), false, true, true, 1 },
-                    { 2, "Drugi neki", new DateTime(2021, 11, 29, 22, 3, 32, 839, DateTimeKind.Local).AddTicks(6881), false, true, true, 1 }
+                    { 1, "Tekst neki", new DateTime(2021, 12, 2, 19, 50, 27, 506, DateTimeKind.Local).AddTicks(479), false, true, true, 1 },
+                    { 2, "Drugi neki", new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(1469), false, true, true, 1 }
                 });
 
             migrationBuilder.InsertData(
