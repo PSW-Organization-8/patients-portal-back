@@ -33,7 +33,7 @@ namespace HospitalAPI.Controllers
             return BadRequest(patientDto);
         }
 
-        [HttpGet("activate/")]
+        [HttpPut("activate/")]
         public void ActivatePatientAccount(string patientToken)
         {
             if (validator.Validate(patientService.GetByToken(patientToken)).IsValid)
