@@ -34,5 +34,13 @@ namespace HospitalAPI.Controllers
                 return Ok(true);
             return BadRequest(false);
         }
+
+        [HttpGet]
+        [Route("cancel/{id?}")]
+        public IActionResult GetNumberOfCancelledAppointments(int id)
+        {
+            return Ok(appointmentService.GetNumberOfCancelledAppointments(id));
+        
+        }
     }
 }

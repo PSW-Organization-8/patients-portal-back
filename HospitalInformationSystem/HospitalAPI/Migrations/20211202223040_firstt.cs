@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace HospitalAPI.Migrations
 {
-    public partial class first : Migration
+    public partial class firstt : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -229,12 +229,12 @@ namespace HospitalAPI.Migrations
                 columns: new[] { "Id", "DoctorId", "PatientId", "StartTime", "State", "Type" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(3147), 0, 0 },
-                    { 2, 1, 1, new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5351), 0, 0 },
-                    { 3, 1, 1, new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5366), 0, 0 },
-                    { 4, 1, 1, new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5371), 2, 0 },
-                    { 5, 1, 1, new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5375), 2, 0 },
-                    { 6, 1, 1, new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5380), 1, 0 }
+                    { 1, 1, 1, new DateTime(2021, 12, 2, 23, 30, 39, 347, DateTimeKind.Local).AddTicks(410), 0, 0 },
+                    { 2, 1, 1, new DateTime(2021, 12, 2, 23, 30, 39, 347, DateTimeKind.Local).AddTicks(3325), 0, 0 },
+                    { 3, 1, 1, new DateTime(2021, 12, 2, 23, 30, 39, 347, DateTimeKind.Local).AddTicks(3345), 0, 0 },
+                    { 4, 1, 1, new DateTime(2021, 12, 2, 23, 30, 39, 347, DateTimeKind.Local).AddTicks(3353), 2, 0 },
+                    { 5, 1, 1, new DateTime(2021, 12, 2, 23, 30, 39, 347, DateTimeKind.Local).AddTicks(3359), 2, 0 },
+                    { 6, 1, 1, new DateTime(2021, 12, 2, 23, 30, 39, 347, DateTimeKind.Local).AddTicks(3364), 1, 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -242,8 +242,8 @@ namespace HospitalAPI.Migrations
                 columns: new[] { "Id", "Content", "Date", "IsAnonymous", "IsApproved", "IsPublishable", "PatientId" },
                 values: new object[,]
                 {
-                    { 1, "Tekst neki", new DateTime(2021, 12, 2, 19, 50, 27, 506, DateTimeKind.Local).AddTicks(479), false, true, true, 1 },
-                    { 2, "Drugi neki", new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(1469), false, true, true, 1 }
+                    { 1, "Tekst neki", new DateTime(2021, 12, 2, 23, 30, 39, 341, DateTimeKind.Local).AddTicks(1525), false, true, true, 1 },
+                    { 2, "Drugi neki", new DateTime(2021, 12, 2, 23, 30, 39, 346, DateTimeKind.Local).AddTicks(8321), false, true, true, 1 }
                 });
 
             migrationBuilder.InsertData(

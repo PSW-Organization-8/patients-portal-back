@@ -55,5 +55,10 @@ namespace HospitalClassLib.Schedule.Service
 
             return true;
         }
+
+        public int GetNumberOfCancelledAppointments(int id) 
+        {
+            return appointmentRepository.GetNumberOfCancelledAppointments(id);
+        }
     }
 }

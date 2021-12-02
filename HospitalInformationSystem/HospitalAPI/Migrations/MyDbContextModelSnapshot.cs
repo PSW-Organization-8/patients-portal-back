@@ -70,7 +70,7 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(3147),
+                            StartTime = new DateTime(2021, 12, 2, 23, 30, 39, 347, DateTimeKind.Local).AddTicks(410),
                             State = 0,
                             Type = 0
                         },
@@ -79,7 +79,7 @@ namespace HospitalAPI.Migrations
                             Id = 2,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5351),
+                            StartTime = new DateTime(2021, 12, 2, 23, 30, 39, 347, DateTimeKind.Local).AddTicks(3325),
                             State = 0,
                             Type = 0
                         },
@@ -88,7 +88,7 @@ namespace HospitalAPI.Migrations
                             Id = 3,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5366),
+                            StartTime = new DateTime(2021, 12, 2, 23, 30, 39, 347, DateTimeKind.Local).AddTicks(3345),
                             State = 0,
                             Type = 0
                         },
@@ -97,7 +97,7 @@ namespace HospitalAPI.Migrations
                             Id = 4,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5371),
+                            StartTime = new DateTime(2021, 12, 2, 23, 30, 39, 347, DateTimeKind.Local).AddTicks(3353),
                             State = 2,
                             Type = 0
                         },
@@ -106,7 +106,7 @@ namespace HospitalAPI.Migrations
                             Id = 5,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5375),
+                            StartTime = new DateTime(2021, 12, 2, 23, 30, 39, 347, DateTimeKind.Local).AddTicks(3359),
                             State = 2,
                             Type = 0
                         },
@@ -115,7 +115,7 @@ namespace HospitalAPI.Migrations
                             Id = 6,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(5380),
+                            StartTime = new DateTime(2021, 12, 2, 23, 30, 39, 347, DateTimeKind.Local).AddTicks(3364),
                             State = 1,
                             Type = 0
                         });
@@ -157,7 +157,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 12, 2, 19, 50, 27, 506, DateTimeKind.Local).AddTicks(479),
+                            Date = new DateTime(2021, 12, 2, 23, 30, 39, 341, DateTimeKind.Local).AddTicks(1525),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -167,7 +167,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 12, 2, 19, 50, 27, 511, DateTimeKind.Local).AddTicks(1469),
+                            Date = new DateTime(2021, 12, 2, 23, 30, 39, 346, DateTimeKind.Local).AddTicks(8321),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
