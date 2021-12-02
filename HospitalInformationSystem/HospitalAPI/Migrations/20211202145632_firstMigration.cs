@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace HospitalAPI.Migrations
 {
-    public partial class first : Migration
+    public partial class firstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -245,15 +245,15 @@ namespace HospitalAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Appointments",
                 columns: new[] { "Id", "DoctorId", "PatientId", "StartTime", "Type" },
-                values: new object[] { 1, 1, 1, new DateTime(2021, 11, 30, 13, 51, 23, 276, DateTimeKind.Local).AddTicks(535), 0 });
+                values: new object[] { 1, 1, 1, new DateTime(2021, 12, 12, 12, 0, 0, 0, DateTimeKind.Unspecified), 0 });
 
             migrationBuilder.InsertData(
                 table: "Feedbacks",
                 columns: new[] { "Id", "Content", "Date", "IsAnonymous", "IsApproved", "IsPublishable", "PatientId" },
                 values: new object[,]
                 {
-                    { 1, "Tekst neki", new DateTime(2021, 11, 30, 13, 51, 23, 269, DateTimeKind.Local).AddTicks(3059), false, true, true, 1 },
-                    { 2, "Drugi neki", new DateTime(2021, 11, 30, 13, 51, 23, 275, DateTimeKind.Local).AddTicks(8540), false, true, true, 1 }
+                    { 1, "Tekst neki", new DateTime(2021, 12, 2, 15, 56, 32, 115, DateTimeKind.Local).AddTicks(1123), false, true, true, 1 },
+                    { 2, "Drugi neki", new DateTime(2021, 12, 2, 15, 56, 32, 117, DateTimeKind.Local).AddTicks(6276), false, true, true, 1 }
                 });
 
             migrationBuilder.InsertData(

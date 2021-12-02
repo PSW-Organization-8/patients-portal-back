@@ -25,5 +25,10 @@ namespace HospitalClassLib.Schedule.Repository.AppointmentRepo
         {
             return dbContext.Appointments.Where(x => x.PatientId == id).ToList();
         }
+
+        public List<Appointment> GetByDoctor(int id)
+        {
+            return dbContext.Appointments.Where(x => x.DoctorId.Equals(id)).ToList();
+        }
     }
 }

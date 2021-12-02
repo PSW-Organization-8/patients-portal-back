@@ -31,7 +31,7 @@ namespace HospitalClassLib
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            String connectionString = "Server=localhost; Port =5432; Database =psw_database; User Id = postgres; Password =root;";
+            String connectionString = "Server=localhost; Port =8080; Database =psw_database; User Id = postgres; Password =wasd;";
             optionsBuilder.UseNpgsql(connectionString);
 
         }
@@ -54,7 +54,8 @@ namespace HospitalClassLib
             );
 
             modelBuilder.Entity<Appointment>().HasData(
-                new Appointment { Id = 1, StartTime = DateTime.Now, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1}
+                new Appointment { Id = 1, StartTime = new DateTime(2021, 12, 12, 12, 0, 0), Type = AppointmentType.examination, DoctorId = 1, PatientId = 1 }
+                    
              );
 
 

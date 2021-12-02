@@ -37,7 +37,14 @@ namespace HospitalClassLib.Schedule.Model
 
         }
 
-        
+        public Appointment(DateTime startTime, Doctor doctor, Patient patient)
+        {
+            this.StartTime = startTime;
+            this.Type = AppointmentType.examination;
+            this.DoctorId = doctor.Id;
+            this.PatientId = patient.Id;
+
+        }
 
         /*public bool EqualDate(DateTime date)
         {

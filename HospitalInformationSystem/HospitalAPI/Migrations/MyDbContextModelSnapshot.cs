@@ -93,7 +93,7 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 11, 30, 13, 51, 23, 276, DateTimeKind.Local).AddTicks(535),
+                            StartTime = new DateTime(2021, 12, 12, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             Type = 0
                         });
                 });
@@ -134,7 +134,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 30, 13, 51, 23, 269, DateTimeKind.Local).AddTicks(3059),
+                            Date = new DateTime(2021, 12, 2, 15, 56, 32, 115, DateTimeKind.Local).AddTicks(1123),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -144,7 +144,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 30, 13, 51, 23, 275, DateTimeKind.Local).AddTicks(8540),
+                            Date = new DateTime(2021, 12, 2, 15, 56, 32, 117, DateTimeKind.Local).AddTicks(6276),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
