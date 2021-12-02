@@ -67,10 +67,12 @@ namespace HospitalTests.Integration
 
         private void FillFakeDatabase()
         {
-            for (DateTime dateTime = new DateTime(2021, 12, 15, 8, 0, 0); dateTime <= new DateTime(2021, 12, 15, 15, 45, 0); dateTime = dateTime.AddMinutes(15))
-                context.Appointments.Add(new Appointment(dateTime, new Doctor { Id = 3, DoctorSpecialization = Specialization.FamilyPhysician}, new Patient { Id = 1}));
-            for (DateTime dateTime = new DateTime(2021, 12, 16, 8, 0, 0); dateTime <= new DateTime(2021, 12, 16, 15, 45, 0); dateTime = dateTime.AddMinutes(15))
-                context.Appointments.Add(new Appointment(dateTime, new Doctor { Id = 3, DoctorSpecialization = Specialization.FamilyPhysician }, new Patient { Id = 1 }));
+            context.Doctors.Add(new Doctor { Id = 3, DoctorSpecialization = Specialization.FamilyPhysician });
+            context.Patients.Add(new Patient { Id = 5 });
+            for (DateTime dateTime = new(2021, 12, 15, 8, 0, 0); dateTime <= new DateTime(2021, 12, 15, 15, 45, 0); dateTime = dateTime.AddMinutes(15))
+                context.Appointments.Add(new Appointment { StartTime = dateTime, DoctorId = 3, PatientId = 5});
+            for (DateTime dateTime = new(2021, 12, 16, 8, 0, 0); dateTime <= new DateTime(2021, 12, 16, 15, 45, 0); dateTime = dateTime.AddMinutes(15))
+                context.Appointments.Add(new Appointment { StartTime = dateTime, DoctorId = 3, PatientId = 5 });
             context.SaveChanges();
         }
     }

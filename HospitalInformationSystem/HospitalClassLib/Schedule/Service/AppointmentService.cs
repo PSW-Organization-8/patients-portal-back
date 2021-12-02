@@ -65,7 +65,7 @@ namespace HospitalClassLib.Schedule.Service
             {
                 foreach (Doctor doctor in doctorRepository.GetAll().Where(x => x.DoctorSpecialization.Equals(doctorRepository.Get(doctorId).DoctorSpecialization)))
                 {
-                    appointmentDates = GetDoctorAppointmentsBetweenDates(firstDate, lastDate, doctorId);
+                    appointmentDates = GetDoctorAppointmentsBetweenDates(firstDate, lastDate, doctor.Id);
                     if (appointmentDates.Count > 0)
                         break;
                 }
