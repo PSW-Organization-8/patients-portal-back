@@ -25,6 +25,8 @@ namespace HospitalClassLib.Schedule.Model
         public bool IsActivated { get; set; }
         public string Token { get; internal set; }
 
+        public virtual ICollection<Appointment> Appointments { get; set; }
+
         public Patient() { }
 
         public Patient(string name, string lastName, string jmbg, string username, string password, string email, string phone, string country, string city, string address,

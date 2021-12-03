@@ -34,8 +34,9 @@ namespace HospitalAPI.Controllers
         [HttpPost]
         public IActionResult CreateNewAppointment(AppointmentDto appointmentDto)
         {
-            return Ok(appointmentService.Create(AppointmentMapper.AppointmentDtoToAppointment
-                (appointmentDto, doctorService.Get(appointmentDto.DoctorId), patientService.Get(appointmentDto.PatientId))));
+            appointmentService.Create(AppointmentMapper.AppointmentDtoToAppointment
+                (appointmentDto, doctorService.Get(appointmentDto.DoctorId), patientService.Get(appointmentDto.PatientId)));
+            return Ok();
         }
     }
 }

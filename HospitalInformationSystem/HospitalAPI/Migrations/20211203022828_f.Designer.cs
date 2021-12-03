@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20211202215437_first")]
-    partial class first
+    [Migration("20211203022828_f")]
+    partial class f
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,7 +69,7 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 2, 22, 54, 36, 341, DateTimeKind.Local).AddTicks(1678),
+                            StartTime = new DateTime(2021, 12, 3, 3, 28, 27, 911, DateTimeKind.Local).AddTicks(4082),
                             Type = 0
                         });
                 });
@@ -110,7 +110,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 12, 2, 22, 54, 36, 336, DateTimeKind.Local).AddTicks(5504),
+                            Date = new DateTime(2021, 12, 3, 3, 28, 27, 908, DateTimeKind.Local).AddTicks(8574),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -120,7 +120,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 12, 2, 22, 54, 36, 340, DateTimeKind.Local).AddTicks(9767),
+                            Date = new DateTime(2021, 12, 3, 3, 28, 27, 911, DateTimeKind.Local).AddTicks(3048),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -609,6 +609,56 @@ namespace HospitalAPI.Migrations
                             Name = "Milan",
                             Password = "mico",
                             Username = "mico"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DoctorSpecialization = 8,
+                            Jmbg = "123756799",
+                            LastName = "Markovic",
+                            Name = "Stevan",
+                            Password = "mico",
+                            Username = "mico"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DoctorSpecialization = 9,
+                            Jmbg = "123756799",
+                            LastName = "Visnjic",
+                            Name = "Nikola",
+                            Password = "mico",
+                            Username = "mico"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DoctorSpecialization = 9,
+                            Jmbg = "123756799",
+                            LastName = "Mitic",
+                            Name = "Strahinja",
+                            Password = "mico",
+                            Username = "mico"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DoctorSpecialization = 2,
+                            Jmbg = "123756799",
+                            LastName = "Despotovic",
+                            Name = "Goran",
+                            Password = "mico",
+                            Username = "mico"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DoctorSpecialization = 7,
+                            Jmbg = "123756799",
+                            LastName = "Njegos",
+                            Name = "Milomir",
+                            Password = "mico",
+                            Username = "mico"
                         });
                 });
 
@@ -630,13 +680,13 @@ namespace HospitalAPI.Migrations
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Appointment", b =>
                 {
                     b.HasOne("HospitalClassLib.SharedModel.Doctor", "Doctor")
-                        .WithMany()
+                        .WithMany("Appointments")
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HospitalClassLib.Schedule.Model.Patient", "Patient")
-                        .WithMany()
+                        .WithMany("Appointments")
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -700,6 +750,8 @@ namespace HospitalAPI.Migrations
 
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Patient", b =>
                 {
+                    b.Navigation("Appointments");
+
                     b.Navigation("Feedbacks");
                 });
 
@@ -710,6 +762,8 @@ namespace HospitalAPI.Migrations
 
             modelBuilder.Entity("HospitalClassLib.SharedModel.Doctor", b =>
                 {
+                    b.Navigation("Appointments");
+
                     b.Navigation("Patients");
                 });
 #pragma warning restore 612, 618
