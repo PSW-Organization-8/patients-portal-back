@@ -2,6 +2,7 @@
 using HospitalAPI.Controllers;
 using HospitalClassLib;
 using HospitalClassLib.Schedule.Repository.AppointmentRepo;
+using HospitalClassLib.Schedule.Repository.PatientRepository;
 using HospitalClassLib.Schedule.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,7 +31,7 @@ namespace HospitalTests.Integration
         [Fact]
         public void Patients_appointments_exists()
         {
-            AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context)));
+            AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context)), new PatientService(new PatientRepository(context)));
 
             var result = controller.GetByPatient(1) as ObjectResult;
 
@@ -39,7 +40,7 @@ namespace HospitalTests.Integration
 
         public void Patients_appointments_do_not_exist()
         {
-            AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context)));
+            AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context)), new PatientService(new PatientRepository(context)));
 
             var result = controller.GetByPatient(2) as ObjectResult;
 

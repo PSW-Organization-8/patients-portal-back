@@ -1,4 +1,6 @@
-﻿using HospitalClassLib.Schedule.Repository.AppointmentRepo;
+﻿using HospitalAPI.Dto;
+using HospitalClassLib.Schedule.Model;
+using HospitalClassLib.Schedule.Repository.AppointmentRepo;
 using HospitalClassLib.Schedule.Service;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,11 +14,13 @@ namespace HospitalAPI.Controllers
     [Route("api/[controller]")]
     public class AppointmentController : ControllerBase
     {
-        private readonly AppointmentService appointmentService;
+        private readonly AppointmentService appointmentService; 
+        private readonly PatientService patientService;
 
-        public AppointmentController(AppointmentService appointmentService)
+        public AppointmentController(AppointmentService appointmentService, PatientService patientService)
         {
             this.appointmentService = appointmentService;
+            this.patientService = patientService;
         }
 
         [HttpGet("{id?}")]
@@ -41,6 +45,22 @@ namespace HospitalAPI.Controllers
         {
             return Ok(appointmentService.GetNumberOfCancelledAppointments(id));
         
+        }
+
+        [HttpGet]
+        public List<PatientAppointDto> GetDto()
+        {
+            List<PatientAppointDto> listDto = new List<PatientAppointDto>();
+            List<Patient> patients = patientService.GetAll();
+            foreach (Patient patient in patients)
+            {
+                int number = appointmentService.GetNumberOfCancelledAppointments(patient.Id);
+                PatientAppointDto dto = new PatientAppointDto(patient, number);
+                listDto.Add(dto);
+            }
+
+            return listDto;
+
         }
     }
 }

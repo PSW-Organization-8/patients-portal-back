@@ -70,7 +70,7 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 2, 23, 30, 39, 347, DateTimeKind.Local).AddTicks(410),
+                            StartTime = new DateTime(2021, 12, 3, 18, 29, 20, 606, DateTimeKind.Local).AddTicks(2250),
                             State = 0,
                             Type = 0
                         },
@@ -79,7 +79,7 @@ namespace HospitalAPI.Migrations
                             Id = 2,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 2, 23, 30, 39, 347, DateTimeKind.Local).AddTicks(3325),
+                            StartTime = new DateTime(2021, 12, 3, 18, 29, 20, 606, DateTimeKind.Local).AddTicks(6886),
                             State = 0,
                             Type = 0
                         },
@@ -88,7 +88,7 @@ namespace HospitalAPI.Migrations
                             Id = 3,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 2, 23, 30, 39, 347, DateTimeKind.Local).AddTicks(3345),
+                            StartTime = new DateTime(2021, 12, 3, 18, 29, 20, 606, DateTimeKind.Local).AddTicks(6913),
                             State = 0,
                             Type = 0
                         },
@@ -97,7 +97,7 @@ namespace HospitalAPI.Migrations
                             Id = 4,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 2, 23, 30, 39, 347, DateTimeKind.Local).AddTicks(3353),
+                            StartTime = new DateTime(2021, 12, 3, 18, 29, 20, 606, DateTimeKind.Local).AddTicks(6917),
                             State = 2,
                             Type = 0
                         },
@@ -106,7 +106,7 @@ namespace HospitalAPI.Migrations
                             Id = 5,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 2, 23, 30, 39, 347, DateTimeKind.Local).AddTicks(3359),
+                            StartTime = new DateTime(2021, 12, 3, 18, 29, 20, 606, DateTimeKind.Local).AddTicks(6921),
                             State = 2,
                             Type = 0
                         },
@@ -115,8 +115,44 @@ namespace HospitalAPI.Migrations
                             Id = 6,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 2, 23, 30, 39, 347, DateTimeKind.Local).AddTicks(3364),
+                            StartTime = new DateTime(2021, 12, 3, 18, 29, 20, 606, DateTimeKind.Local).AddTicks(6924),
                             State = 1,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DoctorId = 1,
+                            PatientId = 2,
+                            StartTime = new DateTime(2021, 12, 3, 18, 29, 20, 606, DateTimeKind.Local).AddTicks(6927),
+                            State = 2,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DoctorId = 1,
+                            PatientId = 2,
+                            StartTime = new DateTime(2021, 12, 3, 18, 29, 20, 606, DateTimeKind.Local).AddTicks(6930),
+                            State = 2,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 9,
+                            DoctorId = 1,
+                            PatientId = 2,
+                            StartTime = new DateTime(2021, 12, 3, 18, 29, 20, 606, DateTimeKind.Local).AddTicks(6933),
+                            State = 2,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 10,
+                            DoctorId = 1,
+                            PatientId = 2,
+                            StartTime = new DateTime(2021, 12, 3, 18, 29, 20, 606, DateTimeKind.Local).AddTicks(6936),
+                            State = 2,
                             Type = 0
                         });
                 });
@@ -157,7 +193,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 12, 2, 23, 30, 39, 341, DateTimeKind.Local).AddTicks(1525),
+                            Date = new DateTime(2021, 12, 3, 18, 29, 20, 601, DateTimeKind.Local).AddTicks(3425),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -167,7 +203,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 12, 2, 23, 30, 39, 346, DateTimeKind.Local).AddTicks(8321),
+                            Date = new DateTime(2021, 12, 3, 18, 29, 20, 605, DateTimeKind.Local).AddTicks(9811),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -260,6 +296,24 @@ namespace HospitalAPI.Migrations
                             Phone = "054987332",
                             Token = "ABC123DEF4AAAAC12345",
                             Username = "pera"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BloodType = 0,
+                            DateOfBirth = new DateTime(1999, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorId = 1,
+                            Email = "pera2.peric@gmail.com",
+                            Guest = false,
+                            IsActivated = true,
+                            IsBanned = false,
+                            Jmbg = "213456789",
+                            LastName = "Maric",
+                            Name = "Mare",
+                            Password = "maric",
+                            Phone = "054987332",
+                            Token = "ABC213DEF4AAAAC12345",
+                            Username = "mare"
                         });
                 });
 

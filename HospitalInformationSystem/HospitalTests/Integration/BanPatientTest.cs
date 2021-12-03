@@ -2,6 +2,7 @@
 using HospitalAPI.Controllers;
 using HospitalClassLib;
 using HospitalClassLib.Schedule.Repository.AppointmentRepo;
+using HospitalClassLib.Schedule.Repository.PatientRepository;
 using HospitalClassLib.Schedule.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,9 +31,9 @@ namespace HospitalTests.Integration
 
 
         [Fact]
-        public void Appointment_cancelled_good()
+        public void Appointment_num_cancelled_good()
         {
-            AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context)));
+            AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context)), new PatientService(new PatientRepository(context)));
 
             var result = controller.GetNumberOfCancelledAppointments(1);
             var okResult = result as ObjectResult;

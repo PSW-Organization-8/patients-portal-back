@@ -60,5 +60,19 @@ namespace HospitalAPI.Controllers
         }
 
 
+        [HttpPut]
+        [Route("ban/{id?}")]
+        public IActionResult BanPatientById(int id)
+        {
+            return Ok(patientService.BanPatientById(id));
+        }
+
+        [HttpPut]
+        [Route("unban/{id?}")]
+        public IActionResult UnbanPatientById(int id)
+        {
+            return Ok(patientService.UnbanPatientById(id));
+        }
+
     }
 }

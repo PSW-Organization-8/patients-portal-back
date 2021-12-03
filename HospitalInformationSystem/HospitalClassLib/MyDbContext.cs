@@ -44,7 +44,8 @@ namespace HospitalClassLib
                 new Doctor { Id = 2, Name = "Milan", LastName = "Ilic", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.FamilyPhysician, Patients = new List<Patient>() }
                 );
             modelBuilder.Entity<Patient>().HasData(
-                new Patient { Id = 1, Name = "Pera", LastName = "Peric", Jmbg = "123456789", Username = "pera", Password = "pera", Email = "pera.peric@gmail.com", Phone = "054987332", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), IsActivated = true, Token = "ABC123DEF4AAAAC12345" }
+                new Patient { Id = 1, Name = "Pera", LastName = "Peric", Jmbg = "123456789", Username = "pera", Password = "pera", Email = "pera.peric@gmail.com", Phone = "054987332", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), IsActivated = true, Token = "ABC123DEF4AAAAC12345" },
+                new Patient { Id = 2, Name = "Mare", LastName = "Maric", Jmbg = "213456789", Username = "mare", Password = "maric", Email = "pera2.peric@gmail.com", Phone = "054987332", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), IsActivated = true, Token = "ABC213DEF4AAAAC12345" }
                 );
             modelBuilder.Entity<Feedback>().HasData(
                 new Feedback { Id = 1, Content = "Tekst neki", IsApproved = true, Date = DateTime.Now, PatientId = 1, IsPublishable = true, IsAnonymous = false },
@@ -57,7 +58,12 @@ namespace HospitalClassLib
                 new Appointment { Id = 3, StartTime = DateTime.Now, State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1 },
                 new Appointment { Id = 4, StartTime = DateTime.Now, State = AppointmentState.cancelled, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1 },
                 new Appointment { Id = 5, StartTime = DateTime.Now, State = AppointmentState.cancelled, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1 },
-                new Appointment { Id = 6, StartTime = DateTime.Now, State = AppointmentState.finished, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1 }
+                new Appointment { Id = 6, StartTime = DateTime.Now, State = AppointmentState.finished, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1 },
+
+                new Appointment { Id = 7, StartTime = DateTime.Now, State = AppointmentState.cancelled, Type = AppointmentType.examination, DoctorId = 1, PatientId = 2 },
+                new Appointment { Id = 8, StartTime = DateTime.Now, State = AppointmentState.cancelled, Type = AppointmentType.examination, DoctorId = 1, PatientId = 2 },
+                new Appointment { Id = 9, StartTime = DateTime.Now, State = AppointmentState.cancelled, Type = AppointmentType.examination, DoctorId = 1, PatientId = 2 },
+                new Appointment { Id = 10, StartTime = DateTime.Now, State = AppointmentState.cancelled, Type = AppointmentType.examination, DoctorId = 1, PatientId = 2 }
              );
 
 
