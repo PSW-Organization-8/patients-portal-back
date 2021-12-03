@@ -1,5 +1,6 @@
 using HospitalClassLib;
 using HospitalClassLib.MedicalRecords.Repository.MedicationRepo;
+using HospitalClassLib.MedicalRecords.Repository.ReceiptRepo;
 using HospitalClassLib.MedicalRecords.Service;
 using HospitalClassLib.MedicalRecords.Service.Interface;
 using HospitalClassLib.Schedule.Repository.AllergenRepository;
@@ -72,6 +73,9 @@ namespace HospitalAPI
 
             services.AddTransient<IMedicationRepository, MedicationRepository>();
             services.AddScoped<IMedicationService, MedicationService>();
+
+            services.AddTransient<IReceiptRepository, ReceiptRepository>();
+            services.AddScoped<IReceiptService, ReceiptService>();
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {

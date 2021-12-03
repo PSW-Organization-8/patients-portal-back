@@ -21,6 +21,7 @@ namespace HospitalClassLib
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Medication> Medications { get; set; }
+        public DbSet<Receipt> Receipts { get; set; }
 
         public MyDbContext()
         {
@@ -100,6 +101,10 @@ namespace HospitalClassLib
             new Question { Id = 15, Text = "How would you rate medical staffs knowledge?", Value = 5, Category = QuestionCategory.medicalStuff, SurveyId = 2 }
             ); 
             modelBuilder.Entity<Medication>().HasData(new Medication { MedicineID = 1, Name = "Synthroid", Quantity = 2 });
+
+            modelBuilder.Entity<Receipt>().HasData(
+                new Receipt { ReceiptID = 1, MedicineName = "Synthroid", Amount = 1, Diagnosis = "Korona", Date = DateTime.Today, PatientId = 1, DoctorId = 1}
+            );
 
         }
     }

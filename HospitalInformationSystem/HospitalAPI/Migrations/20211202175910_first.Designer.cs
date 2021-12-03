@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20211130125124_first")]
+    [Migration("20211202175910_first")]
     partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -95,7 +95,7 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 11, 30, 13, 51, 23, 276, DateTimeKind.Local).AddTicks(535),
+                            StartTime = new DateTime(2021, 12, 2, 18, 59, 10, 8, DateTimeKind.Local).AddTicks(4701),
                             Type = 0
                         });
                 });
@@ -136,7 +136,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 11, 30, 13, 51, 23, 269, DateTimeKind.Local).AddTicks(3059),
+                            Date = new DateTime(2021, 12, 2, 18, 59, 10, 1, DateTimeKind.Local).AddTicks(7914),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -146,7 +146,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 11, 30, 13, 51, 23, 275, DateTimeKind.Local).AddTicks(8540),
+                            Date = new DateTime(2021, 12, 2, 18, 59, 10, 8, DateTimeKind.Local).AddTicks(2438),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -635,6 +635,48 @@ namespace HospitalAPI.Migrations
                             Name = "Milan",
                             Password = "mico",
                             Username = "mico"
+                        });
+                });
+
+            modelBuilder.Entity("HospitalClassLib.SharedModel.Receipt", b =>
+                {
+                    b.Property<long>("ReceiptID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Diagnosis")
+                        .HasColumnType("text");
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("MedicineName")
+                        .HasColumnType("text");
+
+                    b.Property<int>("PatientId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ReceiptID");
+
+                    b.ToTable("Receipts");
+
+                    b.HasData(
+                        new
+                        {
+                            ReceiptID = 1L,
+                            Amount = 1,
+                            Date = new DateTime(2021, 12, 2, 0, 0, 0, 0, DateTimeKind.Local),
+                            Diagnosis = "Korona",
+                            DoctorId = 1,
+                            MedicineName = "Synthroid",
+                            PatientId = 1
                         });
                 });
 
