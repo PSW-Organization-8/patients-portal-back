@@ -10,6 +10,8 @@ namespace HospitalClassLib.Schedule.Service
 {
     public class AppointmentService
     {
+        private readonly int HOURS_IN_ONE_DOCTOR_SHIFT = 8;
+        private readonly int MINUTES_IN_ONE_HOUR = 4;
         public AppointmentService() { }
 
         private readonly IAppointmentRepository appointmentRepository;
@@ -42,5 +44,26 @@ namespace HospitalClassLib.Schedule.Service
         {
             return appointmentRepository.GetByPatient(id);
         }
+
+        public ICollection<DateTime> GetFreeTerms(DateTime appoinmentDate, int doctorId)
+        {
+            List<DateTime> doctorAppointments = appointmentRepository.GetFreeInSpecificDay(appoinmentDate.Day, doctorId);
+            ICollection<DateTime> freeTerms = new List<DateTime>();
+            for (int hourCounter = 8; hourCounter < 16; hourCounter++)
+            {
+                for (int minuteCounter = 0; minuteCounter < 4; minuteCounter++)
+                {
+                    foreach(DateTime date in doctorAppointments)
+                    {
+                        if(!(date.Minute.Equals(minuteCounter * 15) && date.Hour.Equals(hourCounter)))
+                            freeTerms.Add(new DateTime(appoinmentDate.Year, appoinmentDate.Month,
+                                appoinmentDate.Day, hourCounter, minuteCounter * 15, 0));
+                    }
+                }
+            }
+
+            return freeTerms;
+        }
     }
 }
+

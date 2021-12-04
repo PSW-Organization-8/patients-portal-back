@@ -31,12 +31,21 @@ namespace HospitalAPI.Controllers
                 return Ok(appointmentService.GetByPatient(id));
             return BadRequest();
         }
+
         [HttpPost]
         public IActionResult CreateNewAppointment(AppointmentDto appointmentDto)
         {
             appointmentService.Create(AppointmentMapper.AppointmentDtoToAppointment
                 (appointmentDto, doctorService.Get(appointmentDto.DoctorId), patientService.Get(appointmentDto.PatientId)));
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("freeTerms")]
+        public IActionResult GetFreeTerms(StandardAppointmentDto dto)
+        {
+            return Ok(appointmentService.GetFreeTerms(dto.StartTime, dto.DoctorId));
+
         }
     }
 }

@@ -25,5 +25,10 @@ namespace HospitalClassLib.Schedule.Repository.AppointmentRepo
         {
             return dbContext.Appointments.Where(x => x.PatientId == id).ToList();
         }
+
+        public List<DateTime> GetFreeInSpecificDay(int day, int doctorId)
+        {
+            return dbContext.Appointments.Where(app => app.DoctorId.Equals(doctorId) && app.StartTime.Day.Equals(day)).Select(d => d.StartTime).ToList();
+        }
     }
 }
