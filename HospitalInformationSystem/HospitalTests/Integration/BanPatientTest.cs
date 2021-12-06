@@ -1,7 +1,10 @@
 ﻿using HospitalAPI;
 using HospitalAPI.Controllers;
 using HospitalClassLib;
+using HospitalClassLib.Schedule.Model;
+using HospitalClassLib.Schedule.Repository.AllergenRepository;
 using HospitalClassLib.Schedule.Repository.AppointmentRepo;
+using HospitalClassLib.Schedule.Repository.DoctorRepository;
 using HospitalClassLib.Schedule.Repository.PatientRepository;
 using HospitalClassLib.Schedule.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +30,43 @@ namespace HospitalTests.Integration
             _factory = factory;
             scope = _factory.Services.CreateScope();
             context = scope.ServiceProvider.GetRequiredService<MyDbContext>();
+        }
+
+        [Fact]
+        public void Patient_ban()
+        {
+            var patientService = new PatientService(new PatientRepository(context));
+            var patientController = new PatientController(patientService,
+                new DoctorService(new DoctorRepository(context)),
+                new AllergenService(new AllergenRepository(context)));
+
+            var result = patientController.BanPatientById(1);
+            var okResult = result as ObjectResult;
+
+            Patient patient = patientService.Get(1);
+
+            Assert.NotNull(okResult);
+            Assert.Equal(200, okResult.StatusCode);
+            Assert.True(patient.IsBanned);
+        }
+
+
+        [Fact]
+        public void Patient_unban()
+        {
+            var patientService = new PatientService(new PatientRepository(context));
+            var patientController = new PatientController(patientService,
+                new DoctorService(new DoctorRepository(context)),
+                new AllergenService(new AllergenRepository(context)));
+
+            var result = patientController.UnbanPatientById(1);
+            var okResult = result as ObjectResult;
+
+            Patient patient = patientService.Get(1);
+
+            Assert.NotNull(okResult);
+            Assert.Equal(200, okResult.StatusCode);
+            Assert.False(patient.IsBanned);
         }
 
 

@@ -46,13 +46,10 @@ namespace HospitalClassLib.Schedule.Service
 
         public bool CancelById(int id)
         {
-            Appointment a = appointmentRepository.Get(id);
-            
-            if (a == null) return false;
-
-            a.State = AppointmentState.cancelled;
-            appointmentRepository.Update(a);
-
+            Appointment appointment = appointmentRepository.Get(id);
+            if (appointment == null) return false;
+            appointment.State = AppointmentState.cancelled;
+            appointmentRepository.Update(appointment);
             return true;
         }
 
