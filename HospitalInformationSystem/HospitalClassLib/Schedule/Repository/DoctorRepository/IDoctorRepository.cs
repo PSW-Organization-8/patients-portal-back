@@ -1,4 +1,5 @@
 ﻿using HospitalClassLib.SharedModel;
+using HospitalClassLib.SharedModel.Enums;
 using System.Collections.Generic;
 
 namespace HospitalClassLib.Schedule.Repository.DoctorRepository
@@ -12,5 +13,6 @@ namespace HospitalClassLib.Schedule.Repository.DoctorRepository
         Doctor Create(Doctor doctor);
         bool ExistsById(int id);
         bool Delete(int id);
+        ICollection<Doctor> GetSpecificDoctors(Specialization specialization);
     }
 }

@@ -1,11 +1,7 @@
 ﻿using HospitalClassLib.Schedule.Repository.DoctorRepository;
 using HospitalClassLib.Schedule.Service;
-using HospitalClassLib.SharedModel;
+using HospitalClassLib.SharedModel.Enums;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HospitalAPI.Controllers
 {
@@ -14,23 +10,28 @@ namespace HospitalAPI.Controllers
     public class DoctorController : ControllerBase
     {
         private readonly DoctorService doctorService;
-        private readonly DoctorRepository doctorRepository;
-        public DoctorController(DoctorService doctorService, DoctorRepository doctorRepository)
+        public DoctorController(DoctorService doctorService)
         {
             this.doctorService = doctorService;
-            this.doctorRepository = doctorRepository;
         }
 
         [HttpGet]
         public IActionResult GetLessOccupiedDoctors()
         {
-            return Ok(doctorRepository.GetLessOccupiedDoctors());
+            return Ok(doctorService.GetLessOccupiedDoctors());
         }
 
         [HttpGet("{id?}")]
         public IActionResult GetDoctor(int id)
         {
             return Ok(doctorService.Get(id));
+        }
+
+        [HttpGet("spec/{specialization?}")]
+        public IActionResult GetSpecificDoctors(Specialization specialization)
+        {
+            return Ok(doctorService.GetSpecificDoctors(specialization));
+            //return Ok("Poruka");
         }
     }
 }

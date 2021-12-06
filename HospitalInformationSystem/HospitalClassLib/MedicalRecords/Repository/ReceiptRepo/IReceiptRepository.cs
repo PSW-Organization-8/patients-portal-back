@@ -8,8 +8,7 @@ using System.Text;
 
 namespace HospitalClassLib.MedicalRecords.Repository.ReceiptRepo
 {
-    interface IReceiptRepository:IGenericRepository<Receipt,String>
+    public interface IReceiptRepository:IGenericRepository<Receipt,long>
     {
-        List<Receipt> ReadByPatient(Patient p);
     }
 }
