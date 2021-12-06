@@ -37,7 +37,14 @@ namespace HospitalClassLib.Schedule.Model
 
         }
 
-        
+        public Appointment(DateTime dateTime, Doctor doctor, Patient patient)
+        {
+            this.StartTime = dateTime;
+            this.Doctor = doctor;
+            this.Patient = patient;
+        }
+
+
 
         /*public bool EqualDate(DateTime date)
         {

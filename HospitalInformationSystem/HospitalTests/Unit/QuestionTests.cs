@@ -33,7 +33,8 @@ namespace HospitalTests.Unit
         new List<object[]>
         {
             new object[] { new Question(2, "Pitanje 1", 4, QuestionCategory.doctor), 200 },
-            new object[] { new Question(2, "Pitanje 1", 7, QuestionCategory.doctor), 400 }
+            new object[] { new Question(2, "Pitanje 1", 7, QuestionCategory.doctor), 400 },
+            new object[] { new Question(2, "Pitanje 1", 0, QuestionCategory.doctor), 400 }
         };
 
         private static IQuestionRepository CreateStudRepository()

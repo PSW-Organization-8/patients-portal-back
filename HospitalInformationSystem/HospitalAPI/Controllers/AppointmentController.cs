@@ -1,4 +1,6 @@
-﻿using HospitalClassLib.Schedule.Repository.AppointmentRepo;
+﻿using HospitalAPI.Dto;
+using HospitalAPI.Mapper;
+using HospitalClassLib.Schedule.Repository.AppointmentRepo;
 using HospitalClassLib.Schedule.Service;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,10 +15,13 @@ namespace HospitalAPI.Controllers
     public class AppointmentController : ControllerBase
     {
         private readonly AppointmentService appointmentService;
-
-        public AppointmentController(AppointmentService appointmentService)
+        private readonly DoctorService doctorService;
+        private readonly PatientService patientService;
+        public AppointmentController(AppointmentService appointmentService, DoctorService doctorService, PatientService patientService)
         {
             this.appointmentService = appointmentService;
+            this.doctorService = doctorService;
+            this.patientService = patientService;
         }
 
         [HttpGet("{id?}")]
@@ -25,6 +30,23 @@ namespace HospitalAPI.Controllers
             if(appointmentService.GetByPatient(id).Count != 0)
                 return Ok(appointmentService.GetByPatient(id));
             return BadRequest();
+        }
+
+        [HttpPost]
+        public IActionResult CreateNewAppointment(AppointmentDto appointmentDto)
+        {
+            appointmentService.Create(AppointmentMapper.AppointmentDtoToAppointment
+                (appointmentDto, doctorService.Get(appointmentDto.DoctorId), patientService.Get(appointmentDto.PatientId)));
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("freeTerms")]
+        //public IActionResult GetFreeTerms(StandardAppointmentDto dto)
+        public IActionResult GetFreeTerms(DateTime startTime, int doctorId)
+        {
+            return Ok(appointmentService.GetFreeTerms(startTime, doctorId));
+
         }
     }
 }
