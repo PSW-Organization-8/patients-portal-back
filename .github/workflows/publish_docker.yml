@@ -3,7 +3,7 @@ name: Publish Docker image
 on:
   create:
     tags:
-      - v*
+      - di*
       
 jobs:
   push_to_registry:
