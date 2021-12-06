@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20211206134615_firstMigration")]
-    partial class firstMigration
+    [Migration("20211206161814_firstMigrtion")]
+    partial class firstMigrtion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,6 +34,32 @@ namespace HospitalAPI.Migrations
                     b.HasIndex("PatientsId");
 
                     b.ToTable("AllergenPatient");
+                });
+
+            modelBuilder.Entity("HospitalClassLib.MedicalRecords.Model.Medication", b =>
+                {
+                    b.Property<long>("MedicineID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.HasKey("MedicineID");
+
+                    b.ToTable("Medications");
+
+                    b.HasData(
+                        new
+                        {
+                            MedicineID = 1L,
+                            Name = "Synthroid",
+                            Quantity = 2
+                        });
                 });
 
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Appointment", b =>
@@ -69,7 +95,7 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 6, 14, 46, 14, 175, DateTimeKind.Local).AddTicks(3428),
+                            StartTime = new DateTime(2021, 12, 6, 17, 18, 13, 536, DateTimeKind.Local).AddTicks(6838),
                             Type = 0
                         },
                         new
@@ -134,7 +160,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 12, 6, 14, 46, 14, 171, DateTimeKind.Local).AddTicks(7903),
+                            Date = new DateTime(2021, 12, 6, 17, 18, 13, 533, DateTimeKind.Local).AddTicks(625),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -144,7 +170,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 12, 6, 14, 46, 14, 175, DateTimeKind.Local).AddTicks(2002),
+                            Date = new DateTime(2021, 12, 6, 17, 18, 13, 536, DateTimeKind.Local).AddTicks(5767),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -683,6 +709,48 @@ namespace HospitalAPI.Migrations
                             Name = "Milomir",
                             Password = "mico",
                             Username = "mico"
+                        });
+                });
+
+            modelBuilder.Entity("HospitalClassLib.SharedModel.Receipt", b =>
+                {
+                    b.Property<long>("ReceiptID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Diagnosis")
+                        .HasColumnType("text");
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("MedicineName")
+                        .HasColumnType("text");
+
+                    b.Property<int>("PatientId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ReceiptID");
+
+                    b.ToTable("Receipts");
+
+                    b.HasData(
+                        new
+                        {
+                            ReceiptID = 1L,
+                            Amount = 1,
+                            Date = new DateTime(2021, 12, 6, 0, 0, 0, 0, DateTimeKind.Local),
+                            Diagnosis = "Korona",
+                            DoctorId = 1,
+                            MedicineName = "Synthroid",
+                            PatientId = 1
                         });
                 });
 

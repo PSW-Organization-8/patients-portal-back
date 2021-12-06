@@ -1,3 +1,4 @@
+﻿using HospitalClassLib.Schedule.Model;
 ﻿using HospitalAPI.Dto;
 using HospitalAPI.Mapper;
 using HospitalClassLib.Schedule.Repository.AppointmentRepo;
@@ -32,6 +33,11 @@ namespace HospitalAPI.Controllers
             return BadRequest();
         }
 
+        [HttpGet]
+        public List<DateTime> GetAppointmentByPriority(DateTime firstDate, DateTime lastDate, int doctorId, bool doctorPriority)
+        {
+            return appointmentService.GetAppointmentByPriority(firstDate, lastDate, doctorId, doctorPriority);
+        }
         [HttpPost]
         public IActionResult CreateNewAppointment(AppointmentDto appointmentDto)
         {
