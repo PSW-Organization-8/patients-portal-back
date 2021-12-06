@@ -19,13 +19,11 @@ namespace HospitalClassLib.Schedule.Service
         private readonly int TERM_DURATION = 15;
         private readonly IAppointmentRepository appointmentRepository;
         private readonly IDoctorRepository doctorRepository;
-
-        public AppointmentService(IAppointmentRepository appointmentRepository, IDoctorRepository doctorRepository)
         #endregion Fields
 
         #region Constructors
         public AppointmentService() { }
-        public AppointmentService(IAppointmentRepository appointmentRepository)
+        public AppointmentService(IAppointmentRepository appointmentRepository, IDoctorRepository doctorRepository)
         {
             this.appointmentRepository = appointmentRepository;
             this.doctorRepository = doctorRepository;

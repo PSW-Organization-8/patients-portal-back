@@ -32,7 +32,7 @@ namespace HospitalTests.Integration
         [Fact]
         public void Patients_appointments_exists()
         {
-            AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context)),
+            AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)),
                 new DoctorService(new DoctorRepository(context)), new PatientService(new PatientRepository(context)));
 
             var result = controller.GetByPatient(1) as ObjectResult;
@@ -42,7 +42,7 @@ namespace HospitalTests.Integration
 
         public void Patients_appointments_do_not_exist()
         {
-            AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context)),
+            AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)),
                 new DoctorService(new DoctorRepository(context)), new PatientService(new PatientRepository(context)));
 
             var result = controller.GetByPatient(2) as ObjectResult;

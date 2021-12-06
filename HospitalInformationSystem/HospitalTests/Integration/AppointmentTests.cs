@@ -33,7 +33,7 @@ namespace HospitalTests.Integration
         {
             var doctorService = new DoctorService(new DoctorRepository(context));
             var patientService = new PatientService(new PatientRepository(context));
-            var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context)), 
+            var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), 
                 doctorService, patientService);
             var appointmentDto = new AppointmentDto(new DateTime(2021, 12, 12, 13, 0, 0), 1, 1);
             var expectedResult = new Appointment(new DateTime(2021, 12, 12, 13, 0, 0), doctorService.Get(1), patientService.Get(1));
@@ -51,7 +51,7 @@ namespace HospitalTests.Integration
         {
             var doctorService = new DoctorService(new DoctorRepository(context));
             var patientService = new PatientService(new PatientRepository(context));
-            var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context)),
+            var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)),
                 doctorService, patientService);
 
 

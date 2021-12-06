@@ -4,6 +4,7 @@ using HospitalClassLib;
 using HospitalClassLib.Schedule.Model;
 using HospitalClassLib.Schedule.Repository.AppointmentRepo;
 using HospitalClassLib.Schedule.Repository.DoctorRepository;
+using HospitalClassLib.Schedule.Repository.PatientRepository;
 using HospitalClassLib.Schedule.Service;
 using HospitalClassLib.SharedModel;
 using HospitalClassLib.SharedModel.Enums;
@@ -34,7 +35,8 @@ namespace HospitalTests.Integration
         public void Return_appointments_with_doctor_priority()
         {
             FillFakeDatabase();
-            var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)));
+            var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), 
+                new DoctorService(new DoctorRepository(context)), new PatientService(new PatientRepository(context)));
             var availableAppointments = appointmentController.GetAppointmentByPriority(new DateTime(2021, 12, 15, 8, 0, 0), new DateTime(2021, 12, 16, 16, 0, 0), 3, true);
             List<DateTime> dateTimes = new List<DateTime>();
             FillDateTimeFrame(new DateTime(2021, 12, 13, 8, 0, 0), new DateTime(2021, 12, 13, 15, 45, 0), dateTimes);
@@ -49,7 +51,8 @@ namespace HospitalTests.Integration
         public void Return_appointments_with_date_priority()
         {
             FillFakeDatabase();
-            var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)));
+            var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), 
+                new DoctorService(new DoctorRepository(context)), new PatientService(new PatientRepository(context)));
             var availableAppointments = appointmentController.GetAppointmentByPriority(new DateTime(2021, 12, 15, 8, 0, 0), new DateTime(2021, 12, 16, 16, 0, 0), 3, false);
             List<DateTime> dateTimes = new List<DateTime>();
             FillDateTimeFrame(new DateTime(2021, 12, 15, 8, 0, 0), new DateTime(2021, 12, 15, 15, 45, 0), dateTimes);
