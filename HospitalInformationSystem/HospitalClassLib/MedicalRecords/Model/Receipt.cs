@@ -2,6 +2,8 @@
 using HospitalClassLib.Schedule.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 
@@ -9,50 +11,32 @@ namespace HospitalClassLib.SharedModel
 {
     public class Receipt
     {
-        
 
-        public String MedicineName { get; set; }
-        public String Amount { get; set; }
-        public String Diagnosis { get; set; }
-        public String RecieptID { get; set; }
-        public Doctor Doctor { get; set; }
-        public Patient Patient { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long ReceiptID { get; set; }
+        public string MedicineName { get; set; }
+        public int Amount { get; set; }
+        public string Diagnosis { get; set; }
+        public int DoctorId { get; set; }
+        public int PatientId { get; set; }
         public DateTime Date { get; set; }
 
         public Receipt()
         {
-            RecieptID = DateTime.Now.ToString("yyMMddhhmmss");
+            Date = DateTime.Today;
         }
 
-        public Receipt(Doctor doctor, Patient patient, String medicineName, String amount, String diagnosis)
+        public Receipt(int doctor, int patient, string medicineName, int amount, string diagnosis)
         {
-            Doctor = doctor;
-            Patient = patient;
+            DoctorId = doctor;
+            PatientId = patient;
             MedicineName = medicineName;
             Amount = amount;
             Diagnosis = diagnosis;
-
-            RecieptID = DateTime.Now.ToString("yyMMddhhmmss");
             Date = DateTime.Today;
 
-        }   
-
-        public String GetDoctorName() 
-        { 
-            return Doctor.FullName; 
         }
-
-        public String GetPatientName() 
-        { 
-            return Patient.FullName;
-        }
-
-        public String GetRecieptDateString() 
-        { 
-            return Date.ToString("dd.MM.yyyy.");
-        }
-
-        public String NameAndQuantity { get { return (MedicineName + " " + Amount); } }
 
         
 

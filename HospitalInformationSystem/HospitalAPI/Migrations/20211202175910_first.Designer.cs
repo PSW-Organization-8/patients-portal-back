@@ -3,15 +3,17 @@ using System;
 using HospitalClassLib;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211202175910_first")]
+    partial class first
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,6 +90,14 @@ namespace HospitalAPI.Migrations
                     b.ToTable("Appointments");
 
                     b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DoctorId = 1,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 2, 18, 59, 10, 8, DateTimeKind.Local).AddTicks(4701),
+                            Type = 0
+                        });
                 });
 
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Feedback", b =>
@@ -122,8 +132,26 @@ namespace HospitalAPI.Migrations
                     b.ToTable("Feedbacks");
 
                     b.HasData(
-                        
-                    
+                        new
+                        {
+                            Id = 1,
+                            Content = "Tekst neki",
+                            Date = new DateTime(2021, 12, 2, 18, 59, 10, 1, DateTimeKind.Local).AddTicks(7914),
+                            IsAnonymous = false,
+                            IsApproved = true,
+                            IsPublishable = true,
+                            PatientId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Content = "Drugi neki",
+                            Date = new DateTime(2021, 12, 2, 18, 59, 10, 8, DateTimeKind.Local).AddTicks(2438),
+                            IsAnonymous = false,
+                            IsApproved = true,
+                            IsPublishable = true,
+                            PatientId = 1
+                        });
                 });
 
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Patient", b =>
@@ -607,56 +635,6 @@ namespace HospitalAPI.Migrations
                             Name = "Milan",
                             Password = "mico",
                             Username = "mico"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            DoctorSpecialization = 8,
-                            Jmbg = "123756799",
-                            LastName = "Markovic",
-                            Name = "Stevan",
-                            Password = "mico",
-                            Username = "mico"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            DoctorSpecialization = 9,
-                            Jmbg = "123756799",
-                            LastName = "Visnjic",
-                            Name = "Nikola",
-                            Password = "mico",
-                            Username = "mico"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            DoctorSpecialization = 9,
-                            Jmbg = "123756799",
-                            LastName = "Mitic",
-                            Name = "Strahinja",
-                            Password = "mico",
-                            Username = "mico"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            DoctorSpecialization = 2,
-                            Jmbg = "123756799",
-                            LastName = "Despotovic",
-                            Name = "Goran",
-                            Password = "mico",
-                            Username = "mico"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            DoctorSpecialization = 7,
-                            Jmbg = "123756799",
-                            LastName = "Njegos",
-                            Name = "Milomir",
-                            Password = "mico",
-                            Username = "mico"
                         });
                 });
 
@@ -720,13 +698,13 @@ namespace HospitalAPI.Migrations
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Appointment", b =>
                 {
                     b.HasOne("HospitalClassLib.SharedModel.Doctor", "Doctor")
-                        .WithMany("Appointments")
+                        .WithMany()
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HospitalClassLib.Schedule.Model.Patient", "Patient")
-                        .WithMany("Appointments")
+                        .WithMany()
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -790,8 +768,6 @@ namespace HospitalAPI.Migrations
 
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Patient", b =>
                 {
-                    b.Navigation("Appointments");
-
                     b.Navigation("Feedbacks");
                 });
 
@@ -802,8 +778,6 @@ namespace HospitalAPI.Migrations
 
             modelBuilder.Entity("HospitalClassLib.SharedModel.Doctor", b =>
                 {
-                    b.Navigation("Appointments");
-
                     b.Navigation("Patients");
                 });
 #pragma warning restore 612, 618
