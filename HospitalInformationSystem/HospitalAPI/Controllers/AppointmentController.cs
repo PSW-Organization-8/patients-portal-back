@@ -51,16 +51,12 @@ namespace HospitalAPI.Controllers
         public List<PatientAppointDto> GetDto()
         {
             List<PatientAppointDto> listDto = new List<PatientAppointDto>();
-            List<Patient> patients = patientService.GetAll();
-            foreach (Patient patient in patients)
+            foreach (Patient patient in patientService.GetAll())
             {
-                int number = appointmentService.GetNumberOfCancelledAppointments(patient.Id);
-                PatientAppointDto dto = new PatientAppointDto(patient, number);
+                PatientAppointDto dto = new PatientAppointDto(patient, appointmentService.GetNumberOfCancelledAppointments(patient.Id));
                 listDto.Add(dto);
             }
-
             return listDto;
-
         }
     }
 }
