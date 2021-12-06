@@ -10,22 +10,27 @@ namespace HospitalClassLib.Schedule.Service
 {
     public class AppointmentService
     {
-        private readonly int HOURS_IN_ONE_DOCTOR_SHIFT = 8;
-        private readonly int MINUTES_IN_ONE_HOUR = 4;
-        public AppointmentService() { }
-
+        #region Fields
+        private readonly int DOCTOR_SHIFT_START_HOUR = 8;
+        private readonly int DOCTOR_SHIFT_END_HOUR = 16;
+        private readonly int MAX_TERMS_NUM_IN_ONE_HOUR = 4;
+        private readonly int TERM_DURATION = 15;
         private readonly IAppointmentRepository appointmentRepository;
+        #endregion Fields
 
+        #region Constructors
+        public AppointmentService() { }
         public AppointmentService(IAppointmentRepository appointmentRepository)
         {
             this.appointmentRepository = appointmentRepository;
         }
+        #endregion Constructors
 
+        #region Methods
         public Appointment Get(int id)
         {
             return appointmentRepository.Get(id);
         }
-
         public List<Appointment> GetAll()
         {
             return appointmentRepository.GetAll();
@@ -34,36 +39,34 @@ namespace HospitalClassLib.Schedule.Service
         {
             return appointmentRepository.Create(appointment);
         }
-
         public bool Delete(int id)
         {
             return appointmentRepository.Delete(id);
         }
-
         public List<Appointment> GetByPatient(int id)
         {
             return appointmentRepository.GetByPatient(id);
         }
-
-        public ICollection<DateTime> GetFreeTerms(DateTime appoinmentDate, int doctorId)
+        public List<DateTime> GetFreeTerms(DateTime appoinmentDate, int doctorId)
         {
-            List<DateTime> doctorAppointments = appointmentRepository.GetFreeInSpecificDay(appoinmentDate.Day, doctorId);
-            ICollection<DateTime> freeTerms = new List<DateTime>();
-            for (int hourCounter = 8; hourCounter < 16; hourCounter++)
-            {
-                for (int minuteCounter = 0; minuteCounter < 4; minuteCounter++)
-                {
-                    foreach(DateTime date in doctorAppointments)
-                    {
-                        if(!(date.Minute.Equals(minuteCounter * 15) && date.Hour.Equals(hourCounter)))
-                            freeTerms.Add(new DateTime(appoinmentDate.Year, appoinmentDate.Month,
-                                appoinmentDate.Day, hourCounter, minuteCounter * 15, 0));
-                    }
-                }
-            }
-
-            return freeTerms;
+            return GenerateFreeTerms(appointmentRepository.GetDoctorTermsInSpecificDay(appoinmentDate, doctorId), GetPotentialFreeTerms(appoinmentDate));
         }
+
+        private List<DateTime> GetPotentialFreeTerms(DateTime appoinmentDate)
+        {
+            List<DateTime> potentialFreeTerms = new List<DateTime>();
+            for (int hourCounter = DOCTOR_SHIFT_START_HOUR; hourCounter < DOCTOR_SHIFT_END_HOUR; hourCounter++)
+                for (int minuteCounter = 0; minuteCounter < MAX_TERMS_NUM_IN_ONE_HOUR; minuteCounter++)
+                    potentialFreeTerms.Add(new DateTime(appoinmentDate.Year, appoinmentDate.Month, appoinmentDate.Day, hourCounter, minuteCounter * TERM_DURATION, 0));
+            return potentialFreeTerms;
+        }
+        private List<DateTime> GenerateFreeTerms(List<DateTime> doctorTerms, List<DateTime> potentialFreeTerms)
+        {
+            foreach (DateTime doctorTerm in doctorTerms)
+                if (potentialFreeTerms.Contains(doctorTerm)) potentialFreeTerms.Remove(doctorTerm);
+            return potentialFreeTerms;
+        }
+        #endregion Methods
     }
 }
 

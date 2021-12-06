@@ -57,7 +57,10 @@ namespace HospitalClassLib
             );
 
             modelBuilder.Entity<Appointment>().HasData(
-                new Appointment { Id = 1, StartTime = DateTime.Now, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1}
+                new Appointment { Id = 1, StartTime = DateTime.Now, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1},
+                new Appointment { Id = 2, StartTime = new DateTime(2021, 12, 15, 10, 15, 0), Type = AppointmentType.examination, DoctorId = 6, PatientId = 1 },
+                new Appointment { Id = 3, StartTime = new DateTime(2021, 12, 15, 13, 15, 0), Type = AppointmentType.examination, DoctorId = 6, PatientId = 1 },
+                new Appointment { Id = 4, StartTime = new DateTime(2021, 12, 15, 15, 45, 0), Type = AppointmentType.examination, DoctorId = 6, PatientId = 1 }
              );
 
 
