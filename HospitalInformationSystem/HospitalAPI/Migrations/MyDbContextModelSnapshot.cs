@@ -67,7 +67,31 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 3, 3, 28, 27, 911, DateTimeKind.Local).AddTicks(4082),
+                            StartTime = new DateTime(2021, 12, 6, 14, 46, 14, 175, DateTimeKind.Local).AddTicks(3428),
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DoctorId = 6,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 15, 10, 15, 0, 0, DateTimeKind.Unspecified),
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DoctorId = 6,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 15, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DoctorId = 6,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 15, 15, 45, 0, 0, DateTimeKind.Unspecified),
                             Type = 0
                         });
                 });
@@ -108,7 +132,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 12, 3, 3, 28, 27, 908, DateTimeKind.Local).AddTicks(8574),
+                            Date = new DateTime(2021, 12, 6, 14, 46, 14, 171, DateTimeKind.Local).AddTicks(7903),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -118,7 +142,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 12, 3, 3, 28, 27, 911, DateTimeKind.Local).AddTicks(3048),
+                            Date = new DateTime(2021, 12, 6, 14, 46, 14, 175, DateTimeKind.Local).AddTicks(2002),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,

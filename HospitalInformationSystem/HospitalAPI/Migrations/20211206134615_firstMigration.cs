@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace HospitalAPI.Migrations
 {
-    public partial class f : Migration
+    public partial class firstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -231,15 +231,21 @@ namespace HospitalAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Appointments",
                 columns: new[] { "Id", "DoctorId", "PatientId", "StartTime", "Type" },
-                values: new object[] { 1, 1, 1, new DateTime(2021, 12, 3, 3, 28, 27, 911, DateTimeKind.Local).AddTicks(4082), 0 });
+                values: new object[,]
+                {
+                    { 1, 1, 1, new DateTime(2021, 12, 6, 14, 46, 14, 175, DateTimeKind.Local).AddTicks(3428), 0 },
+                    { 2, 6, 1, new DateTime(2021, 12, 15, 10, 15, 0, 0, DateTimeKind.Unspecified), 0 },
+                    { 3, 6, 1, new DateTime(2021, 12, 15, 13, 15, 0, 0, DateTimeKind.Unspecified), 0 },
+                    { 4, 6, 1, new DateTime(2021, 12, 15, 15, 45, 0, 0, DateTimeKind.Unspecified), 0 }
+                });
 
             migrationBuilder.InsertData(
                 table: "Feedbacks",
                 columns: new[] { "Id", "Content", "Date", "IsAnonymous", "IsApproved", "IsPublishable", "PatientId" },
                 values: new object[,]
                 {
-                    { 1, "Tekst neki", new DateTime(2021, 12, 3, 3, 28, 27, 908, DateTimeKind.Local).AddTicks(8574), false, true, true, 1 },
-                    { 2, "Drugi neki", new DateTime(2021, 12, 3, 3, 28, 27, 911, DateTimeKind.Local).AddTicks(3048), false, true, true, 1 }
+                    { 1, "Tekst neki", new DateTime(2021, 12, 6, 14, 46, 14, 171, DateTimeKind.Local).AddTicks(7903), false, true, true, 1 },
+                    { 2, "Drugi neki", new DateTime(2021, 12, 6, 14, 46, 14, 175, DateTimeKind.Local).AddTicks(2002), false, true, true, 1 }
                 });
 
             migrationBuilder.InsertData(

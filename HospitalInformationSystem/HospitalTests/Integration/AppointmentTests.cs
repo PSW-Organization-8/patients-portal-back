@@ -55,7 +55,7 @@ namespace HospitalTests.Integration
                 doctorService, patientService);
 
 
-            var result = appointmentController.GetFreeTerms(dto) as ObjectResult;
+            var result = appointmentController.GetFreeTerms(dto.StartTime, dto.DoctorId) as ObjectResult;
 
 
             Assert.Equal(result.Value, expectedResult);
