@@ -88,6 +88,38 @@ namespace HospitalAPI.Migrations
                     b.ToTable("Appointments");
 
                     b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DoctorId = 1,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 6, 16, 21, 54, 558, DateTimeKind.Local).AddTicks(1148),
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DoctorId = 6,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 15, 10, 15, 0, 0, DateTimeKind.Unspecified),
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DoctorId = 6,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 15, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DoctorId = 6,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 15, 15, 45, 0, 0, DateTimeKind.Unspecified),
+                            Type = 0
+                        });
                 });
 
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Feedback", b =>
@@ -122,8 +154,26 @@ namespace HospitalAPI.Migrations
                     b.ToTable("Feedbacks");
 
                     b.HasData(
-                        
-                    
+                        new
+                        {
+                            Id = 1,
+                            Content = "Tekst neki",
+                            Date = new DateTime(2021, 12, 6, 16, 21, 54, 552, DateTimeKind.Local).AddTicks(2307),
+                            IsAnonymous = false,
+                            IsApproved = true,
+                            IsPublishable = true,
+                            PatientId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Content = "Drugi neki",
+                            Date = new DateTime(2021, 12, 6, 16, 21, 54, 557, DateTimeKind.Local).AddTicks(8995),
+                            IsAnonymous = false,
+                            IsApproved = true,
+                            IsPublishable = true,
+                            PatientId = 1
+                        });
                 });
 
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Patient", b =>
@@ -694,7 +744,7 @@ namespace HospitalAPI.Migrations
                         {
                             ReceiptID = 1L,
                             Amount = 1,
-                            Date = new DateTime(2021, 12, 2, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2021, 12, 6, 0, 0, 0, 0, DateTimeKind.Local),
                             Diagnosis = "Korona",
                             DoctorId = 1,
                             MedicineName = "Synthroid",
