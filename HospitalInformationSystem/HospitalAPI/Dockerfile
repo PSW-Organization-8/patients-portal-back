@@ -9,11 +9,10 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-focal AS build
 WORKDIR /src
-COPY ["HospitalAPI/HospitalAPI.csproj", "HospitalAPI/"]
-COPY ["HospitalClassLib/HospitalClassLib.csproj", "HospitalClassLib/"]
-RUN dotnet restore "HospitalAPI/HospitalAPI.csproj"
+COPY ["HospitalAPI.csproj", "./"]
+RUN dotnet restore "./HospitalAPI.csproj"
 COPY . .
-WORKDIR "/src/HospitalAPI"
+WORKDIR "/src/."
 RUN dotnet build "HospitalAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
