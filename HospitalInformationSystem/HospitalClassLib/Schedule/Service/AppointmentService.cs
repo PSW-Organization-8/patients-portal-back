@@ -53,6 +53,15 @@ namespace HospitalClassLib.Schedule.Service
             return true;
         }
 
+        public bool SurveyAppointment(int id)
+        {
+            Appointment appointment = appointmentRepository.Get(id);
+            if (appointment == null || appointment.State != AppointmentState.finished) return false;
+            appointment.IsSurveyed = true;
+            appointmentRepository.Update(appointment);
+            return true;
+        }
+
         public int GetNumberOfCancelledAppointments(int id) 
         {
             return appointmentRepository.GetNumberOfCancelledAppointments(id);

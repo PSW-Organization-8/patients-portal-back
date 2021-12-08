@@ -18,7 +18,8 @@ namespace HospitalClassLib.Schedule.Model
         public virtual Doctor Doctor { get; set; }
         public int PatientId { get; set; }
         public virtual Patient Patient { get; set; }
-        public AppointmentState State {get; set; }
+        public AppointmentState State { get; set; }
+        public bool IsSurveyed { get; set; }
     
         public Appointment() { }
 
@@ -32,6 +33,7 @@ namespace HospitalClassLib.Schedule.Model
             this.Patient = patient;
             this.PatientId = patient.Id;
             this.State = AppointmentState.pending;
+            this.IsSurveyed = false;
         }
     }
 }

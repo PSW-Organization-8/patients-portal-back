@@ -32,7 +32,7 @@ namespace HospitalClassLib.Schedule.Repository.AppointmentRepo
             DateTime startDate = DateTime.Now;
             DateTime nextMonth = startDate.AddDays(30);
             DateTime lastMonth = startDate.AddDays(-30);
-            return dbContext.Appointments.Where(x => x.PatientId == id && x.State == AppointmentState.cancelled && x.StartTime > lastMonth && x.StartTime < nextMonth).ToList().Count;
+            return dbContext.Appointments.Count(x => x.PatientId == id && x.State == AppointmentState.cancelled && x.StartTime > lastMonth && x.StartTime < nextMonth);
         }
     }
 }
