@@ -93,7 +93,7 @@ namespace HospitalAPI.Migrations
                             Id = 1,
                             DoctorId = 1,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 6, 16, 21, 54, 558, DateTimeKind.Local).AddTicks(1148),
+                            StartTime = new DateTime(2021, 12, 7, 7, 34, 20, 308, DateTimeKind.Local).AddTicks(7097),
                             Type = 0
                         },
                         new
@@ -158,7 +158,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 12, 6, 16, 21, 54, 552, DateTimeKind.Local).AddTicks(2307),
+                            Date = new DateTime(2021, 12, 7, 7, 34, 20, 300, DateTimeKind.Local).AddTicks(9325),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -168,7 +168,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 12, 6, 16, 21, 54, 557, DateTimeKind.Local).AddTicks(8995),
+                            Date = new DateTime(2021, 12, 7, 7, 34, 20, 308, DateTimeKind.Local).AddTicks(4608),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -744,7 +744,7 @@ namespace HospitalAPI.Migrations
                         {
                             ReceiptID = 1L,
                             Amount = 1,
-                            Date = new DateTime(2021, 12, 6, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2021, 12, 7, 0, 0, 0, 0, DateTimeKind.Local),
                             Diagnosis = "Korona",
                             DoctorId = 1,
                             MedicineName = "Synthroid",

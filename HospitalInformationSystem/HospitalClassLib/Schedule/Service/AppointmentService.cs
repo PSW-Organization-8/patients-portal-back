@@ -51,7 +51,6 @@ namespace HospitalClassLib.Schedule.Service
         {
             return GenerateFreeTerms(appointmentRepository.GetDoctorTermsInSpecificDay(appoinmentDate, doctorId), GetPotentialFreeTerms(appoinmentDate));
         }
-
         private List<DateTime> GetPotentialFreeTerms(DateTime appoinmentDate)
         {
             List<DateTime> potentialFreeTerms = new List<DateTime>();
