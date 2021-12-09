@@ -1,5 +1,6 @@
 ﻿using HospitalClassLib.Schedule.Repository.DoctorRepository;
 using HospitalClassLib.SharedModel;
+using HospitalClassLib.SharedModel.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,11 @@ namespace HospitalClassLib.Schedule.Service
         public List<Doctor> GetLessOccupiedDoctors()
         {
             return doctorRepository.GetLessOccupiedDoctors();
+        }
+
+        public ICollection<Doctor> GetSpecificDoctors(Specialization specialization)
+        {
+            return doctorRepository.GetSpecificDoctors(specialization);
         }
     }
 }
