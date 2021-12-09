@@ -34,5 +34,10 @@ namespace HospitalClassLib.Schedule.Service
         {
             return doctorRepository.GetSpecificDoctors(specialization);
         }
+
+        public List<Doctor> GetAllDoctors()
+        {
+            return doctorRepository.GetAll();
+        }
     }
 }

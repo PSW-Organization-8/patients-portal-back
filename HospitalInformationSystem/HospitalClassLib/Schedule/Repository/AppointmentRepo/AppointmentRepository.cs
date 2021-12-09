@@ -24,7 +24,7 @@ namespace HospitalClassLib.Schedule.Repository.AppointmentRepo
 
         public List<Appointment> GetByPatient(int id)
         {
-            return dbContext.Appointments.Where(x => x.PatientId == id).ToList();
+            return dbContext.Appointments.Where(x => x.PatientId == id).OrderByDescending(x => x.StartTime).ToList();
         }
 
         public int GetNumberOfCancelledAppointments(int id)
