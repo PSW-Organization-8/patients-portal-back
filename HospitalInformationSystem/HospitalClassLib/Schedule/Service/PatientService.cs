@@ -25,6 +25,11 @@ namespace HospitalClassLib.Schedule.Service
         {
             return patientRepository.Get(id);
         }
+
+        public List<Patient> GetAll()
+        {
+            return patientRepository.GetAll();
+        }
         public Patient RegisterPatient(Patient patient)
         {
             Patient newPatient = patientRepository.Create(patient);
@@ -124,6 +129,24 @@ namespace HospitalClassLib.Schedule.Service
         public Patient GetByToken(string patientToken)
         {
             return patientRepository.GetByToken(patientToken);
+        }
+
+        public bool BanPatientById(int id)
+        {
+            Patient patient = patientRepository.Get(id);
+            patient.IsBanned = true;
+            patientRepository.Update(patient);
+
+            return true;
+        }
+
+        public bool UnbanPatientById(int id)
+        {
+            Patient patient = patientRepository.Get(id);
+            patient.IsBanned = false;
+            patientRepository.Update(patient);
+
+            return true;
         }
     }
 }

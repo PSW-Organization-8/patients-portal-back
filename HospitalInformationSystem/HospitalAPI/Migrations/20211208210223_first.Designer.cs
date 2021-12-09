@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20211206161814_firstMigrtion")]
-    partial class firstMigrtion
+    [Migration("20211208210223_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,32 +36,6 @@ namespace HospitalAPI.Migrations
                     b.ToTable("AllergenPatient");
                 });
 
-            modelBuilder.Entity("HospitalClassLib.MedicalRecords.Model.Medication", b =>
-                {
-                    b.Property<long>("MedicineID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
-
-                    b.HasKey("MedicineID");
-
-                    b.ToTable("Medications");
-
-                    b.HasData(
-                        new
-                        {
-                            MedicineID = 1L,
-                            Name = "Synthroid",
-                            Quantity = 2
-                        });
-                });
-
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Appointment", b =>
                 {
                     b.Property<int>("Id")
@@ -72,11 +46,17 @@ namespace HospitalAPI.Migrations
                     b.Property<int>("DoctorId")
                         .HasColumnType("integer");
 
+                    b.Property<bool>("IsSurveyed")
+                        .HasColumnType("boolean");
+
                     b.Property<int>("PatientId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("State")
+                        .HasColumnType("integer");
 
                     b.Property<int>("Type")
                         .HasColumnType("integer");
@@ -94,32 +74,100 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             DoctorId = 1,
+                            IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 6, 17, 18, 13, 536, DateTimeKind.Local).AddTicks(6838),
+                            StartTime = new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(4188),
+                            State = 0,
                             Type = 0
                         },
                         new
                         {
                             Id = 2,
-                            DoctorId = 6,
+                            DoctorId = 1,
+                            IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 15, 10, 15, 0, 0, DateTimeKind.Unspecified),
+                            StartTime = new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(6743),
+                            State = 0,
                             Type = 0
                         },
                         new
                         {
                             Id = 3,
-                            DoctorId = 6,
+                            DoctorId = 1,
+                            IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 15, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            StartTime = new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(6759),
+                            State = 0,
                             Type = 0
                         },
                         new
                         {
                             Id = 4,
-                            DoctorId = 6,
+                            DoctorId = 1,
+                            IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 15, 15, 45, 0, 0, DateTimeKind.Unspecified),
+                            StartTime = new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(6764),
+                            State = 2,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(6768),
+                            State = 2,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(6771),
+                            State = 1,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(6774),
+                            State = 2,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(6777),
+                            State = 2,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 9,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(6780),
+                            State = 2,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 10,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(6783),
+                            State = 2,
                             Type = 0
                         });
                 });
@@ -160,7 +208,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 12, 6, 17, 18, 13, 533, DateTimeKind.Local).AddTicks(625),
+                            Date = new DateTime(2021, 12, 8, 22, 2, 23, 99, DateTimeKind.Local).AddTicks(1297),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -170,7 +218,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 12, 6, 17, 18, 13, 536, DateTimeKind.Local).AddTicks(5767),
+                            Date = new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(2702),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -263,6 +311,24 @@ namespace HospitalAPI.Migrations
                             Phone = "054987332",
                             Token = "ABC123DEF4AAAAC12345",
                             Username = "pera"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BloodType = 0,
+                            DateOfBirth = new DateTime(1999, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorId = 1,
+                            Email = "pera2.peric@gmail.com",
+                            Guest = false,
+                            IsActivated = true,
+                            IsBanned = false,
+                            Jmbg = "213456789",
+                            LastName = "Maric",
+                            Name = "Mare",
+                            Password = "maric",
+                            Phone = "054987332",
+                            Token = "ABC213DEF4AAAAC12345",
+                            Username = "mare"
                         });
                 });
 
@@ -659,98 +725,6 @@ namespace HospitalAPI.Migrations
                             Name = "Milan",
                             Password = "mico",
                             Username = "mico"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            DoctorSpecialization = 8,
-                            Jmbg = "123756799",
-                            LastName = "Markovic",
-                            Name = "Stevan",
-                            Password = "mico",
-                            Username = "mico"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            DoctorSpecialization = 9,
-                            Jmbg = "123756799",
-                            LastName = "Visnjic",
-                            Name = "Nikola",
-                            Password = "mico",
-                            Username = "mico"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            DoctorSpecialization = 9,
-                            Jmbg = "123756799",
-                            LastName = "Mitic",
-                            Name = "Strahinja",
-                            Password = "mico",
-                            Username = "mico"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            DoctorSpecialization = 2,
-                            Jmbg = "123756799",
-                            LastName = "Despotovic",
-                            Name = "Goran",
-                            Password = "mico",
-                            Username = "mico"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            DoctorSpecialization = 7,
-                            Jmbg = "123756799",
-                            LastName = "Njegos",
-                            Name = "Milomir",
-                            Password = "mico",
-                            Username = "mico"
-                        });
-                });
-
-            modelBuilder.Entity("HospitalClassLib.SharedModel.Receipt", b =>
-                {
-                    b.Property<long>("ReceiptID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Diagnosis")
-                        .HasColumnType("text");
-
-                    b.Property<int>("DoctorId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("MedicineName")
-                        .HasColumnType("text");
-
-                    b.Property<int>("PatientId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("ReceiptID");
-
-                    b.ToTable("Receipts");
-
-                    b.HasData(
-                        new
-                        {
-                            ReceiptID = 1L,
-                            Amount = 1,
-                            Date = new DateTime(2021, 12, 6, 0, 0, 0, 0, DateTimeKind.Local),
-                            Diagnosis = "Korona",
-                            DoctorId = 1,
-                            MedicineName = "Synthroid",
-                            PatientId = 1
                         });
                 });
 
@@ -772,13 +746,13 @@ namespace HospitalAPI.Migrations
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Appointment", b =>
                 {
                     b.HasOne("HospitalClassLib.SharedModel.Doctor", "Doctor")
-                        .WithMany("Appointments")
+                        .WithMany()
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HospitalClassLib.Schedule.Model.Patient", "Patient")
-                        .WithMany("Appointments")
+                        .WithMany()
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -842,8 +816,6 @@ namespace HospitalAPI.Migrations
 
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Patient", b =>
                 {
-                    b.Navigation("Appointments");
-
                     b.Navigation("Feedbacks");
                 });
 
@@ -854,8 +826,6 @@ namespace HospitalAPI.Migrations
 
             modelBuilder.Entity("HospitalClassLib.SharedModel.Doctor", b =>
                 {
-                    b.Navigation("Appointments");
-
                     b.Navigation("Patients");
                 });
 #pragma warning restore 612, 618

@@ -1,5 +1,6 @@
 ﻿using HospitalClassLib.Schedule.Model;
 using HospitalClassLib.Schedule.Repository.AppointmentRepo;
+using HospitalClassLib.SharedModel.Enums;
 using HospitalClassLib.Schedule.Repository.DoctorRepository;
 using HospitalClassLib.SharedModel;
 using System;
@@ -93,6 +94,29 @@ namespace HospitalClassLib.Schedule.Service
         public List<Appointment> GetByPatient(int id)
         {
             return appointmentRepository.GetByPatient(id);
+        }
+
+        public bool CancelById(int id)
+        {
+            Appointment appointment = appointmentRepository.Get(id);
+            if (appointment == null) return false;
+            appointment.State = AppointmentState.cancelled;
+            appointmentRepository.Update(appointment);
+            return true;
+        }
+
+        public bool SurveyAppointment(int id)
+        {
+            Appointment appointment = appointmentRepository.Get(id);
+            if (appointment == null || appointment.State != AppointmentState.finished) return false;
+            appointment.IsSurveyed = true;
+            appointmentRepository.Update(appointment);
+            return true;
+        }
+
+        public int GetNumberOfCancelledAppointments(int id) 
+        {
+            return appointmentRepository.GetNumberOfCancelledAppointments(id);
         }
         public List<DateTime> GetFreeTerms(DateTime appoinmentDate, int doctorId)
         {

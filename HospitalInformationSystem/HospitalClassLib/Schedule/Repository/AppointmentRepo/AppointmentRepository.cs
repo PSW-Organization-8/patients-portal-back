@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using HospitalClassLib.SharedModel.Enums;
 
 namespace HospitalClassLib.Schedule.Repository.AppointmentRepo
 {
@@ -26,10 +27,19 @@ namespace HospitalClassLib.Schedule.Repository.AppointmentRepo
             return dbContext.Appointments.Where(x => x.PatientId == id).ToList();
         }
 
+        public int GetNumberOfCancelledAppointments(int id)
+        {
+            DateTime startDate = DateTime.Now;
+            DateTime nextMonth = startDate.AddDays(30);
+            DateTime lastMonth = startDate.AddDays(-30);
+            return dbContext.Appointments.Count(x => x.PatientId == id && x.State == AppointmentState.cancelled && x.StartTime > lastMonth && x.StartTime < nextMonth);
+        }
+
         public List<Appointment> GetByDoctor(int id)
         {
             return dbContext.Appointments.Where(x => x.DoctorId.Equals(id)).ToList();
         }
+        
         public List<DateTime> GetDoctorTermsInSpecificDay(DateTime date, int doctorId)
         {
             return dbContext.Appointments.Where(app => app.DoctorId.Equals(doctorId) && app.StartTime.Day.Equals(date.Day)
