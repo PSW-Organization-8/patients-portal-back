@@ -12,7 +12,7 @@ namespace HospitalAPI.Mapper
     {
         public static Appointment AppointmentDtoToAppointment(AppointmentDto dto, Doctor doctor, Patient patient)
         {
-            return new Appointment(dto.StartDate, doctor, patient);
+            return new Appointment(dto.StartTime, doctor, patient);
         }
 
         public static AppointmentDto AppointmentToAppointmentDto(Appointment appointment)
