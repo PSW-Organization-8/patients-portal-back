@@ -6,10 +6,8 @@
 
   <ItemGroup>
     <Compile Remove="Feedbacks\**" />
-    <Compile Remove="MedicalRecords\Service\**" />
     <Compile Remove="RoomsAndEquipment\Service\**" />
     <EmbeddedResource Remove="Feedbacks\**" />
-    <EmbeddedResource Remove="MedicalRecords\Service\**" />
     <EmbeddedResource Remove="RoomsAndEquipment\Service\**" />
     <None Remove="Feedbacks\**" />
   </ItemGroup>
@@ -18,7 +16,6 @@
     <Compile Remove="GraphicalEditor\**" />
     <EmbeddedResource Remove="GraphicalEditor\**" />
     <None Remove="GraphicalEditor\**" />
-    <None Remove="MedicalRecords\Service\**" />
     <None Remove="RoomsAndEquipment\Service\**" />
   </ItemGroup>
 

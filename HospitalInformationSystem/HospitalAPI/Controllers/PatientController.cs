@@ -36,12 +36,13 @@ namespace HospitalAPI.Controllers
             if (validator.Validate(PatientMapper.PatientDtoToPatient(
                 patientDto, doctorService.Get(patientDto.DoctorId), allergenService.GetSelectedAllergens(patientDto.Allergens))).IsValid)
             {
-                return Ok(patientService.RegisterPatient(PatientMapper.PatientDtoToPatient(patientDto, doctorService.Get(patientDto.DoctorId), allergenService.GetSelectedAllergens(patientDto.Allergens))));
+                patientService.RegisterPatient(PatientMapper.PatientDtoToPatient(patientDto, doctorService.Get(patientDto.DoctorId), allergenService.GetSelectedAllergens(patientDto.Allergens)));
+                return Ok();
             }
             return BadRequest(patientDto);
         }
 
-        [HttpGet("activate/")]
+        [HttpPut("activate/")]
         public void ActivatePatientAccount(string patientToken)
         {
             if (validator.Validate(patientService.GetByToken(patientToken)).IsValid)

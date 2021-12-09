@@ -1,4 +1,5 @@
-﻿using HospitalClassLib.Schedule.Model;
+﻿using HospitalClassLib.MedicalRecords.Model;
+using HospitalClassLib.Schedule.Model;
 using HospitalClassLib.SharedModel;
 using HospitalClassLib.SharedModel.Enums;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,8 @@ namespace HospitalClassLib
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<Medication> Medications { get; set; }
+        public DbSet<Receipt> Receipts { get; set; }
 
         public MyDbContext()
         {
@@ -29,9 +32,9 @@ namespace HospitalClassLib
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
             String connectionString = "Server=localhost; Port =8080; Database =psw_database; User Id = postgres; Password =wasd;";
             optionsBuilder.UseNpgsql(connectionString);
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,12 +43,18 @@ namespace HospitalClassLib
                 new Allergen { Id = 1, Name = "Prasina", Patients = new List<Patient>() }
                 );
             modelBuilder.Entity<Doctor>().HasData(
-                new Doctor { Id = 1, Name = "Jovan", LastName = "Jovanovic", Jmbg = "123456799", Username = "jova", Password = "jova", DoctorSpecialization = Specialization.FamilyPhysician , Patients = new List<Patient>()},
-                new Doctor { Id = 2, Name = "Milan", LastName = "Ilic", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.FamilyPhysician, Patients = new List<Patient>() }
+                new Doctor { Id = 1, Name = "Jovan", LastName = "Jovanovic", Jmbg = "123456799", Username = "jova", Password = "jova", DoctorSpecialization = Specialization.FamilyPhysician , Patients = new List<Patient>(), Appointments = new List<Appointment>()},
+                new Doctor { Id = 2, Name = "Milan", LastName = "Ilic", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.FamilyPhysician, Patients = new List<Patient>(), Appointments = new List<Appointment>() },
+                new Doctor { Id = 3, Name = "Stevan", LastName = "Markovic", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.Gynecologist, Patients = new List<Patient>(), Appointments = new List<Appointment>() },
+                new Doctor { Id = 4, Name = "Nikola", LastName = "Visnjic", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.Neurologist, Patients = new List<Patient>(), Appointments = new List<Appointment>() },
+                new Doctor { Id = 5, Name = "Strahinja", LastName = "Mitic", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.Neurologist, Patients = new List<Patient>(), Appointments = new List<Appointment>() },
+                new Doctor { Id = 6, Name = "Goran", LastName = "Despotovic", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.Internist, Patients = new List<Patient>(), Appointments = new List<Appointment>() },
+                new Doctor { Id = 7, Name = "Milomir", LastName = "Njegos", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.Urologist, Patients = new List<Patient>(), Appointments = new List<Appointment>() }
                 );
             modelBuilder.Entity<Patient>().HasData(
                 new Patient { Id = 1, Name = "Pera", LastName = "Peric", Jmbg = "123456789", Username = "pera", Password = "pera", Email = "pera.peric@gmail.com", Phone = "054987332", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), IsActivated = true, Token = "ABC123DEF4AAAAC12345" },
                 new Patient { Id = 2, Name = "Mare", LastName = "Maric", Jmbg = "213456789", Username = "mare", Password = "maric", Email = "pera2.peric@gmail.com", Phone = "054987332", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), IsActivated = true, Token = "ABC213DEF4AAAAC12345" }
+
                 );
             modelBuilder.Entity<Feedback>().HasData(
                 new Feedback { Id = 1, Content = "Tekst neki", IsApproved = true, Date = DateTime.Now, PatientId = 1, IsPublishable = true, IsAnonymous = false },
@@ -53,10 +62,11 @@ namespace HospitalClassLib
             );
 
             modelBuilder.Entity<Appointment>().HasData(
-                new Appointment { Id = 1, StartTime = DateTime.Now, State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed=false },
-                new Appointment { Id = 2, StartTime = DateTime.Now, State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed=false },
-                new Appointment { Id = 3, StartTime = DateTime.Now, State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed=false },
-                new Appointment { Id = 4, StartTime = DateTime.Now, State = AppointmentState.cancelled, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed = false },
+                new Appointment { Id = 1, StartTime = DateTime.Now, State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed = false },
+                new Appointment { Id = 2, StartTime = new DateTime(2021, 12, 15, 10, 15, 0), State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 6, PatientId = 1, IsSurveyed = false },
+                new Appointment { Id = 3, StartTime = new DateTime(2021, 12, 15, 13, 15, 0), State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 6, PatientId = 1, IsSurveyed = false },
+                new Appointment { Id = 4, StartTime = new DateTime(2021, 12, 15, 15, 45, 0), State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 6, PatientId = 1, IsSurveyed = false }
+
                 new Appointment { Id = 5, StartTime = DateTime.Now, State = AppointmentState.cancelled, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed = false },
                 new Appointment { Id = 6, StartTime = DateTime.Now, State = AppointmentState.finished, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed = false },
 
@@ -64,6 +74,8 @@ namespace HospitalClassLib
                 new Appointment { Id = 8, StartTime = DateTime.Now, State = AppointmentState.cancelled, Type = AppointmentType.examination, DoctorId = 1, PatientId = 2, IsSurveyed = false },
                 new Appointment { Id = 9, StartTime = DateTime.Now, State = AppointmentState.cancelled, Type = AppointmentType.examination, DoctorId = 1, PatientId = 2, IsSurveyed = false },
                 new Appointment { Id = 10, StartTime = DateTime.Now, State = AppointmentState.cancelled, Type = AppointmentType.examination, DoctorId = 1, PatientId = 2, IsSurveyed = false }
+
+
              );
 
 
@@ -107,7 +119,13 @@ namespace HospitalClassLib
             new Question { Id = 13, Text = "How would you rate medical staffs technicality?", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 2 },
             new Question { Id = 14, Text = "How would you rate medical staffs skill?", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 2 },
             new Question { Id = 15, Text = "How would you rate medical staffs knowledge?", Value = 5, Category = QuestionCategory.medicalStuff, SurveyId = 2 }
+            ); 
+            modelBuilder.Entity<Medication>().HasData(new Medication { MedicineID = 1, Name = "Synthroid", Quantity = 2 });
+
+            modelBuilder.Entity<Receipt>().HasData(
+                new Receipt { ReceiptID = 1, MedicineName = "Synthroid", Amount = 1, Diagnosis = "Korona", Date = DateTime.Today, PatientId = 1, DoctorId = 1}
             );
+
         }
     }
 }

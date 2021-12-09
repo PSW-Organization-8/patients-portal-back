@@ -32,8 +32,20 @@ namespace HospitalClassLib.Schedule.Model
             this.DoctorId = doctor.Id;
             this.Patient = patient;
             this.PatientId = patient.Id;
+
             this.State = AppointmentState.pending;
             this.IsSurveyed = false;
+
         }
+
+        public Appointment(DateTime startTime, Doctor doctor, Patient patient)
+        {
+            this.StartTime = startTime;
+            this.Type = AppointmentType.examination;
+            this.DoctorId = doctor.Id;
+            this.PatientId = patient.Id;
+
+        }
+
     }
 }
