@@ -36,6 +36,7 @@ namespace HospitalAPI.Controllers
         }
 
         [HttpPost]
+        [Route("createNew")]
         public IActionResult CreateNewAppointment(AppointmentDto appointmentDto)
         {
             if (appointmentValidator.Valid(appointmentDto))
