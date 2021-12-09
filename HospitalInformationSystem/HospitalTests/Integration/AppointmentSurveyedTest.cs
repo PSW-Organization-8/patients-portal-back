@@ -2,6 +2,7 @@
 using HospitalAPI.Controllers;
 using HospitalClassLib;
 using HospitalClassLib.Schedule.Repository.AppointmentRepo;
+using HospitalClassLib.Schedule.Repository.DoctorRepository;
 using HospitalClassLib.Schedule.Repository.PatientRepository;
 using HospitalClassLib.Schedule.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -31,7 +32,7 @@ namespace HospitalTests.Integration
          [Fact]
         public void Appointment_surveyed_good()
         {
-            AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context)), new PatientService(new PatientRepository(context)));
+            AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), new DoctorService(new DoctorRepository(context)), new PatientService(new PatientRepository(context)));
 
             var result = controller.SurveyAppointment(6);
             var okResult = result as ObjectResult;

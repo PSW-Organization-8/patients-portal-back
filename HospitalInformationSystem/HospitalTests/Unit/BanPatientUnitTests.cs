@@ -1,5 +1,6 @@
 ﻿using HospitalClassLib.Schedule.Model;
 using HospitalClassLib.Schedule.Repository.AppointmentRepo;
+using HospitalClassLib.Schedule.Repository.DoctorRepository;
 using HospitalClassLib.Schedule.Service;
 using HospitalClassLib.SharedModel;
 using HospitalClassLib.SharedModel.Enums;
@@ -19,7 +20,7 @@ namespace HospitalTests.Unit
         [Fact]
         public void Number_of_canceled_appointments()
         {
-            var appointmentService = new AppointmentService(CreateStudAppointmentRepository(1));
+            var appointmentService = new AppointmentService(CreateStudAppointmentRepository(1), CreateStudDoctorRepository());
             var result = appointmentService.GetNumberOfCancelledAppointments(1);
             Assert.Equal(3, result);
         }
@@ -44,6 +45,15 @@ namespace HospitalTests.Unit
             stubRepository.Setup(a => a.GetAll()).Returns(appointments);
             stubRepository.Setup(a => a.Create(appointment1)).Returns(appointment1);
             stubRepository.Setup(a => a.GetNumberOfCancelledAppointments(1)).Returns(appointments.Where(x => x.PatientId == id && x.State == AppointmentState.cancelled).ToList().Count);
+            return stubRepository.Object;
+        }
+
+        private static IDoctorRepository CreateStudDoctorRepository()
+        {
+            var stubRepository = new Mock<IDoctorRepository>();
+            var doctors = new List<Doctor>();
+            Doctor doctor = new Doctor { Id = 1 };
+            stubRepository.Setup(a => a.GetAll()).Returns(doctors);
             return stubRepository.Object;
         }
     }

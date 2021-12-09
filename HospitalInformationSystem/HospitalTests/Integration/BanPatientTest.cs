@@ -73,7 +73,7 @@ namespace HospitalTests.Integration
         [Fact]
         public void Appointment_num_cancelled_good()
         {
-            AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context)), new PatientService(new PatientRepository(context)));
+            AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), new DoctorService(new DoctorRepository(context)), new PatientService(new PatientRepository(context)));
 
             var result = controller.GetNumberOfCancelledAppointments(1);
             var okResult = result as ObjectResult;

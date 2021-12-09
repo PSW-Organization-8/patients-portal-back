@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace HospitalAPI.Migrations
 {
-    public partial class first : Migration
+    public partial class firstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,6 +42,38 @@ namespace HospitalAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Doctors", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Medications",
+                columns: table => new
+                {
+                    MedicineID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Quantity = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Medications", x => x.MedicineID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Receipts",
+                columns: table => new
+                {
+                    ReceiptID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    MedicineName = table.Column<string>(type: "text", nullable: true),
+                    Amount = table.Column<int>(type: "integer", nullable: false),
+                    Diagnosis = table.Column<string>(type: "text", nullable: true),
+                    DoctorId = table.Column<int>(type: "integer", nullable: false),
+                    PatientId = table.Column<int>(type: "integer", nullable: false),
+                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Receipts", x => x.ReceiptID);
                 });
 
             migrationBuilder.CreateTable(
@@ -217,8 +249,23 @@ namespace HospitalAPI.Migrations
                 values: new object[,]
                 {
                     { 1, null, null, null, 0, null, "123456799", "Jovanovic", "Jovan", "jova", null, "jova" },
-                    { 2, null, null, null, 0, null, "123756799", "Ilic", "Milan", "mico", null, "mico" }
+                    { 2, null, null, null, 0, null, "123756799", "Ilic", "Milan", "mico", null, "mico" },
+                    { 3, null, null, null, 8, null, "123756799", "Markovic", "Stevan", "mico", null, "mico" },
+                    { 4, null, null, null, 9, null, "123756799", "Visnjic", "Nikola", "mico", null, "mico" },
+                    { 5, null, null, null, 9, null, "123756799", "Mitic", "Strahinja", "mico", null, "mico" },
+                    { 6, null, null, null, 2, null, "123756799", "Despotovic", "Goran", "mico", null, "mico" },
+                    { 7, null, null, null, 7, null, "123756799", "Njegos", "Milomir", "mico", null, "mico" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Medications",
+                columns: new[] { "MedicineID", "Name", "Quantity" },
+                values: new object[] { 1L, "Synthroid", 2 });
+
+            migrationBuilder.InsertData(
+                table: "Receipts",
+                columns: new[] { "ReceiptID", "Amount", "Date", "Diagnosis", "DoctorId", "MedicineName", "PatientId" },
+                values: new object[] { 1L, 1, new DateTime(2021, 12, 9, 0, 0, 0, 0, DateTimeKind.Local), "Korona", 1, "Synthroid", 1 });
 
             migrationBuilder.InsertData(
                 table: "Patients",
@@ -234,16 +281,16 @@ namespace HospitalAPI.Migrations
                 columns: new[] { "Id", "DoctorId", "IsSurveyed", "PatientId", "StartTime", "State", "Type" },
                 values: new object[,]
                 {
-                    { 1, 1, false, 1, new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(4188), 0, 0 },
-                    { 2, 1, false, 1, new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(6743), 0, 0 },
-                    { 3, 1, false, 1, new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(6759), 0, 0 },
-                    { 4, 1, false, 1, new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(6764), 2, 0 },
-                    { 5, 1, false, 1, new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(6768), 2, 0 },
-                    { 6, 1, false, 1, new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(6771), 1, 0 },
-                    { 7, 1, false, 2, new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(6774), 2, 0 },
-                    { 8, 1, false, 2, new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(6777), 2, 0 },
-                    { 9, 1, false, 2, new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(6780), 2, 0 },
-                    { 10, 1, false, 2, new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(6783), 2, 0 }
+                    { 1, 1, false, 1, new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(469), 0, 0 },
+                    { 2, 6, false, 1, new DateTime(2021, 12, 15, 10, 15, 0, 0, DateTimeKind.Unspecified), 0, 0 },
+                    { 3, 6, false, 1, new DateTime(2021, 12, 15, 13, 15, 0, 0, DateTimeKind.Unspecified), 0, 0 },
+                    { 4, 6, false, 1, new DateTime(2021, 12, 15, 15, 45, 0, 0, DateTimeKind.Unspecified), 0, 0 },
+                    { 5, 1, false, 1, new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2113), 2, 0 },
+                    { 6, 1, false, 1, new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2129), 1, 0 },
+                    { 7, 1, false, 2, new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2133), 2, 0 },
+                    { 8, 1, false, 2, new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2136), 2, 0 },
+                    { 9, 1, false, 2, new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2139), 2, 0 },
+                    { 10, 1, false, 2, new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2142), 2, 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -251,8 +298,8 @@ namespace HospitalAPI.Migrations
                 columns: new[] { "Id", "Content", "Date", "IsAnonymous", "IsApproved", "IsPublishable", "PatientId" },
                 values: new object[,]
                 {
-                    { 1, "Tekst neki", new DateTime(2021, 12, 8, 22, 2, 23, 99, DateTimeKind.Local).AddTicks(1297), false, true, true, 1 },
-                    { 2, "Drugi neki", new DateTime(2021, 12, 8, 22, 2, 23, 102, DateTimeKind.Local).AddTicks(2702), false, true, true, 1 }
+                    { 1, "Tekst neki", new DateTime(2021, 12, 9, 19, 17, 58, 555, DateTimeKind.Local).AddTicks(4625), false, true, true, 1 },
+                    { 2, "Drugi neki", new DateTime(2021, 12, 9, 19, 17, 58, 557, DateTimeKind.Local).AddTicks(9478), false, true, true, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -351,7 +398,13 @@ namespace HospitalAPI.Migrations
                 name: "Feedbacks");
 
             migrationBuilder.DropTable(
+                name: "Medications");
+
+            migrationBuilder.DropTable(
                 name: "Questions");
+
+            migrationBuilder.DropTable(
+                name: "Receipts");
 
             migrationBuilder.DropTable(
                 name: "Allergens");
