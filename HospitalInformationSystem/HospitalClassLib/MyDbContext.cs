@@ -61,10 +61,11 @@ namespace HospitalClassLib
             );
 
             modelBuilder.Entity<Appointment>().HasData(
-                new Appointment { Id = 1, StartTime = DateTime.Now, State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed = false},
+                new Appointment { Id = 1, StartTime = DateTime.Now, State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed = false },
                 new Appointment { Id = 2, StartTime = new DateTime(2021, 12, 15, 10, 15, 0), State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 6, PatientId = 1, IsSurveyed = false },
                 new Appointment { Id = 3, StartTime = new DateTime(2021, 12, 15, 13, 15, 0), State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 6, PatientId = 1, IsSurveyed = false },
-                new Appointment { Id = 4, StartTime = new DateTime(2021, 12, 15, 15, 45, 0), State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 6, PatientId = 1, IsSurveyed = false },
+                new Appointment { Id = 4, StartTime = new DateTime(2021, 12, 15, 15, 45, 0), State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 6, PatientId = 1, IsSurveyed = false }
+
                 new Appointment { Id = 5, StartTime = DateTime.Now, State = AppointmentState.cancelled, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed = false },
                 new Appointment { Id = 6, StartTime = DateTime.Now, State = AppointmentState.finished, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed = false },
 

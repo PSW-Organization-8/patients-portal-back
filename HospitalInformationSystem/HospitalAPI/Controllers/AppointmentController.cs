@@ -1,5 +1,5 @@
-﻿using HospitalClassLib.Schedule.Model;
-﻿using HospitalAPI.Dto;
+using HospitalAPI.Dto;
+using HospitalClassLib.Schedule.Model;
 using HospitalAPI.Mapper;
 using HospitalClassLib.Schedule.Repository.AppointmentRepo;
 using HospitalClassLib.Schedule.Service;
@@ -68,6 +68,7 @@ namespace HospitalAPI.Controllers
                 listDto.Add(dto);
             }
             return listDto;
+            
         [HttpGet]
         public List<DateTime> GetAppointmentByPriority(DateTime firstDate, DateTime lastDate, int doctorId, bool doctorPriority)
         {
