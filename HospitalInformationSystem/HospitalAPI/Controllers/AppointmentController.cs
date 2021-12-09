@@ -1,5 +1,6 @@
 ﻿using HospitalAPI.Dto;
 using HospitalAPI.Mapper;
+using HospitalAPI.Validators;
 using HospitalClassLib.Schedule.Repository.AppointmentRepo;
 using HospitalClassLib.Schedule.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -17,11 +18,13 @@ namespace HospitalAPI.Controllers
         private readonly AppointmentService appointmentService;
         private readonly DoctorService doctorService;
         private readonly PatientService patientService;
+        private readonly AppointmentValidator appointmentValidator;
         public AppointmentController(AppointmentService appointmentService, DoctorService doctorService, PatientService patientService)
         {
             this.appointmentService = appointmentService;
             this.doctorService = doctorService;
             this.patientService = patientService;
+            this.appointmentValidator = new AppointmentValidator(doctorService, patientService);
         }
 
         [HttpGet("{id?}")]
@@ -35,16 +38,22 @@ namespace HospitalAPI.Controllers
         [HttpPost]
         public IActionResult CreateNewAppointment(AppointmentDto appointmentDto)
         {
-            appointmentService.Create(AppointmentMapper.AppointmentDtoToAppointment
+            if (appointmentValidator.Valid(appointmentDto))
+            {
+                appointmentService.Create(AppointmentMapper.AppointmentDtoToAppointment
                 (appointmentDto, doctorService.Get(appointmentDto.DoctorId), patientService.Get(appointmentDto.PatientId)));
-            return Ok();
+                return Ok("Successfully created appointment.");
+            }
+            return BadRequest("Invalid data!");
         }
 
         [HttpGet]
         [Route("freeTerms")]
         public IActionResult GetFreeTerms(DateTime startTime, int doctorId)
         {
-            return Ok(appointmentService.GetFreeTerms(startTime, doctorId));
+            if(appointmentValidator.Valid(startTime, doctorId))
+                return Ok(appointmentService.GetFreeTerms(startTime, doctorId));
+            return BadRequest("Invalid data!");
         }
     }
 }

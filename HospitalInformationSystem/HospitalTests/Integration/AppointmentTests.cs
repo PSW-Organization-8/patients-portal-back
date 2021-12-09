@@ -47,7 +47,7 @@ namespace HospitalTests.Integration
 
         [Theory]
         [MemberData(nameof(Get_free_appointments_data))]
-        public void Get_free_appointments(StandardAppointmentDto dto, List<DateTime> expectedResult)
+        public void Get_free_appointments(DateTime startTime, int doctorId, List<DateTime> expectedResult)
         {
             var doctorService = new DoctorService(new DoctorRepository(context));
             var patientService = new PatientService(new PatientRepository(context));
@@ -55,7 +55,7 @@ namespace HospitalTests.Integration
                 doctorService, patientService);
 
 
-            var result = appointmentController.GetFreeTerms(dto.StartTime, dto.DoctorId) as ObjectResult;
+            var result = appointmentController.GetFreeTerms(startTime, doctorId) as ObjectResult;
 
 
             Assert.Equal(result.Value, expectedResult);
@@ -63,7 +63,7 @@ namespace HospitalTests.Integration
         public static IEnumerable<object[]> Get_free_appointments_data =>
         new List<object[]>
         {
-            new object[] { new StandardAppointmentDto(new DateTime(2021, 12, 15), 6) , new List<DateTime>{
+            new object[] { new DateTime(2021, 12, 15), 6, new List<DateTime>{
                     new DateTime(2021, 12, 15, 8, 0, 0),
                     new DateTime(2021, 12, 15, 8, 15, 0),
                     new DateTime(2021, 12, 15, 8, 30, 0),
@@ -96,7 +96,7 @@ namespace HospitalTests.Integration
                 }
             },
 
-            new object[] { new StandardAppointmentDto(new DateTime(2021, 12, 16), 6) , new List<DateTime>{
+            new object[] { new DateTime(2021, 12, 16), 6, new List<DateTime>{
                     new DateTime(2021, 12, 16, 8, 0, 0),
                     new DateTime(2021, 12, 16, 8, 15, 0),
                     new DateTime(2021, 12, 16, 8, 30, 0),
