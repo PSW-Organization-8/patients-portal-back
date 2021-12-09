@@ -68,6 +68,7 @@ namespace HospitalAPI.Controllers
                 listDto.Add(dto);
             }
             return listDto;
+        }
             
         [HttpGet]
         public List<DateTime> GetAppointmentByPriority(DateTime firstDate, DateTime lastDate, int doctorId, bool doctorPriority)
