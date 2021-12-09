@@ -59,6 +59,7 @@ namespace HospitalAPI.Controllers
         }
 
         [HttpGet]
+        [Route("listDto")]
         public List<PatientAppointDto> GetDto()
         {
             List<PatientAppointDto> listDto = new List<PatientAppointDto>();
@@ -85,7 +86,6 @@ namespace HospitalAPI.Controllers
 
         [HttpGet]
         [Route("freeTerms")]
-        //public IActionResult GetFreeTerms(StandardAppointmentDto dto)
         public IActionResult GetFreeTerms(DateTime startTime, int doctorId)
         {
             return Ok(appointmentService.GetFreeTerms(startTime, doctorId));
