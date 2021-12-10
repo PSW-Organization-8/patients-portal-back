@@ -72,9 +72,10 @@ namespace HospitalAPI.Controllers
         }
             
         [HttpGet]
-        public List<DateTime> GetAppointmentByPriority(DateTime firstDate, DateTime lastDate, int doctorId, bool doctorPriority)
+        public IActionResult GetAppointmentByPriority(DateTime firstDate, DateTime lastDate, int doctorId, bool doctorPriority)
         {
-            return appointmentService.GetAppointmentByPriority(firstDate, lastDate, doctorId, doctorPriority);
+            AdvancedAppointmentDto dto = new AdvancedAppointmentDto(firstDate, lastDate, doctorId, doctorPriority);
+            return Ok(appointmentService.GetAppointmentByPriority(dto.FirstDate, dto.LastDate, dto.DoctorId, dto.DoctorPriority));
         }
         [HttpPost]
         public IActionResult CreateNewAppointment(AppointmentDto appointmentDto)
