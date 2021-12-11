@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HospitalAPI.Validators;
 
 namespace HospitalAPI.Controllers
 {
@@ -18,11 +19,13 @@ namespace HospitalAPI.Controllers
         private readonly AppointmentService appointmentService;
         private readonly DoctorService doctorService;
         private readonly PatientService patientService;
+        private readonly AdvancedAppointmentValidator advancedAppointmentValidator;
         public AppointmentController(AppointmentService appointmentService, DoctorService doctorService, PatientService patientService)
         {
             this.appointmentService = appointmentService;
             this.doctorService = doctorService;
             this.patientService = patientService;
+            this.advancedAppointmentValidator = new AdvancedAppointmentValidator();
         }
 
         [HttpGet("{id?}")]
@@ -72,9 +75,12 @@ namespace HospitalAPI.Controllers
         }
             
         [HttpGet]
-        public List<DateTime> GetAppointmentByPriority(DateTime firstDate, DateTime lastDate, int doctorId, bool doctorPriority)
+        public IActionResult GetAppointmentByPriority(DateTime firstDate, DateTime lastDate, int doctorId, bool doctorPriority)
         {
-            return appointmentService.GetAppointmentByPriority(firstDate, lastDate, doctorId, doctorPriority);
+            AdvancedAppointmentDto dto = new(firstDate, lastDate, doctorId, doctorPriority);
+            if(advancedAppointmentValidator.Validate(dto).IsValid)
+                return Ok(appointmentService.GetAppointmentByPriority(dto.FirstDate, dto.LastDate, dto.DoctorId, dto.DoctorPriority));
+            return BadRequest();
         }
         [HttpPost]
         public IActionResult CreateNewAppointment(AppointmentDto appointmentDto)
