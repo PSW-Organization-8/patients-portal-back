@@ -35,7 +35,7 @@ namespace HospitalAPI.Controllers
         }
 
         [HttpGet("allDoctors")]
-        public IActionResult GetAllDoctors(Specialization specialization)
+        public IActionResult GetAllDoctors()
         {
             return Ok(doctorService.GetAllDoctors());
         }
