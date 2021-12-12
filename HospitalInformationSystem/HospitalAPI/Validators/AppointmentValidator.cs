@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using HospitalAPI.Dto;
+using HospitalClassLib.Schedule.Model;
 using HospitalClassLib.Schedule.Service;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,25 @@ namespace HospitalAPI.Validators
     {
         private DoctorService doctorService;
         private PatientService patientService;
-        public AppointmentValidator(DoctorService doctorService, PatientService patientService)
+        private AppointmentService appointmentService;
+        public AppointmentValidator(DoctorService doctorService, PatientService patientService, AppointmentService appointmentService)
         {
             this.doctorService = doctorService;
             this.patientService = patientService;
+            this.appointmentService = appointmentService;
         }
-        private bool CheckStartTime(object startTime)
+        private bool CheckStartTime(object startTime, int doctorId)
         {
-            return startTime != null && (DateTime)startTime > DateTime.Now;
+            return startTime != null && (DateTime)startTime > DateTime.Now && CheckIfTermIsAlreadyScheduled((DateTime)startTime, doctorId) == false;
+        }
+        private bool CheckIfTermIsAlreadyScheduled(DateTime startTime, int doctorId)
+        {
+            foreach(Appointment doctorAppointment in appointmentService.GetByDoctor(doctorId))
+            {
+                if (startTime >= doctorAppointment.StartTime && startTime < doctorAppointment.StartTime.AddMinutes(15))
+                    return true;
+            }
+            return false;
         }
         private bool CheckDoctorId(object doctorId)
         {
@@ -31,11 +43,11 @@ namespace HospitalAPI.Validators
         }
         public bool Valid(AppointmentDto dto)
         {
-            return dto != null && CheckDoctorId(dto.DoctorId) && CheckPatientId(dto.PatientId) && CheckStartTime(dto.StartTime);
+            return dto != null && CheckDoctorId(dto.DoctorId) && CheckPatientId(dto.PatientId) && CheckStartTime(dto.StartTime, dto.DoctorId);
         }
         public bool Valid(DateTime startTime, int doctorId)
         {
-            return CheckStartTime(startTime) && CheckDoctorId(doctorId);
+            return CheckStartTime(startTime, doctorId) && CheckDoctorId(doctorId);
         }
 
     }

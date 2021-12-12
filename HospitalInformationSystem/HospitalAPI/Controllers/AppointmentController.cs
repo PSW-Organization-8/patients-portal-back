@@ -24,7 +24,7 @@ namespace HospitalAPI.Controllers
             this.appointmentService = appointmentService;
             this.doctorService = doctorService;
             this.patientService = patientService;
-            this.appointmentValidator = new AppointmentValidator(doctorService, patientService);
+            this.appointmentValidator = new AppointmentValidator(doctorService, patientService, appointmentService);
         }
 
         [HttpGet("{id?}")]

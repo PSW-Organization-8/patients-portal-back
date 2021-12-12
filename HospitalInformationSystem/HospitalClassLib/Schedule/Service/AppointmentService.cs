@@ -47,6 +47,10 @@ namespace HospitalClassLib.Schedule.Service
         {
             return appointmentRepository.GetByPatient(id);
         }
+        public List<Appointment> GetByDoctor(int id)
+        {
+            return appointmentRepository.GetByDoctor(id);
+        }
         public List<DateTime> GetFreeTerms(DateTime appoinmentDate, int doctorId)
         {
             return GenerateFreeTerms(appointmentRepository.GetDoctorTermsInSpecificDay(appoinmentDate, doctorId), GetPotentialFreeTerms(appoinmentDate));
