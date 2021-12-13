@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HospitalClassLib.Schedule.Service
@@ -40,6 +41,7 @@ namespace HospitalClassLib.Schedule.Service
         {
             return appointmentRepository.GetAll();
         }
+
         public Appointment Create(Appointment appointment)
         {
             return appointmentRepository.Create(appointment);
@@ -118,6 +120,7 @@ namespace HospitalClassLib.Schedule.Service
         {
             return appointmentRepository.GetNumberOfCancelledAppointments(id);
         }
+
         public List<DateTime> GetFreeTerms(DateTime appoinmentDate, int doctorId)
         {
             return GenerateFreeTerms(appointmentRepository.GetDoctorTermsInSpecificDay(appoinmentDate, doctorId), GetPotentialFreeTerms(appoinmentDate));
@@ -131,13 +134,20 @@ namespace HospitalClassLib.Schedule.Service
                     potentialFreeTerms.Add(new DateTime(appoinmentDate.Year, appoinmentDate.Month, appoinmentDate.Day, hourCounter, minuteCounter * TERM_DURATION, 0));
             return potentialFreeTerms;
         }
+
         private List<DateTime> GenerateFreeTerms(List<DateTime> doctorTerms, List<DateTime> potentialFreeTerms)
         {
             foreach (DateTime doctorTerm in doctorTerms)
                 if (potentialFreeTerms.Contains(doctorTerm)) potentialFreeTerms.Remove(doctorTerm);
             return potentialFreeTerms;
         }
+
+        public void FinishAppointments()
+        {
+            appointmentRepository.FinishAppointments();
+        }
         #endregion Methods
+
     }
 }
 

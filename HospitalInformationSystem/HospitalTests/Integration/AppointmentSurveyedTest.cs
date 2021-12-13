@@ -29,7 +29,7 @@ namespace HospitalTests.Integration
             context = scope.ServiceProvider.GetRequiredService<MyDbContext>();
         }
 
-         [Fact]
+        [Fact]
         public void Appointment_surveyed_good()
         {
             AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), new DoctorService(new DoctorRepository(context)), new PatientService(new PatientRepository(context)));
@@ -38,6 +38,17 @@ namespace HospitalTests.Integration
             var okResult = result as ObjectResult;
 
             Assert.Equal(200, okResult.StatusCode);
+        }
+
+        [Fact]
+        public void Appointment_surveyed_bad()
+        {
+            AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), new DoctorService(new DoctorRepository(context)), new PatientService(new PatientRepository(context)));
+
+            var result = controller.SurveyAppointment(1);
+            var okResult = result as ObjectResult;
+
+            Assert.Equal(400, okResult.StatusCode);
         }
     }
 }
