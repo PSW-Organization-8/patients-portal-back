@@ -51,7 +51,7 @@ namespace HospitalClassLib.Schedule.Service
             return appointmentRepository.Delete(id);
         }
 
-        public List<DateTime> GetAppointmentByPriority(DateTime firstDate, DateTime lastDate, int doctorId, bool doctorPriority)
+        public List<Tuple<DateTime, int>> GetAppointmentByPriority(DateTime firstDate, DateTime lastDate, int doctorId, bool doctorPriority)
         {
             if (doctorPriority)
                 return GetAppointmentsWithDoctorPriority(firstDate, lastDate, doctorId);
@@ -59,37 +59,35 @@ namespace HospitalClassLib.Schedule.Service
                 return GetAppointmentsWithDatePriority(firstDate, lastDate, doctorId);
         }
 
-        private List<DateTime> GetAppointmentsWithDoctorPriority(DateTime firstDate, DateTime lastDate, int doctorId)
+        private List<Tuple<DateTime, int>> GetAppointmentsWithDoctorPriority(DateTime firstDate, DateTime lastDate, int doctorId)
         {
-            List<DateTime> appointmentDates = GetDoctorAppointmentsBetweenDates(firstDate, lastDate, doctorId);
+            List<Tuple<DateTime, int>> appointmentDates = GetDoctorAppointmentsBetweenDates(firstDate, lastDate, doctorId);
             if (appointmentDates.Count < 1)
                 appointmentDates = GetDoctorAppointmentsBetweenDates(firstDate.AddDays(-2), lastDate.AddDays(2), doctorId);
             return appointmentDates;
         }
 
-        private List<DateTime> GetAppointmentsWithDatePriority(DateTime firstDate, DateTime lastDate, int doctorId)
+        private List<Tuple<DateTime, int>> GetAppointmentsWithDatePriority(DateTime firstDate, DateTime lastDate, int doctorId)
         {
-            List<DateTime> appointmentDates = GetDoctorAppointmentsBetweenDates(firstDate, lastDate, doctorId);
+            List<Tuple<DateTime, int>> appointmentDates = GetDoctorAppointmentsBetweenDates(firstDate, lastDate, doctorId);
             if (appointmentDates.Count < 1)
             {
                 foreach (Doctor doctor in doctorRepository.GetAll().Where(x => x.DoctorSpecialization.Equals(doctorRepository.Get(doctorId).DoctorSpecialization)))
                 {
                     appointmentDates = GetDoctorAppointmentsBetweenDates(firstDate, lastDate, doctor.Id);
-                    if (appointmentDates.Count > 0)
-                        break;
                 }
 
             }
             return appointmentDates;
         }
 
-        private List<DateTime> GetDoctorAppointmentsBetweenDates(DateTime firstDate, DateTime lastDate, int doctorId)
+        private List<Tuple<DateTime, int>> GetDoctorAppointmentsBetweenDates(DateTime firstDate, DateTime lastDate, int doctorId)
         {
             List<Appointment> doctorAppointments = appointmentRepository.GetByDoctor(doctorId);
-            List<DateTime> appointmentDates = new List<DateTime>();
+            List<Tuple<DateTime, int>> appointmentDates = new List<Tuple<DateTime, int>>();
             for (DateTime dateTime = firstDate; dateTime <= lastDate; dateTime = dateTime.AddMinutes(15))
                 if (!doctorAppointments.Select(x => x.StartTime).ToList().Contains(dateTime) && dateTime.Hour >= 8 && dateTime.Hour < 16)
-                    appointmentDates.Add(dateTime);
+                    appointmentDates.Add(new Tuple<DateTime, int>(dateTime, doctorId));
             return appointmentDates;
         }
 

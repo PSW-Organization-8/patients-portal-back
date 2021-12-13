@@ -30,12 +30,13 @@ namespace HospitalTests.Integration
             _factory = factory;
             scope = _factory.Services.CreateScope();
             context = scope.ServiceProvider.GetRequiredService<MyDbContext>();
+            if(context.Doctors.Where(doctor => doctor.Id == 100).ToList().Count == 0)
+                FillFakeDatabase();
         }
 
         [Fact]
         public void Return_appointments_with_doctor_priority()
         {
-            FillFakeDatabase();
             var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), 
                 new DoctorService(new DoctorRepository(context)), new PatientService(new PatientRepository(context)));
             var availableAppointments = appointmentController.GetAppointmentByPriority(new DateTime(2022, 12, 15, 8, 0, 0), new DateTime(2022, 12, 16, 16, 0, 0), 100, true);
@@ -53,7 +54,6 @@ namespace HospitalTests.Integration
         [Fact]
         public void Return_appointments_with_date_priority()
         {
-            FillFakeDatabase();
             var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), 
                 new DoctorService(new DoctorRepository(context)), new PatientService(new PatientRepository(context)));
             var availableAppointments = appointmentController.GetAppointmentByPriority(new DateTime(2021, 12, 15, 8, 0, 0), new DateTime(2021, 12, 16, 16, 0, 0), 100, false);
