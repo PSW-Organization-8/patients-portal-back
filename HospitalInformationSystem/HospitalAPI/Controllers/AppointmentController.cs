@@ -85,7 +85,7 @@ namespace HospitalAPI.Controllers
             AdvancedAppointmentDto dto = new(firstDate, lastDate, doctorId, doctorPriority);
             if(advancedAppointmentValidator.Validate(dto).IsValid)
                 return Ok(appointmentService.GetAppointmentByPriority(dto.FirstDate, dto.LastDate, dto.DoctorId, dto.DoctorPriority));
-            return BadRequest();
+            return BadRequest(false);
         }
         [HttpPost]
         public IActionResult CreateNewAppointment(AppointmentDto appointmentDto)
