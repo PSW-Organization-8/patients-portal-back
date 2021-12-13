@@ -37,7 +37,8 @@ namespace HospitalTests.Unit
         {
             var doctorService = new DoctorService(CreateDoctorStubRepository());
             var patientService = new PatientService(CreatePatientStudRepository());
-            var validator = new AppointmentValidator(doctorService, patientService);
+            var appointmentService = new AppointmentService();
+            var validator = new AppointmentValidator(doctorService, patientService, appointmentService);
 
             var result = validator.Valid(startDate, doctorId);
 
