@@ -100,7 +100,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(469),
+                            StartTime = new DateTime(2021, 12, 14, 0, 17, 56, 398, DateTimeKind.Local).AddTicks(7231),
                             State = 0,
                             Type = 0
                         },
@@ -140,7 +140,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2113),
+                            StartTime = new DateTime(2021, 12, 14, 0, 17, 56, 398, DateTimeKind.Local).AddTicks(8661),
                             State = 2,
                             Type = 0
                         },
@@ -150,7 +150,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2129),
+                            StartTime = new DateTime(2021, 12, 14, 0, 17, 56, 398, DateTimeKind.Local).AddTicks(8673),
                             State = 1,
                             Type = 0
                         },
@@ -160,7 +160,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2133),
+                            StartTime = new DateTime(2021, 12, 14, 0, 17, 56, 398, DateTimeKind.Local).AddTicks(8677),
                             State = 2,
                             Type = 0
                         },
@@ -170,7 +170,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2136),
+                            StartTime = new DateTime(2021, 12, 14, 0, 17, 56, 398, DateTimeKind.Local).AddTicks(8679),
                             State = 2,
                             Type = 0
                         },
@@ -180,7 +180,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2139),
+                            StartTime = new DateTime(2021, 12, 14, 0, 17, 56, 398, DateTimeKind.Local).AddTicks(8682),
                             State = 2,
                             Type = 0
                         },
@@ -190,7 +190,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2142),
+                            StartTime = new DateTime(2021, 12, 14, 0, 17, 56, 398, DateTimeKind.Local).AddTicks(8685),
                             State = 2,
                             Type = 0
                         });
@@ -232,7 +232,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 12, 9, 19, 17, 58, 555, DateTimeKind.Local).AddTicks(4625),
+                            Date = new DateTime(2021, 12, 14, 0, 17, 56, 395, DateTimeKind.Local).AddTicks(8419),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -242,7 +242,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 12, 9, 19, 17, 58, 557, DateTimeKind.Local).AddTicks(9478),
+                            Date = new DateTime(2021, 12, 14, 0, 17, 56, 398, DateTimeKind.Local).AddTicks(5855),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -836,7 +836,7 @@ namespace HospitalAPI.Migrations
                         {
                             ReceiptID = 1L,
                             Amount = 1,
-                            Date = new DateTime(2021, 12, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2021, 12, 14, 0, 0, 0, 0, DateTimeKind.Local),
                             Diagnosis = "Korona",
                             DoctorId = 1,
                             MedicineName = "Synthroid",

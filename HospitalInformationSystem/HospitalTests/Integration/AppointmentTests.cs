@@ -63,7 +63,7 @@ namespace HospitalTests.Integration
         public static IEnumerable<object[]> Get_free_appointments_data =>
         new List<object[]>
         {
-            new object[] { new StandardAppointmentDto(new DateTime(2021, 12, 15), 6) , new List<DateTime>{
+            new object[] { new DateTime(2021, 12, 15), 6, new List<DateTime>{
                     new DateTime(2021, 12, 15, 8, 0, 0),
                     new DateTime(2021, 12, 15, 8, 15, 0),
                     new DateTime(2021, 12, 15, 8, 30, 0),
@@ -96,7 +96,7 @@ namespace HospitalTests.Integration
                 }
             },
 
-            new object[] { new StandardAppointmentDto(new DateTime(2021, 12, 16), 6) , new List<DateTime>{
+            new object[] { new DateTime(2021, 12, 16), 6, new List<DateTime>{
                     new DateTime(2021, 12, 16, 8, 0, 0),
                     new DateTime(2021, 12, 16, 8, 15, 0),
                     new DateTime(2021, 12, 16, 8, 30, 0),

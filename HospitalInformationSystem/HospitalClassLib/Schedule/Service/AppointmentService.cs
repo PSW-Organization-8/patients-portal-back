@@ -95,6 +95,10 @@ namespace HospitalClassLib.Schedule.Service
         {
             return appointmentRepository.GetByPatient(id);
         }
+        public List<Appointment> GetByDoctor(int id)
+        {
+            return appointmentRepository.GetByDoctor(id);
+        }
 
         public bool CancelById(int id)
         {
@@ -123,7 +127,6 @@ namespace HospitalClassLib.Schedule.Service
         {
             return GenerateFreeTerms(appointmentRepository.GetDoctorTermsInSpecificDay(appoinmentDate, doctorId), GetPotentialFreeTerms(appoinmentDate));
         }
-
         private List<DateTime> GetPotentialFreeTerms(DateTime appoinmentDate)
         {
             List<DateTime> potentialFreeTerms = new List<DateTime>();

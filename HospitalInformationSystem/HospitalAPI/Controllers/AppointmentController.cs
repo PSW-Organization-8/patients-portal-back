@@ -1,6 +1,8 @@
+﻿using HospitalAPI.Dto;
+using HospitalAPI.Mapper;
+using HospitalAPI.Validators;
 using HospitalAPI.Dto;
 using HospitalClassLib.Schedule.Model;
-using HospitalAPI.Mapper;
 using HospitalClassLib.Schedule.Repository.AppointmentRepo;
 using HospitalClassLib.Schedule.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +21,7 @@ namespace HospitalAPI.Controllers
         private readonly AppointmentService appointmentService;
         private readonly DoctorService doctorService;
         private readonly PatientService patientService;
+        private readonly AppointmentValidator appointmentValidator;
         private readonly AdvancedAppointmentValidator advancedAppointmentValidator;
         private readonly IdValidator idValidator;
         public AppointmentController(AppointmentService appointmentService, DoctorService doctorService, PatientService patientService)
@@ -26,6 +29,7 @@ namespace HospitalAPI.Controllers
             this.appointmentService = appointmentService;
             this.doctorService = doctorService;
             this.patientService = patientService;
+            this.appointmentValidator = new AppointmentValidator(doctorService, patientService, appointmentService);
             this.appointmentService.FinishAppointments();
             this.advancedAppointmentValidator = new AdvancedAppointmentValidator();
             this.idValidator = new IdValidator();
@@ -39,6 +43,18 @@ namespace HospitalAPI.Controllers
             return BadRequest();
         }
 
+        [HttpPost]
+        [Route("createNew")]
+        public IActionResult CreateNewAppointment(AppointmentDto appointmentDto)
+        {
+            if (appointmentValidator.Valid(appointmentDto))
+            {
+                appointmentService.Create(AppointmentMapper.AppointmentDtoToAppointment
+                (appointmentDto, doctorService.Get(appointmentDto.DoctorId), patientService.Get(appointmentDto.PatientId)));
+                return Ok();
+            }
+            return BadRequest("Invalid data!");
+        }
         [HttpPut("{id?}")]
         public IActionResult CancelById(int id)
         {
@@ -87,20 +103,14 @@ namespace HospitalAPI.Controllers
                 return Ok(appointmentService.GetAppointmentByPriority(dto.FirstDate, dto.LastDate, dto.DoctorId, dto.DoctorPriority));
             return BadRequest(false);
         }
-        [HttpPost]
-        public IActionResult CreateNewAppointment(AppointmentDto appointmentDto)
-        {
-            appointmentService.Create(AppointmentMapper.AppointmentDtoToAppointment
-                (appointmentDto, doctorService.Get(appointmentDto.DoctorId), patientService.Get(appointmentDto.PatientId)));
-            return Ok();
-        }
 
         [HttpGet]
         [Route("freeTerms")]
         public IActionResult GetFreeTerms(DateTime startTime, int doctorId)
         {
-            return Ok(appointmentService.GetFreeTerms(startTime, doctorId));
-
+            if(appointmentValidator.Valid(startTime, doctorId))
+                return Ok(appointmentService.GetFreeTerms(startTime, doctorId));
+            return BadRequest("Invalid data!");
         }
     }
 }
