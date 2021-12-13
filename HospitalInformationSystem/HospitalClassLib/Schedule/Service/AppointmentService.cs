@@ -98,6 +98,7 @@ namespace HospitalClassLib.Schedule.Service
         public List<Appointment> GetByDoctor(int id)
         {
             return appointmentRepository.GetByDoctor(id);
+        }
 
         public bool CancelById(int id)
         {

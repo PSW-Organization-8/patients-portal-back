@@ -51,6 +51,7 @@ namespace HospitalAPI.Controllers
                 return Ok();
             }
             return BadRequest("Invalid data!");
+        }
         [HttpPut("{id?}")]
         public IActionResult CancelById(int id)
         {
@@ -96,13 +97,6 @@ namespace HospitalAPI.Controllers
             if(advancedAppointmentValidator.Validate(dto).IsValid)
                 return Ok(appointmentService.GetAppointmentByPriority(dto.FirstDate, dto.LastDate, dto.DoctorId, dto.DoctorPriority));
             return BadRequest();
-        }
-        [HttpPost]
-        public IActionResult CreateNewAppointment(AppointmentDto appointmentDto)
-        {
-            appointmentService.Create(AppointmentMapper.AppointmentDtoToAppointment
-                (appointmentDto, doctorService.Get(appointmentDto.DoctorId), patientService.Get(appointmentDto.PatientId)));
-            return Ok();
         }
 
         [HttpGet]

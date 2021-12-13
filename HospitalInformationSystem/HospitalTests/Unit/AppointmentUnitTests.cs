@@ -24,7 +24,7 @@ namespace HospitalTests.Unit
         {
             var doctorService = new DoctorService(CreateDoctorStubRepository());
             var patientService = new PatientService(CreatePatientStudRepository());
-            var appointmentController = new AppointmentController(new AppointmentService(CreateAppointmentStubRepository()),
+            var appointmentController = new AppointmentController(new AppointmentService(CreateAppointmentStubRepository(), CreateDoctorStubRepository()),
                 doctorService, patientService);
 
             var result = appointmentController.CreateNewAppointment(appointmentDto) as ObjectResult;
@@ -37,7 +37,7 @@ namespace HospitalTests.Unit
         {
             var doctorService = new DoctorService(CreateDoctorStubRepository());
             var patientService = new PatientService(CreatePatientStudRepository());
-            var appointmentService = new AppointmentService();
+            var appointmentService = new AppointmentService(CreateAppointmentStubRepository(), CreateDoctorStubRepository());
             var validator = new AppointmentValidator(doctorService, patientService, appointmentService);
 
             var result = validator.Valid(startDate, doctorId);
@@ -99,11 +99,14 @@ namespace HospitalTests.Unit
         {
             var stubRepository = new Mock<IAppointmentRepository>();
             var doctorTerms = new List<DateTime>();
+            var doctorAppointments = new List<Appointment>();
             var startTime = new DateTime(2022, 4, 4, 10, 0, 0);
 
             doctorTerms.Add(startTime);
+            doctorAppointments.Add(new Appointment(startTime, new Doctor(), new Patient()));
 
             stubRepository.Setup(ap => ap.GetDoctorTermsInSpecificDay(startTime, 1)).Returns(doctorTerms);
+            stubRepository.Setup(ap => ap.GetByDoctor(1)).Returns(doctorAppointments);
 
             return stubRepository.Object;
         }
