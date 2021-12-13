@@ -40,11 +40,11 @@ namespace HospitalTests.Integration
             var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), 
                 new DoctorService(new DoctorRepository(context)), new PatientService(new PatientRepository(context)));
             var availableAppointments = appointmentController.GetAppointmentByPriority(new DateTime(2022, 12, 15, 8, 0, 0), new DateTime(2022, 12, 16, 16, 0, 0), 100, true);
-            List<DateTime> dateTimes = new List<DateTime>();
-            FillDateTimeFrame(new DateTime(2022, 12, 13, 8, 0, 0), new DateTime(2022, 12, 13, 15, 45, 0), dateTimes);
-            FillDateTimeFrame(new DateTime(2022, 12, 14, 8, 0, 0), new DateTime(2022, 12, 14, 15, 45, 0), dateTimes);
-            FillDateTimeFrame(new DateTime(2022, 12, 17, 8, 0, 0), new DateTime(2022, 12, 17, 15, 45, 0), dateTimes);
-            FillDateTimeFrame(new DateTime(2022, 12, 18, 8, 0, 0), new DateTime(2022, 12, 18, 15, 45, 0), dateTimes);
+            List<Tuple<DateTime, int, string>> dateTimes = new List<Tuple<DateTime, int, string>>();
+            FillDateTimeFrame(new DateTime(2022, 12, 13, 8, 0, 0), new DateTime(2022, 12, 13, 15, 45, 0), 100, "Radisa Milovcevic", dateTimes);
+            FillDateTimeFrame(new DateTime(2022, 12, 14, 8, 0, 0), new DateTime(2022, 12, 14, 15, 45, 0), 100, "Radisa Milovcevic", dateTimes);
+            FillDateTimeFrame(new DateTime(2022, 12, 17, 8, 0, 0), new DateTime(2022, 12, 17, 15, 45, 0), 100, "Radisa Milovcevic", dateTimes);
+            FillDateTimeFrame(new DateTime(2022, 12, 18, 8, 0, 0), new DateTime(2022, 12, 18, 15, 45, 0), 100, "Radisa Milovcevic", dateTimes);
 
             var availableAppointmentsCheck = availableAppointments as ObjectResult;
 
@@ -57,24 +57,24 @@ namespace HospitalTests.Integration
             var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), 
                 new DoctorService(new DoctorRepository(context)), new PatientService(new PatientRepository(context)));
             var availableAppointments = appointmentController.GetAppointmentByPriority(new DateTime(2021, 12, 15, 8, 0, 0), new DateTime(2021, 12, 16, 16, 0, 0), 100, false);
-            List<DateTime> dateTimes = new List<DateTime>();
-            FillDateTimeFrame(new DateTime(2021, 12, 15, 8, 0, 0), new DateTime(2021, 12, 15, 15, 45, 0), dateTimes);
-            FillDateTimeFrame(new DateTime(2021, 12, 16, 8, 0, 0), new DateTime(2021, 12, 16, 15, 45, 0), dateTimes);
+            List<Tuple<DateTime, int, string>> dateTimes = new List<Tuple<DateTime, int, string>>();
+            FillDateTimeFrame(new DateTime(2021, 12, 15, 8, 0, 0), new DateTime(2021, 12, 15, 15, 45, 0), 100, "Radisa Milovcevic", dateTimes);
+            FillDateTimeFrame(new DateTime(2021, 12, 16, 8, 0, 0), new DateTime(2021, 12, 16, 15, 45, 0), 100, "Radisa Milovcevic", dateTimes);
 
             var availableAppointmentsCheck = availableAppointments as ObjectResult;
 
             Assert.Equal(dateTimes, availableAppointmentsCheck.Value);
         }
 
-        private void FillDateTimeFrame(DateTime firstDate, DateTime lastDate, List<DateTime> dateTimes)
+        private void FillDateTimeFrame(DateTime firstDate, DateTime lastDate, int doctorId, string doctorFullName, List<Tuple<DateTime, int, string>> dateTimes)
         {
             for (DateTime dateTime = firstDate; dateTime <= lastDate; dateTime = dateTime.AddMinutes(15))
-                    dateTimes.Add(dateTime);
+                    dateTimes.Add(new Tuple<DateTime, int, string>(dateTime, doctorId, doctorFullName));
         }
 
         private void FillFakeDatabase()
         {
-            context.Doctors.Add(new Doctor { Id = 100, DoctorSpecialization = Specialization.FamilyPhysician });
+            context.Doctors.Add(new Doctor { Id = 100, DoctorSpecialization = Specialization.FamilyPhysician, Name = "Radisa", LastName = "Milovcevic" });
             context.Patients.Add(new Patient { Id = 50 });
             for (DateTime dateTime = new(2022, 12, 15, 8, 0, 0); dateTime <= new DateTime(2022, 12, 15, 15, 45, 0); dateTime = dateTime.AddMinutes(15))
                 context.Appointments.Add(new Appointment { StartTime = dateTime, DoctorId = 100, PatientId = 50});
