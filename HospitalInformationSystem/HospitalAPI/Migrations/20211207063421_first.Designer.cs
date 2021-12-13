@@ -10,8 +10,13 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211207063421_first.Designer.cs
     [Migration("20211207063421_first")]
     partial class first
+=======
+    [Migration("20211209181759_firstMigration")]
+    partial class firstMigration
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211209181759_firstMigration.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -72,11 +77,17 @@ namespace HospitalAPI.Migrations
                     b.Property<int>("DoctorId")
                         .HasColumnType("integer");
 
+                    b.Property<bool>("IsSurveyed")
+                        .HasColumnType("boolean");
+
                     b.Property<int>("PatientId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("State")
+                        .HasColumnType("integer");
 
                     b.Property<int>("Type")
                         .HasColumnType("integer");
@@ -94,32 +105,125 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             DoctorId = 1,
+                            IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 7, 7, 34, 20, 308, DateTimeKind.Local).AddTicks(7097),
+                            StartTime = new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(469),
+                            State = 0,
                             Type = 0
                         },
                         new
                         {
                             Id = 2,
                             DoctorId = 6,
+                            IsSurveyed = false,
                             PatientId = 1,
                             StartTime = new DateTime(2021, 12, 15, 10, 15, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
                             Type = 0
                         },
                         new
                         {
                             Id = 3,
                             DoctorId = 6,
+                            IsSurveyed = false,
                             PatientId = 1,
                             StartTime = new DateTime(2021, 12, 15, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
                             Type = 0
                         },
                         new
                         {
                             Id = 4,
                             DoctorId = 6,
+                            IsSurveyed = false,
+                            PatientId = 1,
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211207063421_first.Designer.cs
+                            StartTime = new DateTime(2021, 12, 7, 7, 34, 20, 308, DateTimeKind.Local).AddTicks(7097),
+=======
+                            StartTime = new DateTime(2021, 12, 15, 15, 45, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211209181759_firstMigration.Designer.cs
+                            Type = 0
+                        },
+                        new
+                        {
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211207063421_first.Designer.cs
+                            Id = 2,
+                            DoctorId = 6,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 15, 10, 15, 0, 0, DateTimeKind.Unspecified),
+=======
+                            Id = 5,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2113),
+                            State = 2,
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211209181759_firstMigration.Designer.cs
+                            Type = 0
+                        },
+                        new
+                        {
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211207063421_first.Designer.cs
+                            Id = 3,
+                            DoctorId = 6,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 15, 13, 15, 0, 0, DateTimeKind.Unspecified),
+=======
+                            Id = 6,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2129),
+                            State = 1,
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211209181759_firstMigration.Designer.cs
+                            Type = 0
+                        },
+                        new
+                        {
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211207063421_first.Designer.cs
+                            Id = 4,
+                            DoctorId = 6,
                             PatientId = 1,
                             StartTime = new DateTime(2021, 12, 15, 15, 45, 0, 0, DateTimeKind.Unspecified),
+=======
+                            Id = 7,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2133),
+                            State = 2,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2136),
+                            State = 2,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 9,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2139),
+                            State = 2,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 10,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2142),
+                            State = 2,
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211209181759_firstMigration.Designer.cs
                             Type = 0
                         });
                 });
@@ -160,7 +264,11 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211207063421_first.Designer.cs
                             Date = new DateTime(2021, 12, 7, 7, 34, 20, 300, DateTimeKind.Local).AddTicks(9325),
+=======
+                            Date = new DateTime(2021, 12, 9, 19, 17, 58, 555, DateTimeKind.Local).AddTicks(4625),
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211209181759_firstMigration.Designer.cs
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -170,7 +278,11 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211207063421_first.Designer.cs
                             Date = new DateTime(2021, 12, 7, 7, 34, 20, 308, DateTimeKind.Local).AddTicks(4608),
+=======
+                            Date = new DateTime(2021, 12, 9, 19, 17, 58, 557, DateTimeKind.Local).AddTicks(9478),
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211209181759_firstMigration.Designer.cs
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -263,6 +375,24 @@ namespace HospitalAPI.Migrations
                             Phone = "054987332",
                             Token = "ABC123DEF4AAAAC12345",
                             Username = "pera"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BloodType = 0,
+                            DateOfBirth = new DateTime(1999, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorId = 1,
+                            Email = "pera2.peric@gmail.com",
+                            Guest = false,
+                            IsActivated = true,
+                            IsBanned = false,
+                            Jmbg = "213456789",
+                            LastName = "Maric",
+                            Name = "Mare",
+                            Password = "maric",
+                            Phone = "054987332",
+                            Token = "ABC213DEF4AAAAC12345",
+                            Username = "mare"
                         });
                 });
 
@@ -746,7 +876,11 @@ namespace HospitalAPI.Migrations
                         {
                             ReceiptID = 1L,
                             Amount = 1,
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211207063421_first.Designer.cs
                             Date = new DateTime(2021, 12, 7, 0, 0, 0, 0, DateTimeKind.Local),
+=======
+                            Date = new DateTime(2021, 12, 9, 0, 0, 0, 0, DateTimeKind.Local),
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211209181759_firstMigration.Designer.cs
                             Diagnosis = "Korona",
                             DoctorId = 1,
                             MedicineName = "Synthroid",

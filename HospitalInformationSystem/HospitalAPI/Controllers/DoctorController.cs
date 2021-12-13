@@ -33,5 +33,11 @@ namespace HospitalAPI.Controllers
             return Ok(doctorService.GetSpecificDoctors(specialization));
             //return Ok("Poruka");
         }
+
+        [HttpGet("allDoctors")]
+        public IActionResult GetAllDoctors()
+        {
+            return Ok(doctorService.GetAllDoctors());
+        }
     }
 }

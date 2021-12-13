@@ -5,17 +5,14 @@ using System.Threading.Tasks;
 
 namespace HospitalAPI.Dto
 {
-    public class AppointmentDto
+    public class StandardAppointmentDto
     {
         public DateTime StartTime { get; set; }
         public int DoctorId { get; set; }
-        public int PatientId { get; set; }
-
-        public AppointmentDto(DateTime startTime, int doctorId, int patientId)
+        public StandardAppointmentDto(DateTime startTime, int doctorId)
         {
             StartTime = startTime;
             DoctorId = doctorId;
-            PatientId = patientId;
         }
     }
 }

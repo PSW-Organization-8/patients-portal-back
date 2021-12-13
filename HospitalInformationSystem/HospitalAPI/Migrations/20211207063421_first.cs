@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace HospitalAPI.Migrations
 {
-    public partial class first : Migration
+    public partial class firstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -145,7 +145,9 @@ namespace HospitalAPI.Migrations
                     StartTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Type = table.Column<int>(type: "integer", nullable: false),
                     DoctorId = table.Column<int>(type: "integer", nullable: false),
-                    PatientId = table.Column<int>(type: "integer", nullable: false)
+                    PatientId = table.Column<int>(type: "integer", nullable: false),
+                    State = table.Column<int>(type: "integer", nullable: false),
+                    IsSurveyed = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -263,15 +265,24 @@ namespace HospitalAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Receipts",
                 columns: new[] { "ReceiptID", "Amount", "Date", "Diagnosis", "DoctorId", "MedicineName", "PatientId" },
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211207063421_first.cs
                 values: new object[] { 1L, 1, new DateTime(2021, 12, 7, 0, 0, 0, 0, DateTimeKind.Local), "Korona", 1, "Synthroid", 1 });
+=======
+                values: new object[] { 1L, 1, new DateTime(2021, 12, 9, 0, 0, 0, 0, DateTimeKind.Local), "Korona", 1, "Synthroid", 1 });
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211209181759_firstMigration.cs
 
             migrationBuilder.InsertData(
                 table: "Patients",
                 columns: new[] { "Id", "Address", "BloodType", "City", "Country", "DateOfBirth", "DoctorId", "Email", "Guest", "IsActivated", "IsBanned", "Jmbg", "LastName", "Lbo", "Name", "Password", "Phone", "Token", "Username" },
-                values: new object[] { 1, null, 0, null, null, new DateTime(1999, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "pera.peric@gmail.com", false, true, false, "123456789", "Peric", null, "Pera", "pera", "054987332", "ABC123DEF4AAAAC12345", "pera" });
+                values: new object[,]
+                {
+                    { 1, null, 0, null, null, new DateTime(1999, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "pera.peric@gmail.com", false, true, false, "123456789", "Peric", null, "Pera", "pera", "054987332", "ABC123DEF4AAAAC12345", "pera" },
+                    { 2, null, 0, null, null, new DateTime(1999, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "pera2.peric@gmail.com", false, true, false, "213456789", "Maric", null, "Mare", "maric", "054987332", "ABC213DEF4AAAAC12345", "mare" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Appointments",
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211207063421_first.cs
                 columns: new[] { "Id", "DoctorId", "PatientId", "StartTime", "Type" },
                 values: new object[,]
                 {
@@ -279,6 +290,21 @@ namespace HospitalAPI.Migrations
                     { 2, 6, 1, new DateTime(2021, 12, 15, 10, 15, 0, 0, DateTimeKind.Unspecified), 0 },
                     { 3, 6, 1, new DateTime(2021, 12, 15, 13, 15, 0, 0, DateTimeKind.Unspecified), 0 },
                     { 4, 6, 1, new DateTime(2021, 12, 15, 15, 45, 0, 0, DateTimeKind.Unspecified), 0 }
+=======
+                columns: new[] { "Id", "DoctorId", "IsSurveyed", "PatientId", "StartTime", "State", "Type" },
+                values: new object[,]
+                {
+                    { 1, 1, false, 1, new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(469), 0, 0 },
+                    { 2, 6, false, 1, new DateTime(2021, 12, 15, 10, 15, 0, 0, DateTimeKind.Unspecified), 0, 0 },
+                    { 3, 6, false, 1, new DateTime(2021, 12, 15, 13, 15, 0, 0, DateTimeKind.Unspecified), 0, 0 },
+                    { 4, 6, false, 1, new DateTime(2021, 12, 15, 15, 45, 0, 0, DateTimeKind.Unspecified), 0, 0 },
+                    { 5, 1, false, 1, new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2113), 2, 0 },
+                    { 6, 1, false, 1, new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2129), 1, 0 },
+                    { 7, 1, false, 2, new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2133), 2, 0 },
+                    { 8, 1, false, 2, new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2136), 2, 0 },
+                    { 9, 1, false, 2, new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2139), 2, 0 },
+                    { 10, 1, false, 2, new DateTime(2021, 12, 9, 19, 17, 58, 558, DateTimeKind.Local).AddTicks(2142), 2, 0 }
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211209181759_firstMigration.cs
                 });
 
             migrationBuilder.InsertData(
@@ -286,8 +312,13 @@ namespace HospitalAPI.Migrations
                 columns: new[] { "Id", "Content", "Date", "IsAnonymous", "IsApproved", "IsPublishable", "PatientId" },
                 values: new object[,]
                 {
+<<<<<<< HEAD:HospitalInformationSystem/HospitalAPI/Migrations/20211207063421_first.cs
                     { 1, "Tekst neki", new DateTime(2021, 12, 7, 7, 34, 20, 300, DateTimeKind.Local).AddTicks(9325), false, true, true, 1 },
                     { 2, "Drugi neki", new DateTime(2021, 12, 7, 7, 34, 20, 308, DateTimeKind.Local).AddTicks(4608), false, true, true, 1 }
+=======
+                    { 1, "Tekst neki", new DateTime(2021, 12, 9, 19, 17, 58, 555, DateTimeKind.Local).AddTicks(4625), false, true, true, 1 },
+                    { 2, "Drugi neki", new DateTime(2021, 12, 9, 19, 17, 58, 557, DateTimeKind.Local).AddTicks(9478), false, true, true, 1 }
+>>>>>>> develop:HospitalInformationSystem/HospitalAPI/Migrations/20211209181759_firstMigration.cs
                 });
 
             migrationBuilder.InsertData(

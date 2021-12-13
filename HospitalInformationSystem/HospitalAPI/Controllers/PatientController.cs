@@ -1,8 +1,10 @@
 ﻿using HospitalAPI.Dto;
 using HospitalAPI.Mapper;
 using HospitalAPI.Validators;
+using HospitalClassLib.Schedule.Model;
 using HospitalClassLib.Schedule.Service;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace HospitalAPI.Controllers
 {
@@ -20,6 +22,12 @@ namespace HospitalAPI.Controllers
             this.doctorService = doctorService;
             this.allergenService = allergenService;
             this.validator = new PatientValidator();
+        }
+
+        [HttpGet]
+        public IActionResult GetPatients()
+        {
+            return Ok(patientService.GetAll());
         }
 
         [HttpPost]
@@ -51,5 +59,21 @@ namespace HospitalAPI.Controllers
         {
             return Ok(patientService.Get(id));
         }
+
+
+        [HttpPut]
+        [Route("ban/{id?}")]
+        public IActionResult BanPatientById(int id)
+        {
+            return Ok(patientService.BanPatientById(id));
+        }
+
+        [HttpPut]
+        [Route("unban/{id?}")]
+        public IActionResult UnbanPatientById(int id)
+        {
+            return Ok(patientService.UnbanPatientById(id));
+        }
+
     }
 }

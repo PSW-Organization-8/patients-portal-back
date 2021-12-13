@@ -102,6 +102,26 @@ namespace HospitalAPI
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HospitalAPI v1"));
             }
 
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<MyDbContext>();
+                try
+                {
+                    Console.WriteLine("###############################################################################");
+                    Console.WriteLine("Migriram bazu podataka");
+                    context.Database.Migrate();
+                    Console.WriteLine("###############################################################################");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("###############################################################################");
+                    Console.WriteLine("Greska prilikom kreiranja baze podataka");
+                    Console.WriteLine(e.Data);
+                    Console.WriteLine("###############################################################################");
+                }
+
+            }
+
             app.UseRouting();
             app.UseCors("MyPolicy");
             app.UseAuthorization();

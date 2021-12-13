@@ -40,9 +40,9 @@ namespace HospitalAPI.Controllers
                 Survey survey = new Survey(patientService.Get(dto.PatientId));
                 surveyService.Create(survey);
                 questionService.CreateMultipleQuestions(survey.Id, dto.Questions);
-                return Ok(survey);
+                return Ok(true);
             }
-            return BadRequest();
+            return BadRequest(false);
         }
     }
 }

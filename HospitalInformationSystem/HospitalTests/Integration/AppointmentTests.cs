@@ -33,7 +33,7 @@ namespace HospitalTests.Integration
         {
             var doctorService = new DoctorService(new DoctorRepository(context));
             var patientService = new PatientService(new PatientRepository(context));
-            var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context)), 
+            var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), 
                 doctorService, patientService);
             var appointmentDto = new AppointmentDto(new DateTime(2021, 12, 12, 13, 0, 0), 1, 1);
             var expectedResult = new Appointment(new DateTime(2021, 12, 12, 13, 0, 0), doctorService.Get(1), patientService.Get(1));
@@ -47,15 +47,15 @@ namespace HospitalTests.Integration
 
         [Theory]
         [MemberData(nameof(Get_free_appointments_data))]
-        public void Get_free_appointments(DateTime startTime, int doctorId, List<DateTime> expectedResult)
+        public void Get_free_appointments(StandardAppointmentDto dto, List<DateTime> expectedResult)
         {
             var doctorService = new DoctorService(new DoctorRepository(context));
             var patientService = new PatientService(new PatientRepository(context));
-            var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context)),
+            var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)),
                 doctorService, patientService);
 
 
-            var result = appointmentController.GetFreeTerms(startTime, doctorId) as ObjectResult;
+            var result = appointmentController.GetFreeTerms(dto.StartTime, dto.DoctorId) as ObjectResult;
 
 
             Assert.Equal(result.Value, expectedResult);
