@@ -39,11 +39,25 @@ namespace HospitalClassLib.Schedule.Repository.AppointmentRepo
         {
             return dbContext.Appointments.Where(x => x.DoctorId.Equals(id)).ToList();
         }
-        
+
         public List<DateTime> GetDoctorTermsInSpecificDay(DateTime date, int doctorId)
         {
             return dbContext.Appointments.Where(app => app.DoctorId.Equals(doctorId) && app.StartTime.Day.Equals(date.Day)
             && app.StartTime.Month.Equals(date.Month) && app.StartTime.Year.Equals(date.Year)).Select(d => d.StartTime).ToList();
+
+        }
+
+        public bool FinishAppointments()
+        {
+            List<Appointment> doneAppointments = dbContext.Appointments.Where(x => x.StartTime.CompareTo(DateTime.Now) < 0 && x.State == AppointmentState.pending).ToList();
+
+            foreach(Appointment ap in doneAppointments)
+            {
+                ap.State = AppointmentState.finished;
+                Update(ap);
+            }
+
+            return true;
         }
     }
 }
