@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HospitalClassLib.Schedule.Service
@@ -40,6 +41,7 @@ namespace HospitalClassLib.Schedule.Service
         {
             return appointmentRepository.GetAll();
         }
+
         public Appointment Create(Appointment appointment)
         {
             return appointmentRepository.Create(appointment);
@@ -49,7 +51,7 @@ namespace HospitalClassLib.Schedule.Service
             return appointmentRepository.Delete(id);
         }
 
-        public List<DateTime> GetAppointmentByPriority(DateTime firstDate, DateTime lastDate, int doctorId, bool doctorPriority)
+        public List<Tuple<DateTime, int, string>> GetAppointmentByPriority(DateTime firstDate, DateTime lastDate, int doctorId, bool doctorPriority)
         {
             if (doctorPriority)
                 return GetAppointmentsWithDoctorPriority(firstDate, lastDate, doctorId);
@@ -57,37 +59,35 @@ namespace HospitalClassLib.Schedule.Service
                 return GetAppointmentsWithDatePriority(firstDate, lastDate, doctorId);
         }
 
-        private List<DateTime> GetAppointmentsWithDoctorPriority(DateTime firstDate, DateTime lastDate, int doctorId)
+        private List<Tuple<DateTime, int, string>> GetAppointmentsWithDoctorPriority(DateTime firstDate, DateTime lastDate, int doctorId)
         {
-            List<DateTime> appointmentDates = GetDoctorAppointmentsBetweenDates(firstDate, lastDate, doctorId);
+            List<Tuple<DateTime, int, string>> appointmentDates = GetDoctorAppointmentsBetweenDates(firstDate, lastDate, doctorId);
             if (appointmentDates.Count < 1)
                 appointmentDates = GetDoctorAppointmentsBetweenDates(firstDate.AddDays(-2), lastDate.AddDays(2), doctorId);
             return appointmentDates;
         }
 
-        private List<DateTime> GetAppointmentsWithDatePriority(DateTime firstDate, DateTime lastDate, int doctorId)
+        private List<Tuple<DateTime, int, string>> GetAppointmentsWithDatePriority(DateTime firstDate, DateTime lastDate, int doctorId)
         {
-            List<DateTime> appointmentDates = GetDoctorAppointmentsBetweenDates(firstDate, lastDate, doctorId);
+            List<Tuple<DateTime, int, string>> appointmentDates = GetDoctorAppointmentsBetweenDates(firstDate, lastDate, doctorId);
             if (appointmentDates.Count < 1)
             {
                 foreach (Doctor doctor in doctorRepository.GetAll().Where(x => x.DoctorSpecialization.Equals(doctorRepository.Get(doctorId).DoctorSpecialization)))
                 {
                     appointmentDates = GetDoctorAppointmentsBetweenDates(firstDate, lastDate, doctor.Id);
-                    if (appointmentDates.Count > 0)
-                        break;
                 }
 
             }
             return appointmentDates;
         }
 
-        private List<DateTime> GetDoctorAppointmentsBetweenDates(DateTime firstDate, DateTime lastDate, int doctorId)
+        private List<Tuple<DateTime, int, string>> GetDoctorAppointmentsBetweenDates(DateTime firstDate, DateTime lastDate, int doctorId)
         {
             List<Appointment> doctorAppointments = appointmentRepository.GetByDoctor(doctorId);
-            List<DateTime> appointmentDates = new List<DateTime>();
+            List<Tuple<DateTime, int, string>> appointmentDates = new List<Tuple<DateTime, int, string>>();
             for (DateTime dateTime = firstDate; dateTime <= lastDate; dateTime = dateTime.AddMinutes(15))
                 if (!doctorAppointments.Select(x => x.StartTime).ToList().Contains(dateTime) && dateTime.Hour >= 8 && dateTime.Hour < 16)
-                    appointmentDates.Add(dateTime);
+                    appointmentDates.Add(new Tuple<DateTime, int, string>(dateTime, doctorId, doctorRepository.Get(doctorId).Name + " " + doctorRepository.Get(doctorId).LastName));
             return appointmentDates;
         }
 
@@ -122,6 +122,7 @@ namespace HospitalClassLib.Schedule.Service
         {
             return appointmentRepository.GetNumberOfCancelledAppointments(id);
         }
+
         public List<DateTime> GetFreeTerms(DateTime appoinmentDate, int doctorId)
         {
             return GenerateFreeTerms(appointmentRepository.GetDoctorTermsInSpecificDay(appoinmentDate, doctorId), GetPotentialFreeTerms(appoinmentDate));
@@ -134,13 +135,20 @@ namespace HospitalClassLib.Schedule.Service
                     potentialFreeTerms.Add(new DateTime(appoinmentDate.Year, appoinmentDate.Month, appoinmentDate.Day, hourCounter, minuteCounter * TERM_DURATION, 0));
             return potentialFreeTerms;
         }
+
         private List<DateTime> GenerateFreeTerms(List<DateTime> doctorTerms, List<DateTime> potentialFreeTerms)
         {
             foreach (DateTime doctorTerm in doctorTerms)
                 if (potentialFreeTerms.Contains(doctorTerm)) potentialFreeTerms.Remove(doctorTerm);
             return potentialFreeTerms;
         }
+
+        public void FinishAppointments()
+        {
+            appointmentRepository.FinishAppointments();
+        }
         #endregion Methods
+
     }
 }
 

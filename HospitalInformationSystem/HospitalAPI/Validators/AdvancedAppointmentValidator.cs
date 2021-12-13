@@ -20,8 +20,6 @@ namespace HospitalAPI.Validators
             RuleFor(advancedAppointmentDto => advancedAppointmentDto.DoctorId).NotEmpty();
             RuleFor(advancedAppointmentDto => advancedAppointmentDto.FirstDate).GreaterThan(DateTime.Now);
             RuleFor(advancedAppointmentDto => advancedAppointmentDto.LastDate).GreaterThan(advancedAppointmentDto => advancedAppointmentDto.FirstDate);
-            RuleFor(advancedAppointmentDto => advancedAppointmentDto.DoctorId).Must(
-                doctorId => new DoctorService(new DoctorRepository(new MyDbContext())).GetAllDoctors().Select(x => x.Id).Contains(doctorId));
         }
     }
 }
