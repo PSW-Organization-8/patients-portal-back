@@ -19,6 +19,6 @@ namespace HospitalClassLib.Schedule.Repository.AppointmentRepo
         int GetNumberOfCancelledAppointments(int id);
         List<Appointment> GetByDoctor(int id);
         List<DateTime> GetDoctorTermsInSpecificDay(DateTime date, int doctorId);
-        public bool FinishAppointments();
+        void FinishAppointments();
     }
 }

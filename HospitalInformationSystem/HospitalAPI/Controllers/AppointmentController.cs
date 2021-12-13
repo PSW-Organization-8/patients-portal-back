@@ -20,19 +20,21 @@ namespace HospitalAPI.Controllers
         private readonly DoctorService doctorService;
         private readonly PatientService patientService;
         private readonly AdvancedAppointmentValidator advancedAppointmentValidator;
+        private readonly IdValidator idValidator;
         public AppointmentController(AppointmentService appointmentService, DoctorService doctorService, PatientService patientService)
         {
             this.appointmentService = appointmentService;
             this.doctorService = doctorService;
             this.patientService = patientService;
-            this.advancedAppointmentValidator = new AdvancedAppointmentValidator();
             this.appointmentService.FinishAppointments();
+            this.advancedAppointmentValidator = new AdvancedAppointmentValidator();
+            this.idValidator = new IdValidator();
         }
 
         [HttpGet("{id?}")]
         public IActionResult GetByPatient(int id)
         {
-            if(appointmentService.GetByPatient(id).Count != 0)
+            if(idValidator.CheckId(id) && appointmentService.GetByPatient(id).Count != 0)
                 return Ok(appointmentService.GetByPatient(id));
             return BadRequest();
         }
@@ -40,7 +42,7 @@ namespace HospitalAPI.Controllers
         [HttpPut("{id?}")]
         public IActionResult CancelById(int id)
         {
-            if (appointmentService.CancelById(id))
+            if (idValidator.CheckId(id) && appointmentService.CancelById(id))
                 return Ok(true);
             return BadRequest(false);
         }
@@ -49,7 +51,7 @@ namespace HospitalAPI.Controllers
         [Route("survey/{id?}")]
         public IActionResult SurveyAppointment(int id)
         {
-            if (appointmentService.SurveyAppointment(id))
+            if (idValidator.CheckId(id) && appointmentService.SurveyAppointment(id))
                 return Ok(true);
             return BadRequest(false);
         }
@@ -58,6 +60,8 @@ namespace HospitalAPI.Controllers
         [Route("cancel/{id?}")]
         public IActionResult GetNumberOfCancelledAppointments(int id)
         {
+            if (!idValidator.CheckId(id))
+                return BadRequest(false);
             return Ok(appointmentService.GetNumberOfCancelledAppointments(id));
         
         }

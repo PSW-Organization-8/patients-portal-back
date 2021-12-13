@@ -47,7 +47,7 @@ namespace HospitalClassLib.Schedule.Repository.AppointmentRepo
 
         }
 
-        public bool FinishAppointments()
+        public void FinishAppointments()
         {
             List<Appointment> doneAppointments = dbContext.Appointments.Where(x => x.StartTime.CompareTo(DateTime.Now) < 0 && x.State == AppointmentState.pending).ToList();
 
@@ -56,8 +56,6 @@ namespace HospitalClassLib.Schedule.Repository.AppointmentRepo
                 ap.State = AppointmentState.finished;
                 Update(ap);
             }
-
-            return true;
         }
     }
 }
