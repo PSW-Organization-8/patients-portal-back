@@ -26,7 +26,9 @@ namespace HospitalAPI.Validators
         }
         private bool CheckIfTermIsAlreadyScheduled(DateTime startTime, int doctorId)
         {
-            foreach(Appointment doctorAppointment in appointmentService.GetByDoctor(doctorId))
+            List<Appointment> list = appointmentService.GetByDoctor(doctorId);
+            if (list == null) return false;
+            foreach (Appointment doctorAppointment in list)
             {
                 if (startTime >= doctorAppointment.StartTime && startTime < doctorAppointment.StartTime.AddMinutes(15))
                     return true;
