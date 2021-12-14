@@ -36,8 +36,7 @@ namespace HospitalAPI.Controllers
             if (validator.Validate(PatientMapper.PatientDtoToPatient(
                 patientDto, doctorService.Get(patientDto.DoctorId), allergenService.GetSelectedAllergens(patientDto.Allergens))).IsValid)
             {
-                patientService.RegisterPatient(PatientMapper.PatientDtoToPatient(patientDto, doctorService.Get(patientDto.DoctorId), allergenService.GetSelectedAllergens(patientDto.Allergens)));
-                return Ok();
+                return Ok(patientService.RegisterPatient(PatientMapper.PatientDtoToPatient(patientDto, doctorService.Get(patientDto.DoctorId), allergenService.GetSelectedAllergens(patientDto.Allergens))));
             }
             return BadRequest(patientDto);
         }

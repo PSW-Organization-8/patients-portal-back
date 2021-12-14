@@ -45,7 +45,7 @@ namespace HospitalTests.Integration
         {
             AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), new DoctorService(new DoctorRepository(context)), new PatientService(new PatientRepository(context)));
 
-            var result = controller.SurveyAppointment(1);
+            var result = controller.SurveyAppointment(2);
             var okResult = result as ObjectResult;
 
             Assert.Equal(400, okResult.StatusCode);

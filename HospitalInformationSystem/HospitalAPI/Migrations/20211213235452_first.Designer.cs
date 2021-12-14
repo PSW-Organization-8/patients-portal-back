@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20211213231757_firstMigration")]
-    partial class firstMigration
+    [Migration("20211213235452_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -102,7 +102,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 14, 0, 17, 56, 398, DateTimeKind.Local).AddTicks(7231),
+                            StartTime = new DateTime(2021, 12, 14, 0, 54, 51, 544, DateTimeKind.Local).AddTicks(2926),
                             State = 0,
                             Type = 0
                         },
@@ -142,7 +142,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 14, 0, 17, 56, 398, DateTimeKind.Local).AddTicks(8661),
+                            StartTime = new DateTime(2021, 12, 14, 0, 54, 51, 544, DateTimeKind.Local).AddTicks(5391),
                             State = 2,
                             Type = 0
                         },
@@ -152,7 +152,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2021, 12, 14, 0, 17, 56, 398, DateTimeKind.Local).AddTicks(8673),
+                            StartTime = new DateTime(2021, 12, 14, 0, 54, 51, 544, DateTimeKind.Local).AddTicks(5405),
                             State = 1,
                             Type = 0
                         },
@@ -162,7 +162,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2021, 12, 14, 0, 17, 56, 398, DateTimeKind.Local).AddTicks(8677),
+                            StartTime = new DateTime(2021, 12, 14, 0, 54, 51, 544, DateTimeKind.Local).AddTicks(5409),
                             State = 2,
                             Type = 0
                         },
@@ -172,7 +172,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2021, 12, 14, 0, 17, 56, 398, DateTimeKind.Local).AddTicks(8679),
+                            StartTime = new DateTime(2021, 12, 14, 0, 54, 51, 544, DateTimeKind.Local).AddTicks(5412),
                             State = 2,
                             Type = 0
                         },
@@ -182,7 +182,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2021, 12, 14, 0, 17, 56, 398, DateTimeKind.Local).AddTicks(8682),
+                            StartTime = new DateTime(2021, 12, 14, 0, 54, 51, 544, DateTimeKind.Local).AddTicks(5416),
                             State = 2,
                             Type = 0
                         },
@@ -192,8 +192,328 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2021, 12, 14, 0, 17, 56, 398, DateTimeKind.Local).AddTicks(8685),
+                            StartTime = new DateTime(2021, 12, 14, 0, 54, 51, 544, DateTimeKind.Local).AddTicks(5418),
                             State = 2,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 11,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 8, 0, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 12,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 8, 15, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 13,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 8, 30, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 14,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 8, 45, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 15,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 16,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 9, 15, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 17,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 9, 30, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 18,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 9, 45, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 19,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 20,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 10, 15, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 21,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 22,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 10, 45, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 23,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 24,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 11, 15, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 25,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 11, 30, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 26,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 11, 45, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 27,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 28,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 12, 15, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 29,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 12, 30, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 30,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 12, 45, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 31,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 32,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 33,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 13, 30, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 34,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 13, 45, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 35,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 36,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 14, 15, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 37,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 14, 30, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 38,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 14, 45, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 39,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 40,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 15, 15, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 41,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 42,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 2,
+                            StartTime = new DateTime(2022, 1, 1, 15, 45, 0, 0, DateTimeKind.Unspecified),
+                            State = 0,
                             Type = 0
                         });
                 });
@@ -234,7 +554,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2021, 12, 14, 0, 17, 56, 395, DateTimeKind.Local).AddTicks(8419),
+                            Date = new DateTime(2021, 12, 14, 0, 54, 51, 541, DateTimeKind.Local).AddTicks(398),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -244,7 +564,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2021, 12, 14, 0, 17, 56, 398, DateTimeKind.Local).AddTicks(5855),
+                            Date = new DateTime(2021, 12, 14, 0, 54, 51, 544, DateTimeKind.Local).AddTicks(1453),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,

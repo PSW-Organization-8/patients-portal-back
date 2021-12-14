@@ -51,7 +51,7 @@ namespace HospitalAPI.Controllers
             {
                 appointmentService.Create(AppointmentMapper.AppointmentDtoToAppointment
                 (appointmentDto, doctorService.Get(appointmentDto.DoctorId), patientService.Get(appointmentDto.PatientId)));
-                return Ok();
+                return Ok(true);
             }
             return BadRequest("Invalid data!");
         }

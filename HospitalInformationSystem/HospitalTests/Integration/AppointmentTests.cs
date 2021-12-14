@@ -35,19 +35,20 @@ namespace HospitalTests.Integration
             var patientService = new PatientService(new PatientRepository(context));
             var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), 
                 doctorService, patientService);
-            var appointmentDto = new AppointmentDto(new DateTime(2021, 12, 12, 13, 0, 0), 1, 1);
-            var expectedResult = new Appointment(new DateTime(2021, 12, 12, 13, 0, 0), doctorService.Get(1), patientService.Get(1));
+            var appointmentDto = new AppointmentDto(new DateTime(2025, 12, 12, 13, 0, 0), 1, 1);
+            var expectedResult = new Appointment(new DateTime(2025, 12, 12, 13, 0, 0), doctorService.Get(1), patientService.Get(1));
 
             
-            var result = appointmentController.CreateNewAppointment(appointmentDto) as ObjectResult;
+            var result = appointmentController.CreateNewAppointment(appointmentDto);
+            var okResult = result as ObjectResult;
 
             
-            Assert.Equal(200, result.StatusCode);
+            Assert.Equal(200, okResult.StatusCode);
         }
 
         [Theory]
         [MemberData(nameof(Get_free_appointments_data))]
-        public void Get_free_appointments(StandardAppointmentDto dto, List<DateTime> expectedResult)
+        public void Get_free_appointments(DateTime startTime, int doctorId, List<DateTime> expectedResult)
         {
             var doctorService = new DoctorService(new DoctorRepository(context));
             var patientService = new PatientService(new PatientRepository(context));
@@ -55,7 +56,7 @@ namespace HospitalTests.Integration
                 doctorService, patientService);
 
 
-            var result = appointmentController.GetFreeTerms(dto.StartTime, dto.DoctorId) as ObjectResult;
+            var result = appointmentController.GetFreeTerms(startTime, doctorId) as ObjectResult;
 
 
             Assert.Equal(result.Value, expectedResult);
@@ -129,6 +130,11 @@ namespace HospitalTests.Integration
                     new DateTime(2021, 12, 16, 15, 15, 0),
                     new DateTime(2021, 12, 16, 15, 30, 0),
                     new DateTime(2021, 12, 16, 15, 45, 0),
+                }
+            },
+
+             new object[] { new DateTime(2022, 1, 1), 1, new List<DateTime>{
+                    
                 }
             },
         };
