@@ -1,8 +1,14 @@
 using HospitalClassLib;
+using HospitalClassLib.Equipment.Repository;
+using HospitalClassLib.Equipment.Repository.IRepository;
+using HospitalClassLib.Equipment.Service;
 using HospitalClassLib.MedicalRecords.Repository.MedicationRepo;
 using HospitalClassLib.MedicalRecords.Repository.ReceiptRepo;
 using HospitalClassLib.MedicalRecords.Service;
 using HospitalClassLib.MedicalRecords.Service.Interface;
+using HospitalClassLib.RelocationEquipment.Repository;
+using HospitalClassLib.RelocationEquipment.Repository.IRepository;
+using HospitalClassLib.RelocationEquipment.Service;
 using HospitalClassLib.Schedule.Repository.AllergenRepository;
 using HospitalClassLib.Schedule.Repository.AppointmentRepo;
 using HospitalClassLib.Schedule.Repository.DoctorRepository;
@@ -70,6 +76,26 @@ namespace HospitalAPI
             services.AddTransient<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<AppointmentService>();
             services.AddScoped<AppointmentRepository>();
+
+            services.AddTransient<IBuildingRepository, BuildingRepository>();
+            services.AddScoped<BuildingService>();
+            services.AddScoped<BuildingRepository>();
+
+            services.AddTransient<IRoomRepository, RoomRepository>();
+            services.AddScoped<RoomService>();
+            services.AddScoped<RoomRepository>();
+
+            services.AddTransient<IFloorRepository, FloorRepository>();
+            services.AddScoped<FloorService>();
+            services.AddScoped<FloorRepository>();
+
+            services.AddTransient<IEquipmentRepository, EquipmentRepository>();
+            services.AddScoped<EquipmentService>();
+            services.AddScoped<EquipmentRepository>();
+
+            services.AddTransient<IMoveEquipmentRepository, MoveEquipmentRepository>();
+            services.AddScoped<MoveEquipmentService>();
+            services.AddScoped<MoveEquipmentRepository>();
 
             services.AddTransient<IMedicationRepository, MedicationRepository>();
             services.AddScoped<IMedicationService, MedicationService>();
