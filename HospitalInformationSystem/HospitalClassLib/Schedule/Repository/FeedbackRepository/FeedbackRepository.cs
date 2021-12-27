@@ -18,7 +18,7 @@ namespace HospitalClassLib.Schedule.Repository.FeedbackRepository
 
         public List<Feedback> GetApproved()
         {
-            return dbContext.Feedbacks.Where(x => x.IsApproved && x.IsPublishable).ToList();
+            return dbContext.Feedbacks.Where(x => x.FeedbackProperties.IsApproved && x.FeedbackProperties.IsPublishable).ToList();
         }
 
         protected override int GetId(Feedback entity)
