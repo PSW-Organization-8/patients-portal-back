@@ -86,22 +86,20 @@ namespace HospitalAPI
             services.AddTransient<IReceiptRepository, ReceiptRepository>();
             services.AddScoped<IReceiptService, ReceiptService>();
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = Configuration["Jwt:Issuer"],
-                    ValidAudience = Configuration["Jwt:Issuer"],
-                    IssuerSigningKey = new
-                    SymmetricSecurityKey
-                    (Encoding.UTF8.GetBytes
-                    (Configuration["Jwt:Key"]))
-                };
-            });
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options => {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration["Jwt:Issuer"],
+                        ValidAudience = Configuration["Jwt:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                    };
+                });
 
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
@@ -113,6 +111,7 @@ namespace HospitalAPI
 
             services.AddSession();
             services.AddMvc();
+            services.AddRazorPages();
 
             services.AddSwaggerGen(c =>
             {
@@ -149,34 +148,17 @@ namespace HospitalAPI
                 }
 
             }
-
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseCors("MyPolicy");
-            app.UseAuthorization();
-
-
-
-            app.UseSession();
-                        app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-
-            app.Use(async (context, next) =>
-            {
-                var token = context.Session.GetString("Token");
-                if (!string.IsNullOrEmpty(token))
-                {
-                    context.Request.Headers.Add("Authorization", "Bearer " + token);
-                }
-                await next();
-            });
-           /* app.UseStaticFiles();
             app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(name: "default", pattern: "{controller=Login}/{action=Index}/{id?}");
-            });*/
+                endpoints.MapControllers();
+                endpoints.MapRazorPages();
+            });
         }
 
     }

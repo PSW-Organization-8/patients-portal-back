@@ -25,13 +25,9 @@ namespace HospitalClassLib.Schedule.Repository.PatientRepository
             return dbContext.Patients.SingleOrDefault(patient => patient.Token.Equals(patientToken));
         }
 
-        public UserLogin GetLoggedPatient(string username) 
+        public LoggedUser GetLoggedUser(string username, string password) 
         {
-            Patient p =  dbContext.Patients.Where(p => p.Username == username).FirstOrDefault();
-            UserLogin user = new UserLogin();
-            user.Username = p.Username;
-            user.Password = p.Password;
-            user.Role = "Patient";
+            LoggedUser user = (LoggedUser)dbContext.Patients.Where(p => p.Username == username && p.Password == password).FirstOrDefault();
             return user;
         }
     }

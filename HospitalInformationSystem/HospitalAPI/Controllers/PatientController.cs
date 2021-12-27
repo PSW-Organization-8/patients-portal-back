@@ -3,8 +3,14 @@ using HospitalAPI.Mapper;
 using HospitalAPI.Validators;
 using HospitalClassLib.Schedule.Model;
 using HospitalClassLib.Schedule.Service;
+using HospitalClassLib.SharedModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
+
 
 namespace HospitalAPI.Controllers
 {
@@ -74,5 +80,32 @@ namespace HospitalAPI.Controllers
             return Ok(patientService.UnbanPatientById(id));
         }
 
+
+
+        [HttpGet("login")]
+        [Authorize]
+        public IActionResult SellersEndpoint()
+        {
+            var currentUser = GetCurrentUser();
+
+            return Ok($"Hi {currentUser.Username}, you are a doktor");
+        }
+
+
+        private LoggedUser GetCurrentUser()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            if (identity != null)
+            {
+                var userClaims = identity.Claims;
+
+                return new LoggedUser
+                {
+                    Username = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.NameIdentifier)?.Value,
+                };
+            }
+            return null;
+        }
     }
 }
