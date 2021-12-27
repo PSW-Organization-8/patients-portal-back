@@ -1,4 +1,5 @@
-﻿using HospitalClassLib;
+﻿using HospitalAPI.Dto;
+using HospitalClassLib;
 using HospitalClassLib.Schedule.Repository.PatientRepository;
 using HospitalClassLib.Schedule.Service;
 using HospitalClassLib.SharedModel;
@@ -31,9 +32,9 @@ namespace HospitalAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Login(string username, string password)
+        public IActionResult Login(LoginDto dto)
         {
-            var user = Authenticate(username, password);
+            var user = Authenticate(dto.Username, dto.Password);
             if (user != null)
             {
                 var token = Generate(user);
