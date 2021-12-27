@@ -7,23 +7,28 @@ using HospitalClassLib.Schedule.Repository.AllergenRepository;
 using HospitalClassLib.Schedule.Repository.AppointmentRepo;
 using HospitalClassLib.Schedule.Repository.DoctorRepository;
 using HospitalClassLib.Schedule.Repository.FeedbackRepository;
+using HospitalClassLib.Schedule.Repository.ManagerRepo;
 using HospitalClassLib.Schedule.Repository.PatientRepository;
 using HospitalClassLib.Schedule.Repository.QuestionRepository;
 using HospitalClassLib.Schedule.Repository.SurveyRepository;
 using HospitalClassLib.Schedule.Service;
 using IntegrationClassLib.Pharmacy.Repository.MedicationRepo;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace HospitalAPI
@@ -43,6 +48,10 @@ namespace HospitalAPI
 
             services.AddControllers();
             services.AddDbContext<MyDbContext>(options => options.UseNpgsql(x => x.MigrationsAssembly("HospitalAPI")));
+
+            services.AddTransient<IManagerRepository, ManagerRepository>();
+            services.AddScoped<TokenService>();
+
             services.AddTransient<IAllergenRepository, AllergenRepository>();
             services.AddScoped<AllergenService>();
             services.AddScoped<AllergenRepository>();
@@ -77,6 +86,24 @@ namespace HospitalAPI
             services.AddTransient<IReceiptRepository, ReceiptRepository>();
             services.AddScoped<IReceiptService, ReceiptService>();
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Issuer"],
+                    IssuerSigningKey = new
+                    SymmetricSecurityKey
+                    (Encoding.UTF8.GetBytes
+                    (Configuration["Jwt:Key"]))
+                };
+            });
+
+
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
                 builder.AllowAnyOrigin()
@@ -84,6 +111,7 @@ namespace HospitalAPI
                        .AllowAnyHeader();
             }));
 
+            services.AddSession();
             services.AddMvc();
 
             services.AddSwaggerGen(c =>
@@ -126,10 +154,29 @@ namespace HospitalAPI
             app.UseCors("MyPolicy");
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+
+
+            app.UseSession();
+                        app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+            app.Use(async (context, next) =>
+            {
+                var token = context.Session.GetString("Token");
+                if (!string.IsNullOrEmpty(token))
+                {
+                    context.Request.Headers.Add("Authorization", "Bearer " + token);
+                }
+                await next();
+            });
+           /* app.UseStaticFiles();
+            app.UseAuthentication();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(name: "default", pattern: "{controller=Login}/{action=Index}/{id?}");
+            });*/
         }
 
     }
