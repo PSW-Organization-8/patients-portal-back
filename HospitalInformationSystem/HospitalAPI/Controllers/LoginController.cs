@@ -38,7 +38,7 @@ namespace HospitalAPI.Controllers
             if (user != null)
             {
                 var token = Generate(user);
-                return Ok(token);
+                return Ok(new { token = token});
             }
             return NotFound("User not found");
         }
