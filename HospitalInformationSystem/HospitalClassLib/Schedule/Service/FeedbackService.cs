@@ -49,14 +49,14 @@ namespace HospitalClassLib.Schedule.Service
         public void ApproveFeedback(int id)
         {
             Feedback feedbackForChange = feedbackRepository.Get(id);
-            feedbackForChange.IsApproved = true;
+            feedbackForChange.FeedbackProperties.IsApproved = true;
             feedbackRepository.Update(feedbackForChange);
         }
 
         public void RemoveFeedback(int id)
         {
             Feedback feedbackForChange = feedbackRepository.Get(id);
-            feedbackForChange.IsApproved = false;
+            feedbackForChange.FeedbackProperties.IsApproved = false;
             feedbackRepository.Update(feedbackForChange);
         }
 

@@ -56,10 +56,12 @@ namespace HospitalTests.Integration
         {
             var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), 
                 new DoctorService(new DoctorRepository(context)), new PatientService(new PatientRepository(context)));
-            var availableAppointments = appointmentController.GetAppointmentByPriority(new DateTime(2021, 12, 15, 8, 0, 0), new DateTime(2021, 12, 16, 16, 0, 0), 100, false);
+            var availableAppointments = appointmentController.GetAppointmentByPriority(new DateTime(2022, 12, 15, 8, 0, 0), new DateTime(2022, 12, 16, 16, 0, 0), 100, false);
             List<Tuple<DateTime, int, string>> dateTimes = new List<Tuple<DateTime, int, string>>();
-            FillDateTimeFrame(new DateTime(2021, 12, 15, 8, 0, 0), new DateTime(2021, 12, 15, 15, 45, 0), 100, "Radisa Milovcevic", dateTimes);
-            FillDateTimeFrame(new DateTime(2021, 12, 16, 8, 0, 0), new DateTime(2021, 12, 16, 15, 45, 0), 100, "Radisa Milovcevic", dateTimes);
+            FillDateTimeFrame(new DateTime(2022, 12, 15, 8, 0, 0), new DateTime(2022, 12, 15, 15, 45, 0), 1, "Jovan Jovanovic", dateTimes);
+            FillDateTimeFrame(new DateTime(2022, 12, 16, 8, 0, 0), new DateTime(2022, 12, 16, 15, 45, 0), 1, "Jovan Jovanovic", dateTimes);
+            FillDateTimeFrame(new DateTime(2022, 12, 15, 8, 0, 0), new DateTime(2022, 12, 15, 15, 45, 0), 2, "Milan Ilic", dateTimes);
+            FillDateTimeFrame(new DateTime(2022, 12, 16, 8, 0, 0), new DateTime(2022, 12, 16, 15, 45, 0), 2, "Milan Ilic", dateTimes);
 
             var availableAppointmentsCheck = availableAppointments as ObjectResult;
 

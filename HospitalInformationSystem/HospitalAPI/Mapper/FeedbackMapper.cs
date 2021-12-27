@@ -16,7 +16,8 @@ namespace HospitalAPI.Mapper
 
         public static FeedbackDto FeedbackToFeedbackDto(Feedback feedback)
         {
-            return new FeedbackDto(feedback.Content, feedback.IsApproved, feedback.Patient, feedback.IsPublishable, feedback.IsAnonymous);
+            return new FeedbackDto(feedback.Content, feedback.FeedbackProperties.IsApproved, feedback.Patient, feedback.FeedbackProperties.IsPublishable, 
+                feedback.FeedbackProperties.IsAnonymous);
         }
     }
 }

@@ -18,9 +18,7 @@ namespace HospitalClassLib.Schedule.Model
         public int PatientId { get; set; }
         public virtual Patient Patient { get; set; }
         public DateTime Date { get; set; }
-        public bool IsApproved { get; set; }
-        public bool IsPublishable { get; set; }
-        public bool IsAnonymous { get; set; }
+        public FeedbackProperties FeedbackProperties { get; set; }
 
         public Feedback(string c) { Id = 1; Content = c; }
 
@@ -29,24 +27,20 @@ namespace HospitalClassLib.Schedule.Model
         public Feedback(string content, bool isApproved, DateTime date, Patient patient)
         {
             Content = content;
-            IsApproved = isApproved;
             Date = date;
             Patient = patient;
             PatientId = patient.Id;
-            IsPublishable = true;
-            IsAnonymous = false;
+            FeedbackProperties = new FeedbackProperties(isApproved, true, false);
         }
 
 
         public Feedback(string content, bool isApproved, DateTime date, Patient patient, bool isPublishable, bool isAnonymous)
         {
             Content = content;
-            IsApproved = isApproved;
             Date = date;
             PatientId = 1;
             Patient = patient;
-            IsPublishable = isPublishable;
-            IsAnonymous = isAnonymous;
+            FeedbackProperties = new FeedbackProperties(isApproved, isPublishable, isAnonymous);
         }
 
     }
