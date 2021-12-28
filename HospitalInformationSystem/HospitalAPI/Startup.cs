@@ -150,9 +150,9 @@ namespace HospitalAPI
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseRouting();
             app.UseCors("MyPolicy");
             app.UseAuthentication();
+            app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

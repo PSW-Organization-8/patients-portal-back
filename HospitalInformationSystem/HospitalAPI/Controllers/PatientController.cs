@@ -88,7 +88,7 @@ namespace HospitalAPI.Controllers
         {
             var currentUser = GetCurrentUser();
 
-            return Ok($"Hi {currentUser.Username}, you are a doktor");
+            return Ok(currentUser);
         }
 
 
