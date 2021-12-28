@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HospitalAPI.Validators;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HospitalAPI.Controllers
 {
@@ -36,6 +37,7 @@ namespace HospitalAPI.Controllers
         }
 
         [HttpGet("{id?}")]
+        [Authorize]
         public IActionResult GetByPatient(int id)
         {
             if(idValidator.CheckId(id) && appointmentService.GetByPatient(id).Count != 0)

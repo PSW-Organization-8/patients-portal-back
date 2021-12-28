@@ -50,7 +50,6 @@ namespace HospitalAPI
             services.AddDbContext<MyDbContext>(options => options.UseNpgsql(x => x.MigrationsAssembly("HospitalAPI")));
 
             services.AddTransient<IManagerRepository, ManagerRepository>();
-            services.AddScoped<TokenService>();
 
             services.AddTransient<IAllergenRepository, AllergenRepository>();
             services.AddScoped<AllergenService>();
@@ -95,6 +94,7 @@ namespace HospitalAPI
                         ValidateAudience = true,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
+                        ClockSkew = TimeSpan.Zero,
                         ValidIssuer = Configuration["Jwt:Issuer"],
                         ValidAudience = Configuration["Jwt:Audience"],
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
