@@ -22,6 +22,10 @@ namespace HospitalClassLib.Schedule.Model
         public virtual Doctor Doctor { get; set; }
         public bool IsActivated { get; set; }
         public string Token { get; internal set; }
+        
+        [Column(TypeName ="ntext")]
+        [MaxLength]
+        public string Picture { get; set; }
 
         public virtual ICollection<Appointment> Appointments { get; set; }
 
@@ -64,6 +68,28 @@ namespace HospitalClassLib.Schedule.Model
             DoctorId = doctorId;
             IsActivated = isActivated;
             Token = token;
+        }
+
+        public Patient(string name, string lastName, string jmbg, string username, string password, string email, string phone, string country, string city, string address,
+            bool isBanned, DateTime dateOfBirth, ICollection<Allergen> allergens, Doctor doctor, bool isActivated, string token, BloodType bloodType, string picture)
+        {
+            Name = name;
+            LastName = lastName;
+            Jmbg = jmbg;
+            Username = username;
+            Password = password;
+            Contact = new Contact(email, phone);
+            IsBanned = isBanned;
+            DateOfBirth = dateOfBirth;
+            Address = new Address(country, city, address);
+            BloodType = bloodType;
+            Allergens = allergens;
+            Doctor = doctor;
+            DoctorId = doctor.Id;
+            Feedbacks = new List<Feedback>();
+            IsActivated = isActivated;
+            Token = token;
+            Picture = picture;
         }
 
         public override bool Equals(object obj)

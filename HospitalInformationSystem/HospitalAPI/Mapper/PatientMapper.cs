@@ -14,6 +14,11 @@ namespace HospitalAPI.Mapper
             return new Patient(dto.Name, dto.LastName, dto.Jmbg, dto.Username, dto.Password, dto.Email, dto.Phone, dto.Country, dto.City, dto.Address, false,
                 dto.DateOfBirth, allergens, doctor, dto.IsActivated, dto.Token, (BloodType)Enum.Parse(typeof(BloodType), dto.BloodType));
         }
+        public static Patient PatientDtoToPatientRegistration(PatientDto dto, Doctor doctor, List<Allergen> allergens)
+        {
+            return new Patient(dto.Name, dto.LastName, dto.Jmbg, dto.Username, dto.Password, dto.Email, dto.Phone, dto.Country, dto.City, dto.Address, false,
+                dto.DateOfBirth, allergens, doctor, dto.IsActivated, dto.Token, (BloodType)Enum.Parse(typeof(BloodType), dto.Picture));
+        }
         public static PatientDto PatientToPatientkDto(Patient patient)
         {
             return new PatientDto(patient.Name, patient.LastName, patient.Jmbg, patient.Username, patient.Password, patient.Contact.Email, patient.Contact.Phone, 
