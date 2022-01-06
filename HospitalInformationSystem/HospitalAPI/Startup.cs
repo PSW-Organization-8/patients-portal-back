@@ -46,7 +46,7 @@ namespace HospitalAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddDbContext<MyDbContext>(options => options.UseNpgsql(x => x.MigrationsAssembly("HospitalAPI")));
 
             services.AddTransient<IManagerRepository, ManagerRepository>();
