@@ -13,7 +13,7 @@ namespace HospitalClassLib.Schedule.Model
         public Doctor LeadDoctor { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public Room Room { get; set; }
+        public SharedModel.Room Room { get; set; }
         public String HospitalizationID { get; set; }
 
         public Hospitalization()
@@ -21,7 +21,7 @@ namespace HospitalClassLib.Schedule.Model
             HospitalizationID = DateTime.Now.ToString("ddMMyyyyHHmmss");
         }
 
-        public Hospitalization(Patient patient, Doctor doctor, DateTime start, DateTime end, Room room)
+        public Hospitalization(Patient patient, Doctor doctor, DateTime start, DateTime end, SharedModel.Room room)
         {
             Patient = patient;
             LeadDoctor = doctor;

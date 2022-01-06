@@ -23,6 +23,14 @@ namespace HospitalClassLib
         public DbSet<Question> Questions { get; set; }
         public DbSet<Medication> Medications { get; set; }
         public DbSet<Receipt> Receipts { get; set; }
+        public DbSet<Room> Rooms { get; set; }
+        public DbSet<Floor> Floors { get; set; }
+        public DbSet<Building> Buildings { get; set; }
+        public DbSet<SharedModel.Equipment> Equipments { get; set; }
+        public DbSet<MoveEquipment> MoveEquipments { get; set; }
+
+
+
 
         public MyDbContext()
         {
