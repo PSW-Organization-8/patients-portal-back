@@ -35,10 +35,10 @@ namespace HospitalClassLib
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             String server = Environment.GetEnvironmentVariable("SERVER") ?? "localhost";
-            String port = Environment.GetEnvironmentVariable("DB_PORT") ?? "5432";
+            String port = Environment.GetEnvironmentVariable("DB_PORT") ?? "8080";
             String databaseName = Environment.GetEnvironmentVariable("DB_NAME") ?? "psw_database";
             String username = Environment.GetEnvironmentVariable("DB_USER") ?? "postgres";
-            String password = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "2331";
+            String password = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "wasd";
 
             String connectionString = $"Server={server}; Port ={port}; Database ={databaseName}; User Id = {username}; Password ={password};";
             optionsBuilder.UseNpgsql(connectionString);
