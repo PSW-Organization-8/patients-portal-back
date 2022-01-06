@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace HospitalClassLib.Events.Model
 {
+
+    [Table("Event", Schema = "Events")]
     public class Event
     {
         [Key]
@@ -50,5 +52,4 @@ namespace HospitalClassLib.Events.Model
             EventApplicationName = eventApplicationName;
             EventClass = eventClass;
         }
-    }
-}
+    }}

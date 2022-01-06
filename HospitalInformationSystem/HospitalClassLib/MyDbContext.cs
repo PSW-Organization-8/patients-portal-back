@@ -47,6 +47,8 @@ namespace HospitalClassLib
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema("Hospital");
+
             modelBuilder.Entity<Patient>().OwnsOne(p => p.Address)
                             .Property(p => p.Country).HasColumnName("Country");
             modelBuilder.Entity<Patient>().OwnsOne(p => p.Address)
