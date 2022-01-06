@@ -22,9 +22,6 @@ namespace HospitalClassLib.Schedule.Model
         public virtual Doctor Doctor { get; set; }
         public bool IsActivated { get; set; }
         public string Token { get; internal set; }
-        
-        [Column(TypeName ="ntext")]
-        [MaxLength]
         public string Picture { get; set; }
 
         public virtual ICollection<Appointment> Appointments { get; set; }

@@ -21,8 +21,8 @@ namespace HospitalClassLib.Schedule.Repository.DoctorRepository
 
         public List<Doctor> GetLessOccupiedDoctors()
         {
-            return dbContext.Doctors.Where(x => x.Patients.Count < dbContext.Doctors.OrderBy(p => p.Patients.Count).First().Patients.Count + 3 && 
-            x.DoctorSpecialization.Equals(Specialization.FamilyPhysician)).ToList();
+            return dbContext.Doctors.Where(x => x.Patients.Count < dbContext.Doctors.Where(x => x.DoctorSpecialization.Equals(Specialization.FamilyPhysician)).OrderBy(
+                p => p.Patients.Count).First().Patients.Count + 3 && x.DoctorSpecialization.Equals(Specialization.FamilyPhysician)).ToList();
         }
 
         public ICollection<Doctor> GetSpecificDoctors(Specialization specialization)

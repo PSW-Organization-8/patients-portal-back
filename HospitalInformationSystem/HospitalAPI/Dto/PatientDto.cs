@@ -25,7 +25,7 @@ namespace HospitalAPI.Dto
         public string Token { get; set; }
         public string Picture { get; set; }
 
-        public PatientDto(string name, string lastName, string jmbg, string username, string password, string email, string phone, string country, string city, string address,
+        /*public PatientDto(string name, string lastName, string jmbg, string username, string password, string email, string phone, string country, string city, string address,
             DateTime dateOfBirth, ICollection<Allergen> allergens, int doctorId, bool isActivated, string token, string bloodType)
         {
             Name = name;
@@ -44,7 +44,7 @@ namespace HospitalAPI.Dto
             DoctorId = doctorId;
             IsActivated = isActivated;
             Token = token;
-        }
+        }*/
 
         public PatientDto(string name, string lastName, string jmbg, string username, string password, string email, string phone, string country, string city, string address,
             DateTime dateOfBirth, ICollection<Allergen> allergens, int doctorId, bool isActivated, string token, string bloodType, string picture)
