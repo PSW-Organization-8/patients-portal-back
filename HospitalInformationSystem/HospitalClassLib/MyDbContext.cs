@@ -1,4 +1,5 @@
-﻿using HospitalClassLib.MedicalRecords.Model;
+﻿using HospitalClassLib.Events.Model;
+using HospitalClassLib.MedicalRecords.Model;
 using HospitalClassLib.Schedule.Model;
 using HospitalClassLib.SharedModel;
 using HospitalClassLib.SharedModel.Enums;
@@ -34,10 +35,10 @@ namespace HospitalClassLib
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             String server = Environment.GetEnvironmentVariable("SERVER") ?? "localhost";
-            String port = Environment.GetEnvironmentVariable("DB_PORT") ?? "8080";
+            String port = Environment.GetEnvironmentVariable("DB_PORT") ?? "5432";
             String databaseName = Environment.GetEnvironmentVariable("DB_NAME") ?? "psw_database";
             String username = Environment.GetEnvironmentVariable("DB_USER") ?? "postgres";
-            String password = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "wasd";
+            String password = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "2331";
 
             String connectionString = $"Server={server}; Port ={port}; Database ={databaseName}; User Id = {username}; Password ={password};";
             optionsBuilder.UseNpgsql(connectionString);
@@ -221,6 +222,17 @@ namespace HospitalClassLib
 
             modelBuilder.Entity<Receipt>().HasData(
                 new Receipt { ReceiptID = 1, MedicineName = "Synthroid", Amount = 1, Diagnosis = "Korona", Date = DateTime.Today, PatientId = 1, DoctorId = 1}
+            );
+
+            Event event1 = new Event(1, "username1", ApplicationName.PharmacyApp, EventClass.CancelForm);
+            Event event2 = new Event(2, "username2", ApplicationName.PatientsPortal, EventClass.EnterForm);
+            Event event3 = new Event(3, "username1", ApplicationName.PatientsPortal, EventClass.MedicationPreview);
+            event3.OptionalEventNumInfo = 1;
+
+            modelBuilder.Entity<Event>().HasData(
+                event1,
+                event2,
+                event3
             );
 
         }
