@@ -1,4 +1,6 @@
 using HospitalClassLib;
+using HospitalClassLib.Events.Repository;
+using HospitalClassLib.Events.Service;
 using HospitalClassLib.MedicalRecords.Repository.MedicationRepo;
 using HospitalClassLib.MedicalRecords.Repository.ReceiptRepo;
 using HospitalClassLib.MedicalRecords.Service;
@@ -84,6 +86,9 @@ namespace HospitalAPI
 
             services.AddTransient<IReceiptRepository, ReceiptRepository>();
             services.AddScoped<IReceiptService, ReceiptService>();
+
+            services.AddTransient<IEventRepository, EventRepository>();
+            services.AddScoped<IEventService, EventService>();
 
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

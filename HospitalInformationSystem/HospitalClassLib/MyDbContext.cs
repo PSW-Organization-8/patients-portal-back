@@ -1,4 +1,5 @@
-﻿using HospitalClassLib.MedicalRecords.Model;
+﻿using HospitalClassLib.Events.Model;
+using HospitalClassLib.MedicalRecords.Model;
 using HospitalClassLib.Schedule.Model;
 using HospitalClassLib.SharedModel;
 using HospitalClassLib.SharedModel.Enums;
@@ -46,6 +47,8 @@ namespace HospitalClassLib
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema("Hospital");
+
             modelBuilder.Entity<Patient>().OwnsOne(p => p.Address)
                             .Property(p => p.Country).HasColumnName("Country");
             modelBuilder.Entity<Patient>().OwnsOne(p => p.Address)
@@ -221,6 +224,17 @@ namespace HospitalClassLib
 
             modelBuilder.Entity<Receipt>().HasData(
                 new Receipt { ReceiptID = 1, MedicineName = "Synthroid", Amount = 1, Diagnosis = "Korona", Date = DateTime.Today, PatientId = 1, DoctorId = 1}
+            );
+
+            Event event1 = new Event(1, "username1", ApplicationName.PharmacyApp, EventClass.CancelForm);
+            Event event2 = new Event(2, "username2", ApplicationName.PatientsPortal, EventClass.EnterForm);
+            Event event3 = new Event(3, "username1", ApplicationName.PatientsPortal, EventClass.MedicationPreview);
+            event3.OptionalEventNumInfo = 1;
+
+            modelBuilder.Entity<Event>().HasData(
+                event1,
+                event2,
+                event3
             );
 
         }
