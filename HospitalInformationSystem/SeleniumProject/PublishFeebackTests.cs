@@ -33,7 +33,7 @@ namespace SeleniumProject
         }
 
         [Fact]
-        public void TestClickOnApproveButton()
+        public void TestPublishFeedback()
         {
             String feedbackContent = feedbacksPage.GetPublishableFeedbackContent();
             feedbacksPage.ClickOnApproveButton();

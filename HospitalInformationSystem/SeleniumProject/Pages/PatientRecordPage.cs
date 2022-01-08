@@ -4,21 +4,27 @@ using System;
 
 namespace SeleniumProject.Pages
 {
-    public class PatientHomePage
+    public class PatientRecordPage
     {
         private readonly IWebDriver driver;
-        public const string URI = "http://localhost:4200";
+        public const string URI = "http://localhost:4200/record";
 
-        private IWebElement FeedbackContent => driver.FindElement(By.Id("feedbackContent"));
-
-        public PatientHomePage(IWebDriver driver)
+        private IWebElement CancelAppointmentButton => driver.FindElement(By.Id("cancelAppointmentButton"));
+        public PatientRecordPage(IWebDriver driver)
         {
             this.driver = driver;
         }
 
-        public string GetContentOfPublishedFeedback()
+        public void ClickOnCancelAppointmentButton()
         {
-            return FeedbackContent.Text;
+            CancelAppointmentButton.Click();
+        }
+
+        public bool AppointmentCanceledButtonDisplayed()
+        {
+            Navigate();
+            IWebElement AppointmentCanceledButton = driver.FindElement(By.Id("appointmentCanceledButton"));
+            return AppointmentCanceledButton.Displayed;
         }
 
         public void EnsurePageIsDisplayed()
@@ -42,6 +48,5 @@ namespace SeleniumProject.Pages
         }
 
         public void Navigate() => driver.Navigate().GoToUrl(URI);
-
     }
 }
