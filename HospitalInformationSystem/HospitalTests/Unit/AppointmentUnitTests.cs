@@ -48,7 +48,7 @@ namespace HospitalTests.Unit
         public static IEnumerable<object[]> AppointmentData =>
         new List<object[]>
         {
-            new object[] { new AppointmentDto(new DateTime(2022, 1, 2, 8, 0, 0), 1, 1), 200 },
+            new object[] { new AppointmentDto(new DateTime(2025, 1, 2, 8, 0, 0), 1, 1), 200 },
             new object[] { new AppointmentDto(new DateTime(2020, 1, 2, 8, 0, 0), 1, 1), 400 },
             new object[] { new AppointmentDto(new DateTime(2022, 1, 2, 8, 0, 0), 0, 1), 400 },
             new object[] { new AppointmentDto(new DateTime(2022, 1, 2, 8, 0, 0), 0, 0), 400 },
@@ -61,7 +61,7 @@ namespace HospitalTests.Unit
         public static IEnumerable<object[]> FreeTermsData =>
         new List<object[]>
         {
-            new object[] { new DateTime(2022, 1, 2, 8, 0, 0), 1, true },
+            new object[] { new DateTime(2025, 1, 2, 8, 0, 0), 1, true },
             new object[] { new DateTime(2020, 1, 2, 8, 0, 0), 1, false },
             new object[] { new DateTime(2022, 1, 2, 8, 0, 0), 15, false },
             new object[] { null, null, false },

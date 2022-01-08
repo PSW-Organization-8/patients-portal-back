@@ -100,7 +100,7 @@ namespace HospitalTests.Integration
                 }
             },
 
-            new object[] { new DateTime(2023, 12, 16), 6, new List<DateTime>(){
+            new object[] { new DateTime(2023, 12, 16), 1, new List<DateTime>(){
                     new DateTime(2023, 12, 16, 8, 0, 0),
                     new DateTime(2023, 12, 16, 8, 15, 0),
                     new DateTime(2023, 12, 16, 8, 30, 0),
@@ -136,8 +136,39 @@ namespace HospitalTests.Integration
                 }
             },
 
-             new object[] { new DateTime(2022, 1, 1), 1, new List<DateTime>{
-                    
+            new object[] { new DateTime(2023, 12, 16), 6, new List<DateTime>(){
+                    new DateTime(2023, 12, 16, 8, 0, 0),
+                    new DateTime(2023, 12, 16, 8, 15, 0),
+                    new DateTime(2023, 12, 16, 8, 30, 0),
+                    new DateTime(2023, 12, 16, 8, 45, 0),
+                    new DateTime(2023, 12, 16, 9, 0, 0),
+                    new DateTime(2023, 12, 16, 9, 15, 0),
+                    new DateTime(2023, 12, 16, 9, 30, 0),
+                    new DateTime(2023, 12, 16, 9, 45, 0),
+                    new DateTime(2023, 12, 16, 10, 0, 0),
+                    new DateTime(2023, 12, 16, 10, 15, 0),
+                    new DateTime(2023, 12, 16, 10, 30, 0),
+                    new DateTime(2023, 12, 16, 10, 45, 0),
+                    new DateTime(2023, 12, 16, 11, 0, 0),
+                    new DateTime(2023, 12, 16, 11, 15, 0),
+                    new DateTime(2023, 12, 16, 11, 30, 0),
+                    new DateTime(2023, 12, 16, 11, 45, 0),
+                    new DateTime(2023, 12, 16, 12, 0, 0),
+                    new DateTime(2023, 12, 16, 12, 15, 0),
+                    new DateTime(2023, 12, 16, 12, 30, 0),
+                    new DateTime(2023, 12, 16, 12, 45, 0),
+                    new DateTime(2023, 12, 16, 13, 0, 0),
+                    new DateTime(2023, 12, 16, 13, 15, 0),
+                    new DateTime(2023, 12, 16, 13, 30, 0),
+                    new DateTime(2023, 12, 16, 13, 45, 0),
+                    new DateTime(2023, 12, 16, 14, 0, 0),
+                    new DateTime(2023, 12, 16, 14, 15, 0),
+                    new DateTime(2023, 12, 16, 14, 30, 0),
+                    new DateTime(2023, 12, 16, 14, 45, 0),
+                    new DateTime(2023, 12, 16, 15, 0, 0),
+                    new DateTime(2023, 12, 16, 15, 15, 0),
+                    new DateTime(2023, 12, 16, 15, 30, 0),
+                    new DateTime(2023, 12, 16, 15, 45, 0),
                 }
             },
         };
