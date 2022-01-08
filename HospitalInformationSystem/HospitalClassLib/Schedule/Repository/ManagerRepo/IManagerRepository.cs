@@ -17,5 +17,6 @@ namespace HospitalClassLib.Schedule.Repository.ManagerRepo
         bool ExistsById(int id);
         bool Delete(int id);
         LoggedUser GetLoggedUser(string username, string password);
+        Manager GetByUsername(string username);
     }
 }

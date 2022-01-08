@@ -75,6 +75,7 @@ namespace HospitalAPI.Controllers
 
         [HttpPut]
         [Route("ban/{id?}")]
+        [Authorize]
         public IActionResult BanPatientById(int id)
         {
             return Ok(patientService.BanPatientById(id));
@@ -82,6 +83,7 @@ namespace HospitalAPI.Controllers
 
         [HttpPut]
         [Route("unban/{id?}")]
+        [Authorize]
         public IActionResult UnbanPatientById(int id)
         {
             return Ok(patientService.UnbanPatientById(id));
