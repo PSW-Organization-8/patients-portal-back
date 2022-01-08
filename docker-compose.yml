@@ -31,7 +31,7 @@ services:
         dotnet restore HospitalInformationSystem &&
         dotnet dotnet-ef migrations add PatientsTestingMigration --project HospitalInformationSystem/HospitalAPI &&
         dotnet dotnet-ef database update --project HospitalInformationSystem/HospitalAPI &&
-        dotnet test HospitalInformationSystem
+        dotnet test --no-restore HospitalInformationSystem
         "
       depends_on:
         - database-patients
