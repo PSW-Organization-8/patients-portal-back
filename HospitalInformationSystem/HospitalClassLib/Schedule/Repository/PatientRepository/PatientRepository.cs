@@ -30,5 +30,10 @@ namespace HospitalClassLib.Schedule.Repository.PatientRepository
             LoggedUser user = (LoggedUser)dbContext.Patients.Where(p => p.Username == username && p.Password == password).FirstOrDefault();
             return user;
         }
+
+        public Patient GetByUsername(string username)
+        {
+            return dbContext.Patients.SingleOrDefault(patient => patient.Username.Equals(username));
+        }
     }
 }

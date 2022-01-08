@@ -26,6 +26,11 @@ namespace HospitalClassLib.Schedule.Service
             return patientRepository.Get(id);
         }
 
+        public Patient GetByUsername(string username)
+        {
+            return patientRepository.GetByUsername(username);
+        }
+
         public List<Patient> GetAll()
         {
             return patientRepository.GetAll();

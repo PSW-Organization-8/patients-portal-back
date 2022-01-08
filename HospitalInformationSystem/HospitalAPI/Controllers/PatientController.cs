@@ -66,6 +66,12 @@ namespace HospitalAPI.Controllers
             return Ok(patientService.Get(id));
         }
 
+        [HttpGet("getByUsername/{id?}")]
+        public IActionResult GetByUsername(string id)
+        {
+            return Ok(patientService.GetByUsername(id));
+        }
+
 
         [HttpPut]
         [Route("ban/{id?}")]
@@ -88,19 +94,17 @@ namespace HospitalAPI.Controllers
         public IActionResult SellersEndpoint()
         {
             var currentUser = GetCurrentUser();
-
             return Ok(currentUser);
         }
+
 
 
         private LoggedUser GetCurrentUser()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
-
             if (identity != null)
             {
                 var userClaims = identity.Claims;
-
                 return new LoggedUser
                 {
                     Username = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.NameIdentifier)?.Value,

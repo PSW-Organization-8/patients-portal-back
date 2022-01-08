@@ -18,5 +18,7 @@ namespace HospitalClassLib.Schedule.Repository.PatientRepository
         bool Delete(int id);
         Patient GetByToken(string patientToken);
         LoggedUser GetLoggedUser(string username, string password);
+        Patient GetByUsername(string username);
+
     }
 }
