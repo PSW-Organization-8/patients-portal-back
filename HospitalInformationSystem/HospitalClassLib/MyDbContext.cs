@@ -28,6 +28,12 @@ namespace HospitalClassLib
         public DbSet<SharedModel.Equipment> Equipments { get; set; }
         public DbSet<MoveEquipment> MoveEquipments { get; set; }
 
+        public DbSet<SharedModel.Shift> Shifts { get; set; }
+
+        public DbSet<VacationPeriod> Vacations { get; set; }
+
+
+
 
 
 
@@ -41,10 +47,10 @@ namespace HospitalClassLib
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             String server = Environment.GetEnvironmentVariable("SERVER") ?? "localhost";
-            String port = Environment.GetEnvironmentVariable("DB_PORT") ?? "8080";
-            String databaseName = Environment.GetEnvironmentVariable("DB_NAME") ?? "psw_database";
+            String port = Environment.GetEnvironmentVariable("DB_PORT") ?? "5432";
+            String databaseName = Environment.GetEnvironmentVariable("DB_NAME") ?? "integration";
             String username = Environment.GetEnvironmentVariable("DB_USER") ?? "postgres";
-            String password = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "wasd";
+            String password = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "root";
 
             String connectionString = $"Server={server}; Port ={port}; Database ={databaseName}; User Id = {username}; Password ={password};";
             optionsBuilder.UseNpgsql(connectionString);
@@ -68,6 +74,19 @@ namespace HospitalClassLib
             modelBuilder.Entity<Patient>().HasData(
                 new Patient { Id = 1, Name = "Pera", LastName = "Peric", Jmbg = "123456789", Username = "pera", Password = "pera", Email = "pera.peric@gmail.com", Phone = "054987332", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), IsActivated = true, Token = "ABC123DEF4AAAAC12345" },
                 new Patient { Id = 2, Name = "Mare", LastName = "Maric", Jmbg = "213456789", Username = "mare", Password = "maric", Email = "pera2.peric@gmail.com", Phone = "054987332", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), IsActivated = true, Token = "ABC213DEF4AAAAC12345" }
+                );
+
+            modelBuilder.Entity<SharedModel.Shift>().HasData(
+                new SharedModel.Shift { ID = 1, ShiftType="Morning shift", ShiftStart = "7:00", ShiftEnd = "13:00"},
+                new SharedModel.Shift { ID = 2, ShiftType = "Afternoon shift", ShiftStart = "13:00", ShiftEnd = "20:00" },
+                new SharedModel.Shift { ID = 3, ShiftType = "Night shift", ShiftStart = "20:00", ShiftEnd = "7:00" }
+                 );
+
+            modelBuilder.Entity<VacationPeriod>().HasData(
+               new VacationPeriod { ID = 1, VacationDescription = "Summer Vacation", StartTime = new DateTime(2022, 6, 6), EndTime = new DateTime(2022, 16, 6) },
+               new VacationPeriod { ID = 2, VacationDescription = "Winter Vacation", StartTime = new DateTime(2022, 1, 12), EndTime = new DateTime(2022, 10, 12) },
+               new VacationPeriod { ID = 3, VacationDescription = "Ski Trip", StartTime = new DateTime(2022, 5, 1), EndTime = new DateTime(2022, 15, 1) },
+               new VacationPeriod { ID = 4, VacationDescription = "Summer Vacation", StartTime = new DateTime(2022, 10, 8), EndTime = new DateTime(2022, 20, 8) }
                 );
             modelBuilder.Entity<Feedback>().HasData(
                 new Feedback { Id = 1, Content = "Tekst neki", IsApproved = true, Date = DateTime.Now, PatientId = 1, IsPublishable = true, IsAnonymous = false },

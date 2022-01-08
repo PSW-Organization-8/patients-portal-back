@@ -19,5 +19,8 @@ namespace HospitalClassLib.SharedModel
         public Specialization DoctorSpecialization { get; set; }
         public virtual ICollection<Patient> Patients { get; set; }
         public virtual ICollection<Appointment> Appointments { get; set; }
+
+        public Shift DoctorShift { get; set; }
+        public VacationPeriod Vacation { get; set; }
     }
 }
