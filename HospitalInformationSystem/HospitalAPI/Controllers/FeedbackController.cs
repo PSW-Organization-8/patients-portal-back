@@ -43,6 +43,7 @@ namespace HospitalAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public List<Feedback> GetFeedbacks()
         {
             return feedbackService.GetAll();
@@ -70,12 +71,14 @@ namespace HospitalAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public void ApproveFeedback(int id)
         {
             feedbackService.ApproveFeedback(id);
         }
 
         [HttpPut("remove/{id}")]
+        [Authorize]
         public void RemoveFeedback(int id)
         {
             feedbackService.RemoveFeedback(id);
