@@ -16,7 +16,6 @@ namespace SeleniumProject.Pages
         private IWebElement AnonymousCheckBox => driver.FindElement(By.Id("anonymous"));
         private IWebElement SubmitButtonElement => driver.FindElement(By.Id("submitButton"));
 
-        public string Title => driver.Title;
         public const string EmptyContentMessage = "Please fill out the text field";
 
 

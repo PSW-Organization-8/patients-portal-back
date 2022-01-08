@@ -2,36 +2,27 @@
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SeleniumProject.Pages
 {
-    public class FeedbacksPage
+    public class PatientHomePage
     {
         private readonly IWebDriver driver;
-        public const string URI = "http://localhost:58526/feedbackview";
-        private ReadOnlyCollection<IWebElement> Rows => driver.FindElements(By.XPath("//table[@id='feedbacksTable']/tbody/tr"));
-        public FeedbacksPage(IWebDriver driver)
+        public const string URI = "http://localhost:4200";
+
+        private IWebElement FeedbackContent => driver.FindElement(By.Id("feedbackContent"));
+
+        public PatientHomePage(IWebDriver driver)
         {
             this.driver = driver;
         }
 
-        public int FeedbacksCount()
+        public string GetContentOfPublishedFeedback()
         {
-            return Rows.Count;
-        }
-
-        public string GetPublishableFeedbackContent()
-        {
-            return "\"" + Rows[0].FindElement(By.Id("feedbackContent")).Text + "\"";
-        }
-
-        public void ClickOnApproveButton()
-        {
-            Rows[0].FindElement(By.Id("approveButton")).Click();
+            return FeedbackContent.Text;
         }
 
         public void EnsurePageIsDisplayed()
@@ -41,7 +32,7 @@ namespace SeleniumProject.Pages
             {
                 try
                 {
-                    return Rows.Count >= 0;
+                    return true;
                 }
                 catch (StaleElementReferenceException)
                 {
@@ -55,5 +46,6 @@ namespace SeleniumProject.Pages
         }
 
         public void Navigate() => driver.Navigate().GoToUrl(URI);
+
     }
 }
