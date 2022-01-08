@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20220106131112_first")]
-    partial class first
+    [Migration("20220108144930_firstMigration")]
+    partial class firstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -102,7 +102,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2022, 1, 6, 14, 11, 11, 800, DateTimeKind.Local).AddTicks(1843),
+                            StartTime = new DateTime(2022, 1, 8, 15, 49, 29, 400, DateTimeKind.Local).AddTicks(5163),
                             State = 0,
                             Type = 0
                         },
@@ -142,7 +142,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2022, 1, 6, 14, 11, 11, 800, DateTimeKind.Local).AddTicks(5469),
+                            StartTime = new DateTime(2022, 1, 8, 15, 49, 29, 400, DateTimeKind.Local).AddTicks(7325),
                             State = 2,
                             Type = 0
                         },
@@ -152,7 +152,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2022, 1, 6, 14, 11, 11, 800, DateTimeKind.Local).AddTicks(5484),
+                            StartTime = new DateTime(2022, 1, 8, 15, 49, 29, 400, DateTimeKind.Local).AddTicks(7342),
                             State = 1,
                             Type = 0
                         },
@@ -162,7 +162,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2022, 1, 6, 14, 11, 11, 800, DateTimeKind.Local).AddTicks(5488),
+                            StartTime = new DateTime(2022, 1, 8, 15, 49, 29, 400, DateTimeKind.Local).AddTicks(7346),
                             State = 2,
                             Type = 0
                         },
@@ -172,7 +172,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2022, 1, 6, 14, 11, 11, 800, DateTimeKind.Local).AddTicks(5492),
+                            StartTime = new DateTime(2022, 1, 8, 15, 49, 29, 400, DateTimeKind.Local).AddTicks(7350),
                             State = 2,
                             Type = 0
                         },
@@ -182,7 +182,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2022, 1, 6, 14, 11, 11, 800, DateTimeKind.Local).AddTicks(5495),
+                            StartTime = new DateTime(2022, 1, 8, 15, 49, 29, 400, DateTimeKind.Local).AddTicks(7354),
                             State = 2,
                             Type = 0
                         },
@@ -192,7 +192,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2022, 1, 6, 14, 11, 11, 800, DateTimeKind.Local).AddTicks(5586),
+                            StartTime = new DateTime(2022, 1, 8, 15, 49, 29, 400, DateTimeKind.Local).AddTicks(7357),
                             State = 2,
                             Type = 0
                         },
@@ -545,14 +545,14 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2022, 1, 6, 14, 11, 11, 796, DateTimeKind.Local).AddTicks(1479),
+                            Date = new DateTime(2022, 1, 8, 15, 49, 29, 393, DateTimeKind.Local).AddTicks(5136),
                             PatientId = 1
                         },
                         new
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2022, 1, 6, 14, 11, 11, 799, DateTimeKind.Local).AddTicks(8724),
+                            Date = new DateTime(2022, 1, 8, 15, 49, 29, 400, DateTimeKind.Local).AddTicks(901),
                             PatientId = 1
                         });
                 });
@@ -1072,6 +1072,53 @@ namespace HospitalAPI.Migrations
                         });
                 });
 
+            modelBuilder.Entity("HospitalClassLib.SharedModel.Manager", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Jmbg")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Managers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Jmbg = "1231231231231",
+                            LastName = "Brankovic",
+                            Name = "Mitar",
+                            Password = "mitar",
+                            Username = "mitar"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Jmbg = "1231231238231",
+                            LastName = "Milovcevic",
+                            Name = "Radisa",
+                            Password = "radisa",
+                            Username = "radisa"
+                        });
+                });
+
             modelBuilder.Entity("HospitalClassLib.SharedModel.Receipt", b =>
                 {
                     b.Property<long>("ReceiptID")
@@ -1106,7 +1153,7 @@ namespace HospitalAPI.Migrations
                         {
                             ReceiptID = 1L,
                             Amount = 1,
-                            Date = new DateTime(2022, 1, 6, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2022, 1, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             Diagnosis = "Korona",
                             DoctorId = 1,
                             MedicineName = "Synthroid",
@@ -1473,6 +1520,93 @@ namespace HospitalAPI.Migrations
                                     DoctorId = 7,
                                     Email = "milomirnjegos85@gmail.com",
                                     Phone = "0640000006"
+                                });
+                        });
+
+                    b.Navigation("Address");
+
+                    b.Navigation("Contact");
+                });
+
+            modelBuilder.Entity("HospitalClassLib.SharedModel.Manager", b =>
+                {
+                    b.OwnsOne("HospitalClassLib.SharedModel.Address", "Address", b1 =>
+                        {
+                            b1.Property<int>("ManagerId")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("integer")
+                                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                            b1.Property<string>("City")
+                                .HasColumnType("text")
+                                .HasColumnName("City");
+
+                            b1.Property<string>("Country")
+                                .HasColumnType("text")
+                                .HasColumnName("Country");
+
+                            b1.Property<string>("Street")
+                                .HasColumnType("text")
+                                .HasColumnName("Street");
+
+                            b1.HasKey("ManagerId");
+
+                            b1.ToTable("Managers");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ManagerId");
+
+                            b1.HasData(
+                                new
+                                {
+                                    ManagerId = 1,
+                                    City = "Novi Sad",
+                                    Country = "Serbia",
+                                    Street = "Dr. Sime Milosevica 20"
+                                },
+                                new
+                                {
+                                    ManagerId = 2,
+                                    City = "Novi Sad",
+                                    Country = "Serbia",
+                                    Street = "Bulevar Patrijaha Pavla 9"
+                                });
+                        });
+
+                    b.OwnsOne("HospitalClassLib.SharedModel.Contact", "Contact", b1 =>
+                        {
+                            b1.Property<int>("ManagerId")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("integer")
+                                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                            b1.Property<string>("Email")
+                                .HasColumnType("text")
+                                .HasColumnName("Email");
+
+                            b1.Property<string>("Phone")
+                                .HasColumnType("text")
+                                .HasColumnName("Phone");
+
+                            b1.HasKey("ManagerId");
+
+                            b1.ToTable("Managers");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ManagerId");
+
+                            b1.HasData(
+                                new
+                                {
+                                    ManagerId = 1,
+                                    Email = "mitarmitar@gmail.com",
+                                    Phone = "0641230000"
+                                },
+                                new
+                                {
+                                    ManagerId = 2,
+                                    Email = "radisaradisa@gmail.com",
+                                    Phone = "0647400000"
                                 });
                         });
 

@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace HospitalAPI.Migrations
 {
-    public partial class first : Migration
+    public partial class firstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,6 +42,28 @@ namespace HospitalAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Doctors", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Managers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    LastName = table.Column<string>(type: "text", nullable: true),
+                    Jmbg = table.Column<string>(type: "text", nullable: true),
+                    Username = table.Column<string>(type: "text", nullable: true),
+                    Password = table.Column<string>(type: "text", nullable: true),
+                    Email = table.Column<string>(type: "text", nullable: true),
+                    Phone = table.Column<string>(type: "text", nullable: true),
+                    Country = table.Column<string>(type: "text", nullable: true),
+                    City = table.Column<string>(type: "text", nullable: true),
+                    Street = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Managers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -257,6 +279,15 @@ namespace HospitalAPI.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Managers",
+                columns: new[] { "Id", "Jmbg", "LastName", "Name", "Password", "Username", "City", "Country", "Street", "Email", "Phone" },
+                values: new object[,]
+                {
+                    { 1, "1231231231231", "Brankovic", "Mitar", "mitar", "mitar", "Novi Sad", "Serbia", "Dr. Sime Milosevica 20", "mitarmitar@gmail.com", "0641230000" },
+                    { 2, "1231231238231", "Milovcevic", "Radisa", "radisa", "radisa", "Novi Sad", "Serbia", "Bulevar Patrijaha Pavla 9", "radisaradisa@gmail.com", "0647400000" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Medications",
                 columns: new[] { "MedicineID", "Name", "Quantity" },
                 values: new object[] { 1L, "Synthroid", 2 });
@@ -264,7 +295,7 @@ namespace HospitalAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Receipts",
                 columns: new[] { "ReceiptID", "Amount", "Date", "Diagnosis", "DoctorId", "MedicineName", "PatientId" },
-                values: new object[] { 1L, 1, new DateTime(2022, 1, 6, 0, 0, 0, 0, DateTimeKind.Local), "Korona", 1, "Synthroid", 1 });
+                values: new object[] { 1L, 1, new DateTime(2022, 1, 8, 0, 0, 0, 0, DateTimeKind.Local), "Korona", 1, "Synthroid", 1 });
 
             migrationBuilder.InsertData(
                 table: "Patients",
@@ -280,7 +311,7 @@ namespace HospitalAPI.Migrations
                 columns: new[] { "Id", "DoctorId", "IsSurveyed", "PatientId", "StartTime", "State", "Type" },
                 values: new object[,]
                 {
-                    { 1, 1, false, 1, new DateTime(2022, 1, 6, 14, 11, 11, 800, DateTimeKind.Local).AddTicks(1843), 0, 0 },
+                    { 1, 1, false, 1, new DateTime(2022, 1, 8, 15, 49, 29, 400, DateTimeKind.Local).AddTicks(5163), 0, 0 },
                     { 23, 1, false, 2, new DateTime(2022, 1, 1, 11, 0, 0, 0, DateTimeKind.Unspecified), 0, 0 },
                     { 24, 1, false, 2, new DateTime(2022, 1, 1, 11, 15, 0, 0, DateTimeKind.Unspecified), 0, 0 },
                     { 25, 1, false, 2, new DateTime(2022, 1, 1, 11, 30, 0, 0, DateTimeKind.Unspecified), 0, 0 },
@@ -306,12 +337,12 @@ namespace HospitalAPI.Migrations
                     { 2, 6, false, 1, new DateTime(2025, 12, 15, 10, 15, 0, 0, DateTimeKind.Unspecified), 0, 0 },
                     { 3, 6, false, 1, new DateTime(2021, 12, 15, 13, 15, 0, 0, DateTimeKind.Unspecified), 0, 0 },
                     { 4, 6, false, 1, new DateTime(2021, 12, 15, 15, 45, 0, 0, DateTimeKind.Unspecified), 0, 0 },
-                    { 5, 1, false, 1, new DateTime(2022, 1, 6, 14, 11, 11, 800, DateTimeKind.Local).AddTicks(5469), 2, 0 },
-                    { 6, 1, false, 1, new DateTime(2022, 1, 6, 14, 11, 11, 800, DateTimeKind.Local).AddTicks(5484), 1, 0 },
-                    { 7, 1, false, 2, new DateTime(2022, 1, 6, 14, 11, 11, 800, DateTimeKind.Local).AddTicks(5488), 2, 0 },
-                    { 8, 1, false, 2, new DateTime(2022, 1, 6, 14, 11, 11, 800, DateTimeKind.Local).AddTicks(5492), 2, 0 },
+                    { 5, 1, false, 1, new DateTime(2022, 1, 8, 15, 49, 29, 400, DateTimeKind.Local).AddTicks(7325), 2, 0 },
+                    { 6, 1, false, 1, new DateTime(2022, 1, 8, 15, 49, 29, 400, DateTimeKind.Local).AddTicks(7342), 1, 0 },
+                    { 7, 1, false, 2, new DateTime(2022, 1, 8, 15, 49, 29, 400, DateTimeKind.Local).AddTicks(7346), 2, 0 },
+                    { 8, 1, false, 2, new DateTime(2022, 1, 8, 15, 49, 29, 400, DateTimeKind.Local).AddTicks(7350), 2, 0 },
                     { 41, 1, false, 2, new DateTime(2022, 1, 1, 15, 30, 0, 0, DateTimeKind.Unspecified), 0, 0 },
-                    { 9, 1, false, 2, new DateTime(2022, 1, 6, 14, 11, 11, 800, DateTimeKind.Local).AddTicks(5495), 2, 0 },
+                    { 9, 1, false, 2, new DateTime(2022, 1, 8, 15, 49, 29, 400, DateTimeKind.Local).AddTicks(7354), 2, 0 },
                     { 11, 1, false, 2, new DateTime(2022, 1, 1, 8, 0, 0, 0, DateTimeKind.Unspecified), 0, 0 },
                     { 12, 1, false, 2, new DateTime(2022, 1, 1, 8, 15, 0, 0, DateTimeKind.Unspecified), 0, 0 },
                     { 13, 1, false, 2, new DateTime(2022, 1, 1, 8, 30, 0, 0, DateTimeKind.Unspecified), 0, 0 },
@@ -320,7 +351,7 @@ namespace HospitalAPI.Migrations
                     { 16, 1, false, 2, new DateTime(2022, 1, 1, 9, 15, 0, 0, DateTimeKind.Unspecified), 0, 0 },
                     { 17, 1, false, 2, new DateTime(2022, 1, 1, 9, 30, 0, 0, DateTimeKind.Unspecified), 0, 0 },
                     { 18, 1, false, 2, new DateTime(2022, 1, 1, 9, 45, 0, 0, DateTimeKind.Unspecified), 0, 0 },
-                    { 10, 1, false, 2, new DateTime(2022, 1, 6, 14, 11, 11, 800, DateTimeKind.Local).AddTicks(5586), 2, 0 },
+                    { 10, 1, false, 2, new DateTime(2022, 1, 8, 15, 49, 29, 400, DateTimeKind.Local).AddTicks(7357), 2, 0 },
                     { 42, 1, false, 2, new DateTime(2022, 1, 1, 15, 45, 0, 0, DateTimeKind.Unspecified), 0, 0 }
                 });
 
@@ -329,8 +360,8 @@ namespace HospitalAPI.Migrations
                 columns: new[] { "Id", "Content", "Date", "PatientId", "IsAnonymous", "IsApproved", "IsPublishable" },
                 values: new object[,]
                 {
-                    { 2, "Drugi neki", new DateTime(2022, 1, 6, 14, 11, 11, 799, DateTimeKind.Local).AddTicks(8724), 1, false, true, true },
-                    { 1, "Tekst neki", new DateTime(2022, 1, 6, 14, 11, 11, 796, DateTimeKind.Local).AddTicks(1479), 1, true, true, true }
+                    { 2, "Drugi neki", new DateTime(2022, 1, 8, 15, 49, 29, 400, DateTimeKind.Local).AddTicks(901), 1, false, true, true },
+                    { 1, "Tekst neki", new DateTime(2022, 1, 8, 15, 49, 29, 393, DateTimeKind.Local).AddTicks(5136), 1, true, true, true }
                 });
 
             migrationBuilder.InsertData(
@@ -427,6 +458,9 @@ namespace HospitalAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Feedbacks");
+
+            migrationBuilder.DropTable(
+                name: "Managers");
 
             migrationBuilder.DropTable(
                 name: "Medications");

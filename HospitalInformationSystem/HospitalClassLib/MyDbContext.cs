@@ -21,6 +21,7 @@ namespace HospitalClassLib
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<Manager> Managers { get; set; }
         public DbSet<Medication> Medications { get; set; }
         public DbSet<Receipt> Receipts { get; set; }
 
@@ -60,6 +61,13 @@ namespace HospitalClassLib
             modelBuilder.Entity<Doctor>().OwnsOne(p => p.Address)
                             .Property(p => p.Street).HasColumnName("Street");
 
+            modelBuilder.Entity<Manager>().OwnsOne(p => p.Address)
+                            .Property(p => p.Country).HasColumnName("Country");
+            modelBuilder.Entity<Manager>().OwnsOne(p => p.Address)
+                            .Property(p => p.City).HasColumnName("City");
+            modelBuilder.Entity<Manager>().OwnsOne(p => p.Address)
+                            .Property(p => p.Street).HasColumnName("Street");
+
             modelBuilder.Entity<Patient>().OwnsOne(p => p.Contact)
                             .Property(p => p.Email).HasColumnName("Email");
             modelBuilder.Entity<Patient>().OwnsOne(p => p.Contact)
@@ -68,6 +76,11 @@ namespace HospitalClassLib
             modelBuilder.Entity<Doctor>().OwnsOne(p => p.Contact)
                             .Property(p => p.Email).HasColumnName("Email");
             modelBuilder.Entity<Doctor>().OwnsOne(p => p.Contact)
+                            .Property(p => p.Phone).HasColumnName("Phone");
+
+            modelBuilder.Entity<Manager>().OwnsOne(p => p.Contact)
+                            .Property(p => p.Email).HasColumnName("Email");
+            modelBuilder.Entity<Manager>().OwnsOne(p => p.Contact)
                             .Property(p => p.Phone).HasColumnName("Phone");
 
             modelBuilder.Entity<Feedback>().OwnsOne(p => p.FeedbackProperties)
@@ -216,6 +229,17 @@ namespace HospitalClassLib
             new Question { Id = 14, Text = "How would you rate medical staffs skill?", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 2 },
             new Question { Id = 15, Text = "How would you rate medical staffs knowledge?", Value = 5, Category = QuestionCategory.medicalStuff, SurveyId = 2 }
             );
+
+            modelBuilder.Entity<Manager>().HasData(
+                            new Manager { Id = 1, Name = "Mitar", LastName = "Brankovic", Username = "mitar", Password = "mitar", Jmbg = "1231231231231"},
+                            new Manager { Id = 2, Name = "Radisa", LastName = "Milovcevic", Username = "radisa", Password = "radisa", Jmbg = "1231231238231"}
+                        );
+            modelBuilder.Entity<Manager>().OwnsOne(p => p.Address).HasData(
+                new { ManagerId = 1, Country = "Serbia", City = "Novi Sad", Street = "Dr. Sime Milosevica 20" },
+                new { ManagerId = 2, Country = "Serbia", City = "Novi Sad", Street = "Bulevar Patrijaha Pavla 9" });
+            modelBuilder.Entity<Manager>().OwnsOne(p => p.Contact).HasData(
+                new { ManagerId = 1, Email = "mitarmitar@gmail.com", Phone = "0641230000" },
+                new { ManagerId = 2, Email = "radisaradisa@gmail.com", Phone = "0647400000" });
 
             modelBuilder.Entity<Medication>().HasData(new Medication { MedicineID = 1, Name = "Synthroid", Quantity = 2 });
 
