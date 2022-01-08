@@ -87,6 +87,7 @@ namespace HospitalAPI.Controllers
 
         [HttpGet]
         [Route("listDto")]
+        [Authorize]
         public List<PatientAppointDto> GetDto()
         {
             List<PatientAppointDto> listDto = new List<PatientAppointDto>();
