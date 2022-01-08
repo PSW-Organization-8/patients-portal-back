@@ -38,7 +38,7 @@ namespace HospitalClassLib.Schedule.Model
         {
             Content = content;
             Date = date;
-            PatientId = 1;
+            PatientId = patient.Id;
             Patient = patient;
             FeedbackProperties = new FeedbackProperties(isApproved, isPublishable, isAnonymous);
         }

@@ -3,6 +3,7 @@ using HospitalAPI.Validators;
 using HospitalClassLib.Schedule.Model;
 using HospitalClassLib.Schedule.Repository.SurveyRepository;
 using HospitalClassLib.Schedule.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,7 @@ namespace HospitalAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult AddSurvey(SurveyDto dto)
         {
             if (validator.Validate(dto).IsValid) 

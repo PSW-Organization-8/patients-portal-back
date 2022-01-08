@@ -46,6 +46,7 @@ namespace HospitalAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("createNew")]
         public IActionResult CreateNewAppointment(AppointmentDto appointmentDto)
         {
@@ -98,6 +99,7 @@ namespace HospitalAPI.Controllers
         }
             
         [HttpGet]
+        [Authorize]
         public IActionResult GetAppointmentByPriority(DateTime firstDate, DateTime lastDate, int doctorId, bool doctorPriority)
         {
             AdvancedAppointmentDto dto = new(firstDate, lastDate, doctorId, doctorPriority);
