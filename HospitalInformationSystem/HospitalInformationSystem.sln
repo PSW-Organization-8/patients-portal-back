@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HospitalClassLib", "Hospita
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HospitalTests", "HospitalTests\HospitalTests.csproj", "{3C4B65E3-75DD-498C-8C77-CB1A7F5FDF18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumProject", "SeleniumProject\SeleniumProject.csproj", "{C290FF17-09B8-4DB4-A39B-231E3A4B52D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3C4B65E3-75DD-498C-8C77-CB1A7F5FDF18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C4B65E3-75DD-498C-8C77-CB1A7F5FDF18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C4B65E3-75DD-498C-8C77-CB1A7F5FDF18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C290FF17-09B8-4DB4-A39B-231E3A4B52D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C290FF17-09B8-4DB4-A39B-231E3A4B52D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C290FF17-09B8-4DB4-A39B-231E3A4B52D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C290FF17-09B8-4DB4-A39B-231E3A4B52D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
