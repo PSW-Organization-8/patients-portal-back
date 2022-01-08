@@ -7,23 +7,28 @@ using HospitalClassLib.Schedule.Repository.AllergenRepository;
 using HospitalClassLib.Schedule.Repository.AppointmentRepo;
 using HospitalClassLib.Schedule.Repository.DoctorRepository;
 using HospitalClassLib.Schedule.Repository.FeedbackRepository;
+using HospitalClassLib.Schedule.Repository.ManagerRepo;
 using HospitalClassLib.Schedule.Repository.PatientRepository;
 using HospitalClassLib.Schedule.Repository.QuestionRepository;
 using HospitalClassLib.Schedule.Repository.SurveyRepository;
 using HospitalClassLib.Schedule.Service;
 using IntegrationClassLib.Pharmacy.Repository.MedicationRepo;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace HospitalAPI
@@ -41,8 +46,11 @@ namespace HospitalAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddDbContext<MyDbContext>(options => options.UseNpgsql(x => x.MigrationsAssembly("HospitalAPI")));
+
+            services.AddTransient<IManagerRepository, ManagerRepository>();
+
             services.AddTransient<IAllergenRepository, AllergenRepository>();
             services.AddScoped<AllergenService>();
             services.AddScoped<AllergenRepository>();
@@ -77,6 +85,23 @@ namespace HospitalAPI
             services.AddTransient<IReceiptRepository, ReceiptRepository>();
             services.AddScoped<IReceiptService, ReceiptService>();
 
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options => {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ClockSkew = TimeSpan.Zero,
+                        ValidIssuer = Configuration["Jwt:Issuer"],
+                        ValidAudience = Configuration["Jwt:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                    };
+                });
+
+
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
                 builder.AllowAnyOrigin()
@@ -84,7 +109,9 @@ namespace HospitalAPI
                        .AllowAnyHeader();
             }));
 
+            services.AddSession();
             services.AddMvc();
+            services.AddRazorPages();
 
             services.AddSwaggerGen(c =>
             {
@@ -121,14 +148,16 @@ namespace HospitalAPI
                 }
 
             }
-
-            app.UseRouting();
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseCors("MyPolicy");
+            app.UseAuthentication();
+            app.UseRouting();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapRazorPages();
             });
         }
 

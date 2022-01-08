@@ -3,6 +3,7 @@ using HospitalClassLib.Schedule.Model;
 using HospitalClassLib.SharedModel;
 using HospitalClassLib.SharedModel.Enums;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace HospitalClassLib
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<Manager> Managers { get; set; }
         public DbSet<Medication> Medications { get; set; }
         public DbSet<Receipt> Receipts { get; set; }
 
@@ -45,11 +47,55 @@ namespace HospitalClassLib
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Patient>().OwnsOne(p => p.Address)
+                            .Property(p => p.Country).HasColumnName("Country");
+            modelBuilder.Entity<Patient>().OwnsOne(p => p.Address)
+                            .Property(p => p.City).HasColumnName("City");
+            modelBuilder.Entity<Patient>().OwnsOne(p => p.Address)
+                            .Property(p => p.Street).HasColumnName("Street");
+
+            modelBuilder.Entity<Doctor>().OwnsOne(p => p.Address)
+                            .Property(p => p.Country).HasColumnName("Country");
+            modelBuilder.Entity<Doctor>().OwnsOne(p => p.Address)
+                            .Property(p => p.City).HasColumnName("City");
+            modelBuilder.Entity<Doctor>().OwnsOne(p => p.Address)
+                            .Property(p => p.Street).HasColumnName("Street");
+
+            modelBuilder.Entity<Manager>().OwnsOne(p => p.Address)
+                            .Property(p => p.Country).HasColumnName("Country");
+            modelBuilder.Entity<Manager>().OwnsOne(p => p.Address)
+                            .Property(p => p.City).HasColumnName("City");
+            modelBuilder.Entity<Manager>().OwnsOne(p => p.Address)
+                            .Property(p => p.Street).HasColumnName("Street");
+
+            modelBuilder.Entity<Patient>().OwnsOne(p => p.Contact)
+                            .Property(p => p.Email).HasColumnName("Email");
+            modelBuilder.Entity<Patient>().OwnsOne(p => p.Contact)
+                            .Property(p => p.Phone).HasColumnName("Phone");
+
+            modelBuilder.Entity<Doctor>().OwnsOne(p => p.Contact)
+                            .Property(p => p.Email).HasColumnName("Email");
+            modelBuilder.Entity<Doctor>().OwnsOne(p => p.Contact)
+                            .Property(p => p.Phone).HasColumnName("Phone");
+
+            modelBuilder.Entity<Manager>().OwnsOne(p => p.Contact)
+                            .Property(p => p.Email).HasColumnName("Email");
+            modelBuilder.Entity<Manager>().OwnsOne(p => p.Contact)
+                            .Property(p => p.Phone).HasColumnName("Phone");
+
+            modelBuilder.Entity<Feedback>().OwnsOne(p => p.FeedbackProperties)
+                            .Property(p => p.IsAnonymous).HasColumnName("IsAnonymous");
+            modelBuilder.Entity<Feedback>().OwnsOne(p => p.FeedbackProperties)
+                            .Property(p => p.IsApproved).HasColumnName("IsApproved");
+            modelBuilder.Entity<Feedback>().OwnsOne(p => p.FeedbackProperties)
+                            .Property(p => p.IsPublishable).HasColumnName("IsPublishable");
+
             modelBuilder.Entity<Allergen>().HasData(
                 new Allergen { Id = 1, Name = "Prasina", Patients = new List<Patient>() }
                 );
+
             modelBuilder.Entity<Doctor>().HasData(
-                new Doctor { Id = 1, Name = "Jovan", LastName = "Jovanovic", Jmbg = "123456799", Username = "jova", Password = "jova", DoctorSpecialization = Specialization.FamilyPhysician , Patients = new List<Patient>(), Appointments = new List<Appointment>()},
+                new Doctor { Id = 1, Name = "Jovan", LastName = "Jovanovic", Jmbg = "123456799", Username = "jova", Password = "jova", DoctorSpecialization = Specialization.FamilyPhysician , Patients = new List<Patient>(), Appointments = new List<Appointment>() },
                 new Doctor { Id = 2, Name = "Milan", LastName = "Ilic", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.FamilyPhysician, Patients = new List<Patient>(), Appointments = new List<Appointment>() },
                 new Doctor { Id = 3, Name = "Stevan", LastName = "Markovic", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.Gynecologist, Patients = new List<Patient>(), Appointments = new List<Appointment>() },
                 new Doctor { Id = 4, Name = "Nikola", LastName = "Visnjic", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.Neurologist, Patients = new List<Patient>(), Appointments = new List<Appointment>() },
@@ -57,18 +103,45 @@ namespace HospitalClassLib
                 new Doctor { Id = 6, Name = "Goran", LastName = "Despotovic", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.Internist, Patients = new List<Patient>(), Appointments = new List<Appointment>() },
                 new Doctor { Id = 7, Name = "Milomir", LastName = "Njegos", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.Urologist, Patients = new List<Patient>(), Appointments = new List<Appointment>() }
                 );
+            modelBuilder.Entity<Doctor>().OwnsOne(p => p.Address).HasData(
+                new { DoctorId = 1, Country = "Serbia", City = "Novi Sad", Street = "Dr. Ilije Ilica 10" },
+                new { DoctorId = 2, Country = "Serbia", City = "Novi Sad", Street = "Nikle Tesle 1" },
+                new { DoctorId = 3, Country = "Serbia", City = "Beograd", Street = "Nikole Tesle 5" },
+                new { DoctorId = 4, Country = "Serbia", City = "Beograd", Street = "Kosovska 13" },
+                new { DoctorId = 5, Country = "Serbia", City = "Beograd", Street = "Dr. Ilije Ilica 10" },
+                new { DoctorId = 6, Country = "Serbia", City = "Novi Sad", Street = "Bulevar Oslobodjena 64" },
+                new { DoctorId = 7, Country = "Serbia", City = "Sabac", Street = "Nikole Tesle 15" });
+            modelBuilder.Entity<Doctor>().OwnsOne(p => p.Contact).HasData(
+                new { DoctorId = 1, Email = "jovanjova@gmail.com", Phone = "0640000000" },
+                new { DoctorId = 2, Email = "milanilic@gmail.com", Phone = "0640000001" },
+                new { DoctorId = 3, Email = "stevanm@gmail.com", Phone = "0640000002" },
+                new { DoctorId = 4, Email = "nikolanidzo@gmail.com", Phone = "0640000003" },
+                new { DoctorId = 5, Email = "mitic.strahinja@gmail.com", Phone = "0640000004" },
+                new { DoctorId = 6, Email = "despotovicgoran123@gmail.com", Phone = "0640000005" },
+                new { DoctorId = 7, Email = "milomirnjegos85@gmail.com", Phone = "0640000006" });
+
             modelBuilder.Entity<Patient>().HasData(
-                new Patient { Id = 1, Name = "Pera", LastName = "Peric", Jmbg = "123456789", Username = "pera", Password = "pera", Email = "pera.peric@gmail.com", Phone = "054987332", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), IsActivated = true, Token = "ABC123DEF4AAAAC12345" },
-                new Patient { Id = 2, Name = "Mare", LastName = "Maric", Jmbg = "213456789", Username = "mare", Password = "maric", Email = "pera2.peric@gmail.com", Phone = "054987332", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), IsActivated = true, Token = "ABC213DEF4AAAAC12345" }
+                new Patient { Id = 1, Name = "Pera", LastName = "Peric", Jmbg = "123456789", Username = "pera", Password = "pera", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), IsActivated = true, Token = "ABC123DEF4AAAAC12345", Picture=""},
+                new Patient { Id = 2, Name = "Mare", LastName = "Maric", Jmbg = "213456789", Username = "mare", Password = "maric", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), IsActivated = true, Token = "ABC213DEF4AAAAC12345", Picture=""}
                 );
+            modelBuilder.Entity<Patient>().OwnsOne(p => p.Address).HasData(
+                new { PatientId = 1, Country = "Serbia", City = "Novi Sad", Street = "Dr. Sime Milosevica 10" },
+                new { PatientId = 2, Country = "Serbia", City = "Novi Sad", Street = "Bulevar Patrijaha Pavla 19" });
+            modelBuilder.Entity<Patient>().OwnsOne(p => p.Contact).HasData(
+                new { PatientId = 1, Email = "perapera@gmail.com", Phone = "0641230000" },
+                new { PatientId = 2, Email = "maremaric@gmail.com", Phone = "0647400000" });
+
             modelBuilder.Entity<Feedback>().HasData(
-                new Feedback { Id = 1, Content = "Tekst neki", IsApproved = true, Date = DateTime.Now, PatientId = 1, IsPublishable = true, IsAnonymous = false },
-                new Feedback { Id = 2, Content = "Drugi neki", IsApproved = true, Date = DateTime.Now, PatientId = 1, IsPublishable = true, IsAnonymous = false }
+                new Feedback { Id = 1, Content = "Tekst neki", Date = DateTime.Now, PatientId = 1},
+                new Feedback { Id = 2, Content = "Drugi neki", Date = DateTime.Now, PatientId = 1}
             );
+            modelBuilder.Entity<Feedback>().OwnsOne(p => p.FeedbackProperties).HasData(
+                new { FeedbackId = 1, IsAnonymous = true, IsPublishable = true, IsApproved = true },
+                new { FeedbackId = 2, IsAnonymous = false, IsPublishable = true, IsApproved = true });
 
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment { Id = 1, StartTime = DateTime.Now, State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed = false },
-                new Appointment { Id = 2, StartTime = new DateTime(2021, 12, 15, 10, 15, 0), State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 6, PatientId = 1, IsSurveyed = false },
+                new Appointment { Id = 2, StartTime = new DateTime(2025, 12, 15, 10, 15, 0), State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 6, PatientId = 1, IsSurveyed = false },
                 new Appointment { Id = 3, StartTime = new DateTime(2021, 12, 15, 13, 15, 0), State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 6, PatientId = 1, IsSurveyed = false },
                 new Appointment { Id = 4, StartTime = new DateTime(2021, 12, 15, 15, 45, 0), State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 6, PatientId = 1, IsSurveyed = false },
 
@@ -155,7 +228,19 @@ namespace HospitalClassLib
             new Question { Id = 13, Text = "How would you rate medical staffs technicality?", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 2 },
             new Question { Id = 14, Text = "How would you rate medical staffs skill?", Value = 1, Category = QuestionCategory.medicalStuff, SurveyId = 2 },
             new Question { Id = 15, Text = "How would you rate medical staffs knowledge?", Value = 5, Category = QuestionCategory.medicalStuff, SurveyId = 2 }
-            ); 
+            );
+
+            modelBuilder.Entity<Manager>().HasData(
+                            new Manager { Id = 1, Name = "Mitar", LastName = "Brankovic", Username = "mitar", Password = "mitar", Jmbg = "1231231231231"},
+                            new Manager { Id = 2, Name = "Radisa", LastName = "Milovcevic", Username = "radisa", Password = "radisa", Jmbg = "1231231238231"}
+                        );
+            modelBuilder.Entity<Manager>().OwnsOne(p => p.Address).HasData(
+                new { ManagerId = 1, Country = "Serbia", City = "Novi Sad", Street = "Dr. Sime Milosevica 20" },
+                new { ManagerId = 2, Country = "Serbia", City = "Novi Sad", Street = "Bulevar Patrijaha Pavla 9" });
+            modelBuilder.Entity<Manager>().OwnsOne(p => p.Contact).HasData(
+                new { ManagerId = 1, Email = "mitarmitar@gmail.com", Phone = "0641230000" },
+                new { ManagerId = 2, Email = "radisaradisa@gmail.com", Phone = "0647400000" });
+
             modelBuilder.Entity<Medication>().HasData(new Medication { MedicineID = 1, Name = "Synthroid", Quantity = 2 });
 
             modelBuilder.Entity<Receipt>().HasData(

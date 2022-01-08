@@ -23,8 +23,9 @@ namespace HospitalAPI.Dto
         public int DoctorId { get; set; }
         public bool IsActivated { get; set; }
         public string Token { get; set; }
+        public string Picture { get; set; }
 
-        public PatientDto(string name, string lastName, string jmbg, string username, string password, string email, string phone, string country, string city, string address,
+        /*public PatientDto(string name, string lastName, string jmbg, string username, string password, string email, string phone, string country, string city, string address,
             DateTime dateOfBirth, ICollection<Allergen> allergens, int doctorId, bool isActivated, string token, string bloodType)
         {
             Name = name;
@@ -43,6 +44,28 @@ namespace HospitalAPI.Dto
             DoctorId = doctorId;
             IsActivated = isActivated;
             Token = token;
+        }*/
+
+        public PatientDto(string name, string lastName, string jmbg, string username, string password, string email, string phone, string country, string city, string address,
+            DateTime dateOfBirth, ICollection<Allergen> allergens, int doctorId, bool isActivated, string token, string bloodType, string picture)
+        {
+            Name = name;
+            LastName = lastName;
+            Jmbg = jmbg;
+            Username = username;
+            Password = password;
+            Email = email;
+            Phone = phone;
+            DateOfBirth = dateOfBirth;
+            Country = country;
+            City = city;
+            Address = address;
+            BloodType = bloodType;
+            Allergens = allergens;
+            DoctorId = doctorId;
+            IsActivated = isActivated;
+            Token = token;
+            Picture = picture;
         }
 
         public override bool Equals(object obj)
@@ -60,6 +83,11 @@ namespace HospitalAPI.Dto
                    DoctorId == dto.DoctorId &&
                    IsActivated == dto.IsActivated &&
                    Token == dto.Token;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

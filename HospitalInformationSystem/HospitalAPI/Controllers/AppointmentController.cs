@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HospitalAPI.Validators;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HospitalAPI.Controllers
 {
@@ -36,6 +37,7 @@ namespace HospitalAPI.Controllers
         }
 
         [HttpGet("{id?}")]
+        [Authorize]
         public IActionResult GetByPatient(int id)
         {
             if(idValidator.CheckId(id) && appointmentService.GetByPatient(id).Count != 0)
@@ -44,6 +46,7 @@ namespace HospitalAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("createNew")]
         public IActionResult CreateNewAppointment(AppointmentDto appointmentDto)
         {
@@ -84,6 +87,7 @@ namespace HospitalAPI.Controllers
 
         [HttpGet]
         [Route("listDto")]
+        [Authorize]
         public List<PatientAppointDto> GetDto()
         {
             List<PatientAppointDto> listDto = new List<PatientAppointDto>();
@@ -96,6 +100,7 @@ namespace HospitalAPI.Controllers
         }
             
         [HttpGet]
+        [Authorize]
         public IActionResult GetAppointmentByPriority(DateTime firstDate, DateTime lastDate, int doctorId, bool doctorPriority)
         {
             AdvancedAppointmentDto dto = new(firstDate, lastDate, doctorId, doctorPriority);

@@ -9,14 +9,15 @@ namespace HospitalAPI.Mapper
 {
     public class FeedbackMapper
     {
-        public static Feedback FeedbackDtoToFeedback(FeedbackDto dto)
+        public static Feedback FeedbackDtoToFeedback(FeedbackDto dto, Patient patient)
         {
-            return new Feedback(dto.Content, dto.IsApproved, DateTime.Now, dto.Patient, dto.IsPublishable, dto.IsAnonymous);
+            return new Feedback(dto.Content, dto.IsApproved, DateTime.Now, patient, dto.IsPublishable, dto.IsAnonymous);
         }
 
         public static FeedbackDto FeedbackToFeedbackDto(Feedback feedback)
         {
-            return new FeedbackDto(feedback.Content, feedback.IsApproved, feedback.Patient, feedback.IsPublishable, feedback.IsAnonymous);
+            return new FeedbackDto(feedback.Content, feedback.FeedbackProperties.IsApproved, feedback.Patient.Id, feedback.FeedbackProperties.IsPublishable, 
+                feedback.FeedbackProperties.IsAnonymous);
         }
     }
 }

@@ -14,23 +14,17 @@ namespace HospitalClassLib.SharedModel
         public string Jmbg { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Country { get; set; }
-        public string City { get; set; }
-        public string Address { get; set; }
+        public Contact Contact { get; set; }
+        public Address Address { get; set; }
 
-        public LoggedUser(string name, string lastName, string jmbg, string username, string password, string email, string phone, string country, string city, string address)
+        public LoggedUser(string name, string lastName, string jmbg, string username, string password, Contact contact, Address address)
         {
             Name = name;
             LastName = lastName;
             Jmbg = jmbg;
             Username = username;
             Password = password;
-            Email = email;
-            Phone = phone;
-            Country = country;
-            City = city;
+            Contact = contact;
             Address = address;
         }
 

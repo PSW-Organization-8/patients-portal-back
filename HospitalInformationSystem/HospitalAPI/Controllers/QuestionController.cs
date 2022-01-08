@@ -2,6 +2,7 @@
 using HospitalClassLib.Schedule.Model;
 using HospitalClassLib.Schedule.Repository.QuestionRepository;
 using HospitalClassLib.Schedule.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,7 @@ namespace HospitalAPI.Controllers
 
         [HttpGet]
         [Route("byQuestion")]
+        [Authorize]
         public IActionResult GetAvgQuestionValues()
         {
             return Ok(questionService.GetAvgQuestionValues());
@@ -49,6 +51,7 @@ namespace HospitalAPI.Controllers
 
         [HttpGet]
         [Route("byCategory")]
+        [Authorize]
         public IActionResult GetAvgCategoryValues()
         {
             return Ok(questionService.GetAvgCategoryValues());
@@ -57,6 +60,7 @@ namespace HospitalAPI.Controllers
 
         [HttpGet]
         [Route("questionData")]
+        [Authorize]
         public IActionResult GetQuestionData()
         {
             return Ok(questionService.GetQuestionData());
@@ -64,6 +68,7 @@ namespace HospitalAPI.Controllers
 
         [HttpGet]
         [Route("categoryData")]
+        [Authorize]
         public IActionResult GetCategoryData()
         {
             return Ok(questionService.GetCategoryData());

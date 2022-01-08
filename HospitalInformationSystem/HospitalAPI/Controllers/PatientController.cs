@@ -3,8 +3,14 @@ using HospitalAPI.Mapper;
 using HospitalAPI.Validators;
 using HospitalClassLib.Schedule.Model;
 using HospitalClassLib.Schedule.Service;
+using HospitalClassLib.SharedModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
+
 
 namespace HospitalAPI.Controllers
 {
@@ -36,7 +42,8 @@ namespace HospitalAPI.Controllers
             if (validator.Validate(PatientMapper.PatientDtoToPatient(
                 patientDto, doctorService.Get(patientDto.DoctorId), allergenService.GetSelectedAllergens(patientDto.Allergens))).IsValid)
             {
-                return Ok(patientService.RegisterPatient(PatientMapper.PatientDtoToPatient(patientDto, doctorService.Get(patientDto.DoctorId), allergenService.GetSelectedAllergens(patientDto.Allergens))));
+                patientService.RegisterPatient(PatientMapper.PatientDtoToPatientRegistration(patientDto, doctorService.Get(patientDto.DoctorId), allergenService.GetSelectedAllergens(patientDto.Allergens)));
+                return Ok(true);
             }
             return BadRequest(patientDto);
         }
@@ -59,9 +66,16 @@ namespace HospitalAPI.Controllers
             return Ok(patientService.Get(id));
         }
 
+        [HttpGet("getByUsername/{id?}")]
+        public IActionResult GetByUsername(string id)
+        {
+            return Ok(patientService.GetByUsername(id));
+        }
+
 
         [HttpPut]
         [Route("ban/{id?}")]
+        [Authorize]
         public IActionResult BanPatientById(int id)
         {
             return Ok(patientService.BanPatientById(id));
@@ -69,10 +83,36 @@ namespace HospitalAPI.Controllers
 
         [HttpPut]
         [Route("unban/{id?}")]
+        [Authorize]
         public IActionResult UnbanPatientById(int id)
         {
             return Ok(patientService.UnbanPatientById(id));
         }
 
+
+
+        [HttpGet("login")]
+        [Authorize]
+        public IActionResult SellersEndpoint()
+        {
+            var currentUser = GetCurrentUser();
+            return Ok(currentUser);
+        }
+
+
+
+        private LoggedUser GetCurrentUser()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            if (identity != null)
+            {
+                var userClaims = identity.Claims;
+                return new LoggedUser
+                {
+                    Username = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.NameIdentifier)?.Value,
+                };
+            }
+            return null;
+        }
     }
 }

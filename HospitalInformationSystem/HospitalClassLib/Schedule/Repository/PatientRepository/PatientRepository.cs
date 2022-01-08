@@ -1,4 +1,5 @@
 ﻿using HospitalClassLib.Schedule.Model;
+using HospitalClassLib.SharedModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,17 @@ namespace HospitalClassLib.Schedule.Repository.PatientRepository
         public Patient GetByToken(string patientToken)
         {
             return dbContext.Patients.SingleOrDefault(patient => patient.Token.Equals(patientToken));
+        }
+
+        public LoggedUser GetLoggedUser(string username, string password) 
+        {
+            LoggedUser user = (LoggedUser)dbContext.Patients.Where(p => p.Username == username && p.Password == password).FirstOrDefault();
+            return user;
+        }
+
+        public Patient GetByUsername(string username)
+        {
+            return dbContext.Patients.SingleOrDefault(patient => patient.Username.Equals(username));
         }
     }
 }

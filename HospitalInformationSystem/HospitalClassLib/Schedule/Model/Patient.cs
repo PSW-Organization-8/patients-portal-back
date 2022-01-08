@@ -14,8 +14,6 @@ namespace HospitalClassLib.Schedule.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public bool IsBanned { get; set; }
-        public string Lbo { get; set; }
-        public bool Guest { get; set; }
         public DateTime DateOfBirth { get; set; }
         public BloodType BloodType { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }
@@ -24,28 +22,24 @@ namespace HospitalClassLib.Schedule.Model
         public virtual Doctor Doctor { get; set; }
         public bool IsActivated { get; set; }
         public string Token { get; internal set; }
+        public string Picture { get; set; }
 
         public virtual ICollection<Appointment> Appointments { get; set; }
 
         public Patient() { }
 
         public Patient(string name, string lastName, string jmbg, string username, string password, string email, string phone, string country, string city, string address,
-            bool isBanned, string lbo, bool guest, DateTime dateOfBirth, ICollection<Allergen> allergens, Doctor doctor, bool isActivated, string token, BloodType bloodType)
+            bool isBanned, DateTime dateOfBirth, ICollection<Allergen> allergens, Doctor doctor, bool isActivated, string token, BloodType bloodType)
         {
             Name = name;
             LastName = lastName;
             Jmbg = jmbg;
             Username = username;
             Password = password;
-            Email = email;
-            Phone = phone;
+            Contact = new Contact(email, phone);
             IsBanned = isBanned;
-            Lbo = lbo;
-            Guest = guest;
             DateOfBirth = dateOfBirth;
-            Country = country;
-            City = city;
-            Address = address;
+            Address = new Address(country, city, address);
             BloodType = bloodType;
             Allergens = allergens;
             Doctor = doctor;
@@ -63,17 +57,36 @@ namespace HospitalClassLib.Schedule.Model
             Jmbg = jmbg;
             Username = username;
             Password = password;
-            Email = email;
-            Phone = phone;
+            Contact = new Contact(email, phone);
             DateOfBirth = dateOfBirth;
-            Country = country;
-            City = city;
-            Address = address;
+            Address = new Address(country, city, address);
             BloodType = BloodType.ABn;
             Allergens = allergens;
             DoctorId = doctorId;
             IsActivated = isActivated;
             Token = token;
+        }
+
+        public Patient(string name, string lastName, string jmbg, string username, string password, string email, string phone, string country, string city, string address,
+            bool isBanned, DateTime dateOfBirth, ICollection<Allergen> allergens, Doctor doctor, bool isActivated, string token, BloodType bloodType, string picture)
+        {
+            Name = name;
+            LastName = lastName;
+            Jmbg = jmbg;
+            Username = username;
+            Password = password;
+            Contact = new Contact(email, phone);
+            IsBanned = isBanned;
+            DateOfBirth = dateOfBirth;
+            Address = new Address(country, city, address);
+            BloodType = bloodType;
+            Allergens = allergens;
+            Doctor = doctor;
+            DoctorId = doctor.Id;
+            Feedbacks = new List<Feedback>();
+            IsActivated = isActivated;
+            Token = token;
+            Picture = picture;
         }
 
         public override bool Equals(object obj)

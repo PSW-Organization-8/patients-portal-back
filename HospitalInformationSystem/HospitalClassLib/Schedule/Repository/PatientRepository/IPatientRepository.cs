@@ -1,4 +1,5 @@
 ﻿using HospitalClassLib.Schedule.Model;
+using HospitalClassLib.SharedModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,8 @@ namespace HospitalClassLib.Schedule.Repository.PatientRepository
         bool ExistsById(int id);
         bool Delete(int id);
         Patient GetByToken(string patientToken);
+        LoggedUser GetLoggedUser(string username, string password);
+        Patient GetByUsername(string username);
+
     }
 }
