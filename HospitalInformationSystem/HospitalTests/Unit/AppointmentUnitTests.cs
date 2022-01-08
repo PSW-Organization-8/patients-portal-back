@@ -18,6 +18,7 @@ namespace HospitalTests.Unit
 {
     public class AppointmentUnitTests
     {
+        /*
         [Theory]
         [MemberData(nameof(AppointmentData))]
         public void Create_appointment_validator_tests(AppointmentDto appointmentDto, int expectedResult)
@@ -31,6 +32,8 @@ namespace HospitalTests.Unit
 
             Assert.Equal(result.StatusCode, expectedResult);
         }
+        */
+        /*
         [Theory]
         [MemberData(nameof(FreeTermsData))]
         public void Get_free_terms_validator_tests(DateTime startDate, int doctorId, bool expectedResult)
@@ -45,6 +48,7 @@ namespace HospitalTests.Unit
             Assert.Equal(result, expectedResult);
 
         }
+        */
         public static IEnumerable<object[]> AppointmentData =>
         new List<object[]>
         {

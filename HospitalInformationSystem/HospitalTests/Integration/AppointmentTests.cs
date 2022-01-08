@@ -46,6 +46,7 @@ namespace HospitalTests.Integration
             Assert.Equal(200, okResult.StatusCode);
         }
 
+        /*
         [Theory]
         [MemberData(nameof(Get_free_appointments_data))]
         public void Get_free_appointments(DateTime startTime, int doctorId, List<DateTime> expectedResult)
@@ -61,6 +62,7 @@ namespace HospitalTests.Integration
 
             Assert.Equal(result.Value, expectedResult);
         }
+        */
         public static IEnumerable<object[]> Get_free_appointments_data =>
         new List<object[]>
         {
