@@ -90,6 +90,11 @@ namespace HospitalClassLib
             modelBuilder.Entity<Feedback>().OwnsOne(p => p.FeedbackProperties)
                             .Property(p => p.IsPublishable).HasColumnName("IsPublishable");
 
+            modelBuilder.Entity<Patient>().OwnsOne(p => p.PatientAccountStatus)
+                            .Property(p => p.IsBanned).HasColumnName("IsBanned");
+            modelBuilder.Entity<Patient>().OwnsOne(p => p.PatientAccountStatus)
+                            .Property(p => p.IsActivated).HasColumnName("IsActivated");
+
             modelBuilder.Entity<Allergen>().HasData(
                 new Allergen { Id = 1, Name = "Prasina", Patients = new List<Patient>() }
                 );
@@ -121,8 +126,8 @@ namespace HospitalClassLib
                 new { DoctorId = 7, Email = "milomirnjegos85@gmail.com", Phone = "0640000006" });
 
             modelBuilder.Entity<Patient>().HasData(
-                new Patient { Id = 1, Name = "Pera", LastName = "Peric", Jmbg = "123456789", Username = "pera", Password = "pera", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), IsActivated = true, Token = "ABC123DEF4AAAAC12345", Picture=""},
-                new Patient { Id = 2, Name = "Mare", LastName = "Maric", Jmbg = "213456789", Username = "mare", Password = "maric", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), IsActivated = true, Token = "ABC213DEF4AAAAC12345", Picture=""}
+                new Patient { Id = 1, Name = "Pera", LastName = "Peric", Jmbg = "123456789", Username = "pera", Password = "pera", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), Token = "ABC123DEF4AAAAC12345", Picture=""},
+                new Patient { Id = 2, Name = "Mare", LastName = "Maric", Jmbg = "213456789", Username = "mare", Password = "maric", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), Token = "ABC213DEF4AAAAC12345", Picture=""}
                 );
             modelBuilder.Entity<Patient>().OwnsOne(p => p.Address).HasData(
                 new { PatientId = 1, Country = "Serbia", City = "Novi Sad", Street = "Dr. Sime Milosevica 10" },
@@ -130,6 +135,9 @@ namespace HospitalClassLib
             modelBuilder.Entity<Patient>().OwnsOne(p => p.Contact).HasData(
                 new { PatientId = 1, Email = "perapera@gmail.com", Phone = "0641230000" },
                 new { PatientId = 2, Email = "maremaric@gmail.com", Phone = "0647400000" });
+            modelBuilder.Entity<Patient>().OwnsOne(p => p.PatientAccountStatus).HasData(
+                new { PatientId = 1, IsActivated = false, IsBanned = false},
+                new { PatientId = 2, IsActivated = false, IsBanned = false});
 
             modelBuilder.Entity<Feedback>().HasData(
                 new Feedback { Id = 1, Content = "Tekst neki", Date = DateTime.Now, PatientId = 1},

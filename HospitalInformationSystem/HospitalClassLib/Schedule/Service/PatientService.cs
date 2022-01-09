@@ -128,7 +128,7 @@ namespace HospitalClassLib.Schedule.Service
         public void ActivatePatientAccount(string patientToken)
         {
             Patient patient = patientRepository.GetByToken(patientToken);
-            patient.IsActivated = true;
+            patient.PatientAccountStatus.IsActivated = true;
             patientRepository.Update(patient);
         }
         public Patient GetByToken(string patientToken)
@@ -139,7 +139,7 @@ namespace HospitalClassLib.Schedule.Service
         public bool BanPatientById(int id)
         {
             Patient patient = patientRepository.Get(id);
-            patient.IsBanned = true;
+            patient.PatientAccountStatus.IsBanned = true;
             patientRepository.Update(patient);
 
             return true;
@@ -148,7 +148,7 @@ namespace HospitalClassLib.Schedule.Service
         public bool UnbanPatientById(int id)
         {
             Patient patient = patientRepository.Get(id);
-            patient.IsBanned = false;
+            patient.PatientAccountStatus.IsBanned = false;
             patientRepository.Update(patient);
 
             return true;

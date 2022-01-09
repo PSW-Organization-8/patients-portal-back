@@ -66,7 +66,7 @@ namespace HospitalTests.Integration
 
             Patient p = context.Patients.Where(p => p.Token == "ABC123DEF4AAAAC12345").ToList()[0];
 
-            Assert.True(p.IsActivated);
+            Assert.True(p.PatientAccountStatus.IsActivated);
         }
     }
 }
