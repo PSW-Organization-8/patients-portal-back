@@ -91,18 +91,8 @@ namespace HospitalClassLib
                 );
 
 
-            modelBuilder.Entity<SharedModel.Shift>().HasData(
-                new SharedModel.Shift { ID = 1, ShiftType="Morning shift", ShiftStart = "7:00", ShiftEnd = "13:00"},
-                new SharedModel.Shift { ID = 2, ShiftType = "Afternoon shift", ShiftStart = "13:00", ShiftEnd = "20:00" },
-                new SharedModel.Shift { ID = 3, ShiftType = "Night shift", ShiftStart = "20:00", ShiftEnd = "7:00" }
-                 );
+        
 
-            modelBuilder.Entity<VacationPeriod>().HasData(
-               new VacationPeriod { ID = 1, VacationDescription = "Summer Vacation", StartTime = new DateTime(2022, 6, 6), EndTime = new DateTime(2022, 6, 16) },
-               new VacationPeriod { ID = 2, VacationDescription = "Winter Vacation", StartTime = new DateTime(2022, 12, 1), EndTime = new DateTime(2022, 12, 10) },
-               new VacationPeriod { ID = 3, VacationDescription = "Ski Trip", StartTime = new DateTime(2022, 1, 5), EndTime = new DateTime(2022, 1, 15) },
-               new VacationPeriod { ID = 4, VacationDescription = "Summer Vacation", StartTime = new DateTime(2022, 8, 10), EndTime = new DateTime(2022, 8, 20) }
-                );
 
             modelBuilder.Entity<Feedback>().HasData(
                 new Feedback { Id = 1, Content = "Tekst neki", IsApproved = true, Date = DateTime.Now, PatientId = 1, IsPublishable = true, IsAnonymous = false },

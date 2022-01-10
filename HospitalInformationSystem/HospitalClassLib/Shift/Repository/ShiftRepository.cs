@@ -20,10 +20,11 @@ namespace HospitalClassLib.Shift.Repository
         }
 
 
-        public List<SharedModel.Shift> GetAll()
+        public new List<SharedModel.Shift> GetAll()
         {
-            return context.Shifts.ToList();
+           return context.Shifts.ToList();
         }
+        
 
 
 

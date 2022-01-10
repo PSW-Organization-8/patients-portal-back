@@ -1,5 +1,6 @@
 ﻿using HospitalClassLib.Schedule.Repository.DoctorRepository;
 using HospitalClassLib.Schedule.Service;
+using HospitalClassLib.SharedModel;
 using HospitalClassLib.SharedModel.Enums;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,6 +27,14 @@ namespace HospitalAPI.Controllers
         {
             return Ok(doctorService.Get(id));
         }
+
+        [HttpGet]
+        [Microsoft.AspNetCore.Mvc.Route("/api/doctorById")]
+        public Doctor GetDoctorByID(int ID)
+        {
+            return doctorService.GetDoctorByID(ID);
+        }
+
 
         [HttpGet("spec/{specialization?}")]
         public IActionResult GetSpecificDoctors(Specialization specialization)
