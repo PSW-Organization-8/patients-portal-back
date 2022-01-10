@@ -3,15 +3,17 @@ using System;
 using HospitalClassLib;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220110065737_Shifts1")]
+    partial class Shifts1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,7 +102,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2022, 1, 10, 9, 41, 12, 737, DateTimeKind.Local).AddTicks(53),
+                            StartTime = new DateTime(2022, 1, 10, 7, 57, 36, 588, DateTimeKind.Local).AddTicks(9116),
                             State = 0,
                             Type = 0
                         },
@@ -140,7 +142,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2022, 1, 10, 9, 41, 12, 737, DateTimeKind.Local).AddTicks(3055),
+                            StartTime = new DateTime(2022, 1, 10, 7, 57, 36, 589, DateTimeKind.Local).AddTicks(437),
                             State = 2,
                             Type = 0
                         },
@@ -150,7 +152,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2022, 1, 10, 9, 41, 12, 737, DateTimeKind.Local).AddTicks(3087),
+                            StartTime = new DateTime(2022, 1, 10, 7, 57, 36, 589, DateTimeKind.Local).AddTicks(449),
                             State = 1,
                             Type = 0
                         },
@@ -160,7 +162,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2022, 1, 10, 9, 41, 12, 737, DateTimeKind.Local).AddTicks(3091),
+                            StartTime = new DateTime(2022, 1, 10, 7, 57, 36, 589, DateTimeKind.Local).AddTicks(453),
                             State = 2,
                             Type = 0
                         },
@@ -170,7 +172,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2022, 1, 10, 9, 41, 12, 737, DateTimeKind.Local).AddTicks(3094),
+                            StartTime = new DateTime(2022, 1, 10, 7, 57, 36, 589, DateTimeKind.Local).AddTicks(456),
                             State = 2,
                             Type = 0
                         },
@@ -180,7 +182,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2022, 1, 10, 9, 41, 12, 737, DateTimeKind.Local).AddTicks(3097),
+                            StartTime = new DateTime(2022, 1, 10, 7, 57, 36, 589, DateTimeKind.Local).AddTicks(459),
                             State = 2,
                             Type = 0
                         },
@@ -190,7 +192,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2022, 1, 10, 9, 41, 12, 737, DateTimeKind.Local).AddTicks(3101),
+                            StartTime = new DateTime(2022, 1, 10, 7, 57, 36, 589, DateTimeKind.Local).AddTicks(462),
                             State = 2,
                             Type = 0
                         },
@@ -552,7 +554,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2022, 1, 10, 9, 41, 12, 733, DateTimeKind.Local).AddTicks(7224),
+                            Date = new DateTime(2022, 1, 10, 7, 57, 36, 585, DateTimeKind.Local).AddTicks(7197),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -562,7 +564,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2022, 1, 10, 9, 41, 12, 736, DateTimeKind.Local).AddTicks(7705),
+                            Date = new DateTime(2022, 1, 10, 7, 57, 36, 588, DateTimeKind.Local).AddTicks(7911),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -1036,7 +1038,7 @@ namespace HospitalAPI.Migrations
                     b.Property<string>("Country")
                         .HasColumnType("text");
 
-                    b.Property<long>("DoctorShiftID")
+                    b.Property<long?>("DoctorShiftIDID")
                         .HasColumnType("bigint");
 
                     b.Property<int>("DoctorSpecialization")
@@ -1063,14 +1065,14 @@ namespace HospitalAPI.Migrations
                     b.Property<string>("Username")
                         .HasColumnType("text");
 
-                    b.Property<long>("VacationID")
+                    b.Property<long?>("VacationIDID")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DoctorShiftID");
+                    b.HasIndex("DoctorShiftIDID");
 
-                    b.HasIndex("VacationID");
+                    b.HasIndex("VacationIDID");
 
                     b.ToTable("Doctors");
 
@@ -1078,86 +1080,72 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 1,
-                            DoctorShiftID = 1L,
                             DoctorSpecialization = 0,
                             Jmbg = "123456799",
                             LastName = "Jovanovic",
                             Name = "Jovan",
                             Password = "jova",
-                            Username = "jova",
-                            VacationID = 1L
+                            Username = "jova"
                         },
                         new
                         {
                             Id = 2,
-                            DoctorShiftID = 1L,
                             DoctorSpecialization = 0,
                             Jmbg = "123756799",
                             LastName = "Ilic",
                             Name = "Milan",
                             Password = "mico",
-                            Username = "mico",
-                            VacationID = 2L
+                            Username = "mico"
                         },
                         new
                         {
                             Id = 3,
-                            DoctorShiftID = 2L,
                             DoctorSpecialization = 8,
                             Jmbg = "123756799",
                             LastName = "Markovic",
                             Name = "Stevan",
                             Password = "mico",
-                            Username = "mico",
-                            VacationID = 3L
+                            Username = "mico"
                         },
                         new
                         {
                             Id = 4,
-                            DoctorShiftID = 2L,
                             DoctorSpecialization = 9,
                             Jmbg = "123756799",
                             LastName = "Visnjic",
                             Name = "Nikola",
                             Password = "mico",
-                            Username = "mico",
-                            VacationID = 4L
+                            Username = "mico"
                         },
                         new
                         {
                             Id = 5,
-                            DoctorShiftID = 3L,
                             DoctorSpecialization = 9,
                             Jmbg = "123756799",
                             LastName = "Mitic",
                             Name = "Strahinja",
                             Password = "mico",
-                            Username = "mico",
-                            VacationID = 1L
+                            Username = "mico"
                         },
                         new
                         {
                             Id = 6,
-                            DoctorShiftID = 3L,
                             DoctorSpecialization = 2,
                             Jmbg = "123756799",
                             LastName = "Despotovic",
                             Name = "Goran",
                             Password = "mico",
-                            Username = "mico",
-                            VacationID = 3L
+                            Username = "mico"
                         },
                         new
                         {
                             Id = 7,
-                            DoctorShiftID = 1L,
                             DoctorSpecialization = 7,
                             Jmbg = "123756799",
                             LastName = "Njegos",
                             Name = "Milomir",
                             Password = "mico",
-                            Username = "mico",
-                            VacationID = 2L
+                            Username = "mico"
                         });
                 });
 
@@ -1480,21 +1468,17 @@ namespace HospitalAPI.Migrations
 
             modelBuilder.Entity("HospitalClassLib.SharedModel.Doctor", b =>
                 {
-                    b.HasOne("HospitalClassLib.SharedModel.Shift", "DoctorShift")
+                    b.HasOne("HospitalClassLib.SharedModel.Shift", "DoctorShiftID")
                         .WithMany()
-                        .HasForeignKey("DoctorShiftID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DoctorShiftIDID");
 
-                    b.HasOne("HospitalClassLib.SharedModel.VacationPeriod", "Vacation")
+                    b.HasOne("HospitalClassLib.SharedModel.VacationPeriod", "VacationID")
                         .WithMany()
-                        .HasForeignKey("VacationID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("VacationIDID");
 
-                    b.Navigation("DoctorShift");
+                    b.Navigation("DoctorShiftID");
 
-                    b.Navigation("Vacation");
+                    b.Navigation("VacationID");
                 });
 
             modelBuilder.Entity("HospitalClassLib.SharedModel.Equipment", b =>

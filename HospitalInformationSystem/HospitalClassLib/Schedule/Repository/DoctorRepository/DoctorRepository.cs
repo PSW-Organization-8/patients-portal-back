@@ -1,5 +1,6 @@
 ﻿using HospitalClassLib.SharedModel;
 using HospitalClassLib.SharedModel.Enums;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -28,6 +29,11 @@ namespace HospitalClassLib.Schedule.Repository.DoctorRepository
         public ICollection<Doctor> GetSpecificDoctors(Specialization specialization)
         {
             return dbContext.Doctors.Where(doctor => doctor.DoctorSpecialization.Equals(specialization)).ToList();
+        }
+
+        public new List<Doctor> GetAll()
+        {
+            return context.Doctors.Include(x => x.DoctorShift).Include(x => x.Vacation).ToList();
         }
     }
 }
