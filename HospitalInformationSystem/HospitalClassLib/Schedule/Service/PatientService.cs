@@ -90,11 +90,22 @@ namespace HospitalClassLib.Schedule.Service
             return "Hello,<br> Thank you for joining Cura Infinita.<br><br>"
                 + "We would like to confirm that your account was created successfully.<br><br>"
                 + "To access Cura Infinita click the link below.<br><br>"
-                + "<a href=" + link + ">ACTIVATE ACCOUNT</a><br><br>"
+                + "<a  href=" + link + ">ACTIVATE ACCOUNT</a><br><br>"
                 + "If you experience any issues logging into your account, reach out to us at [pswtestmail@gmail.com].<br><br>"
                 + "Best,<br>"
                 + "The Cura Infinita  team.";
         }
+
+        public List<string> GetAllUsernames()
+        {
+            return patientRepository.GetAllUsernames();
+        }
+
+        public List<string> GetAllEmails()
+        {
+            return patientRepository.GetAllEmails();
+        }
+
         static String EncodeIntAsString(int input, int maxLength = 0)
         {
             Char[] allowedList = new Char[] {
@@ -128,7 +139,7 @@ namespace HospitalClassLib.Schedule.Service
         public void ActivatePatientAccount(string patientToken)
         {
             Patient patient = patientRepository.GetByToken(patientToken);
-            patient.IsActivated = true;
+            patient.PatientAccountStatus.IsActivated = true;
             patientRepository.Update(patient);
         }
         public Patient GetByToken(string patientToken)
@@ -139,7 +150,7 @@ namespace HospitalClassLib.Schedule.Service
         public bool BanPatientById(int id)
         {
             Patient patient = patientRepository.Get(id);
-            patient.IsBanned = true;
+            patient.PatientAccountStatus.IsBanned = true;
             patientRepository.Update(patient);
 
             return true;
@@ -148,7 +159,7 @@ namespace HospitalClassLib.Schedule.Service
         public bool UnbanPatientById(int id)
         {
             Patient patient = patientRepository.Get(id);
-            patient.IsBanned = false;
+            patient.PatientAccountStatus.IsBanned = false;
             patientRepository.Update(patient);
 
             return true;

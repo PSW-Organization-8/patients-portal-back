@@ -27,13 +27,24 @@ namespace HospitalClassLib.Schedule.Repository.PatientRepository
 
         public LoggedUser GetLoggedUser(string username, string password) 
         {
-            LoggedUser user = (LoggedUser)dbContext.Patients.Where(p => p.Username == username && p.Password == password).FirstOrDefault();
+            LoggedUser user = (LoggedUser)dbContext.Patients.Where(p => p.Username == username && p.Password == password && 
+                p.PatientAccountStatus.IsActivated && !p.PatientAccountStatus.IsBanned).FirstOrDefault();
             return user;
         }
 
         public Patient GetByUsername(string username)
         {
             return dbContext.Patients.SingleOrDefault(patient => patient.Username.Equals(username));
+        }
+
+        public List<string> GetAllUsernames()
+        {
+            return dbContext.Patients.Select(patient => patient.Username).ToList();
+        }
+
+        public List<string> GetAllEmails()
+        {
+            return dbContext.Patients.Select(patient => patient.Contact.Email).ToList();
         }
     }
 }

@@ -48,16 +48,15 @@ namespace HospitalAPI.Controllers
             return BadRequest(patientDto);
         }
 
-        [HttpPut("activate/")]
+        [HttpGet]
+        [Route("activate")]
         public void ActivatePatientAccount(string patientToken)
         {
             if (validator.Validate(patientService.GetByToken(patientToken)).IsValid)
             {
                 patientService.ActivatePatientAccount(patientToken);
                 Response.Redirect("http://localhost:4200/patientLogin");
-                //return Ok();
             }
-            //return BadRequest();
         }
 
         [HttpGet("{id?}")]
@@ -71,7 +70,6 @@ namespace HospitalAPI.Controllers
         {
             return Ok(patientService.GetByUsername(id));
         }
-
 
         [HttpPut]
         [Route("ban/{id?}")]
@@ -89,8 +87,6 @@ namespace HospitalAPI.Controllers
             return Ok(patientService.UnbanPatientById(id));
         }
 
-
-
         [HttpGet("login")]
         [Authorize]
         public IActionResult SellersEndpoint()
@@ -99,7 +95,17 @@ namespace HospitalAPI.Controllers
             return Ok(currentUser);
         }
 
+        [HttpGet("getAllUsernames")]
+        public IActionResult GetAllUsernames()
+        {
+            return Ok(patientService.GetAllUsernames());
+        }
 
+        [HttpGet("getAllEmails")]
+        public IActionResult GetAllEmails()
+        {
+            return Ok(patientService.GetAllEmails());
+        }
 
         private LoggedUser GetCurrentUser()
         {

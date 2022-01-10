@@ -19,6 +19,7 @@ namespace HospitalClassLib.Schedule.Repository.PatientRepository
         Patient GetByToken(string patientToken);
         LoggedUser GetLoggedUser(string username, string password);
         Patient GetByUsername(string username);
-
+        List<string> GetAllUsernames();
+        List<string> GetAllEmails();
     }
 }
