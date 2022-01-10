@@ -49,6 +49,9 @@ namespace SeleniumProject
             ManagerLogout();
 
             PatientLogin();
+
+            patientLoginPage.WaitForAlertDialog();
+            Assert.Equal(patientLoginPage.GetDialogMessage(), BanPatientPage.EmptyContentMessage);
         }
 
         private void ManagerLogin()
@@ -76,7 +79,7 @@ namespace SeleniumProject
             patientLoginPage.Navigate();
             patientLoginPage.EnsurePageIsDisplayed();
             patientLoginPage.InsertUsername("mare");
-            patientLoginPage.InsertPassword("mare");
+            patientLoginPage.InsertPassword("maric");
             patientLoginPage.Login();
         }
     }

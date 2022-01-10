@@ -32,7 +32,6 @@ namespace SeleniumProject
         public void TestCancelAppointment()
         {
             PatientLogin();
-            
             patientRecordPage = new PatientRecordPage(driver);
             patientRecordPage.EnsurePageIsDisplayed();
             patientRecordPage.ClickOnCancelAppointmentButton();

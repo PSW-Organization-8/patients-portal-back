@@ -2,7 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.ObjectModel;
-
+using System.Threading;
 
 namespace SeleniumProject.Pages
 {
@@ -12,23 +12,25 @@ namespace SeleniumProject.Pages
         public const string URI = "http://localhost:58526/banPatient";
         private ReadOnlyCollection<IWebElement> Rows => driver.FindElements(By.XPath("//table[@id='banPatientTable']/tbody/tr"));
 
+        public const string EmptyContentMessage = "Wrong username or password!";
+
         public BanPatientPage(IWebDriver driver)
         {
             this.driver = driver;
         }
         public void ClickOnBanButton()
         {
-            Rows[1].FindElement(By.Id("banButton")).Click();
+            Rows[0].FindElement(By.Id("banButton")).Click();
         }
 
         public void EnsurePageIsDisplayed()
         {
-            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 20));
+            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
             wait.Until(condition =>
             {
                 try
                 {
-                    return Rows.Count >= 0;
+                    return Rows[1].FindElement(By.Id("banButton")).Displayed;
                 }
                 catch (StaleElementReferenceException)
                 {

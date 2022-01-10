@@ -41,7 +41,7 @@ namespace SeleniumProject.Pages
             {
                 try
                 {
-                    return Rows.Count >= 0;
+                    return Rows.Count >= 1;
                 }
                 catch (StaleElementReferenceException)
                 {

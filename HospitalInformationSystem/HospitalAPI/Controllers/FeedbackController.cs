@@ -43,7 +43,6 @@ namespace HospitalAPI.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public List<Feedback> GetFeedbacks()
         {
             return feedbackService.GetAll();

@@ -33,7 +33,7 @@ namespace SeleniumProject
             driver = new ChromeDriver(options);
 
             ManagerLogin();
-
+            Thread.Sleep(1000);
             feedbacksPage = new FeedbacksPage(driver);
             feedbacksPage.Navigate();
             feedbacksPage.EnsurePageIsDisplayed();

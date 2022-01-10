@@ -37,6 +37,21 @@ namespace SeleniumProject.Pages
             LoginButton.Click();
         }
 
+        public string GetDialogMessage()
+        {
+            return driver.SwitchTo().Alert().Text;
+        }
+        public void ResolveAlertDialog()
+        {
+            driver.SwitchTo().Alert().Accept();
+        }
+
+        public void WaitForAlertDialog()
+        {
+            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
+        }
+
         public void EnsurePageIsDisplayed()
         {
             var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 20));

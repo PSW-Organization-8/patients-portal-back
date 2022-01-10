@@ -29,12 +29,12 @@ namespace SeleniumProject.Pages
 
         public void EnsurePageIsDisplayed()
         {
-            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 20));
+            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
             wait.Until(condition =>
             {
                 try
                 {
-                    return true;
+                    return CancelAppointmentButton.Displayed;
                 }
                 catch (StaleElementReferenceException)
                 {
