@@ -48,7 +48,7 @@ namespace HospitalClassLib
         {
             String server = Environment.GetEnvironmentVariable("SERVER") ?? "localhost";
             String port = Environment.GetEnvironmentVariable("DB_PORT") ?? "5432";
-            String databaseName = Environment.GetEnvironmentVariable("DB_NAME") ?? "integration";
+            String databaseName = Environment.GetEnvironmentVariable("DB_NAME") ?? "integration2";
             String username = Environment.GetEnvironmentVariable("DB_USER") ?? "postgres";
             String password = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "root";
 
@@ -83,10 +83,10 @@ namespace HospitalClassLib
                  );
 
             modelBuilder.Entity<VacationPeriod>().HasData(
-               new VacationPeriod { ID = 1, VacationDescription = "Summer Vacation", StartTime = new DateTime(2022, 6, 6), EndTime = new DateTime(2022, 16, 6) },
-               new VacationPeriod { ID = 2, VacationDescription = "Winter Vacation", StartTime = new DateTime(2022, 1, 12), EndTime = new DateTime(2022, 10, 12) },
-               new VacationPeriod { ID = 3, VacationDescription = "Ski Trip", StartTime = new DateTime(2022, 5, 1), EndTime = new DateTime(2022, 15, 1) },
-               new VacationPeriod { ID = 4, VacationDescription = "Summer Vacation", StartTime = new DateTime(2022, 10, 8), EndTime = new DateTime(2022, 20, 8) }
+               new VacationPeriod { ID = 1, VacationDescription = "Summer Vacation", StartTime = new DateTime(2022, 6, 6), EndTime = new DateTime(2022, 6, 16) },
+               new VacationPeriod { ID = 2, VacationDescription = "Winter Vacation", StartTime = new DateTime(2022, 12, 1), EndTime = new DateTime(2022, 12, 10) },
+               new VacationPeriod { ID = 3, VacationDescription = "Ski Trip", StartTime = new DateTime(2022, 1, 5), EndTime = new DateTime(2022, 1, 15) },
+               new VacationPeriod { ID = 4, VacationDescription = "Summer Vacation", StartTime = new DateTime(2022, 8, 10), EndTime = new DateTime(2022, 8, 20) }
                 );
             modelBuilder.Entity<Feedback>().HasData(
                 new Feedback { Id = 1, Content = "Tekst neki", IsApproved = true, Date = DateTime.Now, PatientId = 1, IsPublishable = true, IsAnonymous = false },

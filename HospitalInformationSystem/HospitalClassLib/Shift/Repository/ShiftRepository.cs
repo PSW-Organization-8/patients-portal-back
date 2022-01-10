@@ -22,7 +22,7 @@ namespace HospitalClassLib.Shift.Repository
 
         public List<SharedModel.Shift> GetAll()
         {
-            return context.Shifts.Include(x => x.ShiftType).ToList();
+            return context.Shifts.ToList();
         }
 
 

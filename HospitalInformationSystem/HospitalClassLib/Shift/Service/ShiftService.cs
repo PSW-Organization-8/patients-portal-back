@@ -47,5 +47,10 @@ namespace HospitalClassLib.Shift.Service
         {
             return shiftRepository.Create(newShifts);
         }
+
+        public SharedModel.Shift EditShifts(SharedModel.Shift newShifts)
+        {
+            return shiftRepository.Update(newShifts);
+        }
     }
 }

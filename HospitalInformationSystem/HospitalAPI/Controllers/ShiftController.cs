@@ -41,6 +41,13 @@ namespace HospitalAPI.Controllers
             return shiftService.CreateShifts(shift);
         }
 
+        [HttpPut]
+        [Microsoft.AspNetCore.Mvc.Route("/api/shifts/edit")]
+        public Shift EditShifts(Shift shift)
+        {
+            return shiftService.EditShifts(shift);
+        }
+
         [HttpPost]
         [Microsoft.AspNetCore.Mvc.Route("/api/allShifts")]
         public void CreateAllShifts(List<Shift> shifts)
