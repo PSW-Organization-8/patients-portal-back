@@ -36,5 +36,15 @@ namespace HospitalClassLib.Schedule.Repository.PatientRepository
         {
             return dbContext.Patients.SingleOrDefault(patient => patient.Username.Equals(username));
         }
+
+        public List<string> GetAllUsernames()
+        {
+            return dbContext.Patients.Select(patient => patient.Username).ToList();
+        }
+
+        public List<string> GetAllEmails()
+        {
+            return dbContext.Patients.Select(patient => patient.Contact.Email).ToList();
+        }
     }
 }

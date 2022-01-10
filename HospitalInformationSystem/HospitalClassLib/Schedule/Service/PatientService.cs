@@ -95,6 +95,17 @@ namespace HospitalClassLib.Schedule.Service
                 + "Best,<br>"
                 + "The Cura Infinita  team.";
         }
+
+        public List<string> GetAllUsernames()
+        {
+            return patientRepository.GetAllUsernames();
+        }
+
+        public List<string> GetAllEmails()
+        {
+            return patientRepository.GetAllEmails();
+        }
+
         static String EncodeIntAsString(int input, int maxLength = 0)
         {
             Char[] allowedList = new Char[] {
