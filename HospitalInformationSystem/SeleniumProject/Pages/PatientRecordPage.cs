@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 
 namespace SeleniumProject.Pages
@@ -22,9 +23,8 @@ namespace SeleniumProject.Pages
 
         public bool AppointmentCanceledButtonDisplayed()
         {
-            Navigate();
-            IWebElement AppointmentCanceledButton = driver.FindElement(By.Id("appointmentCanceledButton"));
-            return AppointmentCanceledButton.Displayed;
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            return wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("appointmentCanceledButton"))).Displayed;
         }
 
         public void EnsurePageIsDisplayed()

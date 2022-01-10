@@ -12,7 +12,7 @@ namespace SeleniumProject.Pages
     public class FeedbacksPage
     {
         private readonly IWebDriver driver;
-        public const string URI = "http://localhost:58526/feedbackview";
+        public const string URI = "http://localhost:58526/feedbackView";
         private ReadOnlyCollection<IWebElement> Rows => driver.FindElements(By.XPath("//table[@id='feedbacksTable']/tbody/tr"));
         public FeedbacksPage(IWebDriver driver)
         {

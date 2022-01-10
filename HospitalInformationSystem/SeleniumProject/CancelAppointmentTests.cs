@@ -12,6 +12,7 @@ namespace SeleniumProject
     {
         private readonly IWebDriver driver;
         private PatientRecordPage patientRecordPage;
+        private PatientLoginPage patientLoginPage;
 
         public CancelAppointmentTests()
         {
@@ -30,13 +31,23 @@ namespace SeleniumProject
         [Fact]
         public void TestCancelAppointment()
         {
+            PatientLogin();
+            
             patientRecordPage = new PatientRecordPage(driver);
-            patientRecordPage.Navigate();
             patientRecordPage.EnsurePageIsDisplayed();
-
             patientRecordPage.ClickOnCancelAppointmentButton();
 
             Assert.True(patientRecordPage.AppointmentCanceledButtonDisplayed());
+        }
+
+        private void PatientLogin()
+        {
+            patientLoginPage = new PatientLoginPage(driver);
+            patientLoginPage.Navigate();
+            patientLoginPage.EnsurePageIsDisplayed();
+            patientLoginPage.InsertUsername("pera");
+            patientLoginPage.InsertPassword("pera");
+            patientLoginPage.Login();
         }
     }
 }

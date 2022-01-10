@@ -1,25 +1,23 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SeleniumProject.Pages
 {
-    public class PatientHomePage
+    public class ManagerHomePage
     {
         private readonly IWebDriver driver;
-        public const string URI = "http://localhost:4200";
+        public const string URI = "http://localhost:58526";
 
-        private IWebElement FeedbackContent => driver.FindElement(By.Id("feedbackContent"));
         private IWebElement LogoutButton => driver.FindElement(By.Id("logoutButton"));
 
-        public PatientHomePage(IWebDriver driver)
+        public ManagerHomePage(IWebDriver driver)
         {
             this.driver = driver;
-        }
-
-        public string GetContentOfPublishedFeedback()
-        {
-            return FeedbackContent.Text;
         }
 
         public void ClickOnLogoutButton()

@@ -2,24 +2,25 @@
 using OpenQA.Selenium.Chrome;
 using SeleniumProject.Pages;
 using System;
-using System.Threading;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace SeleniumProject
 {
-    public class PublishFeebackTests
+    public class BanPatientTests
     {
-
         private readonly IWebDriver driver;
 
-        private FeedbacksPage feedbacksPage;
-        private ManagerLoginPage managerLoginPage;
-        private ManagerHomePage managerHomePage;
-
-        private PatientHomePage patientHomePage;
         private PatientLoginPage patientLoginPage;
 
-        public PublishFeebackTests()
+        private ManagerLoginPage managerLoginPage;
+        private ManagerHomePage managerHomePage;
+        private BanPatientPage banPatientPage;
+
+        public BanPatientTests()
         {
             ChromeOptions options = new ChromeOptions();
             options.AddArguments("start-maximized");
@@ -34,29 +35,20 @@ namespace SeleniumProject
 
             ManagerLogin();
 
-            feedbacksPage = new FeedbacksPage(driver);
-            feedbacksPage.Navigate();
-            feedbacksPage.EnsurePageIsDisplayed();
+            
         }
 
         [Fact]
-        public void TestPublishFeedback()
+        private void TestBanPatient()
         {
-            String feedbackContent = feedbacksPage.GetPublishableFeedbackContent();
-            feedbacksPage.ClickOnApproveButton();
+            banPatientPage = new BanPatientPage(driver);
+
+            banPatientPage.Navigate();
+            banPatientPage.ClickOnBanButton();
 
             ManagerLogout();
 
             PatientLogin();
-
-            patientHomePage = new PatientHomePage(driver);
-            patientHomePage.Navigate();
-            patientHomePage.EnsurePageIsDisplayed();
-
-            String expectedContent = patientHomePage.GetContentOfPublishedFeedback();
-
-            Assert.Equal(feedbackContent, expectedContent);
-
         }
 
         private void ManagerLogin()
@@ -83,10 +75,9 @@ namespace SeleniumProject
             patientLoginPage = new PatientLoginPage(driver);
             patientLoginPage.Navigate();
             patientLoginPage.EnsurePageIsDisplayed();
-            patientLoginPage.InsertUsername("pera");
-            patientLoginPage.InsertPassword("pera");
+            patientLoginPage.InsertUsername("mare");
+            patientLoginPage.InsertPassword("mare");
             patientLoginPage.Login();
         }
-
     }
 }

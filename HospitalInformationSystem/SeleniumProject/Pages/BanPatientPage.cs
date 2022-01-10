@@ -1,30 +1,24 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.ObjectModel;
+
 
 namespace SeleniumProject.Pages
 {
-    public class PatientHomePage
+    public class BanPatientPage
     {
         private readonly IWebDriver driver;
-        public const string URI = "http://localhost:4200";
+        public const string URI = "http://localhost:58526/banPatient";
+        private ReadOnlyCollection<IWebElement> Rows => driver.FindElements(By.XPath("//table[@id='banPatientTable']/tbody/tr"));
 
-        private IWebElement FeedbackContent => driver.FindElement(By.Id("feedbackContent"));
-        private IWebElement LogoutButton => driver.FindElement(By.Id("logoutButton"));
-
-        public PatientHomePage(IWebDriver driver)
+        public BanPatientPage(IWebDriver driver)
         {
             this.driver = driver;
         }
-
-        public string GetContentOfPublishedFeedback()
+        public void ClickOnBanButton()
         {
-            return FeedbackContent.Text;
-        }
-
-        public void ClickOnLogoutButton()
-        {
-            LogoutButton.Click();
+            Rows[1].FindElement(By.Id("banButton")).Click();
         }
 
         public void EnsurePageIsDisplayed()
@@ -34,7 +28,7 @@ namespace SeleniumProject.Pages
             {
                 try
                 {
-                    return true;
+                    return Rows.Count >= 0;
                 }
                 catch (StaleElementReferenceException)
                 {
@@ -48,6 +42,5 @@ namespace SeleniumProject.Pages
         }
 
         public void Navigate() => driver.Navigate().GoToUrl(URI);
-
     }
 }
