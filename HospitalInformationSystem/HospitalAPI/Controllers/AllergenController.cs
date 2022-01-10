@@ -24,6 +24,12 @@ namespace HospitalAPI.Controllers
             return allergenService.GetAll();
         }
 
+        [HttpGet("getPatientsAllergens")]
+        public List<Allergen> GetPatientsAllergens(int id)
+        {
+            return allergenRepository.getPatientsAllergens(id);
+        }
+
         [HttpGet("{id?}")]
         public IActionResult GetDoctor(int id)
         {
