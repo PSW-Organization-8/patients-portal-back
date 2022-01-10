@@ -48,13 +48,14 @@ namespace HospitalAPI.Controllers
             return BadRequest(patientDto);
         }
 
-        [HttpPut("activate/")]
+        [HttpGet]
+        [Route("activate")]
         public void ActivatePatientAccount(string patientToken)
         {
             if (validator.Validate(patientService.GetByToken(patientToken)).IsValid)
             {
                 patientService.ActivatePatientAccount(patientToken);
-                Response.Redirect("http://localhost:4200/patientLogin");
+                //Response.Redirect("http://localhost:4200/patientLogin");
                 //return Ok();
             }
             //return BadRequest();

@@ -11,6 +11,7 @@ namespace HospitalClassLib.Schedule.Model
         public bool IsBanned { get; set; }
         public bool IsActivated { get; set; }
 
+        public PatientAccountStatus() { }
         public PatientAccountStatus(bool isBanned, bool isActivated)
         {
             IsBanned = isBanned;

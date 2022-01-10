@@ -58,7 +58,7 @@ namespace HospitalTests.Integration
                 new DoctorService(new DoctorRepository(context)),
                 new AllergenService(new AllergenRepository(context)));
 
-            PatientDto patient = new PatientDto("Marko", "Markovic", "123", "pera", "pera", "pera@gmail.com", "12345", "Serbia", "Obrovac", "Neka 9",
+            PatientDto patient = new PatientDto("Marko", "Markovic", "1231231231236", "pera", "pera", "pera@gmail.com", "12345", "Serbia", "Obrovac", "Neka 9",
             DateTime.Now, new List<Allergen>(), 1, false, "ABC123DEF4AAAAC12345", "ABn", "");
             patientController.RegisterPatient(patient);
 

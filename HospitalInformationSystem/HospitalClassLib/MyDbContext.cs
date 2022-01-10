@@ -136,8 +136,8 @@ namespace HospitalClassLib
                 new { PatientId = 1, Email = "perapera@gmail.com", Phone = "0641230000" },
                 new { PatientId = 2, Email = "maremaric@gmail.com", Phone = "0647400000" });
             modelBuilder.Entity<Patient>().OwnsOne(p => p.PatientAccountStatus).HasData(
-                new { PatientId = 1, IsActivated = false, IsBanned = false},
-                new { PatientId = 2, IsActivated = false, IsBanned = false});
+                new { PatientId = 1, IsActivated = true, IsBanned = false},
+                new { PatientId = 2, IsActivated = true, IsBanned = false});
 
             modelBuilder.Entity<Feedback>().HasData(
                 new Feedback { Id = 1, Content = "Tekst neki", Date = DateTime.Now, PatientId = 1},

@@ -25,7 +25,8 @@ namespace HospitalClassLib.Schedule.Model
 
         public virtual ICollection<Appointment> Appointments { get; set; }
 
-        public Patient() { }
+        public Patient() {
+        }
 
         public Patient(string name, string lastName, string jmbg, string username, string password, string email, string phone, string country, string city, string address,
             bool isBanned, DateTime dateOfBirth, ICollection<Allergen> allergens, Doctor doctor, bool isActivated, string token, BloodType bloodType)

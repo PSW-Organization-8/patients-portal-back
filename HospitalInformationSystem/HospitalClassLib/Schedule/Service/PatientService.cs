@@ -90,7 +90,7 @@ namespace HospitalClassLib.Schedule.Service
             return "Hello,<br> Thank you for joining Cura Infinita.<br><br>"
                 + "We would like to confirm that your account was created successfully.<br><br>"
                 + "To access Cura Infinita click the link below.<br><br>"
-                + "<a href=" + link + ">ACTIVATE ACCOUNT</a><br><br>"
+                + "<a  href=" + link + ">ACTIVATE ACCOUNT</a><br><br>"
                 + "If you experience any issues logging into your account, reach out to us at [pswtestmail@gmail.com].<br><br>"
                 + "Best,<br>"
                 + "The Cura Infinita  team.";
