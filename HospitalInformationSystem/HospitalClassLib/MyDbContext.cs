@@ -6,7 +6,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +16,49 @@ namespace HospitalClassLib
 {
     public class MyDbContext : DbContext
     {
+        #region image
+        public String ConvertImageURLToBase64(String url)
+        {
+            StringBuilder _sb = new StringBuilder();
+
+            Byte[] _byte = this.GetImage(url);
+
+            _sb.Append(Convert.ToBase64String(_byte, 0, _byte.Length));
+
+            return _sb.ToString();
+        }
+
+        private byte[] GetImage(string url)
+        {
+            Stream stream = null;
+            byte[] buf;
+
+            try
+            {
+                WebProxy myProxy = new WebProxy();
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+
+                HttpWebResponse response = (HttpWebResponse)req.GetResponse();
+                stream = response.GetResponseStream();
+
+                using (BinaryReader br = new BinaryReader(stream))
+                {
+                    int len = (int)(response.ContentLength);
+                    buf = br.ReadBytes(len);
+                    br.Close();
+                }
+
+                stream.Close();
+                response.Close();
+            }
+            catch (Exception exp)
+            {
+                buf = null;
+            }
+
+            return (buf);
+        }
+        #endregion image
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
@@ -126,7 +171,7 @@ namespace HospitalClassLib
                 new { DoctorId = 7, Email = "milomirnjegos85@gmail.com", Phone = "0640000006" });
 
             modelBuilder.Entity<Patient>().HasData(
-                new Patient { Id = 1, Name = "Pera", LastName = "Peric", Jmbg = "123456789", Username = "pera", Password = "pera", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), Token = "ABC123DEF4AAAAC12345", Picture=""},
+                new Patient { Id = 1, Name = "Pera", LastName = "Peric", Jmbg = "123456789", Username = "pera", Password = "pera", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), Token = "ABC123DEF4AAAAC12345", Picture=ConvertImageURLToBase64("https://drive.google.com/uc?id=152-ydGEqYAVa3NPav0N-XN6MtK2fwo0Y") },
                 new Patient { Id = 2, Name = "Mare", LastName = "Maric", Jmbg = "213456789", Username = "mare", Password = "maric", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), Token = "ABC213DEF4AAAAC12345", Picture=""}
                 );
             modelBuilder.Entity<Patient>().OwnsOne(p => p.Address).HasData(
