@@ -42,8 +42,6 @@ namespace SeleniumProject
             feedbacksPage.EnsurePageIsDisplayed();
             feedbacksCount = feedbacksPage.FeedbacksCount();
 
-            ManagerLogout();
-
             PatientLogin();
 
             createFeedbackPage = new CreateFeedbackPage(driver);
@@ -71,7 +69,6 @@ namespace SeleniumProject
             createFeedbackPage.CheckPublishable();
             createFeedbackPage.SubmitForm();
 
-            PatientLogout();
 
             ManagerLogin();
 
@@ -90,7 +87,6 @@ namespace SeleniumProject
             createFeedbackPage.CheckPublishable();
             createFeedbackPage.SubmitForm();
 
-            PatientLogout();
 
             ManagerLogin();
 
@@ -108,8 +104,7 @@ namespace SeleniumProject
             createFeedbackPage.InsertContent("!Anonymous && Publishable.");
             createFeedbackPage.SubmitForm();
 
-            PatientLogout();
-
+            
             ManagerLogin();
 
             feedbacksPage = new FeedbacksPage(driver);
@@ -127,8 +122,7 @@ namespace SeleniumProject
             createFeedbackPage.CheckAnonymous();
             createFeedbackPage.SubmitForm();
 
-            PatientLogout();
-
+          
             ManagerLogin();
 
             feedbacksPage = new FeedbacksPage(driver);
@@ -161,14 +155,6 @@ namespace SeleniumProject
             managerLoginPage.Login();
         }
 
-        private void ManagerLogout()
-        {
-            managerHomePage = new ManagerHomePage(driver);
-            managerHomePage.Navigate();
-            managerHomePage.EnsurePageIsDisplayed();
-            managerHomePage.ClickOnLogoutButton();
-        }
-
         private void PatientLogin()
         {
             patientLoginPage = new PatientLoginPage(driver);
@@ -177,14 +163,6 @@ namespace SeleniumProject
             patientLoginPage.InsertUsername("pera");
             patientLoginPage.InsertPassword("pera");
             patientLoginPage.Login();
-        }
-
-        private void PatientLogout()
-        {
-            patientHomePage = new PatientHomePage(driver);
-            patientHomePage.Navigate();
-            patientHomePage.EnsurePageIsDisplayed();
-            patientHomePage.ClickOnLogoutButton();
         }
     }
 }

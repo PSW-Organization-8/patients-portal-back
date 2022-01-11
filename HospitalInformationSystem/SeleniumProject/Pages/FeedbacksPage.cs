@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,7 +13,7 @@ namespace SeleniumProject.Pages
     public class FeedbacksPage
     {
         private readonly IWebDriver driver;
-        public const string URI = "http://localhost:58526/feedbackView";
+        public const string URI = "http://localhost:58526/feedbackView"; //значи ово је ури
         private ReadOnlyCollection<IWebElement> Rows => driver.FindElements(By.XPath("//table[@id='feedbacksTable']/tbody/tr"));
         public FeedbacksPage(IWebDriver driver)
         {
@@ -37,21 +38,7 @@ namespace SeleniumProject.Pages
         public void EnsurePageIsDisplayed()
         {
             var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 20));
-            wait.Until(condition =>
-            {
-                try
-                {
-                    return Rows.Count >= 1;
-                }
-                catch (StaleElementReferenceException)
-                {
-                    return false;
-                }
-                catch (NoSuchElementException)
-                {
-                    return false;
-                }
-            });
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("feedbacksTable")));
         }
 
         public void Navigate() => driver.Navigate().GoToUrl(URI);

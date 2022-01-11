@@ -78,11 +78,12 @@ namespace SeleniumProject.Pages
         public void EnsurePageIsDisplayed()
         {
             var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 20));
-            wait.Until(condition =>
+            wait.Until(condition => // 
             {
                 try
                 {
-                    return true;
+                    return ContentElement.Enabled && this.AnonymousCheckBox.Enabled && this.PublishableCheckBox.Enabled
+                    && this.SubmitButtonElement.Enabled;
                 }
                 catch (StaleElementReferenceException)
                 {
@@ -94,6 +95,6 @@ namespace SeleniumProject.Pages
                 }
             });
         }
-        public void Navigate() => driver.Navigate().GoToUrl(URI);
+        public void Navigate() => driver.Navigate().GoToUrl(URI); 
     }
 }
