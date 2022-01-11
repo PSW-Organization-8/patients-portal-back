@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SeleniumProject.Pages
@@ -35,6 +36,7 @@ namespace SeleniumProject.Pages
         public void Login()
         {
             LoginButton.Click();
+            Thread.Sleep(1000);
         }
 
         public string GetDialogMessage()

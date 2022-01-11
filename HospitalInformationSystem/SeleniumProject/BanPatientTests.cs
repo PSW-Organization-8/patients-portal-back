@@ -1,10 +1,13 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using SeleniumProject.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -34,8 +37,6 @@ namespace SeleniumProject
             driver = new ChromeDriver(options);
 
             ManagerLogin();
-
-            
         }
 
         [Fact]
@@ -44,6 +45,8 @@ namespace SeleniumProject
             banPatientPage = new BanPatientPage(driver);
 
             banPatientPage.Navigate();
+            WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("banButton")));
             banPatientPage.ClickOnBanButton();
 
             ManagerLogout();

@@ -21,6 +21,7 @@ namespace SeleniumProject.Pages
         public void ClickOnBanButton()
         {
             Rows[0].FindElement(By.Id("banButton")).Click();
+            Thread.Sleep(1000);
         }
 
         public void EnsurePageIsDisplayed()
