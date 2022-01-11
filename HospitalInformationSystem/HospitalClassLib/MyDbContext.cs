@@ -90,7 +90,6 @@ namespace HospitalClassLib
                 new Patient { Id = 2, Name = "Mare", LastName = "Maric", Jmbg = "213456789", Username = "mare", Password = "maric", Email = "pera2.peric@gmail.com", Phone = "054987332", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), IsActivated = true, Token = "ABC213DEF4AAAAC12345" }
                 );
 
-
             modelBuilder.Entity<SharedModel.Shift>().HasData(
                 new SharedModel.Shift { ID = 1, ShiftType="Morning shift", ShiftStart = "7:00", ShiftEnd = "13:00"},
                 new SharedModel.Shift { ID = 2, ShiftType = "Afternoon shift", ShiftStart = "13:00", ShiftEnd = "20:00" },

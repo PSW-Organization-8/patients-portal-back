@@ -67,39 +67,39 @@ namespace HospitalClassLib.Equipment.Service
             return null;
         }
 
-        public bool MoveEquipment(SharedModel.Equipment equipment, Room startRoom, Room destinationRoom, double amount)
+        public bool MoveEquipment(SharedModel.Equipment equipment, Room room, double amount)
         {
-            if (equipment == null || equipment.Amount < amount)
+            if (equipment.Amount < amount)
                 return false;
 
-            SharedModel.Equipment fromEquipment = equipmentRepository.GetByIdAndRoomId(equipment.ID, startRoom.ID);
-            SharedModel.Equipment toEquipment = equipmentRepository.GetByIdAndRoomId(equipment.ID, destinationRoom.ID);
-
-            if (fromEquipment == null) {
-                return false;
-            }
-
-            if (toEquipment == null)
+            List<SharedModel.Equipment> allEquipment = GetAllEquipments();
+            foreach (SharedModel.Equipment e in allEquipment)
             {
-                fromEquipment.Amount -= amount;
-                equipmentRepository.Update(fromEquipment);
-
-                toEquipment = new SharedModel.Equipment();
-                toEquipment.Name = equipment.Name;
-                toEquipment.Room = equipment.Room;
-                toEquipment.Amount = amount;
-                equipmentRepository.Create(toEquipment);
-                
+                if (e.Name == equipment.Name && e.Room.ID == room.ID)
+                {
+                    e.Amount += amount;
+                    equipmentRepository.Update(e);
+                    equipment.Amount -= amount;
+                    equipmentRepository.Update(equipment);
+                    if (equipment.Amount == 0)
+                    {
+                        allEquipment.Remove(equipment);
+                        equipmentRepository.Delete(equipment.ID);
+                    }
+                    return true;
+                }
             }
-            else 
+            SharedModel.Equipment eq = new SharedModel.Equipment(GetNextID(), equipment.Name, room, amount);
+            allEquipment.Add(eq);
+            equipmentRepository.Create(eq);
+            equipment.Amount -= amount;
+            equipmentRepository.Update(equipment);
+
+            if (equipment.Amount == 0)
             {
-                fromEquipment.Amount -= amount;
-                toEquipment.Amount += amount;
-                equipmentRepository.Update(fromEquipment);
-                equipmentRepository.Update(toEquipment);
+                allEquipment.Remove(equipment);
+                equipmentRepository.Delete(equipment.ID);
             }
-
-
             return true;
         }
 

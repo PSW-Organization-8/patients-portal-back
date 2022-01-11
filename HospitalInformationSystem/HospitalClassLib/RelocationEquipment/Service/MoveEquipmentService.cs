@@ -28,6 +28,16 @@ namespace HospitalClassLib.RelocationEquipment.Service
             this.roomRepository = roomRepository;
         }
 
+        ////////
+        public MoveEquipmentService(IMoveEquipmentRepository moveEquipmentRepository, IEquipmentRepository equipmentRepository, EquipmentService equipmentService)
+        {
+            this.moveEquipmentRepository = moveEquipmentRepository;
+            this.equipmentRepository = equipmentRepository;
+            this.equipmentService = equipmentService;
+        }
+        ///////
+
+
         public List<MoveEquipment> GetAllEquipments()
         {
             return moveEquipmentRepository.GetAll();
@@ -51,25 +61,36 @@ namespace HospitalClassLib.RelocationEquipment.Service
             return moveEquipmentRepository.Get(id);
         }
 
-        public bool SubmitRelocation(long idEq,long idRoom, double amount, long destinationRoom, DateTime time, string duration)
+        public bool SubmitRelocation(long idEq, long idRoom, double amount, long destinationRoom, DateTime time, string duration)
         {
             SharedModel.Equipment equipment = equipmentRepository.Get(idEq);
 
 
-           if (equipment != null && equipmentRepository.Get(idEq).Amount < amount)
-           {
+            if (equipment != null && equipmentRepository.Get(idEq).Amount < amount)
+            {
                 return false;
-           }
+            }
 
-           // MoveEquipmentDTO meDTO = new MoveEquipmentDTO();
-            
-           return equipmentService.MoveEquipment(equipmentRepository.Get(idEq), roomRepository.Get(idRoom),
-               roomRepository.Get(destinationRoom), amount);
+            // MoveEquipmentDTO meDTO = new MoveEquipmentDTO();
 
-         
-
-
+            return equipmentService.MoveEquipment(equipmentRepository.Get(idEq),
+                roomRepository.Get(destinationRoom), amount);
         }
 
+        public bool SubmitRelocation(long id, SharedModel.Equipment equipment, double amount, Room destination, TimeAndDuration td)
+        {
+
+            if (equipment.Amount < amount)
+            {
+                return false;
+            }
+
+            TimeAndDuration timeAndDuration = new TimeAndDuration(td.RelocationTime, td.Duration);
+
+            MoveEquipment me = new MoveEquipment(id, equipment, destination, amount, timeAndDuration);
+            moveEquipmentRepository.Create(me);
+            return equipmentService.MoveEquipment(equipment, destination, amount);
+
+        }
     }
 }

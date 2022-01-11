@@ -55,5 +55,10 @@ namespace HospitalAPI.Controllers
             return moveEquipmentService.SubmitRelocation(meDTO.IDeq ,meDTO.IDroom, meDTO.Amount, meDTO.DestinationRoom, meDTO.RelocationTime, meDTO.Duration);
         }
 
+        public bool SubmitRelocation(MoveEquipment me)
+        {
+            return moveEquipmentService.SubmitRelocation(me.ID, me.Equipment, me.Amount, me.DestinationRoom, me.TimeAndDuration);
+        }
+
     }
 }

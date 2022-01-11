@@ -11,26 +11,18 @@ namespace HospitalClassLib.SharedModel
         public long ID { get; set; }
 
         public String VacationDescription { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public TimeRange TimeRange { get; set; }
 
         public VacationPeriod()
         {
 
         }
 
-        public VacationPeriod(DateTime startTime, DateTime endTime)
-        {
-            StartTime = startTime;
-            EndTime = endTime;
-        }
-
-        public VacationPeriod(long id, String description, DateTime startVacation, DateTime endVacation)
+        public VacationPeriod(long id, String description, TimeRange tr)
         {
             this.ID = id;
             this.VacationDescription = description;
-            this.StartTime = startVacation;
-            this.EndTime = endVacation;
+            this.TimeRange = tr;
         }
     }
 }

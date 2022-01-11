@@ -13,6 +13,8 @@ namespace HospitalClassLib.SharedModel
 
         public Floor Floor { get; set; }
 
+        public RoomGraphics Graphics { get; set; }
+
         public Room()
         {
 

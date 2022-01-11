@@ -20,5 +20,15 @@ namespace HospitalClassLib.SharedModel
         public String ShiftStart { get; set; }
         public String ShiftEnd { get; set; }
 
+        public Shift() { }
+
+        public Shift(long iD, string shiftType, string shiftStart, string shiftEnd)
+        {
+            ID = iD;
+            ShiftType = shiftType;
+            ShiftStart = shiftStart;
+            ShiftEnd = shiftEnd;
+        }
+
     }
 }

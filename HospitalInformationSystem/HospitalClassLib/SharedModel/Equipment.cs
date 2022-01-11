@@ -26,6 +26,13 @@ namespace HospitalClassLib.SharedModel
             this.Name = name;
             this.Room = room;
             this.Amount = amount;
+
+            Validate();
+        }
+
+        private void Validate()
+        {
+            if (Amount <= 0) throw new ArgumentException("Amount must be greater than 0!");
         }
     }
 }

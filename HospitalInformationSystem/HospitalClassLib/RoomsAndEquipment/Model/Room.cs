@@ -18,6 +18,22 @@ namespace HospitalClassLib.RoomsAndEquipment.Model
         public DateTime? RenovationEnd { get; set; }
         public RoomType RoomType { get; set; }
         public string Number { get; set; }
+
+        ///////////////
+        //public long ID { get; set; }
+        //public string Name { get; set; }
+        //public Floor Floor { get; set; }
+        //public RoomGraphics Graphics { get; set; }
+
+        //public Room(long id, string name, Floor floor)
+        //{
+        //    this.ID = id;
+        //    this.Name = name;
+        //    this.Floor = floor;
+        //}
+        //////////////
+
+
         public Dictionary<string, int> InventoryAmounts
         {
             get; set;
