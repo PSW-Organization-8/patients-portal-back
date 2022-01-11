@@ -20,6 +20,9 @@ using HospitalClassLib.Schedule.Service;
 using HospitalClassLib.Shift.Repository;
 using HospitalClassLib.Shift.Repository.IRepository;
 using HospitalClassLib.Shift.Service;
+using HospitalClassLib.Vacation.Repository;
+using HospitalClassLib.Vacation.Repository.IRepository;
+using HospitalClassLib.Vacation.Service;
 using IntegrationClassLib.Pharmacy.Repository.MedicationRepo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -103,6 +106,10 @@ namespace HospitalAPI
             services.AddTransient<IShiftRepository, ShiftRepository>();
             services.AddScoped<ShiftService>();
             services.AddScoped<ShiftRepository>();
+
+            services.AddTransient<IVacationRepository, VacationRepository>();
+            services.AddScoped<VacationService>();
+            services.AddScoped<VacationRepository>();
 
             services.AddTransient<IMedicationRepository, MedicationRepository>();
             services.AddScoped<IMedicationService, MedicationService>();

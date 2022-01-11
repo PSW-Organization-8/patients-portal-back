@@ -29,7 +29,7 @@ namespace HospitalClassLib
             return dbSet.ToList();
         }
 
-        public Entity Get(ID id)
+        public virtual Entity Get(ID id)
         {
             return dbSet.Find(id);
         }

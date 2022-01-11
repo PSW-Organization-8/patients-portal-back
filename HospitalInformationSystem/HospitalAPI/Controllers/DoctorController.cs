@@ -1,5 +1,6 @@
 ﻿using HospitalClassLib.Schedule.Repository.DoctorRepository;
 using HospitalClassLib.Schedule.Service;
+using HospitalClassLib.SharedModel;
 using HospitalClassLib.SharedModel.Enums;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,6 +28,15 @@ namespace HospitalAPI.Controllers
             return Ok(doctorService.Get(id));
         }
 
+        [HttpPut]
+        [Microsoft.AspNetCore.Mvc.Route("/api/editDoctorShift/{shiftID}/{doctorID}")]
+        public Doctor EditDoctorShift(long shiftID, int doctorID)
+        {
+            return doctorService.EditDoctorShift(shiftID,doctorID);
+        }
+
+
+
         [HttpGet("spec/{specialization?}")]
         public IActionResult GetSpecificDoctors(Specialization specialization)
         {
@@ -39,5 +49,17 @@ namespace HospitalAPI.Controllers
         {
             return Ok(doctorService.GetAllDoctors());
         }
+
+        [HttpPut]
+        [Microsoft.AspNetCore.Mvc.Route("/api/editDoctorVacation/{vacationID}/{doctorID}")]
+        public Doctor EditDoctorVacation(long vacationID, int doctorID)
+        {
+            return doctorService.EditDoctorVacation(vacationID, doctorID);
+        }
+
     }
+
+
+
+
 }

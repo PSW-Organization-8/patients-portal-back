@@ -15,6 +15,11 @@ namespace HospitalClassLib.Schedule.Repository.DoctorRepository
             this.dbContext = dbContext;
         }
 
+        public override Doctor Get(int id)
+        {
+            return dbContext.Doctors.Include(x => x.Vacation).Where(x => x.Id == id).SingleOrDefault();
+        }
+
         protected override int GetId(Doctor entity)
         {
             return entity.Id;
