@@ -33,6 +33,18 @@ namespace HospitalClassLib.Schedule.Service
             return doctorRepository.Get(id);
         }
 
+        public Doctor GetDoctorByID(int ID)
+        {
+            List<Doctor> allDoctors = GetAllDoctors();
+            foreach (Doctor doctor in allDoctors)
+            {
+                if (doctor.Id == ID)
+                    return doctor;
+            }
+
+            return null;
+        }
+
         public List<Doctor> GetLessOccupiedDoctors()
         {
             return doctorRepository.GetLessOccupiedDoctors();
