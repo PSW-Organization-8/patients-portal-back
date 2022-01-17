@@ -22,7 +22,6 @@ namespace HospitalClassLib.Schedule.Model
         public string Token { get; internal set; }
         public string Picture { get; set; }
         public PatientAccountStatus PatientAccountStatus {get; set;}
-
         public virtual ICollection<Appointment> Appointments { get; set; }
 
         public Patient() {

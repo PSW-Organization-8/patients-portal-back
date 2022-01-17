@@ -189,17 +189,11 @@ namespace HospitalClassLib
                 new Feedback { Id = 2, Content = "Drugi neki", Date = DateTime.Now, PatientId = 1}
             );
             modelBuilder.Entity<Feedback>().OwnsOne(p => p.FeedbackProperties).HasData(
-                new { FeedbackId = 1, IsAnonymous = true, IsPublishable = true, IsApproved = true },
-                new { FeedbackId = 2, IsAnonymous = false, IsPublishable = true, IsApproved = true });
+                new { FeedbackId = 1, IsAnonymous = true, IsPublishable = true, IsApproved = false },
+                new { FeedbackId = 2, IsAnonymous = false, IsPublishable = true, IsApproved = false });
 
             modelBuilder.Entity<Appointment>().HasData(
-                new Appointment { Id = 1, StartTime = DateTime.Now, State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed = false },
-                new Appointment { Id = 2, StartTime = new DateTime(2025, 12, 15, 10, 15, 0), State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 6, PatientId = 1, IsSurveyed = false },
-                new Appointment { Id = 3, StartTime = new DateTime(2021, 12, 15, 13, 15, 0), State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 6, PatientId = 1, IsSurveyed = false },
-                new Appointment { Id = 4, StartTime = new DateTime(2021, 12, 15, 15, 45, 0), State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 6, PatientId = 1, IsSurveyed = false },
-
-                new Appointment { Id = 5, StartTime = DateTime.Now, State = AppointmentState.cancelled, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed = false },
-                new Appointment { Id = 6, StartTime = DateTime.Now, State = AppointmentState.finished, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed = false },
+                new Appointment { Id = 1, StartTime = new DateTime(2025, 12, 15, 10, 15, 0), State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed = false },
 
                 new Appointment { Id = 7, StartTime = DateTime.Now, State = AppointmentState.cancelled, Type = AppointmentType.examination, DoctorId = 1, PatientId = 2, IsSurveyed = false },
                 new Appointment { Id = 8, StartTime = DateTime.Now, State = AppointmentState.cancelled, Type = AppointmentType.examination, DoctorId = 1, PatientId = 2, IsSurveyed = false },

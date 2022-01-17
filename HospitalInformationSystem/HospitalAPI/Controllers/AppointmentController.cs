@@ -95,6 +95,7 @@ namespace HospitalAPI.Controllers
                 PatientAppointDto dto = new PatientAppointDto(patient, appointmentService.GetNumberOfCancelledAppointments(patient.Id));
                 listDto.Add(dto);
             }
+            listDto.OrderBy(l => l.NumOfAppointment);
             return listDto;
         }
             

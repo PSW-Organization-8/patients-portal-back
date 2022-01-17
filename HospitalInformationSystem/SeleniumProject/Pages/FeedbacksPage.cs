@@ -32,6 +32,8 @@ namespace SeleniumProject.Pages
 
         public void ClickOnApproveButton()
         {
+            WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("approveButton")));
             Rows[0].FindElement(By.Id("approveButton")).Click();
         }
 

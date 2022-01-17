@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using SeleniumProject.Pages;
 using System;
 using System.Threading;
@@ -42,6 +44,8 @@ namespace SeleniumProject
         [Fact]
         public void TestPublishFeedback()
         {
+            WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
+            wait.Until(ExpectedConditions.ElementExists(By.Id("feedbackContent")));
             String feedbackContent = feedbacksPage.GetPublishableFeedbackContent();
             feedbacksPage.ClickOnApproveButton();
 
