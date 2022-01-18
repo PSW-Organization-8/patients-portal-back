@@ -13,6 +13,11 @@
       "commandName": "IISExpress",
       "launchUrl": "swagger",
       "environmentVariables": {
+        "DB_USER": "postgres",
+        "DB_NAME": "psw_database",
+        "DB_PORT": "5432",
+        "DB_PASSWORD": "2331",
+        "SERVER": "localhost",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },

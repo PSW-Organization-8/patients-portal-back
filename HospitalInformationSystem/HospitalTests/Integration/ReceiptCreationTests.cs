@@ -20,7 +20,7 @@ namespace HospitalTests.Integration
 {
     public class ReceiptCreationTests
     {
-
+        /*
         [Fact]
         public void Conection_with_integration_formed()
         {
@@ -33,7 +33,7 @@ namespace HospitalTests.Integration
 
             Assert.IsType<OkResult>(response);
         }
-
+        */
         [Fact]
         public void Receipt_created()
         {
