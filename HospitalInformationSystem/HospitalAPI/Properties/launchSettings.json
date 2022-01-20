@@ -11,13 +11,12 @@
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
         "DB_USER": "postgres",
         "DB_NAME": "psw_database",
-        "DB_PORT": "5432",
-        "DB_PASSWORD": "2331",
+        "DB_PORT": "8080",
+        "DB_PASSWORD": "wasd",
         "SERVER": "localhost",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

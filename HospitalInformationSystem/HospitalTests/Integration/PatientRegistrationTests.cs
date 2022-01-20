@@ -39,7 +39,7 @@ namespace HospitalTests.Integration
             DateTime now = DateTime.Now;
 
             var patientDto = new PatientDto("Pera", "Pera", "123", "pera", "pera", "pera@gmail.com", "12345", "Serbia", "Obrovac", "Neka 9",
-            now, null, 1, false, "#123", "ABn");
+            now, null, 1, false, "#123", "ABn", "");
 
             var expectedResult = new Patient("Pera", "Pera", "123", "pera", "pera", "pera@gmail.com", "12345", "Serbia", "Obrovac", "Neka 9",
             now, null, 1, false, "#123", "ABn");
@@ -58,15 +58,15 @@ namespace HospitalTests.Integration
                 new DoctorService(new DoctorRepository(context)),
                 new AllergenService(new AllergenRepository(context)));
 
-            PatientDto patient = new PatientDto("Marko", "Markovic", "123", "pera", "pera", "pera@gmail.com", "12345", "Serbia", "Obrovac", "Neka 9",
-            DateTime.Now, new List<Allergen>(), 1, false, "ABC123DEF4AAAAC12345", "ABn");
+            PatientDto patient = new PatientDto("Marko", "Markovic", "1231231231236", "pera", "pera", "pera@gmail.com", "12345", "Serbia", "Obrovac", "Neka 9",
+            DateTime.Now, new List<Allergen>(), 1, false, "ABC123DEF4AAAAC12345", "ABn", "");
             patientController.RegisterPatient(patient);
 
             patientController.ActivatePatientAccount("ABC123DEF4AAAAC12345");
 
             Patient p = context.Patients.Where(p => p.Token == "ABC123DEF4AAAAC12345").ToList()[0];
 
-            Assert.True(p.IsActivated);
+            Assert.True(p.PatientAccountStatus.IsActivated);
         }
     }
 }

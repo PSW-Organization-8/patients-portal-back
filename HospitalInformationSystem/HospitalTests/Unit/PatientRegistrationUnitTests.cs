@@ -37,19 +37,19 @@ namespace HospitalTests.Unit
         new List<object[]>
         {
             new object[] { new PatientDto("Pera", "Pera", "1231231231231", "pera", "pera123123", "pera@gmail.com", "12345", "Serbia", "Obrovac", "Neka 9",
-            DateTime.Now, new List<Allergen>(), 1, false, "#123", "ABn"), 200 },
-            new object[] { new PatientDto("Pera", "Pera", "123", "pera", "pera", "pera@gmail.com", "12345", "Serbia", "Obrovac", "Neka 9",
-            DateTime.Now, new List<Allergen>(), 1, false, "#123", "ABn"), 400 },
-            new object[] { new PatientDto("Pera1", "Pera", "1233453451239", "pera", "pera", "pera@gmail.com", "12345", "Serbia", "Obrovac", "Neka 9",
-            DateTime.Now, new List<Allergen>(), 1, false, "#123", "ABn"), 400 },
-            new object[] { new PatientDto("Pera", "Pera2", "1233453451239", "pera", "pera", "pera@gmail.com", "12345", "Serbia", "Obrovac", "Neka 9",
-            DateTime.Now, new List<Allergen>(), 1, false, "#123", "ABn"), 400 },
+            DateTime.Now, new List<Allergen>(), 1, false, "#123", "ABn", ""), 200 },
+            new object[] { new PatientDto("Pera", "Pera", "123", "pera", "pera", "pera", "12345", "Serbia", "Obrovac", "Neka 9",
+            DateTime.Now, new List<Allergen>(), 1, false, "#123", "ABn", ""), 400 },
+            new object[] { new PatientDto("Pera1", "Pera", "1233453451239", "pera", "pera", "gmail.com", "12345", "Serbia", "Obrovac", "Neka 9",
+            DateTime.Now, new List<Allergen>(), 1, false, "#123", "ABn", ""), 400 },
+            new object[] { new PatientDto("Pera", "Pera2", "1233453451239", "pera", "pera1000PERA", "pera@gmail.com", "12345", "Serbia", "Obrovac", "Neka 9",
+            DateTime.Now, new List<Allergen>(), 1, false, "#123", "ABn", ""), 400 },
             new object[] { new PatientDto("Pera", "Pera", "1233453451239", "pera", "pera", "pera", "12345", "Serbia", "Obrovac", "Neka 9",
-            DateTime.Now, new List<Allergen>(), 1, false, "#123", "ABn"), 400 },
+            DateTime.Now, new List<Allergen>(), 1, false, "#123", "ABn", ""), 400 },
             new object[] { new PatientDto("Pera", "Pera", "1233453451239", "pera", "pera", "pera", "12345", "Serbia1", "Obrovac", "Neka 9",
-            DateTime.Now, new List<Allergen>(), 1, false, "#123", "ABn"), 400 },
+            DateTime.Now, new List<Allergen>(), 1, false, "#123", "ABn", ""), 400 },
             new object[] { new PatientDto("Pera", "Pera", "1233453451239", "pera", "pera", "pera", "12345", "Serbia1", "Obrovac3", "Neka 9",
-            DateTime.Now, new List<Allergen>(), 1, false, "#123", "ABn"), 400 }
+            DateTime.Now, new List<Allergen>(), 1, false, "#123", "ABn", ""), 400 }
         };
 
         [Fact]

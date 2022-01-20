@@ -20,5 +20,15 @@ namespace HospitalClassLib.Schedule.Repository.ManagerRepo
             return entity.Id;
         }
 
+        public LoggedUser GetLoggedUser(string username, string password)
+        {
+            LoggedUser user = (LoggedUser)dbContext.Managers.Where(p => p.Username == username && p.Password == password).FirstOrDefault();
+            return user;
+        }
+
+        public Manager GetByUsername(string username)
+        {
+            return dbContext.Managers.SingleOrDefault(manager => manager.Username.Equals(username));
+        }
     }
 }

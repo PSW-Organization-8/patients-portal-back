@@ -47,7 +47,7 @@ namespace HospitalTests.Integration
 
             Assert.NotNull(okResult);
             Assert.Equal(200, okResult.StatusCode);
-            Assert.True(patient.IsBanned);
+            Assert.True(patient.PatientAccountStatus.IsBanned);
         }
 
 
@@ -66,7 +66,7 @@ namespace HospitalTests.Integration
 
             Assert.NotNull(okResult);
             Assert.Equal(200, okResult.StatusCode);
-            Assert.False(patient.IsBanned);
+            Assert.False(patient.PatientAccountStatus.IsBanned);
         }
 
 

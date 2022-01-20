@@ -42,21 +42,21 @@ namespace HospitalAPI.Controllers
             if (validator.Validate(PatientMapper.PatientDtoToPatient(
                 patientDto, doctorService.Get(patientDto.DoctorId), allergenService.GetSelectedAllergens(patientDto.Allergens))).IsValid)
             {
-                return Ok(patientService.RegisterPatient(PatientMapper.PatientDtoToPatient(patientDto, doctorService.Get(patientDto.DoctorId), allergenService.GetSelectedAllergens(patientDto.Allergens))));
+                patientService.RegisterPatient(PatientMapper.PatientDtoToPatientRegistration(patientDto, doctorService.Get(patientDto.DoctorId), allergenService.GetSelectedAllergens(patientDto.Allergens)));
+                return Ok(true);
             }
             return BadRequest(patientDto);
         }
 
-        [HttpPut("activate/")]
+        [HttpGet]
+        [Route("activate")]
         public void ActivatePatientAccount(string patientToken)
         {
             if (validator.Validate(patientService.GetByToken(patientToken)).IsValid)
             {
                 patientService.ActivatePatientAccount(patientToken);
                 Response.Redirect("http://localhost:4200/patientLogin");
-                //return Ok();
             }
-            //return BadRequest();
         }
 
         [HttpGet("{id?}")]
@@ -65,9 +65,15 @@ namespace HospitalAPI.Controllers
             return Ok(patientService.Get(id));
         }
 
+        [HttpGet("getByUsername/{id?}")]
+        public IActionResult GetByUsername(string id)
+        {
+            return Ok(patientService.GetByUsername(id));
+        }
 
         [HttpPut]
         [Route("ban/{id?}")]
+        [Authorize]
         public IActionResult BanPatientById(int id)
         {
             return Ok(patientService.BanPatientById(id));
@@ -75,31 +81,38 @@ namespace HospitalAPI.Controllers
 
         [HttpPut]
         [Route("unban/{id?}")]
+        [Authorize]
         public IActionResult UnbanPatientById(int id)
         {
             return Ok(patientService.UnbanPatientById(id));
         }
-
-
 
         [HttpGet("login")]
         [Authorize]
         public IActionResult SellersEndpoint()
         {
             var currentUser = GetCurrentUser();
-
             return Ok(currentUser);
         }
 
+        [HttpGet("getAllUsernames")]
+        public IActionResult GetAllUsernames()
+        {
+            return Ok(patientService.GetAllUsernames());
+        }
+
+        [HttpGet("getAllEmails")]
+        public IActionResult GetAllEmails()
+        {
+            return Ok(patientService.GetAllEmails());
+        }
 
         private LoggedUser GetCurrentUser()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
-
             if (identity != null)
             {
                 var userClaims = identity.Claims;
-
                 return new LoggedUser
                 {
                     Username = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.NameIdentifier)?.Value,
