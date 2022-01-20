@@ -70,6 +70,7 @@ namespace HospitalClassLib
         public DbSet<Manager> Managers { get; set; }
         public DbSet<Medication> Medications { get; set; }
         public DbSet<Receipt> Receipts { get; set; }
+        public DbSet<MedicalReport> MedicalReports { get; set; }
 
         public MyDbContext()
         {
@@ -198,6 +199,8 @@ namespace HospitalClassLib
 
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment { Id = 1, StartTime = new DateTime(2025, 12, 15, 10, 15, 0), State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed = false },
+                new Appointment { Id = 43, StartTime = new DateTime(2021, 12, 15, 10, 15, 0), State = AppointmentState.finished, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed = false },
+                new Appointment { Id = 44, StartTime = new DateTime(2021, 12, 5, 9, 0, 0), State = AppointmentState.finished, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed = false },
 
                 new Appointment { Id = 7, StartTime = DateTime.Now, State = AppointmentState.cancelled, Type = AppointmentType.examination, DoctorId = 1, PatientId = 2, IsSurveyed = false },
                 new Appointment { Id = 8, StartTime = DateTime.Now, State = AppointmentState.cancelled, Type = AppointmentType.examination, DoctorId = 1, PatientId = 2, IsSurveyed = false },
@@ -237,6 +240,11 @@ namespace HospitalClassLib
                 new Appointment { Id = 41, StartTime = new DateTime(2022, 1, 1, 15, 30, 0), State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 1, PatientId = 2, IsSurveyed = false },
                 new Appointment { Id = 42, StartTime = new DateTime(2022, 1, 1, 15, 45, 0), State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 1, PatientId = 2, IsSurveyed = false }
              );
+
+            modelBuilder.Entity<MedicalReport>().HasData(
+               new MedicalReport { Id = 1, AppointmentId = 43, Anamnesis="Covid 19 Omicron", Prescription="Brufen 500mg; Hemomicin 30mg", Appointment=null},
+               new MedicalReport { Id = 2, AppointmentId = 44, Anamnesis ="Alergijska Astma", Prescription = "Berodual 200mg; Alergodil 10mg", Appointment = null }
+           );
 
 
             modelBuilder.Entity<Survey>().HasData(

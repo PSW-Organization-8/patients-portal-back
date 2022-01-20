@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using HospitalClassLib.Schedule.Repository.MedicalReportRepo;
 
 namespace HospitalClassLib.Schedule.Service
 {
@@ -21,6 +22,7 @@ namespace HospitalClassLib.Schedule.Service
         private readonly int TERM_DURATION = 15;
         private readonly IAppointmentRepository appointmentRepository;
         private readonly IDoctorRepository doctorRepository;
+        private readonly IMedicalReportRepository medicalReportRepository = new MedicalReportRepository(new MyDbContext()); 
         #endregion Fields
 
         #region Constructors
@@ -116,6 +118,11 @@ namespace HospitalClassLib.Schedule.Service
             appointment.IsSurveyed = true;
             appointmentRepository.Update(appointment);
             return true;
+        }
+
+        public object getMedicalReport(int appointmentId)
+        {
+            return medicalReportRepository.GetMedicalReportByAppointment(appointmentId);
         }
 
         public int GetNumberOfCancelledAppointments(int id) 

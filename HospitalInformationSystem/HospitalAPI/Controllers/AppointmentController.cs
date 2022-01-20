@@ -117,5 +117,14 @@ namespace HospitalAPI.Controllers
                 return Ok(appointmentService.GetFreeTerms(startTime, doctorId));
             return BadRequest("Invalid data!");
         }
+
+        [HttpGet]
+        [Route("medicalReport/{id?}")]
+        public IActionResult getMedicalReport(int id)
+        {
+            if (!idValidator.CheckId(id))
+                return BadRequest(false);
+            return Ok(appointmentService.getMedicalReport(id));
+        }
     }
 }
