@@ -11,6 +11,8 @@ namespace HospitalClassLib.Events.Model
         MedicationPreview,
         CancelForm,
         EnterForm,
+        Next,
+        Back,
         Other
     }
 }

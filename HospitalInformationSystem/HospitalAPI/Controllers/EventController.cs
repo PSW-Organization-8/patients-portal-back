@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace HospitalAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class EventController : ControllerBase
     {
         private readonly IEventService eventService;

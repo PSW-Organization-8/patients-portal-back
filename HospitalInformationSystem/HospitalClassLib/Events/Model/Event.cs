@@ -52,4 +52,12 @@ namespace HospitalClassLib.Events.Model
             EventApplicationName = eventApplicationName;
             EventClass = eventClass;
         }
+
+        public Event(long id, string username, EventClass eventClass, int optionalEventNumInfo)
+        {
+            Id = id;
+            UserId = username;
+            EventClass = eventClass;
+            OptionalEventNumInfo = optionalEventNumInfo;
+        }
     }}
