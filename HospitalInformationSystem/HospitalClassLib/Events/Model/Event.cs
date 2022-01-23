@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalClassLib.SharedModel.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -22,8 +23,9 @@ namespace HospitalClassLib.Events.Model
         public ApplicationName EventApplicationName { get; set; }
         public EventClass EventClass { get; set; }
         public Double OptionalEventNumInfo { get; set; }
-        public Double OptionalEventNumInfo2 { get; set; }
-        public String OptionalEventStrInfo { get; set; }
+        public DateTime ChoosenTime { get; set; }
+        public Specialization DoctorSpecialization { get; set; }
+        public String DoctorUsername{ get; set; }
 
         public Event()
         {
@@ -32,16 +34,16 @@ namespace HospitalClassLib.Events.Model
             this.EventApplicationName = ApplicationName.PatientsPortal;
         }
 
-        public Event(long id, string userId, ApplicationName eventApplicationName, EventClass eventClass, double optionalEventNumInfo, double optionalEventNumInfo2, string optionalEventStrInfo)
+        public Event(string userId, ApplicationName eventApplicationName, EventClass eventClass, double optionalEventNumInfo, Specialization doctorSpecialization, DateTime choosenTime, string doctorUsername)
         {
-            Id = id;
             TimeStamp = DateTime.Now;
             UserId = userId;
             EventApplicationName = eventApplicationName;
             EventClass = eventClass;
             OptionalEventNumInfo = optionalEventNumInfo;
-            OptionalEventNumInfo2 = optionalEventNumInfo2;
-            OptionalEventStrInfo = optionalEventStrInfo;
+            ChoosenTime = choosenTime;
+            DoctorSpecialization = doctorSpecialization;
+            DoctorUsername = doctorUsername;
         }
 
         public Event(long id, string userId, ApplicationName eventApplicationName, EventClass eventClass)

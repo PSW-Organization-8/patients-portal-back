@@ -64,8 +64,9 @@ namespace HospitalAPI.Migrations
                     EventApplicationName = table.Column<int>(type: "integer", nullable: false),
                     EventClass = table.Column<int>(type: "integer", nullable: false),
                     OptionalEventNumInfo = table.Column<double>(type: "double precision", nullable: false),
-                    OptionalEventNumInfo2 = table.Column<double>(type: "double precision", nullable: false),
-                    OptionalEventStrInfo = table.Column<string>(type: "text", nullable: true)
+                    ChoosenTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    DoctorSpecialization = table.Column<int>(type: "integer", nullable: false),
+                    DoctorUsername = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -331,12 +332,12 @@ namespace HospitalAPI.Migrations
             migrationBuilder.InsertData(
                 schema: "Events",
                 table: "Event",
-                columns: new[] { "Id", "EventApplicationName", "EventClass", "OptionalEventNumInfo", "OptionalEventNumInfo2", "OptionalEventStrInfo", "TimeStamp", "UserId" },
+                columns: new[] { "Id", "ChoosenTime", "DoctorSpecialization", "DoctorUsername", "EventApplicationName", "EventClass", "OptionalEventNumInfo", "TimeStamp", "UserId" },
                 values: new object[,]
                 {
-                    { 1L, 0, 1, 0.0, 0.0, null, new DateTime(2022, 1, 20, 22, 24, 15, 72, DateTimeKind.Local).AddTicks(3284), "username1" },
-                    { 2L, 1, 2, 0.0, 0.0, null, new DateTime(2022, 1, 20, 22, 24, 15, 72, DateTimeKind.Local).AddTicks(5197), "username2" },
-                    { 3L, 1, 0, 1.0, 0.0, null, new DateTime(2022, 1, 20, 22, 24, 15, 72, DateTimeKind.Local).AddTicks(5213), "username1" }
+                    { 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 1, 0.0, new DateTime(2022, 1, 23, 20, 35, 17, 447, DateTimeKind.Local).AddTicks(3880), "username1" },
+                    { 2L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 1, 2, 0.0, new DateTime(2022, 1, 23, 20, 35, 17, 447, DateTimeKind.Local).AddTicks(5658), "username2" },
+                    { 3L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 1, 0, 1.0, new DateTime(2022, 1, 23, 20, 35, 17, 447, DateTimeKind.Local).AddTicks(5680), "username1" }
                 });
 
             migrationBuilder.InsertData(
@@ -380,7 +381,7 @@ namespace HospitalAPI.Migrations
                 schema: "Hospital",
                 table: "Receipts",
                 columns: new[] { "ReceiptID", "Amount", "Date", "Diagnosis", "DoctorId", "MedicineName", "PatientId" },
-                values: new object[] { 1L, 1, new DateTime(2022, 1, 20, 0, 0, 0, 0, DateTimeKind.Local), "Korona", 1, "Synthroid", 1 });
+                values: new object[] { 1L, 1, new DateTime(2022, 1, 23, 0, 0, 0, 0, DateTimeKind.Local), "Korona", 1, "Synthroid", 1 });
 
             migrationBuilder.InsertData(
                 schema: "Hospital",
@@ -422,10 +423,10 @@ namespace HospitalAPI.Migrations
                     { 20, 1, false, 2, new DateTime(2022, 1, 1, 10, 15, 0, 0, DateTimeKind.Unspecified), 0, 0 },
                     { 43, 1, false, 1, new DateTime(2021, 12, 15, 10, 15, 0, 0, DateTimeKind.Unspecified), 1, 0 },
                     { 44, 1, false, 1, new DateTime(2021, 12, 5, 9, 0, 0, 0, DateTimeKind.Unspecified), 1, 0 },
-                    { 7, 1, false, 2, new DateTime(2022, 1, 20, 22, 24, 15, 66, DateTimeKind.Local).AddTicks(9613), 2, 0 },
-                    { 8, 1, false, 2, new DateTime(2022, 1, 20, 22, 24, 15, 66, DateTimeKind.Local).AddTicks(9637), 2, 0 },
-                    { 9, 1, false, 2, new DateTime(2022, 1, 20, 22, 24, 15, 66, DateTimeKind.Local).AddTicks(9642), 2, 0 },
-                    { 10, 1, false, 2, new DateTime(2022, 1, 20, 22, 24, 15, 66, DateTimeKind.Local).AddTicks(9655), 2, 0 },
+                    { 7, 1, false, 2, new DateTime(2022, 1, 23, 20, 35, 17, 441, DateTimeKind.Local).AddTicks(2303), 2, 0 },
+                    { 8, 1, false, 2, new DateTime(2022, 1, 23, 20, 35, 17, 441, DateTimeKind.Local).AddTicks(2331), 2, 0 },
+                    { 9, 1, false, 2, new DateTime(2022, 1, 23, 20, 35, 17, 441, DateTimeKind.Local).AddTicks(2337), 2, 0 },
+                    { 10, 1, false, 2, new DateTime(2022, 1, 23, 20, 35, 17, 441, DateTimeKind.Local).AddTicks(2354), 2, 0 },
                     { 21, 1, false, 2, new DateTime(2022, 1, 1, 10, 30, 0, 0, DateTimeKind.Unspecified), 0, 0 },
                     { 11, 1, false, 2, new DateTime(2022, 1, 1, 8, 0, 0, 0, DateTimeKind.Unspecified), 0, 0 },
                     { 13, 1, false, 2, new DateTime(2022, 1, 1, 8, 30, 0, 0, DateTimeKind.Unspecified), 0, 0 },
@@ -445,8 +446,8 @@ namespace HospitalAPI.Migrations
                 columns: new[] { "Id", "Content", "Date", "PatientId", "IsAnonymous", "IsApproved", "IsPublishable" },
                 values: new object[,]
                 {
-                    { 2, "Drugi neki", new DateTime(2022, 1, 20, 22, 24, 15, 66, DateTimeKind.Local).AddTicks(3531), 1, false, false, true },
-                    { 1, "Tekst neki", new DateTime(2022, 1, 20, 22, 24, 15, 66, DateTimeKind.Local).AddTicks(2528), 1, true, false, true }
+                    { 2, "Drugi neki", new DateTime(2022, 1, 23, 20, 35, 17, 440, DateTimeKind.Local).AddTicks(6589), 1, false, false, true },
+                    { 1, "Tekst neki", new DateTime(2022, 1, 23, 20, 35, 17, 440, DateTimeKind.Local).AddTicks(5581), 1, true, false, true }
                 });
 
             migrationBuilder.InsertData(
