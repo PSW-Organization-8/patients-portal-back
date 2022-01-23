@@ -71,6 +71,7 @@ namespace HospitalClassLib
         public DbSet<Medication> Medications { get; set; }
         public DbSet<Receipt> Receipts { get; set; }
         public DbSet<MedicalReport> MedicalReports { get; set; }
+        public DbSet<Event> Events { get; set; }
 
         public MyDbContext()
         {

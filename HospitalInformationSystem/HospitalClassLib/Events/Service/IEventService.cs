@@ -11,5 +11,8 @@ namespace HospitalClassLib.Events.Service
     {
         List<Event> GetAll();
         Event Create(Event @event);
+        List<Tuple<int, int, int>> ButtonClicksByAge();
+        List<int> MostWantedSpecialization();
+        List<int> SuccessfulByTime();
     }
 }

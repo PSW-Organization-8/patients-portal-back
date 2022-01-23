@@ -10,5 +10,8 @@ namespace HospitalClassLib.Events.Repository
 {
     public interface IEventRepository : IGenericRepository<Event, long>
     {
+        List<Tuple<int, int, int>> ButtonClicksByAge();
+        List<int> MostWantedSpecialization();
+        List<int> SuccessfulByTime();
     }
 }

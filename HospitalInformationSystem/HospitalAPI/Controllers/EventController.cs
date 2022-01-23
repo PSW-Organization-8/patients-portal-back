@@ -1,5 +1,6 @@
 ﻿using HospitalClassLib.Events.Model;
 using HospitalClassLib.Events.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -31,5 +32,28 @@ namespace HospitalAPI.Controllers
             return eventService.Create(@event);
         }
 
+        [HttpGet]
+        [Route("buttonClicks")]
+        [Authorize]
+        public List<Tuple <int, int, int>> ButtonClicksByAge()
+        {
+            return eventService.ButtonClicksByAge();
+        }
+
+        [HttpGet]
+        [Route("specialization")]
+        [Authorize]
+        public List<int> MostWantedSpecialization()
+        {
+            return eventService.MostWantedSpecialization();
+        }
+
+        [HttpGet]
+        [Route("successfulByTime")]
+        [Authorize]
+        public List<int> SuccessfulByTime()
+        {
+            return eventService.SuccessfulByTime();
+        }
     }
 }
