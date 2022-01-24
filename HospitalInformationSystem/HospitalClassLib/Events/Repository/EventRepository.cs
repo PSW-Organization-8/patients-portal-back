@@ -53,6 +53,17 @@ namespace HospitalClassLib.Events.Repository
             return new EventData(minors, youngAdults, adults, seniors, veterans);
         }
 
+        public List<EventTypeData> getClicksByMonth()
+        {
+            return dbContext.Events.GroupBy(x => x.Month).OrderBy(x => x.Key).Select(x => new EventTypeData(
+                                                 dbContext.Events.Count(e => e.Month == x.Key && e.EventClass == EventClass.Next),
+                                                 dbContext.Events.Count(e => e.Month == x.Key && e.EventClass == EventClass.Back),
+                                                 dbContext.Events.Count(e => e.Month == x.Key && e.EventClass == EventClass.DoctorSpecialization),
+                                                 dbContext.Events.Count(e => e.Month == x.Key && e.EventClass == EventClass.DatePicker),
+                                                 dbContext.Events.Count(e => e.Month == x.Key && e.EventClass == EventClass.DoctorInput),
+                                                 dbContext.Events.Count(e => e.Month == x.Key && e.EventClass == EventClass.Schedule))).ToList();
+        }
+
         public List<DoctorEventStats> getDoctorEventStats()
         {
             List<string> doctorsUsername = dbContext.Doctors.OrderBy(d => d.Id).Select(d => d.Username).ToList();

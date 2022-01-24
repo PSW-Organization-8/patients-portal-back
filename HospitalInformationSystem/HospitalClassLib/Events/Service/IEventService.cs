@@ -16,5 +16,6 @@ namespace HospitalClassLib.Events.Service
         List<int> SuccessfulByTime();
         EventData BackNextClicks();
         List<DoctorEventStats> getDoctorEventStats();
+        List<EventTypeData> getClickByMonth();
     }
 }
