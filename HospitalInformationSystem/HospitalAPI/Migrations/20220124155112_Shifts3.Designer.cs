@@ -3,15 +3,17 @@ using System;
 using HospitalClassLib;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace HospitalAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220124155112_Shifts3")]
+    partial class Shifts3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,7 +102,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2022, 1, 24, 19, 11, 1, 364, DateTimeKind.Local).AddTicks(3672),
+                            StartTime = new DateTime(2022, 1, 24, 16, 51, 11, 435, DateTimeKind.Local).AddTicks(8245),
                             State = 0,
                             Type = 0
                         },
@@ -140,7 +142,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2022, 1, 24, 19, 11, 1, 364, DateTimeKind.Local).AddTicks(5844),
+                            StartTime = new DateTime(2022, 1, 24, 16, 51, 11, 436, DateTimeKind.Local).AddTicks(312),
                             State = 2,
                             Type = 0
                         },
@@ -150,7 +152,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 1,
-                            StartTime = new DateTime(2022, 1, 24, 19, 11, 1, 364, DateTimeKind.Local).AddTicks(5860),
+                            StartTime = new DateTime(2022, 1, 24, 16, 51, 11, 436, DateTimeKind.Local).AddTicks(332),
                             State = 1,
                             Type = 0
                         },
@@ -160,7 +162,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2022, 1, 24, 19, 11, 1, 364, DateTimeKind.Local).AddTicks(5865),
+                            StartTime = new DateTime(2022, 1, 24, 16, 51, 11, 436, DateTimeKind.Local).AddTicks(336),
                             State = 2,
                             Type = 0
                         },
@@ -170,7 +172,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2022, 1, 24, 19, 11, 1, 364, DateTimeKind.Local).AddTicks(5870),
+                            StartTime = new DateTime(2022, 1, 24, 16, 51, 11, 436, DateTimeKind.Local).AddTicks(340),
                             State = 2,
                             Type = 0
                         },
@@ -180,7 +182,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2022, 1, 24, 19, 11, 1, 364, DateTimeKind.Local).AddTicks(5876),
+                            StartTime = new DateTime(2022, 1, 24, 16, 51, 11, 436, DateTimeKind.Local).AddTicks(343),
                             State = 2,
                             Type = 0
                         },
@@ -190,7 +192,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2022, 1, 24, 19, 11, 1, 364, DateTimeKind.Local).AddTicks(5881),
+                            StartTime = new DateTime(2022, 1, 24, 16, 51, 11, 436, DateTimeKind.Local).AddTicks(347),
                             State = 2,
                             Type = 0
                         },
@@ -552,7 +554,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2022, 1, 24, 19, 11, 1, 359, DateTimeKind.Local).AddTicks(5276),
+                            Date = new DateTime(2022, 1, 24, 16, 51, 11, 431, DateTimeKind.Local).AddTicks(4473),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -562,7 +564,7 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2022, 1, 24, 19, 11, 1, 364, DateTimeKind.Local).AddTicks(1777),
+                            Date = new DateTime(2022, 1, 24, 16, 51, 11, 435, DateTimeKind.Local).AddTicks(6530),
                             IsAnonymous = false,
                             IsApproved = true,
                             IsPublishable = true,
@@ -1304,9 +1306,6 @@ namespace HospitalAPI.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("boolean");
-
                     b.Property<string>("ShiftEnd")
                         .HasColumnType("text");
 
@@ -1324,7 +1323,6 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             ID = 1L,
-                            Deleted = false,
                             ShiftEnd = "13:00",
                             ShiftStart = "7:00",
                             ShiftType = "Morning shift"
@@ -1332,7 +1330,6 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             ID = 2L,
-                            Deleted = false,
                             ShiftEnd = "20:00",
                             ShiftStart = "13:00",
                             ShiftType = "Afternoon shift"
@@ -1340,7 +1337,6 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             ID = 3L,
-                            Deleted = false,
                             ShiftEnd = "7:00",
                             ShiftStart = "20:00",
                             ShiftType = "Night shift"

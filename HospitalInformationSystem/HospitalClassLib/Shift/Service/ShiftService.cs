@@ -23,6 +23,34 @@ namespace HospitalClassLib.Shift.Service
             return shiftRepository.GetAll();
         }
 
+        public List<SharedModel.Shift> GetAllNotDeletedShifts()
+        {
+            List<SharedModel.Shift> allShift = GetAllShifts();
+            foreach (SharedModel.Shift shift in allShift)
+            {
+                if (shift.Deleted == false)
+                { return allShift; }
+               
+            }
+            return null;
+        }
+
+        public SharedModel.Shift DeleteThisShift(SharedModel.Shift shiftForDelete, long ID)
+        {
+            List<SharedModel.Shift> allShift = GetAllNotDeletedShifts();
+            foreach (SharedModel.Shift shift in allShift)
+            {
+                if (shift.ID== ID)
+                {
+                     _= shift.Deleted == true;
+                    return shiftRepository.Update(shiftForDelete);
+                }
+            }
+
+            return null;
+
+        } 
+
         public void CreateAllShifts(List<SharedModel.Shift> allNewShifts)
         {
             foreach (SharedModel.Shift newShifts in allNewShifts)
@@ -41,6 +69,18 @@ namespace HospitalClassLib.Shift.Service
             }
 
             return null;
+        }
+
+        public bool DeleteShift(long ID)
+        {
+            List<SharedModel.Shift> allShift = GetAllShifts();
+            foreach (SharedModel.Shift shift in allShift)
+            {
+                if (shift.ID == ID)
+                    return shiftRepository.Delete(ID);
+            }
+
+            return false;
         }
 
         public SharedModel.Shift CreateShifts(SharedModel.Shift newShifts)

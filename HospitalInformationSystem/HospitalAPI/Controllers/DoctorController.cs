@@ -28,7 +28,7 @@ namespace HospitalAPI.Controllers
             return Ok(doctorService.Get(id));
         }
 
-<<<<<<< HEAD
+
         [HttpPut]
         [Microsoft.AspNetCore.Mvc.Route("/api/editDoctorShift/{shiftID}/{doctorID}")]
         public Doctor EditDoctorShift(long shiftID, int doctorID)
@@ -38,7 +38,7 @@ namespace HospitalAPI.Controllers
 
 
 
-=======
+
         [HttpGet]
         [Microsoft.AspNetCore.Mvc.Route("/api/doctorById")]
         public Doctor GetDoctorByID(int ID)
@@ -47,7 +47,7 @@ namespace HospitalAPI.Controllers
         }
 
 
->>>>>>> 3ecf80d49b54a47bdcdfedb0cbd7566bd4f2c90a
+
         [HttpGet("spec/{specialization?}")]
         public IActionResult GetSpecificDoctors(Specialization specialization)
         {

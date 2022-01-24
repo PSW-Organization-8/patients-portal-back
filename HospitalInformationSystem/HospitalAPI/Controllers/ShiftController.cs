@@ -26,6 +26,21 @@ namespace HospitalAPI.Controllers
             return shiftService.GetAllShifts();
         }
 
+
+        [HttpGet]
+        [Microsoft.AspNetCore.Mvc.Route("/api/notDeletedShifts")]
+        public List<Shift> GetAllNotDeletedShifts()
+        {
+            return shiftService.GetAllNotDeletedShifts();
+        }
+
+        [HttpPut]
+        [Microsoft.AspNetCore.Mvc.Route("/api/shifts/delete")]
+        public Shift DeleteShifts(Shift shift, long ID)
+        {
+            return shiftService.DeleteThisShift(shift, ID);
+        }
+
         [HttpGet]
         [Microsoft.AspNetCore.Mvc.Route("/api/shiftById")]
         public HospitalClassLib.SharedModel.Shift GetShiftByID(long ID)
@@ -54,6 +69,10 @@ namespace HospitalAPI.Controllers
         {
             shiftService.CreateAllShifts(shifts);
         }
+
+        [HttpDelete]
+        [Microsoft.AspNetCore.Mvc.Route("/api/deleteShift/")]
+        public bool DeleteShift(long ID) => shiftService.DeleteShift(ID);
 
 
     }

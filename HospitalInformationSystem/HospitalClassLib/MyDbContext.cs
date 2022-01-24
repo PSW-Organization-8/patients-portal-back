@@ -64,9 +64,9 @@ namespace HospitalClassLib
                 );
 
             modelBuilder.Entity<SharedModel.Shift>().HasData(
-              new SharedModel.Shift { ID = 1, ShiftType = "Morning shift", ShiftStart = "7:00", ShiftEnd = "13:00" },
-              new SharedModel.Shift { ID = 2, ShiftType = "Afternoon shift", ShiftStart = "13:00", ShiftEnd = "20:00" },
-              new SharedModel.Shift { ID = 3, ShiftType = "Night shift", ShiftStart = "20:00", ShiftEnd = "7:00" }
+              new SharedModel.Shift { ID = 1, ShiftType = "Morning shift", ShiftStart = "7:00", ShiftEnd = "13:00", Deleted = false },
+              new SharedModel.Shift { ID = 2, ShiftType = "Afternoon shift", ShiftStart = "13:00", ShiftEnd = "20:00", Deleted = false },
+              new SharedModel.Shift { ID = 3, ShiftType = "Night shift", ShiftStart = "20:00", ShiftEnd = "7:00", Deleted = false }
                );
 
             modelBuilder.Entity<VacationPeriod>().HasData(
@@ -91,12 +91,6 @@ namespace HospitalClassLib
                 );
 
 
-<<<<<<< HEAD
-=======
-        
-
-
->>>>>>> 3ecf80d49b54a47bdcdfedb0cbd7566bd4f2c90a
             modelBuilder.Entity<Feedback>().HasData(
                 new Feedback { Id = 1, Content = "Tekst neki", IsApproved = true, Date = DateTime.Now, PatientId = 1, IsPublishable = true, IsAnonymous = false },
                 new Feedback { Id = 2, Content = "Drugi neki", IsApproved = true, Date = DateTime.Now, PatientId = 1, IsPublishable = true, IsAnonymous = false }

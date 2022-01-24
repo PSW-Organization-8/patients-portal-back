@@ -20,5 +20,7 @@ namespace HospitalClassLib.SharedModel
         public String ShiftStart { get; set; }
         public String ShiftEnd { get; set; }
 
+        public bool Deleted { get; set; }
+
     }
 }
