@@ -27,7 +27,7 @@ namespace HospitalClassLib.Events.Service
             return this.eventRepository.GetAll();
         }
 
-        public List<Tuple<int, int, int>> ButtonClicksByAge()
+        public EventData ButtonClicksByAge()
         {
             return this.eventRepository.ButtonClicksByAge();
         }
@@ -40,6 +40,16 @@ namespace HospitalClassLib.Events.Service
         public List<int> SuccessfulByTime()
         {
             return this.eventRepository.SuccessfulByTime();
+        }
+
+        public EventData BackNextClicks()
+        {
+            return this.eventRepository.BackNextClicks();
+        }
+
+        public List<DoctorEventStats> getDoctorEventStats()
+        {
+            return this.eventRepository.getDoctorEventStats();
         }
     }
 }

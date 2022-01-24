@@ -35,7 +35,7 @@ namespace HospitalAPI.Controllers
         [HttpGet]
         [Route("buttonClicks")]
         [Authorize]
-        public List<Tuple <int, int, int>> ButtonClicksByAge()
+        public EventData ButtonClicksByAge()
         {
             return eventService.ButtonClicksByAge();
         }
@@ -54,6 +54,21 @@ namespace HospitalAPI.Controllers
         public List<int> SuccessfulByTime()
         {
             return eventService.SuccessfulByTime();
+        }
+        
+        [HttpGet]
+        [Route("backNextClicks")]
+        [Authorize]
+        public EventData BackNextClicks()
+        {
+            return eventService.BackNextClicks();
+        }
+
+        [HttpGet]
+        [Route("doctorStats")]
+        public List<DoctorEventStats> getDoctorEventStats()
+        {
+            return eventService.getDoctorEventStats();
         }
     }
 }
