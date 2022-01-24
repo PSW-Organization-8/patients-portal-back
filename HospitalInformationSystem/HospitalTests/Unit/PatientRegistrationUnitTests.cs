@@ -7,6 +7,8 @@ using HospitalClassLib.Schedule.Repository.DoctorRepository;
 using HospitalClassLib.Schedule.Repository.PatientRepository;
 using HospitalClassLib.Schedule.Service;
 using HospitalClassLib.SharedModel;
+using HospitalClassLib.Shift.Repository.IRepository;
+using HospitalClassLib.Vacation.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
@@ -24,7 +26,7 @@ namespace HospitalTests.Unit
         public void Patient_validators_test(PatientDto patientDto, int code)
         {
             var patientController = new PatientController(new PatientService(CreatePatientStudRepository(patientDto)), 
-                new DoctorService(CreateDoctorStudRepository()), 
+                new DoctorService(CreateDoctorStudRepository(), CreateShiftStubRepository(), CreateVacationtubRepository()), 
                 new AllergenService(CreateAllergenStudRepository()));
 
             var result = patientController.RegisterPatient(patientDto);
@@ -55,12 +57,26 @@ namespace HospitalTests.Unit
         [Fact]
         public void Free_doctor_test()
         {
-            var doctorController = new DoctorController(new DoctorService(CreateDoctorStudRepository()));
+            var doctorController = new DoctorController(new DoctorService(CreateDoctorStudRepository(), CreateShiftStubRepository(), CreateVacationtubRepository()));
             var result = doctorController.GetLessOccupiedDoctors();
             var okResult = result as ObjectResult;
             
             Assert.Equal(200, okResult.StatusCode);
 
+        }
+
+        private static IShiftRepository CreateShiftStubRepository()
+        {
+            var stubRepository = new Mock<IShiftRepository>();
+
+            return stubRepository.Object;
+        }
+
+        private static IVacationRepository CreateVacationtubRepository()
+        {
+            var stubRepository = new Mock<IVacationRepository>();
+
+            return stubRepository.Object;
         }
 
         private static IPatientRepository CreatePatientStudRepository(PatientDto patientDto)

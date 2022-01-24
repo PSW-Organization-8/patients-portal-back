@@ -15,6 +15,8 @@ using System;
 using System.Collections.Generic;
 using Xunit;
 using System.Linq;
+using HospitalClassLib.Shift.Repository;
+using HospitalClassLib.Vacation.Repository;
 
 namespace HospitalTests.Integration
 {
@@ -55,7 +57,7 @@ namespace HospitalTests.Integration
         public void Send_mail()
         {
             var patientController = new PatientController(new PatientService(new PatientRepository(context)),
-                new DoctorService(new DoctorRepository(context)),
+                new DoctorService(new DoctorRepository(context), new ShiftRepository(context), new VacationRepository(context)),
                 new AllergenService(new AllergenRepository(context)));
 
             PatientDto patient = new PatientDto("Marko", "Markovic", "123", "pera", "pera", "pera@gmail.com", "12345", "Serbia", "Obrovac", "Neka 9",

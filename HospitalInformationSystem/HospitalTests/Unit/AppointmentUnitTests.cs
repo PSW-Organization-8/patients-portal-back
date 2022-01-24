@@ -7,6 +7,8 @@ using HospitalClassLib.Schedule.Repository.DoctorRepository;
 using HospitalClassLib.Schedule.Repository.PatientRepository;
 using HospitalClassLib.Schedule.Service;
 using HospitalClassLib.SharedModel;
+using HospitalClassLib.Shift.Repository.IRepository;
+using HospitalClassLib.Vacation.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
@@ -22,7 +24,7 @@ namespace HospitalTests.Unit
         [MemberData(nameof(AppointmentData))]
         public void Create_appointment_validator_tests(AppointmentDto appointmentDto, int expectedResult)
         {
-            var doctorService = new DoctorService(CreateDoctorStubRepository());
+            var doctorService = new DoctorService(CreateDoctorStubRepository(), CreateShiftStubRepository(), CreateVacationtubRepository());
             var patientService = new PatientService(CreatePatientStudRepository());
             var appointmentController = new AppointmentController(new AppointmentService(CreateAppointmentStubRepository(), CreateDoctorStubRepository()),
                 doctorService, patientService);
@@ -35,7 +37,7 @@ namespace HospitalTests.Unit
         [MemberData(nameof(FreeTermsData))]
         public void Get_free_terms_validator_tests(DateTime startDate, int doctorId, bool expectedResult)
         {
-            var doctorService = new DoctorService(CreateDoctorStubRepository());
+            var doctorService = new DoctorService(CreateDoctorStubRepository(), CreateShiftStubRepository(), CreateVacationtubRepository());
             var patientService = new PatientService(CreatePatientStudRepository());
             var appointmentService = new AppointmentService(CreateAppointmentStubRepository(), CreateDoctorStubRepository());
             var validator = new AppointmentValidator(doctorService, patientService, appointmentService);
@@ -69,6 +71,22 @@ namespace HospitalTests.Unit
             new object[] { null, 1, false },
 
         };
+
+        private static IShiftRepository CreateShiftStubRepository() 
+        {
+            var stubRepository = new Mock<IShiftRepository>();
+
+            return stubRepository.Object;
+        }
+
+        private static IVacationRepository CreateVacationtubRepository()
+        {
+            var stubRepository = new Mock<IVacationRepository>();
+
+            return stubRepository.Object;
+        }
+
+
         private static IDoctorRepository CreateDoctorStubRepository()
         {
             var stubRepository = new Mock<IDoctorRepository>();

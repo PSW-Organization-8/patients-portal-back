@@ -8,6 +8,8 @@ using HospitalClassLib.Schedule.Repository.DoctorRepository;
 using HospitalClassLib.Schedule.Repository.PatientRepository;
 using HospitalClassLib.Schedule.Service;
 using HospitalClassLib.SharedModel;
+using HospitalClassLib.Shift.Repository;
+using HospitalClassLib.Vacation.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -31,7 +33,7 @@ namespace HospitalTests.Integration
         [Fact]
         public void Create_new_appointment()
         {
-            var doctorService = new DoctorService(new DoctorRepository(context));
+            var doctorService = new DoctorService(new DoctorRepository(context), new ShiftRepository(context), new VacationRepository(context));
             var patientService = new PatientService(new PatientRepository(context));
             var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), 
                 doctorService, patientService);
@@ -50,7 +52,7 @@ namespace HospitalTests.Integration
         [MemberData(nameof(Get_free_appointments_data))]
         public void Get_free_appointments(DateTime startTime, int doctorId, List<DateTime> expectedResult)
         {
-            var doctorService = new DoctorService(new DoctorRepository(context));
+            var doctorService = new DoctorService(new DoctorRepository(context), new ShiftRepository(context), new VacationRepository(context));
             var patientService = new PatientService(new PatientRepository(context));
             var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)),
                 doctorService, patientService);
