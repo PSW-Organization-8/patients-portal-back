@@ -178,7 +178,11 @@ namespace HospitalClassLib
 
             modelBuilder.Entity<Patient>().HasData(
                 new Patient { Id = 1, Name = "Pera", LastName = "Peric", Jmbg = "123456789", Username = "pera", Password = "pera", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), Token = "ABC123DEF4AAAAC12345", Picture=ConvertImageURLToBase64("https://drive.google.com/uc?id=152-ydGEqYAVa3NPav0N-XN6MtK2fwo0Y") },
-                new Patient { Id = 2, Name = "Mare", LastName = "Maric", Jmbg = "213456789", Username = "mare", Password = "maric", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), Token = "ABC213DEF4AAAAC12345", Picture=""}
+                new Patient { Id = 2, Name = "Mare", LastName = "Maric", Jmbg = "213456789", Username = "mare", Password = "maric", DateOfBirth = new DateTime(1999, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), Token = "ABC213DEF4AAAAC12345", Picture=""},
+                new Patient { Id = 3, Name = "Ilija", LastName = "Ilic", Jmbg = "213436789", Username = "ilija", Password = "ilija", DateOfBirth = new DateTime(2006, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), Token = "ABC213DEF4AAAAC12345", Picture=""},
+                new Patient { Id = 4, Name = "Mika", LastName = "Mikic", Jmbg = "213126789", Username = "mika", Password = "mika", DateOfBirth = new DateTime(1970, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), Token = "ABC213DEF4AAAAC12345", Picture=""},
+                new Patient { Id = 5, Name = "Zika", LastName = "Sarenica", Jmbg = "213546789", Username = "zika", Password = "zika", DateOfBirth = new DateTime(1960, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), Token = "ABC213DEF4AAAAC12345", Picture=""},
+                new Patient { Id = 6, Name = "Goran", LastName = "Goranic", Jmbg = "213996789", Username = "goran", Password = "goran", DateOfBirth = new DateTime(1942, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), Token = "ABC213DEF4AAAAC12345", Picture=""}
                 );
             modelBuilder.Entity<Patient>().OwnsOne(p => p.Address).HasData(
                 new { PatientId = 1, Country = "Serbia", City = "Novi Sad", Street = "Dr. Sime Milosevica 10" },

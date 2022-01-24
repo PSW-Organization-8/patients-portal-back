@@ -55,9 +55,12 @@ namespace HospitalClassLib.Events.Repository
 
         public List<DoctorEventStats> getDoctorEventStats()
         {
+            List<string> doctorsUsername = dbContext.Doctors.OrderBy(d => d.Id).Select(d => d.Username).ToList();
+            List<string> doctorsSpecialization= dbContext.Doctors.OrderBy(d => d.Id).Select(d => d.DoctorSpecialization.ToString()).ToList();
+            List<string> doctorsName= dbContext.Doctors.OrderBy(d => d.Id).Select(d => d.FullName).ToList();
             return dbContext.Events.Where(x => x.DoctorUsername != null).GroupBy(x => x.DoctorUsername).OrderBy(x => x.Key).Select(x => new DoctorEventStats(
-                                                x.Key.ToString(),
-                                                dbContext.Events.Select(e => e.DoctorSpecialization).ToString(),
+                                                doctorsName[doctorsUsername.IndexOf(x.Key)],
+                                                doctorsSpecialization[doctorsUsername.IndexOf(x.Key)],
                                                 dbContext.Events.Count(e => e.DoctorUsername == x.Key && e.EventClass == EventClass.DoctorInput),
                                                 dbContext.Events.Count(e => e.DoctorUsername == x.Key && e.EventClass == EventClass.Schedule),
                                                 dbContext.Events.Select(e => e.UserId).Distinct().Count())).ToList();
