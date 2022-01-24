@@ -5,6 +5,8 @@ using HospitalClassLib.Schedule.Repository.AppointmentRepo;
 using HospitalClassLib.Schedule.Repository.DoctorRepository;
 using HospitalClassLib.Schedule.Repository.PatientRepository;
 using HospitalClassLib.Schedule.Service;
+using HospitalClassLib.Shift.Repository;
+using HospitalClassLib.Vacation.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -32,7 +34,7 @@ namespace HospitalTests.Integration
         [Fact]
         public void Appointment_cancelled_good()
         {
-            AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), new DoctorService(new DoctorRepository(context)), new PatientService(new PatientRepository(context)));
+            AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), new DoctorService(new DoctorRepository(context), new ShiftRepository(context), new VacationRepository(context)), new PatientService(new PatientRepository(context)));
 
             var result = controller.CancelById(1);
             var okResult = result as ObjectResult;
@@ -43,7 +45,7 @@ namespace HospitalTests.Integration
         [Fact]
         public void Appointment_cancelled_bad()
         {
-            AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), new DoctorService(new DoctorRepository(context)), new PatientService(new PatientRepository(context)));
+            AppointmentController controller = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)), new DoctorService(new DoctorRepository(context), new ShiftRepository(context), new VacationRepository(context)), new PatientService(new PatientRepository(context)));
 
             var result = controller.CancelById(-1);
             var okResult = result as ObjectResult;

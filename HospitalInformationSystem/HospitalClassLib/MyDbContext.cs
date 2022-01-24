@@ -91,12 +91,6 @@ namespace HospitalClassLib
                 );
 
 
-<<<<<<< HEAD
-=======
-        
-
-
->>>>>>> 3ecf80d49b54a47bdcdfedb0cbd7566bd4f2c90a
             modelBuilder.Entity<Feedback>().HasData(
                 new Feedback { Id = 1, Content = "Tekst neki", IsApproved = true, Date = DateTime.Now, PatientId = 1, IsPublishable = true, IsAnonymous = false },
                 new Feedback { Id = 2, Content = "Drugi neki", IsApproved = true, Date = DateTime.Now, PatientId = 1, IsPublishable = true, IsAnonymous = false }
