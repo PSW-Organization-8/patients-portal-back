@@ -35,7 +35,7 @@ namespace HospitalAPI.Controllers
 
         [HttpGet]
         [Route("promotions")]
-        public ActionResult<List<object>> GetMedicationPromotions()
+        public IActionResult GetMedicationPromotions()
         {
             var client = new RestClient("http://localhost:18013");
 
