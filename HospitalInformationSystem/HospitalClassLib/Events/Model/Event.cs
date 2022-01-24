@@ -25,7 +25,8 @@ namespace HospitalClassLib.Events.Model
         public Double OptionalEventNumInfo { get; set; }
         public DateTime ChoosenTime { get; set; }
         public Specialization DoctorSpecialization { get; set; }
-        public String DoctorUsername{ get; set; }
+        public String DoctorUsername { get; set; }
+        public int Month { get; set; }
 
         public Event()
         {
@@ -44,6 +45,7 @@ namespace HospitalClassLib.Events.Model
             ChoosenTime = choosenTime;
             DoctorSpecialization = doctorSpecialization;
             DoctorUsername = doctorUsername;
+            Month = TimeStamp.Month;
         }
 
         public Event(long id, string userId, ApplicationName eventApplicationName, EventClass eventClass)
@@ -53,6 +55,7 @@ namespace HospitalClassLib.Events.Model
             UserId = userId;
             EventApplicationName = eventApplicationName;
             EventClass = eventClass;
+            Month = TimeStamp.Month;
         }
 
         public Event(long id, string username, EventClass eventClass, int optionalEventNumInfo)
@@ -61,5 +64,15 @@ namespace HospitalClassLib.Events.Model
             UserId = username;
             EventClass = eventClass;
             OptionalEventNumInfo = optionalEventNumInfo;
+            Month = TimeStamp.Month;
+        }
+
+        public Event(long id, DateTime time, string username, EventClass eventClass)
+        {
+            Id = id;
+            TimeStamp = time;
+            UserId = username;
+            EventClass = eventClass;
+            Month = time.Month;
         }
     }}

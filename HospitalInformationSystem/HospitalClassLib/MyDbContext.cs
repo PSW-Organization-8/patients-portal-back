@@ -313,9 +313,42 @@ namespace HospitalClassLib
             event3.OptionalEventNumInfo = 1;
 
             modelBuilder.Entity<Event>().HasData(
-                event1,
-                event2,
-                event3
+                new Event(1, new DateTime(2021, 1, 1), "pera", EventClass.DatePicker),
+                new Event(2, new DateTime(2021, 2, 2), "pera", EventClass.DatePicker),
+                new Event(3, new DateTime(2021, 3, 3), "pera", EventClass.DatePicker),
+                new Event(4, new DateTime(2021, 4, 4), "pera", EventClass.DatePicker),
+                new Event(5, new DateTime(2021, 5, 5), "pera", EventClass.DatePicker),
+                new Event(6, new DateTime(2021, 6, 6), "pera", EventClass.DatePicker),
+                new Event(7, new DateTime(2021, 7, 7), "pera", EventClass.DatePicker),
+                new Event(8, new DateTime(2021, 8, 8), "pera", EventClass.DatePicker),
+                new Event(9, new DateTime(2021, 9, 9), "pera", EventClass.DatePicker),
+                new Event(10, new DateTime(2021, 10, 10), "pera", EventClass.DatePicker),
+                new Event(11, new DateTime(2021, 11, 11), "pera", EventClass.DatePicker),
+                new Event(12, new DateTime(2021, 12, 12), "pera", EventClass.DatePicker),
+                new Event(13, new DateTime(2021, 1, 1), "pera", EventClass.DatePicker),
+                new Event(14, new DateTime(2021, 2, 2), "pera", EventClass.DatePicker),
+                new Event(15, new DateTime(2021, 3, 3), "pera", EventClass.DatePicker),
+                new Event(16, new DateTime(2021, 4, 4), "pera", EventClass.DatePicker),
+                new Event(17, new DateTime(2021, 5, 5), "pera", EventClass.DatePicker),
+                new Event(18, new DateTime(2021, 6, 6), "pera", EventClass.DatePicker),
+                new Event(19, new DateTime(2021, 7, 7), "pera", EventClass.DatePicker),
+                new Event(20, new DateTime(2021, 8, 8), "pera", EventClass.DatePicker),
+                new Event(21, new DateTime(2021, 9, 9), "pera", EventClass.DatePicker),
+                new Event(22, new DateTime(2021, 10, 10), "pera", EventClass.DatePicker),
+                new Event(23, new DateTime(2021, 11, 11), "pera", EventClass.DatePicker),
+                new Event(24, new DateTime(2021, 12, 12), "pera", EventClass.DatePicker),
+                new Event(25, new DateTime(2021, 1, 1), "pera", EventClass.Next),
+                new Event(26, new DateTime(2021, 2, 2), "pera", EventClass.DatePicker),
+                new Event(27, new DateTime(2021, 3, 3), "pera", EventClass.Next),
+                new Event(28, new DateTime(2021, 4, 4), "pera", EventClass.DatePicker),
+                new Event(29, new DateTime(2021, 5, 5), "pera", EventClass.Next),
+                new Event(30, new DateTime(2021, 6, 6), "pera", EventClass.DatePicker),
+                new Event(31, new DateTime(2021, 7, 7), "pera", EventClass.DatePicker),
+                new Event(32, new DateTime(2021, 8, 8), "pera", EventClass.Next),
+                new Event(33, new DateTime(2021, 9, 9), "pera", EventClass.Next),
+                new Event(34, new DateTime(2021, 10, 10), "pera", EventClass.Next),
+                new Event(35, new DateTime(2021, 11, 11), "pera", EventClass.Next),
+                new Event(36, new DateTime(2021, 12, 12), "pera", EventClass.DatePicker)
             );
 
         }

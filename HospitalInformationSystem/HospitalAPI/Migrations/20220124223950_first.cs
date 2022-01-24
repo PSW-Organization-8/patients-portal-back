@@ -66,7 +66,8 @@ namespace HospitalAPI.Migrations
                     OptionalEventNumInfo = table.Column<double>(type: "double precision", nullable: false),
                     ChoosenTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     DoctorSpecialization = table.Column<int>(type: "integer", nullable: false),
-                    DoctorUsername = table.Column<string>(type: "text", nullable: true)
+                    DoctorUsername = table.Column<string>(type: "text", nullable: true),
+                    Month = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -332,12 +333,45 @@ namespace HospitalAPI.Migrations
             migrationBuilder.InsertData(
                 schema: "Events",
                 table: "Event",
-                columns: new[] { "Id", "ChoosenTime", "DoctorSpecialization", "DoctorUsername", "EventApplicationName", "EventClass", "OptionalEventNumInfo", "TimeStamp", "UserId" },
+                columns: new[] { "Id", "ChoosenTime", "DoctorSpecialization", "DoctorUsername", "EventApplicationName", "EventClass", "Month", "OptionalEventNumInfo", "TimeStamp", "UserId" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 1, 0.0, new DateTime(2022, 1, 23, 22, 35, 31, 883, DateTimeKind.Local).AddTicks(3447), "username1" },
-                    { 2L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 1, 2, 0.0, new DateTime(2022, 1, 23, 22, 35, 31, 883, DateTimeKind.Local).AddTicks(4857), "username2" },
-                    { 3L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 1, 0, 1.0, new DateTime(2022, 1, 23, 22, 35, 31, 883, DateTimeKind.Local).AddTicks(4879), "username1" }
+                    { 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 1, 0.0, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 21L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 9, 0.0, new DateTime(2021, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 22L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 10, 0.0, new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 23L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 11, 0.0, new DateTime(2021, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 25L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 3, 1, 0.0, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 26L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 2, 0.0, new DateTime(2021, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 27L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 3, 3, 0.0, new DateTime(2021, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 28L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 4, 0.0, new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 29L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 3, 5, 0.0, new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 30L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 6, 0.0, new DateTime(2021, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 31L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 7, 0.0, new DateTime(2021, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 32L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 3, 8, 0.0, new DateTime(2021, 8, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 33L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 3, 9, 0.0, new DateTime(2021, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 34L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 3, 10, 0.0, new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 35L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 3, 11, 0.0, new DateTime(2021, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 36L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 12, 0.0, new DateTime(2021, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 20L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 8, 0.0, new DateTime(2021, 8, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 19L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 7, 0.0, new DateTime(2021, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 24L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 12, 0.0, new DateTime(2021, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 17L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 5, 0.0, new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 2L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 2, 0.0, new DateTime(2021, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 3L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 3, 0.0, new DateTime(2021, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 18L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 6, 0.0, new DateTime(2021, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 5L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 5, 0.0, new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 6L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 6, 0.0, new DateTime(2021, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 7L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 7, 0.0, new DateTime(2021, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 8L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 8, 0.0, new DateTime(2021, 8, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 9L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 9, 0.0, new DateTime(2021, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 4L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 4, 0.0, new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 11L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 11, 0.0, new DateTime(2021, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 12L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 12, 0.0, new DateTime(2021, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 13L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 1, 0.0, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 14L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 2, 0.0, new DateTime(2021, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 15L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 3, 0.0, new DateTime(2021, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 16L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 4, 0.0, new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" },
+                    { 10L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, 0, 6, 10, 0.0, new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "pera" }
                 });
 
             migrationBuilder.InsertData(
@@ -352,13 +386,13 @@ namespace HospitalAPI.Migrations
                 columns: new[] { "Id", "DoctorSpecialization", "Jmbg", "LastName", "Name", "Password", "Username", "City", "Country", "Street", "Email", "Phone" },
                 values: new object[,]
                 {
+                    { 7, 7, "123756799", "Njegos", "Milomir", "mico", "mico", "Sabac", "Serbia", "Nikole Tesle 15", "milomirnjegos85@gmail.com", "0640000006" },
+                    { 6, 2, "123756799", "Despotovic", "Goran", "mico", "mico", "Novi Sad", "Serbia", "Bulevar Oslobodjena 64", "despotovicgoran123@gmail.com", "0640000005" },
+                    { 5, 9, "123756799", "Mitic", "Strahinja", "mico", "mico", "Beograd", "Serbia", "Dr. Ilije Ilica 10", "mitic.strahinja@gmail.com", "0640000004" },
+                    { 4, 9, "123756799", "Visnjic", "Nikola", "mico", "mico", "Beograd", "Serbia", "Kosovska 13", "nikolanidzo@gmail.com", "0640000003" },
                     { 1, 0, "123456799", "Jovanovic", "Jovan", "jova", "jova", "Novi Sad", "Serbia", "Dr. Ilije Ilica 10", "jovanjova@gmail.com", "0640000000" },
                     { 2, 0, "123756799", "Ilic", "Milan", "mico", "mico", "Novi Sad", "Serbia", "Nikle Tesle 1", "milanilic@gmail.com", "0640000001" },
-                    { 3, 8, "123756799", "Markovic", "Stevan", "mico", "mico", "Beograd", "Serbia", "Nikole Tesle 5", "stevanm@gmail.com", "0640000002" },
-                    { 4, 9, "123756799", "Visnjic", "Nikola", "mico", "mico", "Beograd", "Serbia", "Kosovska 13", "nikolanidzo@gmail.com", "0640000003" },
-                    { 5, 9, "123756799", "Mitic", "Strahinja", "mico", "mico", "Beograd", "Serbia", "Dr. Ilije Ilica 10", "mitic.strahinja@gmail.com", "0640000004" },
-                    { 6, 2, "123756799", "Despotovic", "Goran", "mico", "mico", "Novi Sad", "Serbia", "Bulevar Oslobodjena 64", "despotovicgoran123@gmail.com", "0640000005" },
-                    { 7, 7, "123756799", "Njegos", "Milomir", "mico", "mico", "Sabac", "Serbia", "Nikole Tesle 15", "milomirnjegos85@gmail.com", "0640000006" }
+                    { 3, 8, "123756799", "Markovic", "Stevan", "mico", "mico", "Beograd", "Serbia", "Nikole Tesle 5", "stevanm@gmail.com", "0640000002" }
                 });
 
             migrationBuilder.InsertData(
@@ -367,8 +401,8 @@ namespace HospitalAPI.Migrations
                 columns: new[] { "Id", "Jmbg", "LastName", "Name", "Password", "Username", "City", "Country", "Street", "Email", "Phone" },
                 values: new object[,]
                 {
-                    { 1, "1231231231231", "Brankovic", "Mitar", "mitar", "mitar", "Novi Sad", "Serbia", "Dr. Sime Milosevica 20", "mitarmitar@gmail.com", "0641230000" },
-                    { 2, "1231231238231", "Milovcevic", "Radisa", "radisa", "radisa", "Novi Sad", "Serbia", "Bulevar Patrijaha Pavla 9", "radisaradisa@gmail.com", "0647400000" }
+                    { 2, "1231231238231", "Milovcevic", "Radisa", "radisa", "radisa", "Novi Sad", "Serbia", "Bulevar Patrijaha Pavla 9", "radisaradisa@gmail.com", "0647400000" },
+                    { 1, "1231231231231", "Brankovic", "Mitar", "mitar", "mitar", "Novi Sad", "Serbia", "Dr. Sime Milosevica 20", "mitarmitar@gmail.com", "0641230000" }
                 });
 
             migrationBuilder.InsertData(
@@ -381,7 +415,7 @@ namespace HospitalAPI.Migrations
                 schema: "Hospital",
                 table: "Receipts",
                 columns: new[] { "ReceiptID", "Amount", "Date", "Diagnosis", "DoctorId", "MedicineName", "PatientId" },
-                values: new object[] { 1L, 1, new DateTime(2022, 1, 23, 0, 0, 0, 0, DateTimeKind.Local), "Korona", 1, "Synthroid", 1 });
+                values: new object[] { 1L, 1, new DateTime(2022, 1, 24, 0, 0, 0, 0, DateTimeKind.Local), "Korona", 1, "Synthroid", 1 });
 
             migrationBuilder.InsertData(
                 schema: "Hospital",
@@ -423,10 +457,10 @@ namespace HospitalAPI.Migrations
                     { 20, 1, false, 2, new DateTime(2022, 1, 1, 10, 15, 0, 0, DateTimeKind.Unspecified), 0, 0 },
                     { 43, 1, false, 1, new DateTime(2021, 12, 15, 10, 15, 0, 0, DateTimeKind.Unspecified), 1, 0 },
                     { 44, 1, false, 1, new DateTime(2021, 12, 5, 9, 0, 0, 0, DateTimeKind.Unspecified), 1, 0 },
-                    { 7, 1, false, 2, new DateTime(2022, 1, 23, 22, 35, 31, 876, DateTimeKind.Local).AddTicks(8058), 2, 0 },
-                    { 8, 1, false, 2, new DateTime(2022, 1, 23, 22, 35, 31, 876, DateTimeKind.Local).AddTicks(8091), 2, 0 },
-                    { 9, 1, false, 2, new DateTime(2022, 1, 23, 22, 35, 31, 876, DateTimeKind.Local).AddTicks(8098), 2, 0 },
-                    { 10, 1, false, 2, new DateTime(2022, 1, 23, 22, 35, 31, 876, DateTimeKind.Local).AddTicks(8113), 2, 0 },
+                    { 7, 1, false, 2, new DateTime(2022, 1, 24, 23, 39, 48, 725, DateTimeKind.Local).AddTicks(5786), 2, 0 },
+                    { 8, 1, false, 2, new DateTime(2022, 1, 24, 23, 39, 48, 725, DateTimeKind.Local).AddTicks(5843), 2, 0 },
+                    { 9, 1, false, 2, new DateTime(2022, 1, 24, 23, 39, 48, 725, DateTimeKind.Local).AddTicks(5855), 2, 0 },
+                    { 10, 1, false, 2, new DateTime(2022, 1, 24, 23, 39, 48, 725, DateTimeKind.Local).AddTicks(5884), 2, 0 },
                     { 21, 1, false, 2, new DateTime(2022, 1, 1, 10, 30, 0, 0, DateTimeKind.Unspecified), 0, 0 },
                     { 11, 1, false, 2, new DateTime(2022, 1, 1, 8, 0, 0, 0, DateTimeKind.Unspecified), 0, 0 },
                     { 13, 1, false, 2, new DateTime(2022, 1, 1, 8, 30, 0, 0, DateTimeKind.Unspecified), 0, 0 },
@@ -446,8 +480,8 @@ namespace HospitalAPI.Migrations
                 columns: new[] { "Id", "Content", "Date", "PatientId", "IsAnonymous", "IsApproved", "IsPublishable" },
                 values: new object[,]
                 {
-                    { 2, "Drugi neki", new DateTime(2022, 1, 23, 22, 35, 31, 876, DateTimeKind.Local).AddTicks(2962), 1, false, false, true },
-                    { 1, "Tekst neki", new DateTime(2022, 1, 23, 22, 35, 31, 876, DateTimeKind.Local).AddTicks(2037), 1, true, false, true }
+                    { 2, "Drugi neki", new DateTime(2022, 1, 24, 23, 39, 48, 724, DateTimeKind.Local).AddTicks(9174), 1, false, false, true },
+                    { 1, "Tekst neki", new DateTime(2022, 1, 24, 23, 39, 48, 724, DateTimeKind.Local).AddTicks(8144), 1, true, false, true }
                 });
 
             migrationBuilder.InsertData(

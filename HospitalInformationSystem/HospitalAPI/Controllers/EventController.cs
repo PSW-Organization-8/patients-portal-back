@@ -55,7 +55,7 @@ namespace HospitalAPI.Controllers
         {
             return eventService.SuccessfulByTime();
         }
-        
+
         [HttpGet]
         [Route("backNextClicks")]
         [Authorize]
@@ -69,6 +69,13 @@ namespace HospitalAPI.Controllers
         public List<DoctorEventStats> getDoctorEventStats()
         {
             return eventService.getDoctorEventStats();
+        }
+
+        [HttpGet]
+        [Route("clicksByMonth")]
+        public List<EventTypeData> getClicksByMonth()
+        {
+            return eventService.getClickByMonth();
         }
     }
 }

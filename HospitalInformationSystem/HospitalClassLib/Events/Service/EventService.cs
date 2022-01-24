@@ -51,5 +51,10 @@ namespace HospitalClassLib.Events.Service
         {
             return this.eventRepository.getDoctorEventStats();
         }
+
+        public List<EventTypeData> getClickByMonth()
+        {
+            return this.eventRepository.getClicksByMonth();
+        }
     }
 }
