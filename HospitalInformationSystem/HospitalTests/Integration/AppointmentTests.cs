@@ -46,6 +46,21 @@ namespace HospitalTests.Integration
             Assert.Equal(200, okResult.StatusCode);
         }
 
+        [Fact]
+        public void Get_medical_report()
+        {
+            var doctorService = new DoctorService(new DoctorRepository(context));
+            var patientService = new PatientService(new PatientRepository(context));
+            var appointmentController = new AppointmentController(new AppointmentService(new AppointmentRepository(context), new DoctorRepository(context)),
+                doctorService, patientService);
+
+            var result = appointmentController.getMedicalReport(1);
+            var okResult = result as ObjectResult;
+
+
+            Assert.Equal(200, okResult.StatusCode);
+        }
+
         /*
         [Theory]
         [MemberData(nameof(Get_free_appointments_data))]

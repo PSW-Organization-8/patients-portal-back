@@ -32,5 +32,38 @@ namespace HospitalTests.Integration
 
             return eventController;
         }
+
+
+        [Fact]
+        public void Button_clicks_by_age()
+        {
+            EventController controller = GetEventController();
+            EventData retVal = controller.BackNextClicks();
+            retVal.ShouldNotBe(null);
+        }
+
+        [Fact]
+        public void Most_wanted_specialization()
+        {
+            EventController controller = GetEventController();
+            List<int> retVal = controller.MostWantedSpecialization();
+            retVal.Count.ShouldNotBe(0);
+        }
+
+        [Fact]
+        public void Successful_by_time()
+        {
+            EventController controller = GetEventController();
+            List<int> retVal = controller.SuccessfulByTime();
+            retVal.Count.ShouldNotBe(0);
+        }
+
+        [Fact]
+        public void Back_next_clicks()
+        {
+            EventController controller = GetEventController();
+            EventData retVal = controller.BackNextClicks();
+            retVal.ShouldNotBe(null);
+        }
     }
 }

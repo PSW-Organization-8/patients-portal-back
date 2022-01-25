@@ -42,20 +42,26 @@ namespace HospitalAPI.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<DateTime>("ChoosenTime")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("DoctorSpecialization")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("DoctorUsername")
+                        .HasColumnType("text");
+
                     b.Property<int>("EventApplicationName")
                         .HasColumnType("integer");
 
                     b.Property<int>("EventClass")
                         .HasColumnType("integer");
 
+                    b.Property<int>("Month")
+                        .HasColumnType("integer");
+
                     b.Property<double>("OptionalEventNumInfo")
                         .HasColumnType("double precision");
-
-                    b.Property<double>("OptionalEventNumInfo2")
-                        .HasColumnType("double precision");
-
-                    b.Property<string>("OptionalEventStrInfo")
-                        .HasColumnType("text");
 
                     b.Property<DateTime>("TimeStamp")
                         .HasColumnType("timestamp without time zone");
@@ -71,32 +77,1057 @@ namespace HospitalAPI.Migrations
                         new
                         {
                             Id = 1L,
-                            EventApplicationName = 0,
-                            EventClass = 1,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
                             OptionalEventNumInfo = 0.0,
-                            OptionalEventNumInfo2 = 0.0,
-                            TimeStamp = new DateTime(2022, 1, 18, 16, 50, 33, 306, DateTimeKind.Local).AddTicks(292),
-                            UserId = "username1"
+                            TimeStamp = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
                         },
                         new
                         {
                             Id = 2L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
                             EventApplicationName = 1,
-                            EventClass = 2,
+                            EventClass = 6,
+                            Month = 1,
                             OptionalEventNumInfo = 0.0,
-                            OptionalEventNumInfo2 = 0.0,
-                            TimeStamp = new DateTime(2022, 1, 18, 16, 50, 33, 306, DateTimeKind.Local).AddTicks(1717),
-                            UserId = "username2"
+                            TimeStamp = new DateTime(2021, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
                         },
                         new
                         {
                             Id = 3L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
                             EventApplicationName = 1,
-                            EventClass = 0,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 8, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 9L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 10L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 11L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 12L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 13L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 14L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 15L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 16L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 17L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 18L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 19L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 20L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 8, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 21L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 22L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 23L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 24L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 25L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 26L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 27L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 28L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 29L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 30L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 31L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 32L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 8, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 33L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 34L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 35L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 36L,
+                            ChoosenTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "pera"
+                        },
+                        new
+                        {
+                            Id = 37L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2022, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mare"
+                        },
+                        new
+                        {
+                            Id = 38L,
+                            ChoosenTime = new DateTime(2022, 1, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2022, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mare"
+                        },
+                        new
+                        {
+                            Id = 39L,
+                            ChoosenTime = new DateTime(2022, 1, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 5,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2022, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mare"
+                        },
+                        new
+                        {
+                            Id = 40L,
+                            ChoosenTime = new DateTime(2022, 1, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
                             OptionalEventNumInfo = 1.0,
-                            OptionalEventNumInfo2 = 0.0,
-                            TimeStamp = new DateTime(2022, 1, 18, 16, 50, 33, 306, DateTimeKind.Local).AddTicks(1737),
-                            UserId = "username1"
+                            TimeStamp = new DateTime(2022, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mare"
+                        },
+                        new
+                        {
+                            Id = 41L,
+                            ChoosenTime = new DateTime(2022, 1, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 7,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2022, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mare"
+                        },
+                        new
+                        {
+                            Id = 42L,
+                            ChoosenTime = new DateTime(2022, 2, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 2.0,
+                            TimeStamp = new DateTime(2022, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mare"
+                        },
+                        new
+                        {
+                            Id = 43L,
+                            ChoosenTime = new DateTime(2022, 2, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 8,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2022, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mare"
+                        },
+                        new
+                        {
+                            Id = 80L,
+                            ChoosenTime = new DateTime(2021, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "zika"
+                        },
+                        new
+                        {
+                            Id = 81L,
+                            ChoosenTime = new DateTime(2021, 1, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "zika"
+                        },
+                        new
+                        {
+                            Id = 82L,
+                            ChoosenTime = new DateTime(2021, 1, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 5,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "zika"
+                        },
+                        new
+                        {
+                            Id = 83L,
+                            ChoosenTime = new DateTime(2021, 1, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 1.0,
+                            TimeStamp = new DateTime(2021, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "zika"
+                        },
+                        new
+                        {
+                            Id = 84L,
+                            ChoosenTime = new DateTime(2021, 1, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 7,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "zika"
+                        },
+                        new
+                        {
+                            Id = 85L,
+                            ChoosenTime = new DateTime(2021, 1, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 2.0,
+                            TimeStamp = new DateTime(2021, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "zika"
+                        },
+                        new
+                        {
+                            Id = 86L,
+                            ChoosenTime = new DateTime(2021, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 8,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "zika"
+                        },
+                        new
+                        {
+                            Id = 45L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2020, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "ilija"
+                        },
+                        new
+                        {
+                            Id = 46L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2020, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "ilija"
+                        },
+                        new
+                        {
+                            Id = 47L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 5,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2020, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "ilija"
+                        },
+                        new
+                        {
+                            Id = 48L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 1.0,
+                            TimeStamp = new DateTime(2020, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "ilija"
+                        },
+                        new
+                        {
+                            Id = 49L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 7,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2020, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "ilija"
+                        },
+                        new
+                        {
+                            Id = 50L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 2.0,
+                            TimeStamp = new DateTime(2020, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "ilija"
+                        },
+                        new
+                        {
+                            Id = 51L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 8,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2020, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "ilija"
+                        },
+                        new
+                        {
+                            Id = 52L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mika"
+                        },
+                        new
+                        {
+                            Id = 53L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mika"
+                        },
+                        new
+                        {
+                            Id = 54L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 5,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mika"
+                        },
+                        new
+                        {
+                            Id = 55L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 1.0,
+                            TimeStamp = new DateTime(2021, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mika"
+                        },
+                        new
+                        {
+                            Id = 56L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 7,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mika"
+                        },
+                        new
+                        {
+                            Id = 57L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 2.0,
+                            TimeStamp = new DateTime(2021, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mika"
+                        },
+                        new
+                        {
+                            Id = 58L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 8,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mika"
+                        },
+                        new
+                        {
+                            Id = 59L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "goran"
+                        },
+                        new
+                        {
+                            Id = 60L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "goran"
+                        },
+                        new
+                        {
+                            Id = 61L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 5,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "goran"
+                        },
+                        new
+                        {
+                            Id = 62L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 1.0,
+                            TimeStamp = new DateTime(2021, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "goran"
+                        },
+                        new
+                        {
+                            Id = 63L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 7,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "goran"
+                        },
+                        new
+                        {
+                            Id = 64L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 2.0,
+                            TimeStamp = new DateTime(2021, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "goran"
+                        },
+                        new
+                        {
+                            Id = 65L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 8,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2021, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "goran"
+                        },
+                        new
+                        {
+                            Id = 66L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2022, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "fico"
+                        },
+                        new
+                        {
+                            Id = 67L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2022, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "fico"
+                        },
+                        new
+                        {
+                            Id = 68L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 5,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2022, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "fico"
+                        },
+                        new
+                        {
+                            Id = 69L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 1.0,
+                            TimeStamp = new DateTime(2022, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "fico"
+                        },
+                        new
+                        {
+                            Id = 70L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 7,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2022, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "fico"
+                        },
+                        new
+                        {
+                            Id = 71L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 2.0,
+                            TimeStamp = new DateTime(2022, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "fico"
+                        },
+                        new
+                        {
+                            Id = 72L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 8,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2022, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "fico"
+                        },
+                        new
+                        {
+                            Id = 73L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 0,
+                            EventApplicationName = 1,
+                            EventClass = 6,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2022, 1, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mare"
+                        },
+                        new
+                        {
+                            Id = 74L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2022, 1, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mare"
+                        },
+                        new
+                        {
+                            Id = 75L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 5,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2022, 1, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mare"
+                        },
+                        new
+                        {
+                            Id = 76L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 1.0,
+                            TimeStamp = new DateTime(2022, 1, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mare"
+                        },
+                        new
+                        {
+                            Id = 77L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 7,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2022, 1, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mare"
+                        },
+                        new
+                        {
+                            Id = 78L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 3,
+                            Month = 1,
+                            OptionalEventNumInfo = 2.0,
+                            TimeStamp = new DateTime(2022, 1, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mare"
+                        },
+                        new
+                        {
+                            Id = 79L,
+                            ChoosenTime = new DateTime(2022, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorSpecialization = 9,
+                            DoctorUsername = "dzoni",
+                            EventApplicationName = 1,
+                            EventClass = 8,
+                            Month = 1,
+                            OptionalEventNumInfo = 0.0,
+                            TimeStamp = new DateTime(2022, 1, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "mare"
                         });
                 });
 
@@ -172,11 +1203,31 @@ namespace HospitalAPI.Migrations
                         },
                         new
                         {
+                            Id = 43,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 15, 10, 15, 0, 0, DateTimeKind.Unspecified),
+                            State = 1,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 44,
+                            DoctorId = 1,
+                            IsSurveyed = false,
+                            PatientId = 1,
+                            StartTime = new DateTime(2021, 12, 5, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            State = 1,
+                            Type = 0
+                        },
+                        new
+                        {
                             Id = 7,
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2022, 1, 18, 16, 50, 33, 301, DateTimeKind.Local).AddTicks(847),
+                            StartTime = new DateTime(2022, 1, 25, 4, 31, 22, 531, DateTimeKind.Local).AddTicks(7151),
                             State = 2,
                             Type = 0
                         },
@@ -186,7 +1237,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2022, 1, 18, 16, 50, 33, 301, DateTimeKind.Local).AddTicks(873),
+                            StartTime = new DateTime(2022, 1, 25, 4, 31, 22, 531, DateTimeKind.Local).AddTicks(7185),
                             State = 2,
                             Type = 0
                         },
@@ -196,7 +1247,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2022, 1, 18, 16, 50, 33, 301, DateTimeKind.Local).AddTicks(878),
+                            StartTime = new DateTime(2022, 1, 25, 4, 31, 22, 531, DateTimeKind.Local).AddTicks(7190),
                             State = 2,
                             Type = 0
                         },
@@ -206,7 +1257,7 @@ namespace HospitalAPI.Migrations
                             DoctorId = 1,
                             IsSurveyed = false,
                             PatientId = 2,
-                            StartTime = new DateTime(2022, 1, 18, 16, 50, 33, 301, DateTimeKind.Local).AddTicks(894),
+                            StartTime = new DateTime(2022, 1, 25, 4, 31, 22, 531, DateTimeKind.Local).AddTicks(7204),
                             State = 2,
                             Type = 0
                         },
@@ -559,15 +1610,54 @@ namespace HospitalAPI.Migrations
                         {
                             Id = 1,
                             Content = "Tekst neki",
-                            Date = new DateTime(2022, 1, 18, 16, 50, 33, 300, DateTimeKind.Local).AddTicks(5206),
+                            Date = new DateTime(2022, 1, 25, 4, 31, 22, 531, DateTimeKind.Local).AddTicks(1051),
                             PatientId = 1
                         },
                         new
                         {
                             Id = 2,
                             Content = "Drugi neki",
-                            Date = new DateTime(2022, 1, 18, 16, 50, 33, 300, DateTimeKind.Local).AddTicks(6073),
+                            Date = new DateTime(2022, 1, 25, 4, 31, 22, 531, DateTimeKind.Local).AddTicks(1952),
                             PatientId = 1
+                        });
+                });
+
+            modelBuilder.Entity("HospitalClassLib.Schedule.Model.MedicalReport", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Anamnesis")
+                        .HasColumnType("text");
+
+                    b.Property<int>("AppointmentId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Prescription")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppointmentId");
+
+                    b.ToTable("MedicalReports");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Anamnesis = "Covid 19 Omicron",
+                            AppointmentId = 43,
+                            Prescription = "Brufen 500mg; Hemomicin 30mg"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Anamnesis = "Alergijska Astma",
+                            AppointmentId = 44,
+                            Prescription = "Berodual 200mg; Alergodil 10mg"
                         });
                 });
 
@@ -642,6 +1732,76 @@ namespace HospitalAPI.Migrations
                             Picture = "",
                             Token = "ABC213DEF4AAAAC12345",
                             Username = "mare"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BloodType = 0,
+                            DateOfBirth = new DateTime(2006, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorId = 1,
+                            Jmbg = "213436789",
+                            LastName = "Ilic",
+                            Name = "Ilija",
+                            Password = "ilija",
+                            Picture = "",
+                            Token = "ABC213DEF4AAAAC12345",
+                            Username = "ilija"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BloodType = 0,
+                            DateOfBirth = new DateTime(1970, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorId = 1,
+                            Jmbg = "213126789",
+                            LastName = "Mikic",
+                            Name = "Mika",
+                            Password = "mika",
+                            Picture = "",
+                            Token = "ABC213DEF4AAAAC12345",
+                            Username = "mika"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            BloodType = 0,
+                            DateOfBirth = new DateTime(1960, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorId = 1,
+                            Jmbg = "213546789",
+                            LastName = "Sarenica",
+                            Name = "Zika",
+                            Password = "zika",
+                            Picture = "",
+                            Token = "ABC213DEF4AAAAC12345",
+                            Username = "zika"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BloodType = 0,
+                            DateOfBirth = new DateTime(1942, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorId = 1,
+                            Jmbg = "213996789",
+                            LastName = "Goranic",
+                            Name = "Goran",
+                            Password = "goran",
+                            Picture = "",
+                            Token = "ABC213DEF4AAAAC12345",
+                            Username = "goran"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            BloodType = 0,
+                            DateOfBirth = new DateTime(1980, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorId = 1,
+                            Jmbg = "213990789",
+                            LastName = "Pinjuh",
+                            Name = "Filip",
+                            Password = "fico",
+                            Picture = "",
+                            Token = "ABC213DEF4AAAAC12345",
+                            Username = "fico"
                         });
                 });
 
@@ -1031,8 +2191,8 @@ namespace HospitalAPI.Migrations
                             Jmbg = "123756799",
                             LastName = "Markovic",
                             Name = "Stevan",
-                            Password = "mico",
-                            Username = "mico"
+                            Password = "steva",
+                            Username = "steva"
                         },
                         new
                         {
@@ -1041,8 +2201,8 @@ namespace HospitalAPI.Migrations
                             Jmbg = "123756799",
                             LastName = "Visnjic",
                             Name = "Nikola",
-                            Password = "mico",
-                            Username = "mico"
+                            Password = "dzoni",
+                            Username = "dzoni"
                         },
                         new
                         {
@@ -1051,8 +2211,8 @@ namespace HospitalAPI.Migrations
                             Jmbg = "123756799",
                             LastName = "Mitic",
                             Name = "Strahinja",
-                            Password = "mico",
-                            Username = "mico"
+                            Password = "strahinja",
+                            Username = "strahinja"
                         },
                         new
                         {
@@ -1061,8 +2221,8 @@ namespace HospitalAPI.Migrations
                             Jmbg = "123756799",
                             LastName = "Despotovic",
                             Name = "Goran",
-                            Password = "mico",
-                            Username = "mico"
+                            Password = "goran",
+                            Username = "goran"
                         },
                         new
                         {
@@ -1071,8 +2231,8 @@ namespace HospitalAPI.Migrations
                             Jmbg = "123756799",
                             LastName = "Njegos",
                             Name = "Milomir",
-                            Password = "mico",
-                            Username = "mico"
+                            Password = "mili",
+                            Username = "mili"
                         });
                 });
 
@@ -1157,7 +2317,7 @@ namespace HospitalAPI.Migrations
                         {
                             ReceiptID = 1L,
                             Amount = 1,
-                            Date = new DateTime(2022, 1, 18, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2022, 1, 25, 0, 0, 0, 0, DateTimeKind.Local),
                             Diagnosis = "Korona",
                             DoctorId = 1,
                             MedicineName = "Synthroid",
@@ -1238,14 +2398,14 @@ namespace HospitalAPI.Migrations
                                 {
                                     FeedbackId = 1,
                                     IsAnonymous = true,
-                                    IsApproved = false,
+                                    IsApproved = true,
                                     IsPublishable = true
                                 },
                                 new
                                 {
                                     FeedbackId = 2,
                                     IsAnonymous = false,
-                                    IsApproved = false,
+                                    IsApproved = true,
                                     IsPublishable = true
                                 });
                         });
@@ -1253,6 +2413,17 @@ namespace HospitalAPI.Migrations
                     b.Navigation("FeedbackProperties");
 
                     b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("HospitalClassLib.Schedule.Model.MedicalReport", b =>
+                {
+                    b.HasOne("HospitalClassLib.Schedule.Model.Appointment", "Appointment")
+                        .WithMany()
+                        .HasForeignKey("AppointmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Appointment");
                 });
 
             modelBuilder.Entity("HospitalClassLib.Schedule.Model.Patient", b =>
@@ -1295,6 +2466,36 @@ namespace HospitalAPI.Migrations
                                 new
                                 {
                                     PatientId = 2,
+                                    IsActivated = true,
+                                    IsBanned = false
+                                },
+                                new
+                                {
+                                    PatientId = 3,
+                                    IsActivated = true,
+                                    IsBanned = false
+                                },
+                                new
+                                {
+                                    PatientId = 4,
+                                    IsActivated = true,
+                                    IsBanned = false
+                                },
+                                new
+                                {
+                                    PatientId = 5,
+                                    IsActivated = true,
+                                    IsBanned = false
+                                },
+                                new
+                                {
+                                    PatientId = 6,
+                                    IsActivated = true,
+                                    IsBanned = false
+                                },
+                                new
+                                {
+                                    PatientId = 7,
                                     IsActivated = true,
                                     IsBanned = false
                                 });
@@ -1340,6 +2541,41 @@ namespace HospitalAPI.Migrations
                                     City = "Novi Sad",
                                     Country = "Serbia",
                                     Street = "Bulevar Patrijaha Pavla 19"
+                                },
+                                new
+                                {
+                                    PatientId = 3,
+                                    City = "Novi Sad",
+                                    Country = "Serbia",
+                                    Street = "Bulevar Patrijaha Pavla 19"
+                                },
+                                new
+                                {
+                                    PatientId = 4,
+                                    City = "Novi Sad",
+                                    Country = "Serbia",
+                                    Street = "Bulevar Patrijaha Pavla 19"
+                                },
+                                new
+                                {
+                                    PatientId = 5,
+                                    City = "Novi Sad",
+                                    Country = "Serbia",
+                                    Street = "Bulevar Patrijaha Pavla 19"
+                                },
+                                new
+                                {
+                                    PatientId = 6,
+                                    City = "Novi Sad",
+                                    Country = "Serbia",
+                                    Street = "Bulevar Patrijaha Pavla 19"
+                                },
+                                new
+                                {
+                                    PatientId = 7,
+                                    City = "Novi Sad",
+                                    Country = "Serbia",
+                                    Street = "Bulevar Patrijaha Pavla 19"
                                 });
                         });
 
@@ -1376,6 +2612,36 @@ namespace HospitalAPI.Migrations
                                 {
                                     PatientId = 2,
                                     Email = "maremaric@gmail.com",
+                                    Phone = "0647400000"
+                                },
+                                new
+                                {
+                                    PatientId = 3,
+                                    Email = "ilija@gmail.com",
+                                    Phone = "0647400000"
+                                },
+                                new
+                                {
+                                    PatientId = 4,
+                                    Email = "mika@gmail.com",
+                                    Phone = "0647400000"
+                                },
+                                new
+                                {
+                                    PatientId = 5,
+                                    Email = "zika@gmail.com",
+                                    Phone = "0647400000"
+                                },
+                                new
+                                {
+                                    PatientId = 6,
+                                    Email = "goran@gmail.com",
+                                    Phone = "0647400000"
+                                },
+                                new
+                                {
+                                    PatientId = 7,
+                                    Email = "filipp@gmail.com",
                                     Phone = "0647400000"
                                 });
                         });

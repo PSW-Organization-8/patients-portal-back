@@ -26,5 +26,35 @@ namespace HospitalClassLib.Events.Service
         {
             return this.eventRepository.GetAll();
         }
+
+        public EventData ButtonClicksByAge()
+        {
+            return this.eventRepository.ButtonClicksByAge();
+        }
+
+        public List<int> MostWantedSpecialization()
+        {
+            return this.eventRepository.MostWantedSpecialization();
+        }
+
+        public List<int> SuccessfulByTime()
+        {
+            return this.eventRepository.SuccessfulByTime();
+        }
+
+        public EventData BackNextClicks()
+        {
+            return this.eventRepository.BackNextClicks();
+        }
+
+        public List<DoctorEventStats> getDoctorEventStats()
+        {
+            return this.eventRepository.getDoctorEventStats();
+        }
+
+        public List<EventTypeData> getClickByMonth()
+        {
+            return this.eventRepository.getClicksByMonth();
+        }
     }
 }

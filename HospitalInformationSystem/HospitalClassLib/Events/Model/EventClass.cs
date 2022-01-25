@@ -11,6 +11,12 @@ namespace HospitalClassLib.Events.Model
         MedicationPreview,
         CancelForm,
         EnterForm,
+        Next,
+        Back,
+        DoctorSpecialization,
+        DatePicker,
+        DoctorInput,
+        Schedule,
         Other
     }
 }
