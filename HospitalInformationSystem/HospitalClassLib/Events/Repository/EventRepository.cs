@@ -85,17 +85,17 @@ namespace HospitalClassLib.Events.Repository
         public List<int> SuccessfulByTime()
         {
             List<int> list = new List<int>();
-            int byYear1 = dbContext.Events.Where(x => x.TimeStamp >= DateTime.Now.AddYears(-1) && x.TimeStamp <= DateTime.Now).Count();
-            int byYear2 = dbContext.Events.Where(x => x.TimeStamp >= DateTime.Now.AddYears(-2) && x.TimeStamp <= DateTime.Now.AddYears(-1)).Count();
-            int byYear3 = dbContext.Events.Where(x => x.TimeStamp >= DateTime.Now.AddYears(-3) && x.TimeStamp <= DateTime.Now.AddYears(-2)).Count();
+            int byYear1 = dbContext.Events.Where(x => x.TimeStamp >= DateTime.Now.AddYears(-1) && x.TimeStamp <= DateTime.Now && x.EventClass.Equals(EventClass.Schedule)).Count();
+            int byYear2 = dbContext.Events.Where(x => x.TimeStamp >= DateTime.Now.AddYears(-2) && x.TimeStamp <= DateTime.Now.AddYears(-1) && x.EventClass.Equals(EventClass.Schedule)).Count();
+            int byYear3 = dbContext.Events.Where(x => x.TimeStamp >= DateTime.Now.AddYears(-3) && x.TimeStamp <= DateTime.Now.AddYears(-2) && x.EventClass.Equals(EventClass.Schedule)).Count();
 
-            int byMonth1 = dbContext.Events.Where(x => x.TimeStamp >= DateTime.Now.AddMonths(-1) && x.TimeStamp <= DateTime.Now).Count();
-            int byMonth2= dbContext.Events.Where(x => x.TimeStamp >= DateTime.Now.AddMonths(-2) && x.TimeStamp <= DateTime.Now.AddMonths(-1)).Count();
-            int byMonth3 = dbContext.Events.Where(x => x.TimeStamp >= DateTime.Now.AddMonths(-3) && x.TimeStamp <= DateTime.Now.AddMonths(-2)).Count();
+            int byMonth1 = dbContext.Events.Where(x => x.TimeStamp >= DateTime.Now.AddMonths(-1) && x.TimeStamp <= DateTime.Now && x.EventClass.Equals(EventClass.Schedule)).Count();
+            int byMonth2= dbContext.Events.Where(x => x.TimeStamp >= DateTime.Now.AddMonths(-2) && x.TimeStamp <= DateTime.Now.AddMonths(-1) && x.EventClass.Equals(EventClass.Schedule)).Count();
+            int byMonth3 = dbContext.Events.Where(x => x.TimeStamp >= DateTime.Now.AddMonths(-3) && x.TimeStamp <= DateTime.Now.AddMonths(-2) && x.EventClass.Equals(EventClass.Schedule)).Count();
 
-            int byWeek1 = dbContext.Events.Where(x => x.TimeStamp >= DateTime.Now.AddDays(-7) && x.TimeStamp <= DateTime.Now).Count();
-            int byWeek2 = dbContext.Events.Where(x => x.TimeStamp >= DateTime.Now.AddDays(-14) && x.TimeStamp <= DateTime.Now.AddDays(-7)).Count();
-            int byWeek3 = dbContext.Events.Where(x => x.TimeStamp >= DateTime.Now.AddDays(-21) && x.TimeStamp <= DateTime.Now.AddDays(-14)).Count();
+            int byWeek1 = dbContext.Events.Where(x => x.TimeStamp >= DateTime.Now.AddDays(-7) && x.TimeStamp <= DateTime.Now && x.EventClass.Equals(EventClass.Schedule)).Count();
+            int byWeek2 = dbContext.Events.Where(x => x.TimeStamp >= DateTime.Now.AddDays(-14) && x.TimeStamp <= DateTime.Now.AddDays(-7) && x.EventClass.Equals(EventClass.Schedule)).Count();
+            int byWeek3 = dbContext.Events.Where(x => x.TimeStamp >= DateTime.Now.AddDays(-21) && x.TimeStamp <= DateTime.Now.AddDays(-14) && x.EventClass.Equals(EventClass.Schedule)).Count();
             
             list.Add(byYear1);
             list.Add(byYear2);

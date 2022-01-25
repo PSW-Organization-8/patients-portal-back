@@ -33,6 +33,7 @@ namespace HospitalClassLib.Events.Model
             this.TimeStamp = DateTime.Now;
             this.EventClass = EventClass.Other;
             this.EventApplicationName = ApplicationName.PatientsPortal;
+            Month = DateTime.Now.Month;
         }
 
         public Event(string userId, ApplicationName eventApplicationName, EventClass eventClass, double optionalEventNumInfo, Specialization doctorSpecialization, DateTime choosenTime, string doctorUsername)
@@ -45,7 +46,7 @@ namespace HospitalClassLib.Events.Model
             ChoosenTime = choosenTime;
             DoctorSpecialization = doctorSpecialization;
             DoctorUsername = doctorUsername;
-            Month = TimeStamp.Month;
+            Month = DateTime.Now.Month;
         }
 
         public Event(long id, string userId, ApplicationName eventApplicationName, EventClass eventClass)
@@ -55,7 +56,7 @@ namespace HospitalClassLib.Events.Model
             UserId = userId;
             EventApplicationName = eventApplicationName;
             EventClass = eventClass;
-            Month = TimeStamp.Month;
+            Month = DateTime.Now.Month;
         }
 
         public Event(long id, string username, EventClass eventClass, int optionalEventNumInfo)
@@ -64,7 +65,7 @@ namespace HospitalClassLib.Events.Model
             UserId = username;
             EventClass = eventClass;
             OptionalEventNumInfo = optionalEventNumInfo;
-            Month = TimeStamp.Month;
+            Month = DateTime.Now.Month;
         }
 
         public Event(long id, DateTime time, string username, EventClass eventClass)
