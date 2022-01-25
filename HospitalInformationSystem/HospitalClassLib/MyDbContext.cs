@@ -153,11 +153,11 @@ namespace HospitalClassLib
             modelBuilder.Entity<Doctor>().HasData(
                 new Doctor { Id = 1, Name = "Jovan", LastName = "Jovanovic", Jmbg = "123456799", Username = "jova", Password = "jova", DoctorSpecialization = Specialization.FamilyPhysician , Patients = new List<Patient>(), Appointments = new List<Appointment>() },
                 new Doctor { Id = 2, Name = "Milan", LastName = "Ilic", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.FamilyPhysician, Patients = new List<Patient>(), Appointments = new List<Appointment>() },
-                new Doctor { Id = 3, Name = "Stevan", LastName = "Markovic", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.Gynecologist, Patients = new List<Patient>(), Appointments = new List<Appointment>() },
-                new Doctor { Id = 4, Name = "Nikola", LastName = "Visnjic", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.Neurologist, Patients = new List<Patient>(), Appointments = new List<Appointment>() },
-                new Doctor { Id = 5, Name = "Strahinja", LastName = "Mitic", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.Neurologist, Patients = new List<Patient>(), Appointments = new List<Appointment>() },
-                new Doctor { Id = 6, Name = "Goran", LastName = "Despotovic", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.Internist, Patients = new List<Patient>(), Appointments = new List<Appointment>() },
-                new Doctor { Id = 7, Name = "Milomir", LastName = "Njegos", Jmbg = "123756799", Username = "mico", Password = "mico", DoctorSpecialization = Specialization.Urologist, Patients = new List<Patient>(), Appointments = new List<Appointment>() }
+                new Doctor { Id = 3, Name = "Stevan", LastName = "Markovic", Jmbg = "123756799", Username = "steva", Password = "steva", DoctorSpecialization = Specialization.Gynecologist, Patients = new List<Patient>(), Appointments = new List<Appointment>() },
+                new Doctor { Id = 4, Name = "Nikola", LastName = "Visnjic", Jmbg = "123756799", Username = "dzoni", Password = "dzoni", DoctorSpecialization = Specialization.Neurologist, Patients = new List<Patient>(), Appointments = new List<Appointment>() },
+                new Doctor { Id = 5, Name = "Strahinja", LastName = "Mitic", Jmbg = "123756799", Username = "strahinja", Password = "strahinja", DoctorSpecialization = Specialization.Neurologist, Patients = new List<Patient>(), Appointments = new List<Appointment>() },
+                new Doctor { Id = 6, Name = "Goran", LastName = "Despotovic", Jmbg = "123756799", Username = "goran", Password = "goran", DoctorSpecialization = Specialization.Internist, Patients = new List<Patient>(), Appointments = new List<Appointment>() },
+                new Doctor { Id = 7, Name = "Milomir", LastName = "Njegos", Jmbg = "123756799", Username = "mili", Password = "mili", DoctorSpecialization = Specialization.Urologist, Patients = new List<Patient>(), Appointments = new List<Appointment>() }
                 );
             modelBuilder.Entity<Doctor>().OwnsOne(p => p.Address).HasData(
                 new { DoctorId = 1, Country = "Serbia", City = "Novi Sad", Street = "Dr. Ilije Ilica 10" },
@@ -182,25 +182,41 @@ namespace HospitalClassLib
                 new Patient { Id = 3, Name = "Ilija", LastName = "Ilic", Jmbg = "213436789", Username = "ilija", Password = "ilija", DateOfBirth = new DateTime(2006, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), Token = "ABC213DEF4AAAAC12345", Picture=""},
                 new Patient { Id = 4, Name = "Mika", LastName = "Mikic", Jmbg = "213126789", Username = "mika", Password = "mika", DateOfBirth = new DateTime(1970, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), Token = "ABC213DEF4AAAAC12345", Picture=""},
                 new Patient { Id = 5, Name = "Zika", LastName = "Sarenica", Jmbg = "213546789", Username = "zika", Password = "zika", DateOfBirth = new DateTime(1960, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), Token = "ABC213DEF4AAAAC12345", Picture=""},
-                new Patient { Id = 6, Name = "Goran", LastName = "Goranic", Jmbg = "213996789", Username = "goran", Password = "goran", DateOfBirth = new DateTime(1942, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), Token = "ABC213DEF4AAAAC12345", Picture=""}
+                new Patient { Id = 6, Name = "Goran", LastName = "Goranic", Jmbg = "213996789", Username = "goran", Password = "goran", DateOfBirth = new DateTime(1942, 10, 11), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), Token = "ABC213DEF4AAAAC12345", Picture=""},
+                new Patient { Id = 7, Name = "Filip", LastName = "Pinjuh", Jmbg = "213990789", Username = "fico", Password = "fico", DateOfBirth = new DateTime(1980, 6, 25), Feedbacks = new List<Feedback>(), DoctorId = 1, Allergens = new List<Allergen>(), Token = "ABC213DEF4AAAAC12345", Picture=""}
                 );
             modelBuilder.Entity<Patient>().OwnsOne(p => p.Address).HasData(
                 new { PatientId = 1, Country = "Serbia", City = "Novi Sad", Street = "Dr. Sime Milosevica 10" },
-                new { PatientId = 2, Country = "Serbia", City = "Novi Sad", Street = "Bulevar Patrijaha Pavla 19" });
+                new { PatientId = 2, Country = "Serbia", City = "Novi Sad", Street = "Bulevar Patrijaha Pavla 19" },
+                new { PatientId = 3, Country = "Serbia", City = "Novi Sad", Street = "Bulevar Patrijaha Pavla 19" },
+                new { PatientId = 4, Country = "Serbia", City = "Novi Sad", Street = "Bulevar Patrijaha Pavla 19" },
+                new { PatientId = 5, Country = "Serbia", City = "Novi Sad", Street = "Bulevar Patrijaha Pavla 19" },
+                new { PatientId = 6, Country = "Serbia", City = "Novi Sad", Street = "Bulevar Patrijaha Pavla 19" },
+                new { PatientId = 7, Country = "Serbia", City = "Novi Sad", Street = "Bulevar Patrijaha Pavla 19" });
             modelBuilder.Entity<Patient>().OwnsOne(p => p.Contact).HasData(
                 new { PatientId = 1, Email = "perapera@gmail.com", Phone = "0641230000" },
-                new { PatientId = 2, Email = "maremaric@gmail.com", Phone = "0647400000" });
+                new { PatientId = 2, Email = "maremaric@gmail.com", Phone = "0647400000" },
+                new { PatientId = 3, Email = "ilija@gmail.com", Phone = "0647400000" },
+                new { PatientId = 4, Email = "mika@gmail.com", Phone = "0647400000" },
+                new { PatientId = 5, Email = "zika@gmail.com", Phone = "0647400000" },
+                new { PatientId = 6, Email = "goran@gmail.com", Phone = "0647400000" },
+                new { PatientId = 7, Email = "filipp@gmail.com", Phone = "0647400000" });
             modelBuilder.Entity<Patient>().OwnsOne(p => p.PatientAccountStatus).HasData(
                 new { PatientId = 1, IsActivated = true, IsBanned = false},
-                new { PatientId = 2, IsActivated = true, IsBanned = false});
+                new { PatientId = 2, IsActivated = true, IsBanned = false},
+                new { PatientId = 3, IsActivated = true, IsBanned = false},
+                new { PatientId = 4, IsActivated = true, IsBanned = false},
+                new { PatientId = 5, IsActivated = true, IsBanned = false},
+                new { PatientId = 6, IsActivated = true, IsBanned = false},
+                new { PatientId = 7, IsActivated = true, IsBanned = false});
 
             modelBuilder.Entity<Feedback>().HasData(
                 new Feedback { Id = 1, Content = "Tekst neki", Date = DateTime.Now, PatientId = 1},
                 new Feedback { Id = 2, Content = "Drugi neki", Date = DateTime.Now, PatientId = 1}
             );
             modelBuilder.Entity<Feedback>().OwnsOne(p => p.FeedbackProperties).HasData(
-                new { FeedbackId = 1, IsAnonymous = true, IsPublishable = true, IsApproved = false },
-                new { FeedbackId = 2, IsAnonymous = false, IsPublishable = true, IsApproved = false });
+                new { FeedbackId = 1, IsAnonymous = true, IsPublishable = true, IsApproved = true },
+                new { FeedbackId = 2, IsAnonymous = false, IsPublishable = true, IsApproved = true });
 
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment { Id = 1, StartTime = new DateTime(2025, 12, 15, 10, 15, 0), State = AppointmentState.pending, Type = AppointmentType.examination, DoctorId = 1, PatientId = 1, IsSurveyed = false },
@@ -347,7 +363,64 @@ namespace HospitalClassLib
                 new Event { Id = 33, TimeStamp = new DateTime(2021, 9, 9), UserId = "pera", EventClass = EventClass.Next },
                 new Event { Id = 34, TimeStamp = new DateTime(2021, 10, 10), UserId = "pera", EventClass = EventClass.Next },
                 new Event { Id = 35, TimeStamp = new DateTime(2021, 11, 11), UserId = "pera", EventClass = EventClass.Next },
-                new Event { Id = 36, TimeStamp = new DateTime(2021, 12, 12), UserId = "pera", EventClass = EventClass.DatePicker }
+                new Event { Id = 36, TimeStamp = new DateTime(2021, 12, 12), UserId = "pera", EventClass = EventClass.DatePicker },
+
+                new Event { Id = 37, TimeStamp = new DateTime(2022, 1, 12), EventClass = EventClass.DatePicker, UserId = "mare", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0 },
+                new Event { Id = 38, TimeStamp = new DateTime(2022, 1, 12), EventClass = EventClass.Next, UserId = "mare", ChoosenTime = new DateTime(2022, 1, 27), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist },
+                new Event { Id = 39, TimeStamp = new DateTime(2022, 1, 12), EventClass = EventClass.DoctorSpecialization, UserId = "mare", ChoosenTime = new DateTime(2022, 1, 28), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 40, TimeStamp = new DateTime(2022, 1, 12), EventClass = EventClass.Next, UserId = "mare", ChoosenTime = new DateTime(2022, 1, 29), Month = 1, OptionalEventNumInfo = 1, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 41, TimeStamp = new DateTime(2022, 1, 12), EventClass = EventClass.DoctorInput, UserId = "mare", ChoosenTime = new DateTime(2022, 1, 30), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 42, TimeStamp = new DateTime(2022, 1, 12), EventClass = EventClass.Next, UserId = "mare", ChoosenTime = new DateTime(2022, 2, 26), Month = 1, OptionalEventNumInfo = 2, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 43, TimeStamp = new DateTime(2022, 1, 12), EventClass = EventClass.Schedule, UserId = "mare", ChoosenTime = new DateTime(2022, 2, 16), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+
+                new Event { Id = 80, TimeStamp = new DateTime(2021, 1, 12), EventClass = EventClass.DatePicker, UserId = "zika", ChoosenTime = new DateTime(2021, 1, 26), Month = 1, OptionalEventNumInfo = 0 },
+                new Event { Id = 81, TimeStamp = new DateTime(2021, 1, 12), EventClass = EventClass.Next, UserId = "zika", ChoosenTime = new DateTime(2021, 1, 16), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist },
+                new Event { Id = 82, TimeStamp = new DateTime(2021, 1, 12), EventClass = EventClass.DoctorSpecialization, UserId = "zika", ChoosenTime = new DateTime(2021, 1, 27), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 83, TimeStamp = new DateTime(2021, 1, 12), EventClass = EventClass.Next, UserId = "zika", ChoosenTime = new DateTime(2021, 1, 28), Month = 1, OptionalEventNumInfo = 1, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 84, TimeStamp = new DateTime(2021, 1, 12), EventClass = EventClass.DoctorInput, UserId = "zika", ChoosenTime = new DateTime(2021, 1, 29), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 85, TimeStamp = new DateTime(2021, 1, 12), EventClass = EventClass.Next, UserId = "zika", ChoosenTime = new DateTime(2021, 1, 30), Month = 1, OptionalEventNumInfo = 2, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 86, TimeStamp = new DateTime(2021, 1, 12), EventClass = EventClass.Schedule, UserId = "zika", ChoosenTime = new DateTime(2021, 1, 31), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+
+                new Event { Id = 45, TimeStamp = new DateTime(2020, 1, 12), EventClass = EventClass.DatePicker, UserId = "ilija", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0 },
+                new Event { Id = 46, TimeStamp = new DateTime(2020, 1, 12), EventClass = EventClass.Next, UserId = "ilija", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist },
+                new Event { Id = 47, TimeStamp = new DateTime(2020, 1, 12), EventClass = EventClass.DoctorSpecialization, UserId = "ilija", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 48, TimeStamp = new DateTime(2020, 1, 12), EventClass = EventClass.Next, UserId = "ilija", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 1, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 49, TimeStamp = new DateTime(2020, 1, 12), EventClass = EventClass.DoctorInput, UserId = "ilija", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 50, TimeStamp = new DateTime(2020, 1, 12), EventClass = EventClass.Next, UserId = "ilija", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 2, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 51, TimeStamp = new DateTime(2020, 1, 12), EventClass = EventClass.Schedule, UserId = "ilija", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+
+                new Event { Id = 52, TimeStamp = new DateTime(2021, 12, 12), EventClass = EventClass.DatePicker, UserId = "mika", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0 },
+                new Event { Id = 53, TimeStamp = new DateTime(2021, 12, 12), EventClass = EventClass.Next, UserId = "mika", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist },
+                new Event { Id = 54, TimeStamp = new DateTime(2021, 12, 12), EventClass = EventClass.DoctorSpecialization, UserId = "mika", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 55, TimeStamp = new DateTime(2021, 12, 12), EventClass = EventClass.Next, UserId = "mika", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 1, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 56, TimeStamp = new DateTime(2021, 12, 12), EventClass = EventClass.DoctorInput, UserId = "mika", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 57, TimeStamp = new DateTime(2021, 12, 12), EventClass = EventClass.Next, UserId = "mika", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 2, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 58, TimeStamp = new DateTime(2021, 12, 12), EventClass = EventClass.Schedule, UserId = "mika", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+
+                new Event { Id = 59, TimeStamp = new DateTime(2021, 11, 12), EventClass = EventClass.DatePicker, UserId = "goran", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0 },
+                new Event { Id = 60, TimeStamp = new DateTime(2021, 11, 12), EventClass = EventClass.Next, UserId = "goran", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist },
+                new Event { Id = 61, TimeStamp = new DateTime(2021, 11, 12), EventClass = EventClass.DoctorSpecialization, UserId = "goran", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 62, TimeStamp = new DateTime(2021, 11, 12), EventClass = EventClass.Next, UserId = "goran", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 1, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 63, TimeStamp = new DateTime(2021, 11, 12), EventClass = EventClass.DoctorInput, UserId = "goran", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 64, TimeStamp = new DateTime(2021, 11, 12), EventClass = EventClass.Next, UserId = "goran", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 2, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 65, TimeStamp = new DateTime(2021, 11, 12), EventClass = EventClass.Schedule, UserId = "goran", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+
+                new Event { Id = 66, TimeStamp = new DateTime(2022, 1, 15), EventClass = EventClass.DatePicker, UserId = "fico", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0 },
+                new Event { Id = 67, TimeStamp = new DateTime(2022, 1, 15), EventClass = EventClass.Next, UserId = "fico", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist },
+                new Event { Id = 68, TimeStamp = new DateTime(2022, 1, 15), EventClass = EventClass.DoctorSpecialization, UserId = "fico", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 69, TimeStamp = new DateTime(2022, 1, 15), EventClass = EventClass.Next, UserId = "fico", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 1, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 70, TimeStamp = new DateTime(2022, 1, 15), EventClass = EventClass.DoctorInput, UserId = "fico", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 71, TimeStamp = new DateTime(2022, 1, 15), EventClass = EventClass.Next, UserId = "fico", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 2, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 72, TimeStamp = new DateTime(2022, 1, 15), EventClass = EventClass.Schedule, UserId = "fico", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+
+                new Event { Id = 73, TimeStamp = new DateTime(2022, 1, 9), EventClass = EventClass.DatePicker, UserId = "mare", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0 },
+                new Event { Id = 74, TimeStamp = new DateTime(2022, 1, 9), EventClass = EventClass.Next, UserId = "mare", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist },
+                new Event { Id = 75, TimeStamp = new DateTime(2022, 1, 9), EventClass = EventClass.DoctorSpecialization, UserId = "mare", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 76, TimeStamp = new DateTime(2022, 1, 9), EventClass = EventClass.Next, UserId = "mare", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 1, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 77, TimeStamp = new DateTime(2022, 1, 9), EventClass = EventClass.DoctorInput, UserId = "mare", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 78, TimeStamp = new DateTime(2022, 1, 9), EventClass = EventClass.Next, UserId = "mare", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 2, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" },
+                new Event { Id = 79, TimeStamp = new DateTime(2022, 1, 9), EventClass = EventClass.Schedule, UserId = "mare", ChoosenTime = new DateTime(2022, 1, 26), Month = 1, OptionalEventNumInfo = 0, DoctorSpecialization = Specialization.Neurologist, DoctorUsername = "dzoni" }
+
             );
 
         }
