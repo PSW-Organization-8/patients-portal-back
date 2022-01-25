@@ -74,7 +74,7 @@ namespace HospitalClassLib.Events.Repository
                                                 doctorsSpecialization[doctorsUsername.IndexOf(x.Key)],
                                                 dbContext.Events.Count(e => e.DoctorUsername == x.Key && e.EventClass == EventClass.DoctorInput),
                                                 dbContext.Events.Count(e => e.DoctorUsername == x.Key && e.EventClass == EventClass.Schedule),
-                                                dbContext.Events.Select(e => e.UserId).Distinct().Count())).ToList();
+                                                dbContext.Events.Where(e => e.DoctorUsername.Equals(x.Key)).GroupBy(e => e.UserId).Count())).ToList();
         }
 
         public List<int> MostWantedSpecialization()

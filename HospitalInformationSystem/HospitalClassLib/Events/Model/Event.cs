@@ -51,7 +51,7 @@ namespace HospitalClassLib.Events.Model
 
         public Event(long id, string userId, ApplicationName eventApplicationName, EventClass eventClass)
         {
-            Id = id;
+            //Id = id;
             TimeStamp = DateTime.Now;
             UserId = userId;
             EventApplicationName = eventApplicationName;
@@ -61,7 +61,7 @@ namespace HospitalClassLib.Events.Model
 
         public Event(long id, string username, EventClass eventClass, int optionalEventNumInfo)
         {
-            Id = id;
+            //Id = id;
             UserId = username;
             EventClass = eventClass;
             OptionalEventNumInfo = optionalEventNumInfo;
@@ -70,7 +70,7 @@ namespace HospitalClassLib.Events.Model
 
         public Event(long id, DateTime time, string username, EventClass eventClass)
         {
-            Id = id;
+            //Id = id;
             TimeStamp = time;
             UserId = username;
             EventClass = eventClass;
